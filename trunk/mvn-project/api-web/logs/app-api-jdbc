@@ -1,0 +1,170 @@
+10:30:59,372 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:31:02,100 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 2715 milliseconds.
+10:31:02,101 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:32:15,486 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:32:15,718 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 228 milliseconds.
+10:32:15,719 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:32:21,637 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:32:21,845 DEBUG InjectAPIService:33 - Method updateStatusIp(status='0',id='3') execution time: 206 milliseconds.
+10:32:21,846 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:32:21,858 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:32:21,863 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 3 milliseconds.
+10:32:21,863 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:32:28,813 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:32:28,857 DEBUG InjectAPIService:33 - Method removeIp(id='3') execution time: 43 milliseconds.
+10:32:28,857 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:32:28,862 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:32:28,865 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 1 milliseconds.
+10:32:28,865 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:37:04,739 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:37:05,023 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 278 milliseconds.
+10:37:05,023 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:37:34,465 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:37:34,883 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:37:34,892 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:37:34,934 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 41 milliseconds.
+10:37:34,934 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:38:05,572 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:38:05,578 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 3 milliseconds.
+10:38:05,578 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:38:06,714 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:38:06,718 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 2 milliseconds.
+10:38:06,719 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:38:07,660 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:38:07,673 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 11 milliseconds.
+10:38:07,674 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:40:36,944 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:40:37,242 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 294 milliseconds.
+10:40:37,242 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:40:42,354 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:40:42,447 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:40:42,457 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:40:42,461 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 3 milliseconds.
+10:40:42,462 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:42:09,687 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:42:09,926 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 233 milliseconds.
+10:42:09,926 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:42:17,916 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:42:18,004 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:42:18,012 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:42:18,016 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 3 milliseconds.
+10:42:18,016 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:43:57,552 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:43:57,882 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 324 milliseconds.
+10:43:57,882 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:44:02,451 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:44:02,612 DEBUG InjectAPIService:33 - Method addIp(ip='10.8.7.30',desc='dia chi IP cho doi tac 1') execution time: 158 milliseconds.
+10:44:02,613 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:44:02,630 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:44:02,636 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 4 milliseconds.
+10:44:02,637 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:44:21,684 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:44:21,689 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 2 milliseconds.
+10:44:21,689 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:54:02,758 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:54:03,039 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 275 milliseconds.
+10:54:03,040 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:55:14,226 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:55:14,526 DEBUG InjectAPIService:33 - Method listProvider() execution time: 295 milliseconds.
+10:55:14,526 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:59:52,713 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:59:53,054 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+10:59:53,061 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+10:59:53,067 DEBUG InjectAPIService:33 - Method listProvider() execution time: 5 milliseconds.
+10:59:53,068 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:01:50,996 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:01:51,353 DEBUG InjectAPIService:33 - Method addProvider(name='provider 1',desc='a',date='2013-06-12 11:01:50') execution time: 354 milliseconds.
+11:01:51,353 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:01:51,365 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:01:51,384 DEBUG InjectAPIService:33 - Method listProvider() execution time: 17 milliseconds.
+11:01:51,384 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:11:11,160 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:11:11,447 DEBUG InjectAPIService:33 - Method listProvider() execution time: 282 milliseconds.
+11:11:11,447 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:13:24,641 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:13:24,922 DEBUG InjectAPIService:33 - Method listProvider() execution time: 277 milliseconds.
+11:13:24,922 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:13:26,368 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:13:26,428 DEBUG InjectAPIService:33 - Method getProviderById(id='1') execution time: 54 milliseconds.
+11:13:26,429 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:13:30,394 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:13:30,540 DEBUG InjectAPIService:33 - Method updateProvider(id='1',name='provider 2',desc='a') execution time: 144 milliseconds.
+11:13:30,540 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:13:30,550 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:13:30,555 DEBUG InjectAPIService:33 - Method listProvider() execution time: 2 milliseconds.
+11:13:30,555 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:14:29,122 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:14:29,404 DEBUG InjectAPIService:33 - Method listProvider() execution time: 276 milliseconds.
+11:14:29,404 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:14:30,794 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:14:30,817 DEBUG InjectAPIService:33 - Method getProviderById(id='1') execution time: 22 milliseconds.
+11:14:30,817 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:14:32,405 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:14:32,409 DEBUG InjectAPIService:33 - Method listProvider() execution time: 3 milliseconds.
+11:14:32,409 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:16:22,437 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:16:22,676 DEBUG InjectAPIService:33 - Method listProvider() execution time: 234 milliseconds.
+11:16:22,677 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:16:23,645 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:16:23,737 DEBUG InjectAPIService:33 - Method updateProviderStatus(status='1',id='1') execution time: 91 milliseconds.
+11:16:23,737 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:16:23,749 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:16:23,783 DEBUG InjectAPIService:33 - Method listProvider() execution time: 32 milliseconds.
+11:16:23,783 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:16:26,401 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:16:26,446 DEBUG InjectAPIService:33 - Method updateProviderStatus(status='0',id='1') execution time: 41 milliseconds.
+11:16:26,447 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:16:26,452 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:16:26,454 DEBUG InjectAPIService:33 - Method listProvider() execution time: 1 milliseconds.
+11:16:26,455 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:27:18,721 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:27:18,994 DEBUG InjectAPIService:33 - Method listToken() execution time: 268 milliseconds.
+11:27:18,995 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:27:27,794 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:27:27,873 DEBUG InjectAPIService:33 - Method addToken(name='asdf',key='gJVhwA',desc='asdf') execution time: 76 milliseconds.
+11:27:27,873 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:27:27,880 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:27:27,894 DEBUG InjectAPIService:33 - Method listToken() execution time: 13 milliseconds.
+11:27:27,894 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:27:34,939 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:27:35,087 DEBUG InjectAPIService:33 - Method removeToken(id='1') execution time: 147 milliseconds.
+11:27:35,087 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+11:27:35,096 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+11:27:35,099 DEBUG InjectAPIService:33 - Method listToken() execution time: 2 milliseconds.
+11:27:35,100 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:49:46,681 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:49:46,970 DEBUG InjectAPIService:33 - Method listToken() execution time: 285 milliseconds.
+13:49:46,970 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:05,441 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:05,549 DEBUG InjectAPIService:33 - Method addToken(name='texl',key='p2dxEA',desc='adf') execution time: 107 milliseconds.
+13:50:05,549 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:05,556 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:05,561 DEBUG InjectAPIService:33 - Method listToken() execution time: 3 milliseconds.
+13:50:05,561 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:07,642 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:07,666 DEBUG InjectAPIService:33 - Method updateTokenStatus(status='1',id='2') execution time: 22 milliseconds.
+13:50:07,666 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:07,671 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:07,673 DEBUG InjectAPIService:33 - Method listToken() execution time: 1 milliseconds.
+13:50:07,674 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:09,749 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:09,824 DEBUG InjectAPIService:33 - Method updateTokenStatus(status='0',id='2') execution time: 73 milliseconds.
+13:50:09,825 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:09,831 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:09,836 DEBUG InjectAPIService:33 - Method listToken() execution time: 4 milliseconds.
+13:50:09,837 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:22,500 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:22,511 DEBUG InjectAPIService:33 - Method getTokenById(id='2') execution time: 6 milliseconds.
+13:50:22,511 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:25,838 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:25,942 DEBUG InjectAPIService:33 - Method updateToken(id='2',name='texl1',key='p2dxEA',desc='adf') execution time: 103 milliseconds.
+13:50:25,943 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:25,955 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:25,959 DEBUG InjectAPIService:33 - Method listToken() execution time: 3 milliseconds.
+13:50:25,959 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:32,257 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:32,310 DEBUG InjectAPIService:33 - Method removeToken(id='2') execution time: 48 milliseconds.
+13:50:32,310 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+13:50:32,315 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+13:50:32,317 DEBUG InjectAPIService:33 - Method listToken() execution time: 1 milliseconds.
+13:50:32,318 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
