@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav"/>
+            <form id="form-horizontal" class="form-horizontal bs-docs-example" th:attr="action=@{/admin/report/action/modified}" method="POST">
+                <div class="control-group">
+                    <div >
+                        <textarea class="modify-control" th:text="${reportContent}" name="reportContent" >
+                            <xsl:value-of select="xml" />
+                        </textarea>
+                        <input type="hidden" th:value="${report.reportId}" name="reportId" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div>
+                        <button type="submit" class="btn btn-primary" th:onclick="${'return REPORT.confirmModify();'}">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script th:inline="javascript">
+            REPORT = {
+                confirmModify: function()
+                {
+                    if (confirm("Are you sure to save this?")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />  
+            <p class="text-error" th:text="${message}"></p>
+            <form id="form-horizontal" class="form-horizontal bs-docs-example" enctype='multipart/form-data' action="" th:attr="action=@{/admin/report/action/save}" method="POST">
+                <div class="control-group">
+                    <label class="control-label" for="reportName">Report name</label>
+                    <div class="controls">
+                        <input type="text" id="reportName" class="validate[required]" name="reportName" placeholder="Report name" th:value="${report}? ${report.reportName} : ''"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="reportDescription">Description</label>
+                    <div class="controls">
+                        <input type="text" id="reportDescription" class="validate[required]" name="reportDescription" placeholder="Report desciption" th:value="${report}? ${report.reportDescription}: ''"/>
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <input type="hidden" name='reportId' th:value="${report}?${report.reportId}:''"/>
+                    <label class='control-label' for='reportFile'>Report file</label>
+                    <div class='controls'>
+                        <input type='file' id='reportFile' accept="" th:class="${report}?'':'validate[required]'" name='reportFile'/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary">Add/Update report settings</button>
+                        <a href="#" th:href="@{/admin/report/}" class="btn" id="cancel">Cancel</a>
+                    </div>
+                </div>
+            </form>
+            <div th:include="template :: footer" id="footer"></div>
+        </div>	
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#form-horizontal").validationEngine();
+                COMMON.activeMenu("gift_nav");
+
+            });
+            /*]]>*/
+        </script>    
+    </body>
+
+</html>

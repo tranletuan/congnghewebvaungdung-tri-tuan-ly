@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-tomcat:run -Dmaven.tomcat.port=8282</actionName>
+            <displayName>tomcat:run -Dmaven.tomcat.port=8282</displayName>
+            <goals>
+                <goal>tomcat:run</goal>
+                <goal>-Dmaven.tomcat.port=8282</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-clean install tomcat7:run -Dmaven.tomcat.port=8282</actionName>
+            <displayName>clean install tomcat7:run -Dmaven.tomcat.port=8282</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>tomcat7:run</goal>
+                <goal>-Dmaven.tomcat.port=8282</goal>
+            </goals>
+        </action>
+    </actions>

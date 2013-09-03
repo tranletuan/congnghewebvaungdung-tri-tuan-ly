@@ -1,0 +1,9 @@
+16:25:24,103 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+16:25:26,936 DEBUG InjectAPIService:33 - Method test() execution time: 2831 milliseconds.
+16:25:26,936 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+17:06:09,277 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+17:06:10,154 DEBUG InjectAPIService:33 - Method listIp() execution time: 874 milliseconds.
+17:06:10,154 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
+19:10:38,401 DEBUG InjectAPIService:13 - !!!!!!!!!!!Start call method!!!!!!!!!!
+19:10:38,855 DEBUG InjectAPIService:33 - Method listIpAdmin() execution time: 449 milliseconds.
+19:10:38,856 DEBUG InjectAPIService:42 - !!!!!!!!!!!End call method!!!!!!!!!!
