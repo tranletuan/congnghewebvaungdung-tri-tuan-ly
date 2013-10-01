@@ -23,7 +23,7 @@ import quanlyhocvu.api.mongodb.DTO.base.DTOConstant;
  */
 @Repository
 public class AddressDAO {
-
+    
     org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     MongoOperations mongoOperations;
@@ -33,22 +33,22 @@ public class AddressDAO {
         try {
             mongoOperations.insert(province);
         } catch (Exception ex) {
-            logger.debug("AddressDAO: insertProvince error");
+            logger.debug("AddressDAO: insertProvince error"  + ex.getMessage());
             return false;
         }
         return true;
     }
-
+    
     public boolean updateProvince(ProvinceDTO province) {
         try {
             Query query = Query.query(Criteria.where(DTOConstant.Id).is(province.getId()));
-
+            
             Update update = new Update();
             update.set(DTOConstant.ProvinceName, province.getProvinceName());
-
+            
             mongoOperations.findAndModify(query, update, ProvinceDTO.class);
         } catch (Exception ex) {
-            logger.debug("AddressDAO: updateProvince error");
+            logger.debug("AddressDAO: updateProvince error"  + ex.getMessage());
             return true;
         }
         return false;
@@ -60,23 +60,23 @@ public class AddressDAO {
         try {
             mongoOperations.insert(district);
         } catch (Exception ex) {
-            logger.debug("AddressDAO: insertDistrict error");
+            logger.debug("AddressDAO: insertDistrict error"  + ex.getMessage());
             return false;
         }
         return true;
     }
-
+    
     public boolean updateDistrict(DistrictDTO district) {
         try {
             Query query = Query.query(Criteria.where(DTOConstant.Id).is(district.getId()));
-
+            
             Update update = new Update();
             update.set(DTOConstant.DistrictName, district.getDistrictName());
             update.set(DTOConstant.ProvinceId, district.getProvinceId());
-
+            
             mongoOperations.findAndModify(query, update, DistrictDTO.class);
         } catch (Exception ex) {
-            logger.debug("AddressDAO: updateDistrict error");
+            logger.debug("AddressDAO: updateDistrict error"  + ex.getMessage());
             return false;
         }
         return true;
@@ -88,7 +88,7 @@ public class AddressDAO {
         try {
             mongoOperations.insert(ward);
         } catch (Exception ex) {
-            logger.debug("AddressDAO: updateDistrict error");
+            logger.debug("AddressDAO: insertWard error" + ex.getMessage());
             return false;
         }
         return true;
@@ -104,7 +104,7 @@ public class AddressDAO {
             
             mongoOperations.findAndModify(query, update, WardDTO.class);
         } catch (Exception ex) {
-            logger.debug("AddressDAO: updateDistrict error");
+            logger.debug("AddressDAO: updateWard error" + ex.getMessage());
             return false;
         }
         return true;
