@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Login page</title>
+        <title>Đăng nhập</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Bootstrap -->
         <link href="media/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
@@ -46,18 +46,12 @@
     <body>
         <div class="container">
 
-            <form class="form-signin" action="app-web/j_spring_security_check" th:attr="action=@{/admin/j_spring_security_check}" method="post">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <input type="text" class="input-block-level" placeholder="Username" name="j_username"/>
-                <input type="password" class="input-block-level" placeholder="Password" name="j_password"/>
-                <!--
-                <label class="checkbox">
-                    <input type="checkbox" value="remember-me"/> Remember me
-                </label>
-                -->
-                <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+            <form class="form-signin" th:attr="action=@{/admin/j_spring_security_check}" method="post">
+                <h2 class="form-signin-heading">Vui lòng đăng nhập</h2>
+                <input autocomplete="no" type="text" class="input-block-level" placeholder="Tên đăng nhập" name="j_username"/>
+                <input autocomplete="no" type="password" class="input-block-level" placeholder="Mật khẩu" name="j_password"/>
+                <button class="btn btn-large btn-primary" type="submit">Đăng nhập</button>
             </form>
-
-        </div> <!-- /container -->
+        </div> 
     </body>
 </html>

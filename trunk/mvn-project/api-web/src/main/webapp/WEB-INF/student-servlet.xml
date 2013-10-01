@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:p="http://www.springframework.org/schema/p" 
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven  />
+           
+    <mvc:resources location="/media/" mapping="/media/**"/>
+    <mvc:interceptors>
+        <beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <beans:property name="paramName" value="lang" />
+        </beans:bean>
+        <beans:bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
+            <beans:property name="paramName" value="theme" />
+        </beans:bean>
+    </mvc:interceptors>
+  	
+    <!-- Application Message Bundle -->
+    <beans:bean id="messageSource"
+                class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
+        <beans:property name="basename" value="classpath:student_messages" />
+        <beans:property name="defaultEncoding" value="UTF-8" />
+    </beans:bean>
+
+    <!-- Locale Change Interceptor and Resolver definition -->
+    <beans:bean id="localeResolver"
+                class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <beans:property name="defaultLocale" value="en" />
+    </beans:bean>
+
+    <beans:bean id="themeSource"
+                class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+        <beans:property name="basenamePrefix" value="student_theme_" />
+    </beans:bean>
+
+    <!-- Theme Change Interceptor and Resolver definition -->
+    <beans:bean id="themeResolver"
+                class="org.springframework.web.servlet.theme.CookieThemeResolver">
+        <beans:property name="defaultThemeName" value="default" />
+    </beans:bean>
+	
+    <!-- Declare a view resolver -->
+    <!--     <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+    p:prefix="/WEB-INF/views/student/" p:suffix=".jsp" /> -->
+    <beans:bean id="templateResolver"
+                class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <beans:property name="prefix" value="/WEB-INF/views/student/" />
+        <beans:property name="suffix" value=".html" />
+        <beans:property name="templateMode" value="HTML5" />
+        <beans:property name="characterEncoding" value="UTF-8" />
+        <beans:property name="cacheable" value="false" />
+    </beans:bean>
+    <beans:bean id="additionalDialects" class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
+    <beans:bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+        <beans:property name="templateResolver" ref="templateResolver" />
+        <beans:property name="additionalDialects" ref="additionalDialects" />
+    </beans:bean>
+    <beans:bean id="viewResolver" class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+        <beans:property name="templateEngine" ref="templateEngine" />
+        <beans:property name="characterEncoding" value="UTF-8" /> 
+    </beans:bean>		
+    <context:component-scan base-package="quanlyhocvu.api.web.controller.student" />
+    <context:annotation-config />
+    <mvc:default-servlet-handler/>
+	
+	
+    <beans:bean id="multipartResolver"
+                class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize">
+            <beans:value>75000000</beans:value>
+        </beans:property>
+    </beans:bean>
+	
+    <!--  Exception handler mappings --> 
+	 
+    <!-- <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+        <beans:property name="exceptionMappings"> 
+            <beans:props> 
+                <beans:prop key="org.springframework.web.servlet.PageNotFound">pageNotFound</beans:prop> 
+                <beans:prop key="org.springframework.dao.DataAccessException">dataAccessFailure</beans:prop> 
+                <beans:prop key="org.springframework.transaction.TransactionException">dataAccessFailure</beans:prop> 
+            </beans:props> 
+        </beans:property> 
+        <beans:property name="defaultErrorView" value="uncaughtException"></beans:property> 
+    </beans:bean>  -->
+ 	 
+</beans:beans>
