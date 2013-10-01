@@ -1,4 +1,4 @@
-package quanlyhocvu.api.web.controller.admin;
+package quanlyhocvu.api.web.controller.guest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +12,6 @@ public class HomeController {
     public @ResponseBody
     ModelAndView index() {
         ModelAndView mv = new ModelAndView("home");
-        System.out.println("Login app-web management");
         return mv;
-    }
-    
+    }    
 }
