@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.mongodb.DAO;
 
+import java.util.List;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -12,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+import quanlyhocvu.api.mongodb.DTO.address.AddressDTO;
 import quanlyhocvu.api.mongodb.DTO.address.DistrictDTO;
 import quanlyhocvu.api.mongodb.DTO.address.ProvinceDTO;
 import quanlyhocvu.api.mongodb.DTO.address.WardDTO;
@@ -28,6 +30,8 @@ public class AddressDAO {
     @Autowired
     MongoOperations mongoOperations;
 
+public AddressDAO() {}    
+    
 //<editor-fold defaultstate="collapsed" desc="ProvinceDAO">
     public boolean insertProvince(ProvinceDTO province) {
         try {
@@ -53,9 +57,18 @@ public class AddressDAO {
         }
         return false;
     }
+    
+    public List<ProvinceDTO> getAllProvince() {
+        return mongoOperations.findAll(ProvinceDTO.class);
+    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="DistrictDAO">
+    public List<DistrictDTO> getDistrictByProvinceId(String provinceId) {
+        Query query = Query.query(Criteria.where(DTOConstant.ProvinceId).is(provinceId));
+        return mongoOperations.find(query, DistrictDTO.class);
+    }
+    
     public boolean insertDistrict(DistrictDTO district) {
         try {
             mongoOperations.insert(district);
@@ -84,6 +97,11 @@ public class AddressDAO {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="WardDAO">
+    public List<WardDTO> getWardByDistrictId(String districtId) {
+        Query query = Query.query(Criteria.where(DTOConstant.DistrictId).is(districtId));
+        return mongoOperations.find(query, WardDTO.class);
+    }
+    
     public boolean insertWard(WardDTO ward) {
         try {
             mongoOperations.insert(ward);
@@ -110,4 +128,35 @@ public class AddressDAO {
         return true;
     }
 //</editor-fold>
+    
+    public List<AddressDTO> getAddressByWardId(String wardId) {
+        Query query = Query.query(Criteria.where(DTOConstant.DistrictId).is(wardId));
+        return mongoOperations.find(query, AddressDTO.class);
+    }
+    
+    public boolean insertAddress(AddressDTO address) {
+        try {
+            mongoOperations.insert(address);
+        } catch (Exception ex) {
+            logger.debug("AddressDAO: insertAddress error" + ex.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean updateAddress(AddressDTO address) {
+        try {
+            Query query = Query.query(Criteria.where(DTOConstant.Id).is(address.getId()));
+            
+            Update update = new Update();
+            update.set(DTOConstant.AddressName, address.getAddressName());
+            update.set(DTOConstant.DistrictName, address.getWardId());
+            
+            mongoOperations.findAndModify(query, update, AddressDTO.class);
+        } catch (Exception ex) {
+            logger.debug("AddressDAO: updateAddress error" + ex.getMessage());
+            return false;
+        }
+        return true;
+    }
 }
