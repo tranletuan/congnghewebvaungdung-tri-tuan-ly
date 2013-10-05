@@ -20,4 +20,6 @@ public class DTOConstant {
     
     public static String DistrictId = "_districtId";
     public static String DistrictName = "_districtName";
+    
+    public static String AddressName = "_addressName";
 }

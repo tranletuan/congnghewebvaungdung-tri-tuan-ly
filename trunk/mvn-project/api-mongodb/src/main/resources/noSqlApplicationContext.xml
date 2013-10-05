@@ -31,17 +31,12 @@
         <constructor-arg ref="converter"/>
     </bean>
     
+    <bean id="addressDAO" class="quanlyhocvu.api.mongodb.DAO.AddressDAO"/>
+    
+    <bean id="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService">
+        <property name="addressDAO" ref="addressDAO"/>
+    </bean>
+    
     <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-    <!--     aop 
-   <bean id="injectMongoService" class="iwin.vn.api.mongodb.aop.InjectMongoService" />
-   <aop:config>
-       <aop:aspect ref="injectMongoService">
-           <aop:pointcut expression="execution(* iwin.vn.api.mongodb.service.*.*(..))" id="pointcutMongoService" />
-           <aop:around method="injectMethod" pointcut-ref="pointcutMongoService" />
-       </aop:aspect>
-   </aop:config>
-   <import resource="classpath:mailApplicationContext.xml" />	
-    Enable the @AspectJ support 
-    <aop:aspectj-autoproxy /> -->
 </beans>

@@ -5,11 +5,13 @@
  */
 package quanlyhocvu.api.mongodb.DTO.address;
 
+import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
+
 /**
  *
  * @author HuuTri
  */
-public class AddressDTO{
+public class AddressDTO extends AbstractObjectDTO{
 
     private String _addressName;
     private String _wardId;
