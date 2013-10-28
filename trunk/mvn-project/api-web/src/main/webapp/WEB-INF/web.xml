@@ -14,6 +14,12 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/authority/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/student/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
@@ -88,6 +94,15 @@
     <servlet-mapping>
         <servlet-name>guest</servlet-name>
         <url-pattern>/guest/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>authority</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>7</load-on-startup>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>authority</servlet-name>
+        <url-pattern>/authority/*</url-pattern>
     </servlet-mapping>
     <listener>
         <listener-class>

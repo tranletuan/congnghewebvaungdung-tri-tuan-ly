@@ -50,6 +50,7 @@ public class MongoService {
     public List<AddressDTO> getAddressByWardId(String wardId) {
         return addressDAO.getAddressByWardId(wardId);
     }
+    
     //<editor-fold defaultstate="collapsed" desc="Get Set DAO">
     public AddressDAO getAddressDAO() {
         return addressDAO;

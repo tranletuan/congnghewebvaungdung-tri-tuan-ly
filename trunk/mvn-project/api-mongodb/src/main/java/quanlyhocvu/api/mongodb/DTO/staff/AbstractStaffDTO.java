@@ -6,20 +6,19 @@
 package quanlyhocvu.api.mongodb.DTO.staff;
 
 import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
-import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
 
 /**
  *
  * @author HuuTri
  */
 public class AbstractStaffDTO extends AbstractPersonDTO{
-    private double _salary;
+    private String _staffDateOfWork;
 
-    public double getSalary() {
-        return _salary;
+    public String getStaffDateOfWork() {
+        return _staffDateOfWork;
     }
-
-    public void setSalary(double _salary) {
-        this._salary = _salary;
+    
+    public void setStaffDateOfWork(String _dateOfWork) {
+        this._staffDateOfWork = _dateOfWork;
     }
 }

@@ -29,7 +29,7 @@ public class AddressDAO {
     org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     MongoOperations mongoOperations;
-
+    
 public AddressDAO() {}    
     
 //<editor-fold defaultstate="collapsed" desc="ProvinceDAO">

@@ -22,4 +22,17 @@ public class DTOConstant {
     public static String DistrictName = "_districtName";
     
     public static String AddressName = "_addressName";
+    
+    public static String MajorName = "_majorName";
+    public static String MajorDescription = "_majorDescription";
+    
+    public static String TeacherId = "_teacherId";
+    public static String TeacherListMajorIds = "_listMajorIds";
+    
+    public static String PersonName = "_personName";
+    public static String PersonGender = "_personGender";
+    public static String PersonDateOfBirth = "_personDateOfBirth";
+    public static String PersonAddress = "_personAddress";
+    
+    public static String StaffDateOfWork = "_staffDateOfWork";
 }
