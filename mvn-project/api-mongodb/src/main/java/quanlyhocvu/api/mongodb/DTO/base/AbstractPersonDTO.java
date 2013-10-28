@@ -12,18 +12,10 @@ import quanlyhocvu.api.mongodb.DTO.address.AddressDTO;
  * @author HuuTri
  */
 public class AbstractPersonDTO extends AbstractObjectDTO{
-    private AddressDTO _address;
     private String _personName;
-    private String _dateOfBirt;
     private int _personGender;
-
-    public AddressDTO getAddress() {
-        return _address;
-    }
-
-    public void setAddress(AddressDTO _address) {
-        this._address = _address;
-    }
+    private String _personDateOfBirth;
+    private AddressDTO _personAddress;
 
     public String getPersonName() {
         return _personName;
@@ -33,19 +25,27 @@ public class AbstractPersonDTO extends AbstractObjectDTO{
         this._personName = _personName;
     }
 
-    public String getDateOfBirt() {
-        return _dateOfBirt;
-    }
-
-    public void setDateOfBirt(String _dateOfBirt) {
-        this._dateOfBirt = _dateOfBirt;
-    }
-
     public int getPersonGender() {
         return _personGender;
     }
 
     public void setPersonGender(int _personGender) {
         this._personGender = _personGender;
+    }
+
+    public String getPersonDateOfBirth() {
+        return _personDateOfBirth;
+    }
+
+    public void setPersonDateOfBirth(String _personDateOfBirth) {
+        this._personDateOfBirth = _personDateOfBirth;
+    }
+
+    public AddressDTO getPersonAddress() {
+        return _personAddress;
+    }
+
+    public void setPersonAddress(AddressDTO _personAddress) {
+        this._personAddress = _personAddress;
     }
 }

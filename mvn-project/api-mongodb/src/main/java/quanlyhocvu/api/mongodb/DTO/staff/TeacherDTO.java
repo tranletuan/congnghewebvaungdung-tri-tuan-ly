@@ -15,17 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class TeacherDTO extends AbstractStaffDTO {
 
-    private String _dateOfWork;
     private String _teacherId;
     private List<String> _listMajorIds;
-
-    public String getDateOfWork() {
-        return _dateOfWork;
-    }
-
-    public void setDateOfWork(String _dateOfWork) {
-        this._dateOfWork = _dateOfWork;
-    }
 
     public String getTeacherId() {
         return _teacherId;

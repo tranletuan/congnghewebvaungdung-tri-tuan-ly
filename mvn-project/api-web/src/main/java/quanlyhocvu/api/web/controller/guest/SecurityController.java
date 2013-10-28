@@ -44,4 +44,16 @@ public class SecurityController {
         model.put("message", "Vui lòng kiểm tra thông tin đăng nhập");
         return new ModelAndView("login", model);
     }
+    
+    @RequestMapping(value="check") 
+    public @ResponseBody
+    ModelAndView check() {
+        return new ModelAndView("forward:/authority/j_spring_security_check");
+    }
+    
+     @RequestMapping(value="logout") 
+    public @ResponseBody
+    ModelAndView logout() {
+        return new ModelAndView("forward:/authority/logout");
+    }
 }
