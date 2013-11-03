@@ -34,21 +34,11 @@ public class SecurityController {
 
         return new ModelAndView("login", model);
     }
-
-    @RequestMapping(value = "noAccess", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelAndView noAccess() {
-        logger.debug("Received request to show no access");
-        Map<String, Object> model = new HashMap<String, Object>();
-
-        model.put("message", "Vui lòng kiểm tra thông tin đăng nhập");
-        return new ModelAndView("login", model);
-    }
     
     @RequestMapping(value="check") 
     public @ResponseBody
     ModelAndView check() {
-        return new ModelAndView("forward:/authority/j_spring_security_check");
+        return new ModelAndView("forward:/authority/check");
     }
     
      @RequestMapping(value="logout") 

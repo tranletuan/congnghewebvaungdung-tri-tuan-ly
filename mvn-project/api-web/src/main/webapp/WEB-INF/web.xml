@@ -15,8 +15,8 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/authority/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
@@ -33,6 +33,8 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/guest/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <jsp-config>
 		<taglib>
@@ -43,6 +45,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
+            /WEB-INF/spring/appServlet/jdbcApplicationContext.xml
             /WEB-INF/spring/appServlet/applicationContext.xml
             /WEB-INF/spring/appServlet/spring-security.xml
         </param-value>
@@ -142,31 +145,4 @@
         <error-code>404</error-code>
         <location>/error</location>
     </error-page>  
-    <!--
-    <security-constraint>
-        <display-name>MeChat Security Constraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>Protected Area</web-resource-name>
-            
-            <url-pattern>/admin/*</url-pattern>
-            
-            <http-method>DELETE</http-method>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-            <http-method>PUT</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>mechat</role-name>
-        </auth-constraint>
-    </security-constraint>
-
-    <login-config>
-        <auth-method>DIGEST</auth-method>
-        <realm-name>MeChat Authentication</realm-name>
-    </login-config>
-
-        <security-role>
-            <role-name>iwinAPI</role-name>
-        </security-role>
-    -->	
 </web-app>

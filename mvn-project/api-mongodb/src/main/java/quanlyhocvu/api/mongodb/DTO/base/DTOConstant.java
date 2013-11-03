@@ -11,6 +11,7 @@ package quanlyhocvu.api.mongodb.DTO.base;
  */
 public class DTOConstant {
     public static String Id = "_id";
+    public static String Description = "_description";
     
     public static String WardName = "_wardName";
     public static String WardId = "_wardId";
@@ -34,5 +35,13 @@ public class DTOConstant {
     public static String PersonDateOfBirth = "_personDateOfBirth";
     public static String PersonAddress = "_personAddress";
     
+    public static String SchoolYearName = "_schoolYearName";
+    public static String SchoolYearId = "_schoolYearId";
+    
     public static String StaffDateOfWork = "_staffDateOfWork";
+    
+    public static String ClassName = "_className";
+    public static String StudentIds = "_studentIds";
+    
+    public static String GradeId = "_gradeId";
 }

@@ -28,7 +28,7 @@
     <!-- Application Message Bundle -->
     <beans:bean id="messageSource"
                 class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
-        <beans:property name="basename" value="classpath:admin_messages" />
+        <beans:property name="basename" value="classpath:authority_messages" />
         <beans:property name="defaultEncoding" value="UTF-8" />
     </beans:bean>
 
@@ -40,7 +40,7 @@
 
     <beans:bean id="themeSource"
                 class="org.springframework.ui.context.support.ResourceBundleThemeSource">
-        <beans:property name="basenamePrefix" value="admin_theme_" />
+        <beans:property name="basenamePrefix" value="authority_theme_" />
     </beans:bean>
 
     <!-- Theme Change Interceptor and Resolver definition -->
@@ -69,7 +69,7 @@
         <beans:property name="templateEngine" ref="templateEngine" />
         <beans:property name="characterEncoding" value="UTF-8" /> 
     </beans:bean>		
-    <context:component-scan base-package="quanlyhocvu.api.web.controller.authortiy" />
+    <context:component-scan base-package="quanlyhocvu.api.web.controller.authority" />
     <context:annotation-config />
     <mvc:default-servlet-handler/>
 	

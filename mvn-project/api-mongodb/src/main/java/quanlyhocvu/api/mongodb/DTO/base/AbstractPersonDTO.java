@@ -15,7 +15,7 @@ public class AbstractPersonDTO extends AbstractObjectDTO{
     private String _personName;
     private int _personGender;
     private String _personDateOfBirth;
-    private AddressDTO _personAddress;
+    private String _personAddress;
 
     public String getPersonName() {
         return _personName;
@@ -41,11 +41,11 @@ public class AbstractPersonDTO extends AbstractObjectDTO{
         this._personDateOfBirth = _personDateOfBirth;
     }
 
-    public AddressDTO getPersonAddress() {
+    public String getPersonAddress() {
         return _personAddress;
     }
 
-    public void setPersonAddress(AddressDTO _personAddress) {
+    public void setPersonAddress(String _personAddress) {
         this._personAddress = _personAddress;
     }
 }
