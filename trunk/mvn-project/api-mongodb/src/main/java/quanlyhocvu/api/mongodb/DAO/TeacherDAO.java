@@ -46,7 +46,6 @@ public class TeacherDAO {
             update.set(DTOConstant.PersonDateOfBirth, teacher.getPersonDateOfBirth());
             update.set(DTOConstant.PersonAddress, teacher.getPersonAddress());
             update.set(DTOConstant.TeacherId, teacher.getTeacherId());
-            update.set(DTOConstant.TeacherListMajorIds, teacher.getListMajorIds());
             
             mongoOperations.findAndModify(query, update,  TeacherDTO.class);
             return true;           

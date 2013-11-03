@@ -10,26 +10,22 @@
     <http pattern="/**/login" security="none" />
     <http pattern="/**/media/**" security="none"/>
     <http pattern="/guest/**" security="none"/>
+    <http pattern="/authority/check" security="none" />
     <http auto-config='true' use-expressions="true">     
         <!--config ROLE_VIEW-->
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <form-login login-page="/guest/login" login-processing-url="/authority/j_spring_security_check"  default-target-url="/guest/home/"
-                    always-use-default-target='true' authentication-failure-url="/guest/noAccess" />
+        <form-login login-page="/guest/login" login-processing-url="/authority/j_spring_security_check"  default-target-url="/authority/check_role"
+                    always-use-default-target='true' authentication-failure-url="/authority/noAccess" />
         <session-management  invalid-session-url="/guest/invalidSession" /> 
         <logout logout-url="/authority/logout" invalidate-session="true" logout-success-url="/guest/login"/>
     </http>
     <beans:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"   id="passwordEncoder"/>
     <authentication-manager>
         <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSourceAuthority" 
+            <jdbc-user-service data-source-ref="dataSource" 
                                users-by-username-query="select username,password, enabled from users where username=?" 
                                authorities-by-username-query="select u.username, ur.authority from users u, user_roles ur where u.user_id = ur.user_id and u.username=?" />
             <password-encoder ref="passwordEncoder" />
-            <user-service>
-                <user name="admin" password="21232f297a57a5a743894a0e4a801fc3" authorities="ROLE_ADMIN,ROLE_GUEST" />
-                <user name="view" password="21232f297a57a5a743894a0e4a801fc3" authorities="ROLE_VIEW" />
-                <user name="editer" password="21232f297a57a5a743894a0e4a801fc3" authorities="ROLE_VIEW, ROLE_EDIT" />
-            </user-service>
             </authentication-provider>
     </authentication-manager>
 </beans:beans>

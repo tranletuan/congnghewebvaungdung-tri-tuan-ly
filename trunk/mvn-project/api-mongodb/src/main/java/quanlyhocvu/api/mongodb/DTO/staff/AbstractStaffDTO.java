@@ -13,6 +13,7 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
  */
 public class AbstractStaffDTO extends AbstractPersonDTO{
     private String _staffDateOfWork;
+    private String _staffDateOfEnd;
 
     public String getStaffDateOfWork() {
         return _staffDateOfWork;
@@ -20,5 +21,13 @@ public class AbstractStaffDTO extends AbstractPersonDTO{
     
     public void setStaffDateOfWork(String _dateOfWork) {
         this._staffDateOfWork = _dateOfWork;
+    }
+
+    public String getStaffDateOfEnd() {
+        return _staffDateOfEnd;
+    }
+
+    public void setStaffDateOfEnd(String _staffDateOfEnd) {
+        this._staffDateOfEnd = _staffDateOfEnd;
     }
 }

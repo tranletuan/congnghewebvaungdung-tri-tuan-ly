@@ -14,6 +14,7 @@ import org.springframework.data.annotation.Id;
 public abstract class AbstractObjectDTO {
     @Id
     protected String _id;
+    private String _description;
 
     public String getId() {
         return _id;
@@ -21,5 +22,13 @@ public abstract class AbstractObjectDTO {
 
     public void setId(String _id) {
         this._id = _id;
+    }
+
+    public String getDescription() {
+        return _description;
+    }
+
+    public void setDescription(String _description) {
+        this._description = _description;
     }
 }

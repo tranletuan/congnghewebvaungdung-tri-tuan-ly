@@ -48,8 +48,10 @@
 
             <form class="form-signin" th:attr="action=@{/guest/check}" method="post">
                 <h2 class="form-signin-heading">Vui lòng đăng nhập</h2>
-                <input autocomplete="no" type="text" class="input-block-level" placeholder="Tên đăng nhập" name="j_username"/>
-                <input autocomplete="no" type="password" class="input-block-level" placeholder="Mật khẩu" name="j_password"/>
+                <input autocomplete="false" type="text" class="input-block-level" placeholder="Tên đăng nhập" name="j_username"/>
+                <input autocomplete="false" type="password" class="input-block-level" placeholder="Mật khẩu" name="j_password"/>
+                <div class ="alert alert-error" th:hidden="${message}?${true}:${false}">
+                </div>
                 <button class="btn btn-large btn-primary" type="submit">Đăng nhập</button>
             </form>
         </div> 
