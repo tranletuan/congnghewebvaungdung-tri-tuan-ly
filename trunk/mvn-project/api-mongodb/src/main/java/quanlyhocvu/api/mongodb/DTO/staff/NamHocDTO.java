@@ -13,14 +13,14 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  * @author HuuTri
  */
 @Document
-public class GradeDTO extends AbstractObjectDTO{
-    private String _gradeName;
+public class NamHocDTO extends AbstractObjectDTO {
+    private String TenNamHoc;
 
-    public String getGradeName() {
-        return _gradeName;
+    public String getTenNamHoc() {
+        return TenNamHoc;
     }
 
-    public void setGradeName(String _gradeName) {
-        this._gradeName = _gradeName;
+    public void setTenNamHoc(String TenNamHoc) {
+        this.TenNamHoc = TenNamHoc;
     }
 }

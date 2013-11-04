@@ -13,14 +13,14 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  * @author HuuTri
  */
 @Document
-public class SchoolYearDTO extends AbstractObjectDTO {
-    private String _schoolYearName;
+public class MonHocDTO extends AbstractObjectDTO{
+    private String TenMonHoc;
 
-    public String getSchoolYearName() {
-        return _schoolYearName;
+    public String getTenMonHoc() {
+        return TenMonHoc;
     }
 
-    public void setSchoolYearName(String _schoolYearName) {
-        this._schoolYearName = _schoolYearName;
+    public void setTenMonHoc(String TenMonHoc) {
+        this.TenMonHoc = TenMonHoc;
     }
 }

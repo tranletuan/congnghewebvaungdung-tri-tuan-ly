@@ -5,47 +5,45 @@
  */
 package quanlyhocvu.api.mongodb.DTO.base;
 
-import quanlyhocvu.api.mongodb.DTO.address.AddressDTO;
-
 /**
  *
  * @author HuuTri
  */
 public class AbstractPersonDTO extends AbstractObjectDTO{
-    private String _personName;
-    private int _personGender;
-    private String _personDateOfBirth;
-    private String _personAddress;
+    private String HoTen;
+    private int GioiTinh;
+    private String NgaySinh;
+    private String DiaChi;
 
-    public String getPersonName() {
-        return _personName;
+    public String getHoTen() {
+        return HoTen;
     }
 
-    public void setPersonName(String _personName) {
-        this._personName = _personName;
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
     }
 
-    public int getPersonGender() {
-        return _personGender;
+    public int getGioiTinh() {
+        return GioiTinh;
     }
 
-    public void setPersonGender(int _personGender) {
-        this._personGender = _personGender;
+    public void setGioiTinh(int GioiTinh) {
+        this.GioiTinh = GioiTinh;
     }
 
-    public String getPersonDateOfBirth() {
-        return _personDateOfBirth;
+    public String getNgaySinh() {
+        return NgaySinh;
     }
 
-    public void setPersonDateOfBirth(String _personDateOfBirth) {
-        this._personDateOfBirth = _personDateOfBirth;
+    public void setNgaySinh(String NgaySinh) {
+        this.NgaySinh = NgaySinh;
     }
 
-    public String getPersonAddress() {
-        return _personAddress;
+    public String getDiaChi() {
+        return DiaChi;
     }
 
-    public void setPersonAddress(String _personAddress) {
-        this._personAddress = _personAddress;
+    public void setDiaChi(String DiaChi) {
+        this.DiaChi = DiaChi;
     }
 }

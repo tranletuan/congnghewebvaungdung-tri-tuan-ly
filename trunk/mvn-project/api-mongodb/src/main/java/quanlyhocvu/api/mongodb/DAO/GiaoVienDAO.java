@@ -13,21 +13,20 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DTO.base.DTOConstant;
-import quanlyhocvu.api.mongodb.DTO.staff.TeacherDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 
 /**
  *
  * @author HuuTri
  */
 @Repository
-public class TeacherDAO {
+public class GiaoVienDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     MongoOperations mongoOperations;
     
-    public boolean insertTeacher(TeacherDTO teacher) {
+    public boolean insertTeacher(GiaoVienDTO teacher) {
         try {
             mongoOperations.insert(teacher);
             return true;
@@ -37,17 +36,17 @@ public class TeacherDAO {
         }
     }
     
-    public boolean updateTeacher(TeacherDTO teacher) {
+    public boolean updateTeacher(GiaoVienDTO teacher) {
         try {
-            Query query = Query.query(Criteria.where(DTOConstant.Id).is(teacher.getId()));
+            Query query = Query.query(Criteria.where("ID").is(teacher.getID()));
             Update update = new Update();
-            update.set(DTOConstant.PersonName, teacher.getPersonName());
-            update.set(DTOConstant.PersonGender, teacher.getPersonGender());
-            update.set(DTOConstant.PersonDateOfBirth, teacher.getPersonDateOfBirth());
-            update.set(DTOConstant.PersonAddress, teacher.getPersonAddress());
-            update.set(DTOConstant.TeacherId, teacher.getTeacherId());
+            update.set("HoTen", teacher.getHoTen());
+            update.set("GioiTinh", teacher.getGioiTinh());
+            update.set("NgaySinh", teacher.getNgaySinh());
+            update.set("DiaChi", teacher.getDiaChi());
+            update.set("MaGiaoVien", teacher.getTeacherId());
             
-            mongoOperations.findAndModify(query, update,  TeacherDTO.class);
+            mongoOperations.findAndModify(query, update,  GiaoVienDTO.class);
             return true;           
         } catch (Exception ex) {
             logger.error("TeacherDAO - insertTeacher " + ex.getMessage());

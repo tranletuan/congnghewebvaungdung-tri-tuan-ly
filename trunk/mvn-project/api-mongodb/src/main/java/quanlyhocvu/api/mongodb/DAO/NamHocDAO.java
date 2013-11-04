@@ -13,19 +13,18 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import quanlyhocvu.api.mongodb.DTO.base.DTOConstant;
-import quanlyhocvu.api.mongodb.DTO.staff.SchoolYearDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 
 /**
  *
  * @author HuuTri
  */
-public class SchoolYearDAO {
+public class NamHocDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     MongoOperations mongoOperation;
     
-    public boolean insert(SchoolYearDTO dto) {
+    public boolean insert(NamHocDTO dto) {
         try {
         mongoOperation.insert(dto);
         } catch (Exception ex) {
@@ -35,26 +34,26 @@ public class SchoolYearDAO {
         return true;
     }
     
-    public boolean update(SchoolYearDTO dto) {
+    public boolean update(NamHocDTO dto) {
         boolean res = true;
         
-        Query query = Query.query(Criteria.where(DTOConstant.Id).is(dto.getId()));
+        Query query = Query.query(Criteria.where("ID").is(dto.getID()));
         Update update = new Update();
-        update.set(DTOConstant.SchoolYearName, dto.getSchoolYearName());
-        update.set(DTOConstant.Description, dto.getDescription());
+        update.set("TenNamHoc", dto.getTenNamHoc());
+        update.set("MoTa", dto.getMoTa());
         
-        mongoOperation.findAndModify(query, update, SchoolYearDTO.class);
+        mongoOperation.findAndModify(query, update, NamHocDTO.class);
         return res;
     }
     
-    public boolean delete(SchoolYearDTO dto) {
+    public boolean delete(NamHocDTO dto) {
         boolean res = true;
         
         
         return res;
     }
     
-    public List<SchoolYearDTO> getAllList() {
-        return mongoOperation.findAll(SchoolYearDTO.class);
+    public List<NamHocDTO> getAllList() {
+        return mongoOperation.findAll(NamHocDTO.class);
     }
 }

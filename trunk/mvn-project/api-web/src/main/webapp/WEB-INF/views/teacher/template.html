@@ -26,17 +26,17 @@
                 min-height: 50px;
                 cursor: pointer;
             }
-            
+
             .custom-left-sidebar {
                 margin-left: -100px;
             }
-            
+
             .report-viewer{
                 width: 800px;
                 min-height: 600px;
                 alignment-adjust: central;
             }
-            
+
             .modify-control {
                 width: 100%;
                 min-height: 300px;
@@ -90,14 +90,9 @@
                 display: table;
                 width: 100%;
             }
-            .navbar .nav li {
-                display: table-cell;
-                width: 1%;
-                float: none;
-            }
+            
             .navbar .nav li a {
                 font-weight: bold;
-                text-align: center;
                 border-left: 1px solid rgba(255,255,255,.75);
                 border-right: 1px solid rgba(0,0,0,.1);
             }
@@ -106,7 +101,7 @@
                 border-radius: 3px 0 0 3px;
             }
             .navbar .nav li:last-child a {
-                border-right: 0;
+                border-right: 1;
                 border-radius: 0 3px 3px 0;
             }
             #footer{
@@ -131,14 +126,24 @@
             <h3 class="muted">QUẢN LÝ HỌC VỤ</h3>
             <div class="navbar">
                 <div class="navbar-inner">
-                    <div class="container">
-                        <ul class="nav">
-                            <li class="active " id="home_nav"><a href="#" >Trang Chủ</a></li>
-                            <li><a href="guest/logout" th:href="@{/guest/logout}">Thoát</a></li>
-                        </ul>
-                    </div>
+                    <ul class="nav">
+                        <li class="active " id="home_nav">
+                            <a href="#" >Trang Chủ</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Giáo Viên
+                                <b class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/teacher/information}">Thông Tin Giáo Viên</a></li>
+                                <li><a th:href="@{/teacher/schedule}">Lịch Giảng Dạy</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/teacher/logout}">Thoát</a></li>
+                    </ul>   
                 </div>
-            </div><!-- /.navbar -->
+            </div>
         </div>
         <footer th:fragment="footer">
             <hr/>

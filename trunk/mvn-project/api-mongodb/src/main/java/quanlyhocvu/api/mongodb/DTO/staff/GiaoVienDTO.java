@@ -6,21 +6,21 @@
 package quanlyhocvu.api.mongodb.DTO.staff;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
 
 /**
  *
  * @author HuuTri
  */
 @Document
-public class SubjectDTO extends AbstractObjectDTO{
-    private String _subjectName;
+public class GiaoVienDTO extends AbstractStaffDTO {
 
-    public String getSubjectName() {
-        return _subjectName;
+    private String MaGiaoVien;
+
+    public String getTeacherId() {
+        return MaGiaoVien;
     }
 
-    public void setSubjectName(String _subjectName) {
-        this._subjectName = _subjectName;
+    public void setMaGiaoVien(String MaGiaoVien) {
+        this.MaGiaoVien = MaGiaoVien;
     }
 }
