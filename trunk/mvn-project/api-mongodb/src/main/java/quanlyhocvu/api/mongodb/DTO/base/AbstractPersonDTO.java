@@ -10,10 +10,10 @@ package quanlyhocvu.api.mongodb.DTO.base;
  * @author HuuTri
  */
 public class AbstractPersonDTO extends AbstractObjectDTO{
-    private String HoTen;
-    private int GioiTinh;
-    private String NgaySinh;
-    private String DiaChi;
+    protected String HoTen;
+    protected int GioiTinh;
+    protected String NgaySinh;
+    protected String DiaChi;
 
     public String getHoTen() {
         return HoTen;

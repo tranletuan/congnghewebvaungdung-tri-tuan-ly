@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <div th:include="template :: footer"></div>
+            <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/teacher/save}">
+                <div class="control-group">
+                    <label class="control-label" for="MaGiaoVien">Mã Giáo Viên</label>
+                    <div class="controls">
+                        <input type="text" name="MaGiaoVien" id="MaGiaoVien" placeholder="Mã Giáo Viên"/>
+                    </div>               
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="HoTen">Họ Tên</label>
+                    <div class="controls">
+                        <input type="text" id="HoTen" name="HoTen" class="validate[required]" placeholder="Họ Tên Giáo Viên"/>
+                    </div>
+                </div>
+                 <div class="control-group">
+                    <label class="control-label" for="Giới Tính">Giới Tính</label>
+                    <div class="controls">
+                        <select name="GioiTinh" >
+                            <option  value="1">Nam</option>
+                            <option value="0">Nữ</option>                            
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="NgaySinh">Ngày Sinh</label>
+                    <div class="controls">
+                        <input type="date" name="NgaySinh" />
+                    </div>
+                </div>
+                 <div class="control-group">
+                    <label class="control-label" for="DiaChi">Địa Chỉ</label>
+                    <div class="controls">
+                        <input type="text" name="DiaChi" placeholder="Địa Chỉ"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="NgayVaoLam">Ngày Vào Làm</label>
+                    <div class="controls">
+                        <input type="date" name="NgayVaoLam"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <button type="submit" class="btn btn-primary" id="save">Thêm Giáo Viên</button>
+                    <a th:href="@{/staff/management/teacher/list}" class="btn btn-info" id="cancel">Thoát</a>
+                </div>
+            </form>
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#form-horizontal").validationEngine();
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>

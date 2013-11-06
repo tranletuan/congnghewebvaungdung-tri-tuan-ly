@@ -26,17 +26,17 @@
                 min-height: 50px;
                 cursor: pointer;
             }
-            
+
             .custom-left-sidebar {
                 margin-left: -100px;
             }
-            
+
             .report-viewer{
                 width: 800px;
                 min-height: 600px;
                 alignment-adjust: central;
             }
-            
+
             .modify-control {
                 width: 100%;
                 min-height: 300px;
@@ -90,11 +90,7 @@
                 display: table;
                 width: 100%;
             }
-            .navbar .nav li {
-                display: table-cell;
-                width: 1%;
-                float: none;
-            }
+            
             .navbar .nav li a {
                 font-weight: bold;
                 text-align: center;
@@ -132,7 +128,24 @@
                 <div class="navbar-inner">
                     <div class="container">
                         <ul class="nav">
-                            <li class="active " id="home_nav"><a href="#" >Trang Chủ</a></li>
+                            <li class="active " id="home_nav"><a th:href="@{/staff/home}" >Trang Chủ</a></li>
+                            <li class="dropdown" id="quanly_nav">
+                                <a class="dropdown-toggle" data-toggle="dropdown">Quản lý
+                                    <b class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a th:href="@{/staff/management/teacher/list}">Quản Lý Giáo Viên</a></li>
+                                    <li><a th:href="@{/staff/management/student}">Quản Lý Học Sinh</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="nghiepvu_nav">
+                                <a class ="dropdown-toggle" data-toggle="dropdown">Nghiệp Vụ
+                                    <b class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                </ul>
+                            </li>
                             <li><a href="guest/logout" th:href="@{/guest/logout}">Thoát</a></li>
                         </ul>
                     </div>
