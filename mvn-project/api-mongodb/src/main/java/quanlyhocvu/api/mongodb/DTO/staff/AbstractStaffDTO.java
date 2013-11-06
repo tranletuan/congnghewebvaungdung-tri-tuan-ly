@@ -12,22 +12,34 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
  * @author HuuTri
  */
 public class AbstractStaffDTO extends AbstractPersonDTO{
-    private String _staffDateOfWork;
-    private String _staffDateOfEnd;
+    protected String NgayVaoLam;
+    protected String NgayNghiViec;
 
-    public String getStaffDateOfWork() {
-        return _staffDateOfWork;
-    }
-    
-    public void setStaffDateOfWork(String _dateOfWork) {
-        this._staffDateOfWork = _dateOfWork;
-    }
-
-    public String getStaffDateOfEnd() {
-        return _staffDateOfEnd;
+    /**
+     * @return the NgayVaoLam
+     */
+    public String getNgayVaoLam() {
+        return NgayVaoLam;
     }
 
-    public void setStaffDateOfEnd(String _staffDateOfEnd) {
-        this._staffDateOfEnd = _staffDateOfEnd;
+    /**
+     * @param NgayVaoLam the NgayVaoLam to set
+     */
+    public void setNgayVaoLam(String NgayVaoLam) {
+        this.NgayVaoLam = NgayVaoLam;
+    }
+
+    /**
+     * @return the NgayNghiViec
+     */
+    public String getNgayNghiViec() {
+        return NgayNghiViec;
+    }
+
+    /**
+     * @param NgayNghiViec the NgayNghiViec to set
+     */
+    public void setNgayNghiViec(String NgayNghiViec) {
+        this.NgayNghiViec = NgayNghiViec;
     }
 }

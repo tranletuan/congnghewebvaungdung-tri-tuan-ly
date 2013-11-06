@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>
+                        <th>Mã Giáo Viên</th>
+                        <th>Họ Tên</th>
+                        <th>Ngày Sinh</th>
+                        <th>Giới Tính</th>
+                        <th>Ngày Vào Làm</th>
+                        <th>Địa Chỉ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${giaovien.ID}" align="center" th:each="giaovien: ${listGiaoVien}">
+                        <td th:text="${giaovien.MaGiaoVien}" id="MaGiaoVien"/>
+                        <td th:text="${giaovien.HoTen}" id="HoTen"/>
+                        <td th:text="${giaovien.NgaySinh}" id="NgaySinh"/>
+                        <td th:text="${giaovien.GioiTinh}==1?${'Nam'}:${'Nữ'}" id="GioiTinh"/>
+                        <td th:text="${giaovien.NgayVaoLam}" id="NgayVaoLam"/>
+                        <td th:text="${giaovien.DiaChi}" id="DiaChi"/>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="template :: footer"></div>
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>

@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.mongodb.DAO;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class GiaoVienDAO {
     @Autowired
     MongoOperations mongoOperations;
     
+    public List<GiaoVienDTO> getAllGiaoVien() {
+        return mongoOperations.findAll(GiaoVienDTO.class);
+    }
+    
     public boolean insertTeacher(GiaoVienDTO teacher) {
         try {
             mongoOperations.insert(teacher);
@@ -44,7 +49,7 @@ public class GiaoVienDAO {
             update.set("GioiTinh", teacher.getGioiTinh());
             update.set("NgaySinh", teacher.getNgaySinh());
             update.set("DiaChi", teacher.getDiaChi());
-            update.set("MaGiaoVien", teacher.getTeacherId());
+            update.set("MaGiaoVien", teacher.getMaGiaoVien());
             
             mongoOperations.findAndModify(query, update,  GiaoVienDTO.class);
             return true;           

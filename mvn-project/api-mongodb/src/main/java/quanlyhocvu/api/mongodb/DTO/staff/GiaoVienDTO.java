@@ -16,7 +16,20 @@ public class GiaoVienDTO extends AbstractStaffDTO {
 
     private String MaGiaoVien;
 
-    public String getTeacherId() {
+    public GiaoVienDTO() {}
+    
+    public GiaoVienDTO(String MaGiaoVien, String HoTen, 
+            int GioiTinh, String NgaySinh, 
+            String DiaChi, String NgayVaoLam) {
+        this.MaGiaoVien = MaGiaoVien;
+        this.HoTen = HoTen;
+        this.NgaySinh = NgaySinh;
+        this.NgayVaoLam = NgayVaoLam;
+        this.DiaChi = DiaChi;
+        this.GioiTinh = GioiTinh;
+    }
+    
+    public String getMaGiaoVien() {
         return MaGiaoVien;
     }
 

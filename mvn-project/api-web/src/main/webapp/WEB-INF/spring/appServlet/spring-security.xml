@@ -13,7 +13,10 @@
     <http pattern="/authority/check" security="none" />
     <http auto-config='true' use-expressions="true">     
         <!--config ROLE_VIEW-->
-        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/teacher/**" access="hasRole('TEACHER')"/>
+        <intercept-url pattern="/staff/**" access="hasRole('STAFF')"/>
+        <intercept-url pattern="/student/**" access="hasRole('STUDENT')"/>
         <form-login login-page="/guest/login" login-processing-url="/authority/j_spring_security_check"  default-target-url="/authority/check_role"
                     always-use-default-target='true' authentication-failure-url="/authority/noAccess" />
         <session-management  invalid-session-url="/guest/invalidSession" /> 
@@ -26,6 +29,6 @@
                                users-by-username-query="select username,password, enabled from users where username=?" 
                                authorities-by-username-query="select u.username, ur.authority from users u, user_roles ur where u.user_id = ur.user_id and u.username=?" />
             <password-encoder ref="passwordEncoder" />
-            </authentication-provider>
+        </authentication-provider>
     </authentication-manager>
 </beans:beans>
