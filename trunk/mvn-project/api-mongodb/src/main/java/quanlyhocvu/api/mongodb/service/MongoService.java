@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
+import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 
 @Repository
 public class MongoService {
@@ -19,6 +21,9 @@ public class MongoService {
     
     @Autowired 
     private GiaoVienDAO giaovienDAO;
+    
+    @Autowired
+    private NamHocDAO namhocDAO;
 
     
     public boolean insertGiaoVien(GiaoVienDTO dto) {
@@ -46,4 +51,17 @@ public class MongoService {
     }
     
     //</editor-fold>
+    
+    
+    /**************************************************
+     * function for school-year
+     * @author: LyVV
+     *************************************************/
+    /**
+     * this function is used to return the list of school-year
+     * @return 
+     */
+    public List<NamHocDTO> getAllNamHoc(){
+        return namhocDAO.getAllList();
+    }
 }
