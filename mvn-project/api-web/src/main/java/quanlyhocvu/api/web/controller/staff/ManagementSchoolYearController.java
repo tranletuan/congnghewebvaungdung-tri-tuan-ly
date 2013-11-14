@@ -24,33 +24,33 @@ import quanlyhocvu.api.mongodb.service.MongoService;
  *
  * @author linhly
  */
-
 @Controller
-@RequestMapping(value="management/school_year")
+@RequestMapping(value = "management/school_year")
 public class ManagementSchoolYearController {
+
     Logger logger = LoggerFactory.getLogger(getClass());
-    
+
     @Autowired
     MongoService mongoService;
-    
-    @RequestMapping(value="index")
+
+    @RequestMapping(value = "index")
     public @ResponseBody
     ModelAndView schoolYearList(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        
+
         try {
-        int res = Integer.parseInt(request.getParameter("result"));
-        System.out.println("asfasdfadfadsfasdfadsfs " + res);
+            int res = Integer.parseInt(request.getParameter("result"));
+            System.out.println("asfasdfadfadsfasdfadsfs " + res);
         } catch (Exception ex) {
-          
+
         }
-        
+
         List<NamHocDTO> listNamHoc = new ArrayList<NamHocDTO>();
         listNamHoc = mongoService.getAllNamHoc();
         map.put("listNamHoc", listNamHoc);
         return new ModelAndView("management/school_year/index", map);
     }
-    
+
 //    @RequestMapping(value="add")
 //    public @ResponseBody
 //    ModelAndView teacherAdd(HttpServletRequest request) {
