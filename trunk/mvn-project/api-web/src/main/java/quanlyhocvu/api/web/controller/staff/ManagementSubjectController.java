@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
@@ -25,8 +26,8 @@ import quanlyhocvu.api.mongodb.service.MongoService;
  * @author linhly
  */
 @Controller
-@RequestMapping(value = "management/school_year")
-public class ManagementSchoolYearController {
+@RequestMapping(value = "management/subject")
+public class ManagementSubjectController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -35,33 +36,33 @@ public class ManagementSchoolYearController {
 
     @RequestMapping(value = "index")
     public @ResponseBody
-    ModelAndView schoolYearList(HttpServletRequest request) {
+    ModelAndView subjectList(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();        
-        List<NamHocDTO> listNamHoc = new ArrayList<NamHocDTO>();
-        listNamHoc = mongoService.getAllNamHoc();
-        map.put("listNamHoc", listNamHoc);
-        return new ModelAndView("management/school_year/index", map);
+        List<MonHocDTO> listMonHoc = new ArrayList<MonHocDTO>();
+        listMonHoc = mongoService.getAllMonHoc();
+        map.put("listMonHoc", listMonHoc);
+        return new ModelAndView("management/subject/index", map);
     }
 
     @RequestMapping(value="new")
     public @ResponseBody
-    ModelAndView newSchoolYear(HttpServletRequest request) {
+    ModelAndView newSubject(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         
         
-        return new ModelAndView("management/school_year/new", map);
+        return new ModelAndView("management/subject/new", map);
     }
     
     @RequestMapping(value="save")
     public @ResponseBody
-    ModelAndView saveSchoolYear(HttpServletRequest request) {
+    ModelAndView saveSubject(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        NamHocDTO obj = new NamHocDTO(
-                    request.getParameter("TenNamHoc"),
+        MonHocDTO obj = new MonHocDTO(
+                    request.getParameter("TenMonHoc"),
                     request.getParameter("MoTa")                    
                 );
-        boolean res = mongoService.insertNamHoc(obj);
-        map.put("message", "Đã thêm thành công 1 năm học");
-        return new ModelAndView("redirect:/staff/management/school_year/index", map);
+        boolean res = mongoService.insertMonHoc(obj);
+        map.put("message", "Đã thêm thành công 1 môn học");
+        return new ModelAndView("redirect:/staff/management/subject/index", map);
     }
 }

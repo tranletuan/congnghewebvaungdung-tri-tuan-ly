@@ -14,8 +14,14 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  */
 @Document
 public class NamHocDTO extends AbstractObjectDTO {
-    private String TenNamHoc;
-
+    private String TenNamHoc;    
+    
+    public NamHocDTO() {}
+    
+    public NamHocDTO(String TenNamHoc, String MoTa) {
+        this.TenNamHoc = TenNamHoc;
+        this.MoTa = MoTa;       
+    }
     public String getTenNamHoc() {
         return TenNamHoc;
     }

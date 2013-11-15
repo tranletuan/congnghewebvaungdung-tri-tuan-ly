@@ -15,12 +15,19 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
 @Document
 public class MonHocDTO extends AbstractObjectDTO{
     private String TenMonHoc;
-
+        
     public String getTenMonHoc() {
         return TenMonHoc;
     }
 
     public void setTenMonHoc(String TenMonHoc) {
         this.TenMonHoc = TenMonHoc;
+    }
+    
+    public MonHocDTO() {}
+    
+    public MonHocDTO(String TenMonHoc, String MoTa) {
+        this.TenMonHoc = TenMonHoc;
+        this.MoTa = MoTa;       
     }
 }

@@ -13,12 +13,14 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 
 /**
  *
  * @author HuuTri
  */
+@Repository
 public class NamHocDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
