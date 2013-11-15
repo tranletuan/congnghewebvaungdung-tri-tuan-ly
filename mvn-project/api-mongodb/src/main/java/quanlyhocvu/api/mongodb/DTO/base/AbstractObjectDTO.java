@@ -14,7 +14,7 @@ import org.springframework.data.annotation.Id;
 public abstract class AbstractObjectDTO {
     @Id
     protected String ID;
-    private String MoTa;
+    protected String MoTa;
 
     public String getID() {
         return ID;
