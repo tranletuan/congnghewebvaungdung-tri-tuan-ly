@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 
 /**
@@ -22,41 +22,41 @@ import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
  * @author linhly
  */
 @Repository
-public class MonHocDAO {
+public class KhoiLopDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     MongoOperations mongoOperation;
     
-    public boolean insert(MonHocDTO dto) {
+    public boolean insert(KhoiLopDTO dto) {
         try {
         mongoOperation.insert(dto);
         } catch (Exception ex) {
-            logger.error("Subject insert: " + ex.getMessage());
+            logger.error("grade insert: " + ex.getMessage());
             return false;
         }
         return true;
     }
     
-    public boolean update(MonHocDTO dto) {
+    public boolean update(KhoiLopDTO dto) {
         boolean res = true;
         
         Query query = Query.query(Criteria.where("ID").is(dto.getID()));
         Update update = new Update();
-        update.set("TenMonHoc", dto.getTenMonHoc());
+        update.set("TenKhoiLop", dto.getTenKhoiLop());
         update.set("MoTa", dto.getMoTa());
         
-        mongoOperation.findAndModify(query, update, MonHocDTO.class);
+        mongoOperation.findAndModify(query, update, KhoiLopDTO.class);
         return res;
     }
     
-    public boolean delete(MonHocDTO dto) {
+    public boolean delete(KhoiLopDTO dto) {
         boolean res = true;
-        mongoOperation.remove(dto);
+        
         
         return res;
     }
     
-    public List<MonHocDTO> getAllList() {
-        return mongoOperation.findAll(MonHocDTO.class);
+    public List<KhoiLopDTO> getAllList() {
+        return mongoOperation.findAll(KhoiLopDTO.class);
     }
 }

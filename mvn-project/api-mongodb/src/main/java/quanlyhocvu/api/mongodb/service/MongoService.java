@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
+import quanlyhocvu.api.mongodb.DAO.KhoiLopDAO;
 import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 
@@ -29,6 +31,9 @@ public class MongoService {
     
     @Autowired
     private MonHocDAO monhocDAO;
+    
+    @Autowired
+    private KhoiLopDAO khoilopDAO;
 
     
     public boolean insertGiaoVien(GiaoVienDTO dto) {
@@ -101,7 +106,7 @@ public class MongoService {
      * @return 
      */
     public List<MonHocDTO> getAllMonHoc(){
-        return getMonhocDAO().getAllList();
+        return monhocDAO.getAllList();
     }
     /**
      * Insert new MonHoc into list
@@ -109,7 +114,27 @@ public class MongoService {
      * @return 
      */
     public boolean insertMonHoc(MonHocDTO dto) {
-        return getMonhocDAO().insert(dto);
+        return monhocDAO.insert(dto);
+    }
+    
+    /**************************************************
+     * function for subject
+     * @author: LyVV
+     *************************************************/
+    /**
+     * this function is used to return the list of KHOILOP
+     * @return 
+     */
+    public List<KhoiLopDTO> getAllKhoiLop(){
+        return khoilopDAO.getAllList();
+    }
+    /**
+     * Insert new KhoiLop into list
+     * @param dto
+     * @return 
+     */
+    public boolean insertKhoiLop(KhoiLopDTO dto) {
+        return khoilopDAO.insert(dto);
     }
 
     
