@@ -51,7 +51,7 @@ public class KhoiLopDAO {
     
     public boolean delete(KhoiLopDTO dto) {
         boolean res = true;
-        
+        mongoOperation.remove(dto);
         
         return res;
     }

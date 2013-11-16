@@ -13,12 +13,15 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 
 /**
  *
  * @author HuuTri
  */
+@Repository
 public class LopHocDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
@@ -83,5 +86,9 @@ public class LopHocDAO {
     public List<LopHocDTO> getListByNamHoc(String id) {
         Query query = Query.query(Criteria.where("IDNamHoc").is(id));
         return mongoOperation.find(query, LopHocDTO.class);
+    }
+    
+    public List<LopHocDTO> getAllList() {
+        return mongoOperation.findAll(LopHocDTO.class);
     }
 }

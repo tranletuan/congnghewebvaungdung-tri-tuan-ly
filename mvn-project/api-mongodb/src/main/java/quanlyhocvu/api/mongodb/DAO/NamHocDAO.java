@@ -51,7 +51,7 @@ public class NamHocDAO {
     public boolean delete(NamHocDTO dto) {
         boolean res = true;
         
-        
+        mongoOperation.remove(dto);
         return res;
     }
     

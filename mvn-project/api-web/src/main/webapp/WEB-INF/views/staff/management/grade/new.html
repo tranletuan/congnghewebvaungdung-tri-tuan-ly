@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <div th:include="template :: footer"></div>
+            <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/grade/save}">                
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="TenKhoiLop">Tên Khối Lớp</label>
+                    <div class="controls">
+                        <input id="TenNamHoc" name="TenKhoiLop" type="text" placeholder="Mời bạn nhập vào tên khối lớp" class="input-xlarge"/>                    
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="control-group">
+                    <label class="control-label" for="MoTa">Mô Tả</label>
+                    <div class="controls">     
+                        <textarea id="MoTa" name="MoTa"></textarea>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="control-group">
+                    <label class="control-label" for="ThemBtn"></label>
+                    <div class="controls">
+                        <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>

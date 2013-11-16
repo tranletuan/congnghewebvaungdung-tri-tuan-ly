@@ -23,4 +23,12 @@ public class KhoiLopDTO extends AbstractObjectDTO{
     public void setTenKhoiLop(String TenKhoiLop) {
         this.TenKhoiLop = TenKhoiLop;
     }
+    
+    public KhoiLopDTO(){
+    }
+    
+    public KhoiLopDTO(String TenKhoiLop, String MoTa){
+        this.TenKhoiLop = TenKhoiLop;
+        this.MoTa = MoTa;
+    }
 }
