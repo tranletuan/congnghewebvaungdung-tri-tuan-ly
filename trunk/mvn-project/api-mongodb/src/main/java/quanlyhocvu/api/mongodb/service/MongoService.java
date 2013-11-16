@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
 import quanlyhocvu.api.mongodb.DAO.KhoiLopDAO;
+import quanlyhocvu.api.mongodb.DAO.LopHocDAO;
 import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 
@@ -34,6 +36,9 @@ public class MongoService {
     
     @Autowired
     private KhoiLopDAO khoilopDAO;
+    
+    @Autowired 
+    private LopHocDAO lophocDAO;
 
     
     public boolean insertGiaoVien(GiaoVienDTO dto) {
@@ -44,6 +49,19 @@ public class MongoService {
         return giaovienDAO.getAllGiaoVien();
     }
     //<editor-fold defaultstate="collapsed" desc="Get Set DAO">
+    /**
+     * @return the lophocDAO
+     */
+    public LopHocDAO getLophocDAO() {
+        return lophocDAO;
+    }
+
+    /**
+     * @param lophocDAO the lophocDAO to set
+     */
+    public void setLophocDAO(LopHocDAO lophocDAO) {
+        this.lophocDAO = lophocDAO;
+    }
     /**
      * @return the monhocDAO
      */
@@ -135,6 +153,26 @@ public class MongoService {
      */
     public boolean insertKhoiLop(KhoiLopDTO dto) {
         return khoilopDAO.insert(dto);
+    }
+
+    /**************************************************
+     * function for subject
+     * @author: LyVV
+     *************************************************/
+    /**
+     * this function is used to return the list of LopHoc
+     * @return 
+     */
+    public List<LopHocDTO> getAllLopHoc(){
+        return lophocDAO.getAllList();
+    }
+    /**
+     * Insert new LopHoc into list
+     * @param dto
+     * @return 
+     */
+    public boolean insertLopHoc(LopHocDTO dto) {
+        return lophocDAO.insert(dto);
     }
 
     

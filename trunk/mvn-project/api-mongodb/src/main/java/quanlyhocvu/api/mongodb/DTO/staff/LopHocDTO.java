@@ -21,6 +21,15 @@ public class LopHocDTO extends AbstractObjectDTO {
     private String IDKhoiLop;
     private String IDNamHoc;
     private List<String> ListIDHocSinh;
+    
+    public LopHocDTO(){};
+    
+    public LopHocDTO(String TenLopHoc, String IDGiaoVien, String IDKhoiLop, String IDNamHoc){
+        this.TenLopHoc = TenLopHoc;
+        this.IDGiaoVien = IDGiaoVien;
+        this.IDKhoiLop = IDKhoiLop;
+        this.IDNamHoc = IDNamHoc;
+    }
 
     public List<String> getLisIDHocSinh() {
         return ListIDHocSinh;
