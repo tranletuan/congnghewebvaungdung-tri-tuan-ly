@@ -17,8 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
@@ -28,6 +28,7 @@ import quanlyhocvu.api.mongodb.service.MongoService;
 @Controller
 @RequestMapping(value = "management/class")
 public class ManagementClassController {
+
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -36,31 +37,33 @@ public class ManagementClassController {
     @RequestMapping(value = "index")
     public @ResponseBody
     ModelAndView classList(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();        
+        Map<String, Object> map = new HashMap<String, Object>();
         List<LopHocDTO> listLopHoc = new ArrayList<LopHocDTO>();
         listLopHoc = mongoService.getAllLopHoc();
         map.put("listLopHoc", listLopHoc);
+        map.put("stt", 1);
         return new ModelAndView("management/class/index", map);
     }
 
-    @RequestMapping(value="new")
+    @RequestMapping(value = "new")
     public @ResponseBody
     ModelAndView newClass(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        
-        
+        List<NamHocDTO> listNamHoc = mongoService.getAllNamHoc();
+
+        map.put("listNamHoc", listNamHoc);
         return new ModelAndView("management/class/new", map);
     }
-    
-    @RequestMapping(value="save")
+
+    @RequestMapping(value = "save")
     public @ResponseBody
     ModelAndView saveClass(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         LopHocDTO obj = new LopHocDTO(
-                    request.getParameter("TenLopHoc"),
-                    request.getParameter("IDNamHoc"),
-                    request.getParameter("IDKhoiLop"),
-                    request.getParameter("IDGiaoVien")
+                request.getParameter("TenLopHoc"),
+                request.getParameter("IDGiaoVien"),
+                request.getParameter("IDKhoiLop"),
+                request.getParameter("IDNamHoc")
                 );
         boolean res = mongoService.insertLopHoc(obj);
         map.put("message", "Đã thêm thành công 1 lớp học");

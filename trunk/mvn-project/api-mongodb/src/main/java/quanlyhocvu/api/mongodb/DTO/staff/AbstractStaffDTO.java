@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.mongodb.DTO.staff;
 
+import java.util.Date;
 import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
 
 /**
@@ -12,34 +13,34 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
  * @author HuuTri
  */
 public class AbstractStaffDTO extends AbstractPersonDTO{
-    protected String NgayVaoLam;
-    protected String NgayNghiViec;
+    protected Date NgayVaoLam;
+    protected Date NgayNghiViec;
 
     /**
      * @return the NgayVaoLam
      */
-    public String getNgayVaoLam() {
+    public Date getNgayVaoLam() {
         return NgayVaoLam;
     }
 
     /**
      * @param NgayVaoLam the NgayVaoLam to set
      */
-    public void setNgayVaoLam(String NgayVaoLam) {
+    public void setNgayVaoLam(Date NgayVaoLam) {
         this.NgayVaoLam = NgayVaoLam;
     }
 
     /**
      * @return the NgayNghiViec
      */
-    public String getNgayNghiViec() {
+    public Date getNgayNghiViec() {
         return NgayNghiViec;
     }
 
     /**
      * @param NgayNghiViec the NgayNghiViec to set
      */
-    public void setNgayNghiViec(String NgayNghiViec) {
+    public void setNgayNghiViec(Date NgayNghiViec) {
         this.NgayNghiViec = NgayNghiViec;
     }
 }

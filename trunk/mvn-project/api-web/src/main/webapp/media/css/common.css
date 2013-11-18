@@ -23,3 +23,10 @@ and open the template in the editor.
 .margin_button_bottom{
     margin-bottom: 10px;
 }
+
+.custom_checkbox{
+    width: 284px;
+}
+.inner_form{
+    margin: 0 15%;
+}

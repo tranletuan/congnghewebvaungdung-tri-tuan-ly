@@ -20,8 +20,7 @@
                   <label class="control-label" for="NamHoc">Năm Học</label>
                   <div class="controls">
                     <select id="NamHoc" name="IDNamHoc" class="input-xlarge">
-                      <option>2012 - 2013</option>
-                      <option>2013-2014</option>
+                      <option th:each="namhoc : ${listNamHoc}" th:text="${namhoc.TenNamHoc}" th:value="${namhoc.ID}"/>
                     </select>
                   </div>
                 </div>

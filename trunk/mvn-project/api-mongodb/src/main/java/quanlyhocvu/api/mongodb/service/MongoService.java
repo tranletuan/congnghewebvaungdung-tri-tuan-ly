@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
+import quanlyhocvu.api.mongodb.DAO.HocSinhDAO;
 import quanlyhocvu.api.mongodb.DAO.KhoiLopDAO;
 import quanlyhocvu.api.mongodb.DAO.LopHocDAO;
 import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
+import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
@@ -39,6 +41,9 @@ public class MongoService {
     
     @Autowired 
     private LopHocDAO lophocDAO;
+    
+    @Autowired
+    private HocSinhDAO hocsinhDAO;
 
     
     public boolean insertGiaoVien(GiaoVienDTO dto) {
@@ -175,5 +180,35 @@ public class MongoService {
         return lophocDAO.insert(dto);
     }
 
+    /**
+     * get NamHoc by Id
+     * @param Id
+     * @return 
+     */
+    public NamHocDTO getNamHocById(String Id) {
+        return namhocDAO.getNamHocById(Id);
+    }
+    
+    /**************************************************
+     * function for students
+     * @author: LyVV
+     * @date created: Nov 17th
+     *************************************************/
+    public List<HocSinhDTO> getAllStudents(){
+        return hocsinhDAO.getAllHocSinh();
+    }
+    
+    public boolean insertStudent(HocSinhDTO dto){
+        return hocsinhDAO.insertStudent(dto);
+    }
+    
+    public boolean updateStudent(HocSinhDTO dto){
+        return hocsinhDAO.updateStudent(dto);
+    }
+    
+    public boolean deleteStudent(HocSinhDTO dto){
+        return hocsinhDAO.delete(dto);
+    }
+    
     
 }
