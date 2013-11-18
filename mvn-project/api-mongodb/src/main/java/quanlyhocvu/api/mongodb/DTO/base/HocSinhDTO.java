@@ -5,16 +5,29 @@
  */
 package quanlyhocvu.api.mongodb.DTO.base;
 
+import java.util.Date;
+
 /**
  *
  * @author HuuTri
  */
 public class HocSinhDTO extends AbstractPersonDTO{
    private String MaHocSinh;
-   private String NgayNhapHoc;
-   private String NgayNghiHoc;
+   private Date NgayNhapHoc;
+   private Date NgayNghiHoc;
 
-    public String getStudentId() {
+   public HocSinhDTO(){};
+   public HocSinhDTO(String HoTen, int GioiTinh, Date NgaySinh, String DiaChi, String MaHocSinh, Date NgayNhapHoc, Date NgayNghiHoc){
+     this.HoTen = HoTen;
+     this.GioiTinh = GioiTinh;
+     this.NgaySinh = NgaySinh;
+     this.DiaChi = DiaChi;
+     this.MaHocSinh = MaHocSinh;
+     this.NgayNhapHoc = NgayNhapHoc;
+     this.NgayNghiHoc = NgayNghiHoc;
+             
+   };
+    public String getMaHocSinh() {
         return MaHocSinh;
     }
 
@@ -22,19 +35,19 @@ public class HocSinhDTO extends AbstractPersonDTO{
         this.MaHocSinh = MaHocSinh;
     }
 
-    public String getNgayNhapHoc() {
+    public Date getNgayNhapHoc() {
         return NgayNhapHoc;
     }
 
-    public void setNgayNhapHoc(String NgayNhapHoc) {
+    public void setNgayNhapHoc(Date NgayNhapHoc) {
         this.NgayNhapHoc = NgayNhapHoc;
     }
 
-    public String getNgayNghiHoc() {
+    public Date getNgayNghiHoc() {
         return NgayNghiHoc;
     }
 
-    public void setNgayNghiHoc(String NgayNghiHoc) {
+    public void setNgayNghiHoc(Date NgayNghiHoc) {
         this.NgayNghiHoc = NgayNghiHoc;
     }
 }

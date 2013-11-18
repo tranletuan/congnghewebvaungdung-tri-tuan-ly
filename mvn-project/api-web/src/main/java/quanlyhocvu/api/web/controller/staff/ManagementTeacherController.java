@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.web.controller.staff;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class ManagementTeacherController {
         int res = Integer.parseInt(request.getParameter("result"));
         System.out.println("asfasdfadfadsfasdfadsfs " + res);
         } catch (Exception ex) {
-            System.out.println("bull shit");
+          
         }
         
         List<GiaoVienDTO> listGiaoVien = new ArrayList<GiaoVienDTO>();
@@ -67,9 +68,9 @@ public class ManagementTeacherController {
                     request.getParameter("MaGiaoVien"),
                     request.getParameter("HoTen"),
                     Integer.parseInt(request.getParameter("GioiTinh")),
-                    request.getParameter("NgaySinh"),
+                    Date.valueOf(request.getParameter("NgaySinh")),
                     request.getParameter("DiaChi"),
-                    request.getParameter("NgayVaoLam")
+                    Date.valueOf(request.getParameter("NgayVaoLam"))
                 );
         boolean res = mongoService.insertGiaoVien(obj);
         map.put("message", "Đã thêm thành công 1 giáo viên");
