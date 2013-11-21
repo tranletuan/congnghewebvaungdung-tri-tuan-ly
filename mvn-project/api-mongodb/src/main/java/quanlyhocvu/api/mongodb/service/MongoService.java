@@ -53,7 +53,16 @@ public class MongoService {
     public List<GiaoVienDTO> getAllGiaoVien() {
         return giaovienDAO.getAllGiaoVien();
     }
-    //<editor-fold defaultstate="collapsed" desc="Get Set DAO">
+    //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
+    
+    public HocSinhDAO getHocsinhDAO() {
+        return hocsinhDAO;
+    }
+
+    public void setHocsinhDAO(HocSinhDAO hocsinhDAO) {
+        this.hocsinhDAO = hocsinhDAO;
+    }
+    
     /**
      * @return the lophocDAO
      */
@@ -141,7 +150,7 @@ public class MongoService {
     }
     
     /**************************************************
-     * function for subject
+     * function for grade
      * @author: LyVV
      *************************************************/
     /**
@@ -161,7 +170,7 @@ public class MongoService {
     }
 
     /**************************************************
-     * function for subject
+     * function for class
      * @author: LyVV
      *************************************************/
     /**
@@ -210,5 +219,19 @@ public class MongoService {
         return hocsinhDAO.delete(dto);
     }
     
+    public HocSinhDTO getStudentByMaHS(String MaHocSinh){
+        System.out.println("Eo");
+        return hocsinhDAO.getByMaHocSinh(MaHocSinh);
+    }
+
+    public GiaoVienDAO getGiaovienDAO() {
+        return giaovienDAO;
+    }
+
+    public void setGiaovienDAO(GiaoVienDAO giaovienDAO) {
+        this.giaovienDAO = giaovienDAO;
+    }
+
+
     
 }

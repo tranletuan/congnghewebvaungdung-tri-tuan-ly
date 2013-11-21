@@ -1,0 +1,105 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    </head>
+    
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <div th:include="template :: footer"></div>
+            <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/students/save}">
+                <div class="inner_form">
+                    <div class="control-group">
+                        <label class="control-label" for="MaHocSinh">Mã Học Sinh</label>
+                        <div class="controls">
+                          <input id="MaHocSinh" name="MaHocSinh" type="text" placeholder="Mã học sinh" class="validate[required] input-xlarge"/>                      
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="HoTen">Họ Tên</label>
+                        <div class="controls">
+                          <input id="HoTen" name="HoTen" type="text" placeholder="" class="validate[required] input-xlarge"/>                      
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="Giới Tính">Giới Tính</label>
+                        <div class="controls">
+                            <select name="GioiTinh" class="validate[required] input-xlarge custom_checkbox">
+                                <option  value="1">Nam</option>
+                                <option value="0">Nữ</option>                            
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="NgaySinh">Ngày Sinh</label>
+                        <div class="controls">
+                            <input type="text" id="datepickerNgaySinh" name="NgaySinh" class="input-xlarge"/>
+                        </div>
+                    </div>
+                    <!-- Textarea -->
+                    <div class="control-group">
+                      <label class="control-label" for="DiaChi">Địa Chỉ</label>
+                      <div class="controls">                     
+                        <textarea id="DiaChi" name="DiaChi" class="input-xlarge"></textarea>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="NgayNhapHoc">Ngày Nhập Học</label>
+                        <div class="controls">
+                            <input type="text" id="datepickerNhapHoc" name="NgayNhapHoc" class="input-xlarge" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="NgayNghiHoc">Ngày Nghỉ Học</label>
+                        <div class="controls">
+                            <input type="text" id="datepickerNghiHoc" name="NgayNghiHoc" class="input-xlarge" />
+                        </div>
+                    </div>
+                     <!-- Button -->
+                    <div class="control-group">                    
+                        <div class="controls">
+                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
+                            <a th:href="@{/staff/management/students/index}" class="btn">Trở Lại</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#form-horizontal").validationEngine();
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+            var today = new Date();
+            var yearToday = today.getFullYear();
+            $(function() {
+                $( "#datepickerNgaySinh" ).datepicker({
+                    yearRange: "1992:" + yearToday +"",
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "dd/mm/yy"
+                });
+                $( "#datepickerNhapHoc" ).datepicker({
+                    yearRange: "2000:2023",
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "dd/mm/yy"
+                });
+                $( "#datepickerNghiHoc" ).datepicker({
+                    yearRange: "2000:2023",
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "dd/mm/yy"
+                });
+                $('#MaHocSinh').focus();
+              });
+              
+        </script>    
+    </body>
+</html>

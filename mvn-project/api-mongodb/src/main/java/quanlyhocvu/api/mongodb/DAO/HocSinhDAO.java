@@ -64,8 +64,17 @@ public class HocSinhDAO {
     
     public boolean delete(HocSinhDTO dto) {
         boolean res = true;
-        mongoOperations.remove(dto);
+        mongoOperations.remove(dto);        
         
         return res;
+    }
+    
+    public HocSinhDTO getByMaHocSinh(String MaHocSinh){
+        Query query = Query.query(Criteria.where("MaHocSinh").is(MaHocSinh));
+        System.out.println(MaHocSinh);
+        System.out.println(query.toString());
+        HocSinhDTO obj = mongoOperations.findOne(query, HocSinhDTO.class);    
+        System.out.print(obj);
+        return obj;
     }
 }
