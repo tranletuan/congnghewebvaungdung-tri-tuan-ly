@@ -7,7 +7,7 @@
             <div th:substituteby="template :: nav" />   
             <div th:include="template :: footer"></div>
             <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/grade/save}">                
-
+                <div class="inner_form">
                 <!-- Text input-->
                 <div class="control-group">
                     <label class="control-label" for="TenKhoiLop">Tên Khối Lớp</label>
@@ -31,7 +31,7 @@
                         <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
                     </div>
                 </div>
-                
+                </div>
             </form>
 
         </div>	

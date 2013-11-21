@@ -7,31 +7,31 @@
             <div th:substituteby="template :: nav" />   
             <div th:include="template :: footer"></div>
             <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/school_year/save}">                
-
+                <div class="inner_form">
                 <!-- Text input-->
-                <div class="control-group">
-                    <label class="control-label" for="TenNamHoc">Tên Năm Học</label>
-                    <div class="controls">
-                        <input id="TenNamHoc" name="TenNamHoc" type="text" placeholder="Mời bạn nhập vào tên năm học" class="input-xlarge"/>                    
+                    <div class="control-group">
+                        <label class="control-label" for="TenNamHoc">Tên Năm Học</label>
+                        <div class="controls">
+                            <input id="TenNamHoc" name="TenNamHoc" type="text" placeholder="Mời bạn nhập vào tên năm học" class="input-xlarge"/>                    
+                        </div>
                     </div>
-                </div>
 
-                <!-- Textarea -->
-                <div class="control-group">
-                    <label class="control-label" for="MoTa">Mô Tả</label>
-                    <div class="controls">     
-                        <textarea id="MoTa" name="MoTa"></textarea>
+                    <!-- Textarea -->
+                    <div class="control-group">
+                        <label class="control-label" for="MoTa">Mô Tả</label>
+                        <div class="controls">     
+                            <textarea id="MoTa" name="MoTa"></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Button -->
-                <div class="control-group">
-                    <label class="control-label" for="ThemBtn"></label>
-                    <div class="controls">
-                        <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
+                    <!-- Button -->
+                    <div class="control-group">
+                        <label class="control-label" for="ThemBtn"></label>
+                        <div class="controls">
+                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
+                        </div>
                     </div>
                 </div>
-                
             </form>
 
         </div>	
