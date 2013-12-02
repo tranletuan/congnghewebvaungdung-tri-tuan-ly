@@ -54,7 +54,7 @@ public class GiaoVienDAO {
             mongoOperations.findAndModify(query, update,  GiaoVienDTO.class);
             return true;           
         } catch (Exception ex) {
-            logger.error("TeacherDAO - insertTeacher " + ex.getMessage());
+            logger.error("TeacherDAO - updateTeacher " + ex.getMessage());
             return false;
         }
     }
