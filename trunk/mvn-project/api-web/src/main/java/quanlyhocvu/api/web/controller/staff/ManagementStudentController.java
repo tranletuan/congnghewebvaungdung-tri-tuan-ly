@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.service.FunctionService;
 import quanlyhocvu.api.mongodb.service.MongoService;
 import sun.rmi.runtime.Log;
 
@@ -33,7 +34,8 @@ import sun.rmi.runtime.Log;
 public class ManagementStudentController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
-
+    
+    
     @Autowired
     MongoService mongoService;
 
@@ -44,6 +46,7 @@ public class ManagementStudentController {
         List<HocSinhDTO> listHocSinh = new ArrayList<HocSinhDTO>();
         listHocSinh = mongoService.getAllStudents();
         map.put("listHocSinh", listHocSinh);
+        map.put("stt", 1);
         return new ModelAndView("management/students/index", map);
     }
 
@@ -59,15 +62,20 @@ public class ManagementStudentController {
     public @ResponseBody
     ModelAndView saveStudent(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        java.util.Date ex = new java.util.Date(request.getParameter("ngaySinh"));
-        HocSinhDTO obj = new HocSinhDTO(
-                request.getParameter("hoTen"),
-                Integer.parseInt(request.getParameter("gioiTinh")),
-                new java.util.Date(request.getParameter("ngaySinh")),
-                request.getParameter("diaChi"),
-                request.getParameter("maHocSinh"),
-                new java.util.Date(request.getParameter("ngayNhapHoc"))
-                );
+        java.util.Date ex = new java.util.Date(request.getParameter("ngaySinh"));        
+        HocSinhDTO obj = new HocSinhDTO();
+        obj.sethoTen(request.getParameter("hoTen"));
+        obj.setgioiTinh(Integer.parseInt(request.getParameter("gioiTinh")));  
+        obj.setdiaChi(request.getParameter("diaChi"));
+        obj.setmaHocSinh(request.getParameter("maHocSinh"));
+        String ngaySinh = request.getParameter("ngaySinh");
+        if (ngaySinh != "") {
+            obj.setngaySinh(new java.util.Date(FunctionService.formatStringDate(ngaySinh)));            
+        }
+        String ngayNhapHoc = request.getParameter("ngayNhapHoc");
+        if (ngayNhapHoc != "") {
+            obj.setngayNhapHoc(new java.util.Date(FunctionService.formatStringDate(ngayNhapHoc)));            
+        }                
         boolean res = mongoService.insertStudent(obj);        
         map.put("message", "Đã thêm thành công 1 học sinh");
         return new ModelAndView("redirect:/staff/management/students/index", map);
@@ -89,7 +97,6 @@ public class ManagementStudentController {
     ModelAndView updateStudent(@PathVariable String studentId,HttpServletRequest request) {        
         Map<String, Object> map = new HashMap<String, Object>();
         //get the student by studentId
-        System.out.println("StudentId: "+ studentId);
         HocSinhDTO obj = mongoService.getStudentByMaHS(studentId); 
         //update information for student
         obj.setdiaChi(request.getParameter("diaChi"));
@@ -99,15 +106,15 @@ public class ManagementStudentController {
         obj.setmaHocSinh(request.getParameter("maHocSinh"));
         String ngaySinh = request.getParameter("ngaySinh");
         if (ngaySinh != "") {
-            obj.setngaySinh(new java.util.Date(formatStringDate(ngaySinh)));
+            obj.setngaySinh(new java.util.Date(FunctionService.formatStringDate(ngaySinh)));
         }         
         String ngayNghiHoc = request.getParameter("ngayNghiHoc");
         if (ngayNghiHoc != "") {
-            obj.setngayNghiHoc(new java.util.Date(formatStringDate(ngayNghiHoc)));
+            obj.setngayNghiHoc(new java.util.Date(FunctionService.formatStringDate(ngayNghiHoc)));
         }  
         String ngayNhapHoc = request.getParameter("ngayNhapHoc");
         if (ngayNhapHoc != "") {
-            obj.setngayNhapHoc(new java.util.Date(formatStringDate(ngayNhapHoc)));
+            obj.setngayNhapHoc(new java.util.Date(FunctionService.formatStringDate(ngayNhapHoc)));
         }        
                 
         //update to database
@@ -119,22 +126,11 @@ public class ManagementStudentController {
     @RequestMapping(value="delete/{studentId}")
     public @ResponseBody
     ModelAndView deleteStudent(@PathVariable("studentId") String studentId, HttpServletRequest request){
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAa");
         Map<String, Object> map = new HashMap<String, Object>();
-        System.out.println("Enter function");
         HocSinhDTO obj = mongoService.getStudentByMaHS(studentId);
-        System.out.println(obj);
         boolean res = mongoService.deleteStudent(obj);
         map.put("message", "Đã xóa thành công 1 học sinh");
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }      
-     
-    public String formatStringDate(String date){
-        String res = "";
-        String[] arr = date.split("/");
-        res += arr[1] + "/" + arr[0]+ "/" + arr[2];
-        return res;
-        
-    }
     
 }

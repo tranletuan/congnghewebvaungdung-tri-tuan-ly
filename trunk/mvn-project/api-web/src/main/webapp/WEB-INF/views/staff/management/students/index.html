@@ -9,7 +9,7 @@
             <div class="clearfix"></div>
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
-                    <tr>
+                    <tr>                        
                         <th>Mã Học Sinh</th>
                         <th>Họ Tên</th>
                         <th>Ngày Sinh</th>
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">
+                    <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">                        
                         <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
                         <td th:text="${hocsinh.gethoTen()}" id="hoTen"/>                        
                         <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" th:if="${hocsinh.getngaySinh()}" id="ngaySinh"/>
@@ -31,9 +31,7 @@
                         <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}"   th:if="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>
                         <td th:unless="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>   
                         <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}"  th:if="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                        
-                        <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>     
-                        
-                        
+                        <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                                                     
                         <td>
                             <div class="btn-group">
                                 <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
