@@ -12,40 +12,40 @@ import java.util.Date;
  * @author HuuTri
  */
 public class AbstractPersonDTO extends AbstractObjectDTO{
-    protected String HoTen;
-    protected int GioiTinh;
-    protected Date NgaySinh;
-    protected String DiaChi;
+    protected String hoTen;
+    protected int gioiTinh;
+    protected Date ngaySinh;
+    protected String diaChi;
 
-    public String getHoTen() {
-        return HoTen;
+    public String gethoTen() {
+        return hoTen;
     }
 
-    public void setHoTen(String HoTen) {
-        this.HoTen = HoTen;
+    public void sethoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
-    public int getGioiTinh() {
-        return GioiTinh;
+    public int getgioiTinh() {
+        return gioiTinh;
     }
 
-    public void setGioiTinh(int GioiTinh) {
-        this.GioiTinh = GioiTinh;
+    public void setgioiTinh(int gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
-    public Date getNgaySinh() {
-        return NgaySinh;
+    public Date getngaySinh() {
+        return ngaySinh;
     }
 
-    public void setNgaySinh(Date NgaySinh) {
-        this.NgaySinh = NgaySinh;
+    public void setngaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
-    public String getDiaChi() {
-        return DiaChi;
+    public String getdiaChi() {
+        return diaChi;
     }
 
-    public void setDiaChi(String DiaChi) {
-        this.DiaChi = DiaChi;
+    public void setdiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 }

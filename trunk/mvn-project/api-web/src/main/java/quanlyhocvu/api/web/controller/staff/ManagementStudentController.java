@@ -41,10 +41,15 @@ public class ManagementStudentController {
     public @ResponseBody
     ModelAndView listStudents(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-
+        System.out.println("Step 1");
         List<HocSinhDTO> listHocSinh = new ArrayList<HocSinhDTO>();
+        System.out.println("Step 2");
         listHocSinh = mongoService.getAllStudents();
+        System.out.println("Step 3");
+        System.out.println(listHocSinh);
         map.put("listHocSinh", listHocSinh);
+        System.out.println("Step 4");
+        System.out.println(map);
         return new ModelAndView("management/students/index", map);
     }
 
@@ -60,15 +65,15 @@ public class ManagementStudentController {
     public @ResponseBody
     ModelAndView saveStudent(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        java.util.Date ex = new java.util.Date(request.getParameter("NgaySinh"));
+        java.util.Date ex = new java.util.Date(request.getParameter("ngaySinh"));
         HocSinhDTO obj = new HocSinhDTO(
-                request.getParameter("HoTen"),
-                Integer.parseInt(request.getParameter("GioiTinh")),
-                new java.util.Date(request.getParameter("NgaySinh")),
-                request.getParameter("DiaChi"),
-                request.getParameter("MaHocSinh"),
-                new java.util.Date(request.getParameter("NgayNhapHoc")),
-                new java.util.Date(request.getParameter("NgayNghiHoc"))
+                request.getParameter("hoTen"),
+                Integer.parseInt(request.getParameter("gioiTinh")),
+                new java.util.Date(request.getParameter("ngaySinh")),
+                request.getParameter("diaChi"),
+                request.getParameter("maHocSinh"),
+                new java.util.Date(request.getParameter("ngayNhapHoc")),
+                new java.util.Date(request.getParameter("ngayNghiHoc"))
                 );
         boolean res = mongoService.insertStudent(obj);        
         map.put("message", "Đã thêm thành công 1 học sinh");

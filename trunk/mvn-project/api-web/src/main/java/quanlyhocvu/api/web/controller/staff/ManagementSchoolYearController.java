@@ -37,9 +37,9 @@ public class ManagementSchoolYearController {
     public @ResponseBody
     ModelAndView schoolYearList(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();        
-        List<NamHocDTO> listNamHoc = new ArrayList<NamHocDTO>();
-        listNamHoc = mongoService.getAllNamHoc();
-        map.put("listNamHoc", listNamHoc);
+        List<NamHocDTO> listnamHoc = new ArrayList<NamHocDTO>();
+        listnamHoc = mongoService.getAllnamHoc();
+        map.put("listnamHoc", listnamHoc);
         return new ModelAndView("management/school_year/index", map);
     }
 
@@ -57,10 +57,10 @@ public class ManagementSchoolYearController {
     ModelAndView saveSchoolYear(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         NamHocDTO obj = new NamHocDTO(
-                    request.getParameter("TenNamHoc"),
-                    request.getParameter("MoTa")                    
+                    request.getParameter("tennamHoc"),
+                    request.getParameter("moTa")                    
                 );
-        boolean res = mongoService.insertNamHoc(obj);
+        boolean res = mongoService.insertnamHoc(obj);
         map.put("message", "Đã thêm thành công 1 năm học");
         return new ModelAndView("redirect:/staff/management/school_year/index", map);
     }

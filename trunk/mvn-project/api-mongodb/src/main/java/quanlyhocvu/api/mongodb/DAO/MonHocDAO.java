@@ -40,10 +40,10 @@ public class MonHocDAO {
     public boolean update(MonHocDTO dto) {
         boolean res = true;
         
-        Query query = Query.query(Criteria.where("ID").is(dto.getID()));
+        Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("TenMonHoc", dto.getTenMonHoc());
-        update.set("MoTa", dto.getMoTa());
+        update.set("tenMonHoc", dto.gettenMonHoc());
+        update.set("moTa", dto.getmoTa());
         
         mongoOperation.findAndModify(query, update, MonHocDTO.class);
         return res;

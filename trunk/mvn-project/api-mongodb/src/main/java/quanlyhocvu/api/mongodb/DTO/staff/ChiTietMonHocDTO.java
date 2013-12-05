@@ -14,22 +14,22 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  */
 @Document
 public class ChiTietMonHocDTO extends AbstractObjectDTO {
-    private String IDMonHoc;
-    private String IDKhoiLop;
+    private String idMonHoc;
+    private String idKhoiLop;
 
-    public String getIDMonHoc() {
-        return IDMonHoc;
+    public String getidMonHoc() {
+        return idMonHoc;
     }
 
-    public void setIDMonHoc(String IDMonHoc) {
-        this.IDMonHoc = IDMonHoc;
+    public void setidMonHoc(String idMonHoc) {
+        this.idMonHoc = idMonHoc;
     }
 
-    public String getIDKhoiLop() {
-        return IDKhoiLop;
+    public String getidKhoiLop() {
+        return idKhoiLop;
     }
 
-    public void setIDKhoiLop(String IDKhoiLop) {
-        this.IDKhoiLop = IDKhoiLop;
+    public void setidKhoiLop(String idkhoiLop) {
+        this.idKhoiLop = idkhoiLop;
     }
 }

@@ -10,27 +10,27 @@
                 <div class="inner_form">
                 <!-- Text input-->
                     <div class="control-group">
-                      <label class="control-label" for="TenLopHoc">Tên Lớp Học</label>
+                      <label class="control-label" for="tenLopHoc">Tên Lớp Học</label>
                       <div class="controls">
-                        <input id="TenLopHoc" name="TenLopHoc" type="text" placeholder="Tên Lớp Học" class="input-xlarge"/>                    
+                        <input id="tenLopHoc" name="tenLopHoc" type="text" placeholder="Tên Lớp Học" class="input-xlarge"/>                    
                       </div>
                     </div>
 
                     <!-- Select Basic -->
                     <div class="control-group">
-                      <label class="control-label" for="NamHoc">Năm Học</label>
+                      <label class="control-label" for="namHoc">Năm Học</label>
                       <div class="controls">
-                        <select id="NamHoc" name="IDNamHoc" class="input-xlarge">
-                          <option th:each="namhoc : ${listNamHoc}" th:text="${namhoc.TenNamHoc}" th:value="${namhoc.ID}"/>
+                        <select id="namHoc" name="IDnamHoc" class="input-xlarge">
+                          <option th:each="namHoc : ${listnamHoc}" th:text="${namHoc.tennamHoc}" th:value="${namHoc.ID}"/>
                         </select>
                       </div>
                     </div>
 
                     <!-- Select Basic -->
                     <div class="control-group">
-                      <label class="control-label" for="KhoiLop">Khối Lớp</label>
+                      <label class="control-label" for="khoiLop">Khối Lớp</label>
                       <div class="controls">
-                        <select id="KhoiLop" name="IDKhoiLop" class="input-xlarge">
+                        <select id="khoiLop" name="IDkhoiLop" class="input-xlarge">
                           <option>6</option>
                           <option>7</option>
                           <option>8</option>
@@ -41,9 +41,9 @@
 
                     <!-- Select Basic -->
                     <div class="control-group">
-                      <label class="control-label" for="GiaoVien">Giáo Viên</label>
+                      <label class="control-label" for="giaoVien">Giáo Viên</label>
                       <div class="controls">
-                        <select id="GiaoVien" name="IDGiaoVien" class="input-xlarge">
+                        <select id="giaoVien" name="IDgiaoVien" class="input-xlarge">
                           <option>Hạnh</option>
                           <option>Loan</option>
                         </select>

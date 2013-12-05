@@ -40,10 +40,10 @@ public class KhoiLopDAO {
     public boolean update(KhoiLopDTO dto) {
         boolean res = true;
         
-        Query query = Query.query(Criteria.where("ID").is(dto.getID()));
+        Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("TenKhoiLop", dto.getTenKhoiLop());
-        update.set("MoTa", dto.getMoTa());
+        update.set("tenKhoiLop", dto.gettenKhoiLop());
+        update.set("moTa", dto.getmoTa());
         
         mongoOperation.findAndModify(query, update, KhoiLopDTO.class);
         return res;

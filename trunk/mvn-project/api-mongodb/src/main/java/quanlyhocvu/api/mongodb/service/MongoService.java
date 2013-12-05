@@ -28,16 +28,16 @@ public class MongoService {
     private AddressDAO addressDAO;
     
     @Autowired 
-    private GiaoVienDAO giaovienDAO;
+    private GiaoVienDAO giaoVienDAO;
     
     @Autowired
-    private NamHocDAO namhocDAO;
+    private NamHocDAO namHocDAO;
     
     @Autowired
     private MonHocDAO monhocDAO;
     
     @Autowired
-    private KhoiLopDAO khoilopDAO;
+    private KhoiLopDAO khoiLopDAO;
     
     @Autowired 
     private LopHocDAO lophocDAO;
@@ -46,12 +46,12 @@ public class MongoService {
     private HocSinhDAO hocsinhDAO;
 
     
-    public boolean insertGiaoVien(GiaoVienDTO dto) {
-        return giaovienDAO.insertTeacher(dto);
+    public boolean insertgiaoVien(GiaoVienDTO dto) {
+        return giaoVienDAO.insertTeacher(dto);
     }
     
-    public List<GiaoVienDTO> getAllGiaoVien() {
-        return giaovienDAO.getAllGiaoVien();
+    public List<GiaoVienDTO> getAllgiaoVien() {
+        return giaoVienDAO.getAllgiaoVien();
     }
     //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
     
@@ -97,13 +97,6 @@ public class MongoService {
         this.addressDAO = addressDAO;
     }
     
-      public GiaoVienDAO getGiaoVienDAO() {
-        return giaovienDAO;
-    }
-
-    public void setGiaoVienDAO(GiaoVienDAO GiaoVienDAO) {
-        this.giaovienDAO = GiaoVienDAO;
-    }
     
     //</editor-fold>
     
@@ -116,16 +109,16 @@ public class MongoService {
      * this function is used to return the list of school-year
      * @return 
      */
-    public List<NamHocDTO> getAllNamHoc(){
-        return namhocDAO.getAllList();
+    public List<NamHocDTO> getAllnamHoc(){
+        return namHocDAO.getAllList();
     }
     /**
-     * Insert new NamHoc into list
+     * Insert new namHoc into list
      * @param dto
      * @return 
      */
-    public boolean insertNamHoc(NamHocDTO dto) {
-        return namhocDAO.insert(dto);
+    public boolean insertnamHoc(NamHocDTO dto) {
+        return namHocDAO.insert(dto);
     }
     
     
@@ -154,19 +147,19 @@ public class MongoService {
      * @author: LyVV
      *************************************************/
     /**
-     * this function is used to return the list of KHOILOP
+     * this function is used to return the list of khoiLop
      * @return 
      */
-    public List<KhoiLopDTO> getAllKhoiLop(){
-        return khoilopDAO.getAllList();
+    public List<KhoiLopDTO> getAllkhoiLop(){
+        return khoiLopDAO.getAllList();
     }
     /**
-     * Insert new KhoiLop into list
+     * Insert new khoiLop into list
      * @param dto
      * @return 
      */
-    public boolean insertKhoiLop(KhoiLopDTO dto) {
-        return khoilopDAO.insert(dto);
+    public boolean insertkhoiLop(KhoiLopDTO dto) {
+        return khoiLopDAO.insert(dto);
     }
 
     /**************************************************
@@ -190,12 +183,12 @@ public class MongoService {
     }
 
     /**
-     * get NamHoc by Id
+     * get namHoc by Id
      * @param Id
      * @return 
      */
-    public NamHocDTO getNamHocById(String Id) {
-        return namhocDAO.getNamHocById(Id);
+    public NamHocDTO getnamHocById(String Id) {
+        return namHocDAO.getnamHocById(Id);
     }
     
     /**************************************************
@@ -219,17 +212,17 @@ public class MongoService {
         return hocsinhDAO.delete(dto);
     }
     
-    public HocSinhDTO getStudentByMaHS(String MaHocSinh){
+    public HocSinhDTO getStudentByMaHS(String maHocSinh){
         System.out.println("Eo");
-        return hocsinhDAO.getByMaHocSinh(MaHocSinh);
+        return hocsinhDAO.getBymaHocSinh(maHocSinh);
     }
 
-    public GiaoVienDAO getGiaovienDAO() {
-        return giaovienDAO;
+    public GiaoVienDAO getGiaoVienDAO() {
+        return giaoVienDAO;
     }
 
-    public void setGiaovienDAO(GiaoVienDAO giaovienDAO) {
-        this.giaovienDAO = giaovienDAO;
+    public void setGiaoVienDAO(GiaoVienDAO giaoVienDAO) {
+        this.giaoVienDAO = giaoVienDAO;
     }
 
 

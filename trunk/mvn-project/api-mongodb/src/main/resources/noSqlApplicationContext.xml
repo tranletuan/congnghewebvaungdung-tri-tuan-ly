@@ -32,11 +32,11 @@
     </bean>
     
     <bean id="addressDAO" class="quanlyhocvu.api.mongodb.DAO.AddressDAO"/>
-    <bean id="giaovienDAO" class="quanlyhocvu.api.mongodb.DAO.GiaoVienDAO"/>
+    <bean id="GiaoVienDAO" class="quanlyhocvu.api.mongodb.DAO.GiaoVienDAO"/>
     
     <bean id="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService">
         <property name="addressDAO" ref="addressDAO"/>
-        <property name="giaovienDAO" ref="giaovienDAO"/>
+        <property name="GiaoVienDAO" ref="GiaoVienDAO"/>
     </bean>
     
     <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->

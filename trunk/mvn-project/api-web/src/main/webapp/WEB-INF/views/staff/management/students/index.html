@@ -21,18 +21,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:id="${hocsinh.ID}" align="center" th:each="hocsinh: ${listHocSinh}">
-                        <td th:text="${hocsinh.MaHocSinh}" id="MaHocSinh"/>
-                        <td th:text="${hocsinh.HoTen}" id="HoTen"/>
-                        <td th:text="${#dates.format(hocsinh.NgaySinh,'dd/MM/yyyy')}" id="NgaySinh"/>
-                        <td th:text="${hocsinh.GioiTinh}==1?${'Nam'}:${'Nữ'}" id="GioiTinh"/>                        
-                        <td th:text="${hocsinh.DiaChi}" id="DiaChi"/>
-                        <td th:text="${#dates.format(hocsinh.NgayNhapHoc,'dd/MM/yyyy')}" id="NgayNhapHoc"/>
-                        <td th:text="${#dates.format(hocsinh.NgayNghiHoc,'dd/MM/yyyy')}" id="NgayNghiHoc"/>
+                    <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">
+                        <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
+                        <td th:text="${hocsinh.gethoTen()}" id="hoTen"/>                        
+                        <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" id="ngaySinh"/>
+                        <td th:text="${hocsinh.getgioiTinh()}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
+                        <td th:text="${hocsinh.getdiaChi()}" id="diaChi"/>
+                        <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}" id="ngayNhapHoc"/>
+                        <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}" id="ngayNghiHoc"/>
                         <td>
                             <div class="btn-group">
-                                <a th:href="@{'/staff/management/students/edit/'+${hocsinh.MaHocSinh}}" title="SỬa"><i class="icon-pencil icondemo"></i></a>
-                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.MaHocSinh}}" title="Xóa" class="linkDelete" th:id="${hocsinh.MaHocSinh}"><i class="icon-trash"></i></a>
+                                <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icondemo"></i></a>
+                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash"></i></a>
                             </div>                            
                         </td>
                     </tr>

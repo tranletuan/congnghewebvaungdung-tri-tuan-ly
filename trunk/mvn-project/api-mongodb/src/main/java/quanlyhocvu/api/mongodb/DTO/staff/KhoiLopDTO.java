@@ -14,21 +14,21 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  */
 @Document
 public class KhoiLopDTO extends AbstractObjectDTO{
-    private String TenKhoiLop;
+    private String tenKhoiLop;
 
-    public String getTenKhoiLop() {
-        return TenKhoiLop;
+    public String gettenKhoiLop() {
+        return tenKhoiLop;
     }
 
-    public void setTenKhoiLop(String TenKhoiLop) {
-        this.TenKhoiLop = TenKhoiLop;
+    public void settenKhoiLop(String tenkhoiLop) {
+        this.tenKhoiLop = tenkhoiLop;
     }
     
     public KhoiLopDTO(){
     }
     
-    public KhoiLopDTO(String TenKhoiLop, String MoTa){
-        this.TenKhoiLop = TenKhoiLop;
-        this.MoTa = MoTa;
+    public KhoiLopDTO(String tenkhoiLop, String moTa){
+        this.tenKhoiLop = tenkhoiLop;
+        this.moTa = moTa;
     }
 }
