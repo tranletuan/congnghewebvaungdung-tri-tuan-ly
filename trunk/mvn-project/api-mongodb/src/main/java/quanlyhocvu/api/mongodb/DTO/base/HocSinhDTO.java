@@ -17,7 +17,8 @@ public class HocSinhDTO extends AbstractPersonDTO{
    private Date ngayNghiHoc;
 
    public HocSinhDTO(){};
-   public HocSinhDTO(String hoTen, int gioiTinh, Date ngaySinh, String diaChi, String maHocSinh, Date ngayNhapHoc, Date ngayNghiHoc){
+   public HocSinhDTO(String id, String hoTen, int gioiTinh, Date ngaySinh, String diaChi, String maHocSinh, Date ngayNhapHoc, Date ngayNghiHoc){
+     this.id = id;
      this.hoTen = hoTen;
      this.gioiTinh = gioiTinh;
      this.ngaySinh = ngaySinh;
@@ -25,6 +26,15 @@ public class HocSinhDTO extends AbstractPersonDTO{
      this.maHocSinh = maHocSinh;
      this.ngayNhapHoc = ngayNhapHoc;
      this.ngayNghiHoc = ngayNghiHoc;
+             
+   };
+   public HocSinhDTO(String hoTen, int gioiTinh, Date ngaySinh, String diaChi, String maHocSinh, Date ngayNhapHoc){
+     this.hoTen = hoTen;
+     this.gioiTinh = gioiTinh;
+     this.ngaySinh = ngaySinh;
+     this.diaChi = diaChi;
+     this.maHocSinh = maHocSinh;
+     this.ngayNhapHoc = ngayNhapHoc;     
              
    };
     public String getmaHocSinh() {
