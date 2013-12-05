@@ -13,34 +13,34 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
  * @author HuuTri
  */
 public class AbstractStaffDTO extends AbstractPersonDTO{
-    protected Date NgayVaoLam;
-    protected Date NgayNghiViec;
+    protected Date ngayVaoLam;
+    protected Date ngayNghiViec;
 
     /**
-     * @return the NgayVaoLam
+     * @return the ngayVaoLam
      */
-    public Date getNgayVaoLam() {
-        return NgayVaoLam;
+    public Date getngayVaoLam() {
+        return ngayVaoLam;
     }
 
     /**
-     * @param NgayVaoLam the NgayVaoLam to set
+     * @param ngayVaoLam the ngayVaoLam to set
      */
-    public void setNgayVaoLam(Date NgayVaoLam) {
-        this.NgayVaoLam = NgayVaoLam;
+    public void setngayVaoLam(Date ngayVaoLam) {
+        this.ngayVaoLam = ngayVaoLam;
     }
 
     /**
-     * @return the NgayNghiViec
+     * @return the ngayNghiViec
      */
-    public Date getNgayNghiViec() {
-        return NgayNghiViec;
+    public Date getngayNghiViec() {
+        return ngayNghiViec;
     }
 
     /**
-     * @param NgayNghiViec the NgayNghiViec to set
+     * @param ngayNghiViec the ngayNghiViec to set
      */
-    public void setNgayNghiViec(Date NgayNghiViec) {
-        this.NgayNghiViec = NgayNghiViec;
+    public void setngayNghiViec(Date ngayNghiViec) {
+        this.ngayNghiViec = ngayNghiViec;
     }
 }

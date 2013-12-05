@@ -49,9 +49,9 @@ public class ManagementClassController {
     public @ResponseBody
     ModelAndView newClass(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<NamHocDTO> listNamHoc = mongoService.getAllNamHoc();
+        List<NamHocDTO> listnamHoc = mongoService.getAllnamHoc();
 
-        map.put("listNamHoc", listNamHoc);
+        map.put("listnamHoc", listnamHoc);
         return new ModelAndView("management/class/new", map);
     }
 
@@ -60,10 +60,10 @@ public class ManagementClassController {
     ModelAndView saveClass(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         LopHocDTO obj = new LopHocDTO(
-                request.getParameter("TenLopHoc"),
-                request.getParameter("IDGiaoVien"),
-                request.getParameter("IDKhoiLop"),
-                request.getParameter("IDNamHoc")
+                request.getParameter("tenLopHoc"),
+                request.getParameter("idGiaoVien"),
+                request.getParameter("idKhoiLop"),
+                request.getParameter("idNamHoc")
                 );
         boolean res = mongoService.insertLopHoc(obj);
         map.put("message", "Đã thêm thành công 1 lớp học");

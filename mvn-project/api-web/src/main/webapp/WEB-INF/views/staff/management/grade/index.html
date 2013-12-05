@@ -16,10 +16,10 @@
                     </tr>
                 </thead>
                 <tbody>                       
-                    <tr th:id="${khoilop.TenKhoiLop}" align="center" th:each="khoilop: ${listKhoiLop}">
+                    <tr th:id="${khoiLop.tenkhoiLop}" align="center" th:each="khoiLop: ${listkhoiLop}">
                         <td>1</td>
-                        <td th:text="${khoilop.TenKhoiLop}" id="TenKhoiLop"/>                        
-                        <td th:text="${khoilop.MoTa}" id="MoTa"/>  
+                        <td th:text="${khoiLop.tenkhoiLop}" id="tenkhoiLop"/>                        
+                        <td th:text="${khoiLop.moTa}" id="moTa"/>  
                     </tr>
                 </tbody>
             </table>

@@ -44,15 +44,15 @@ public class HocSinhDAO {
     
     public boolean updateStudent(HocSinhDTO student) {
         try {
-            Query query = Query.query(Criteria.where("ID").is(student.getID()));
+            Query query = Query.query(Criteria.where("id").is(student.getid()));
             Update update = new Update();
-            update.set("HoTen", student.getHoTen());
-            update.set("GioiTinh", student.getGioiTinh());
-            update.set("NgaySinh", student.getNgaySinh());
-            update.set("DiaChi", student.getDiaChi());
-            update.set("MaHocSinh", student.getMaHocSinh());
-            update.set("NgayNhapHoc", student.getNgayNhapHoc());
-            update.set("NgayNghiHoc", student.getNgayNghiHoc());            
+            update.set("hoTen", student.gethoTen());
+            update.set("gioiTinh", student.getgioiTinh());
+            update.set("ngaySinh", student.getngaySinh());
+            update.set("diaChi", student.getdiaChi());
+            update.set("maHocSinh", student.getmaHocSinh());
+            update.set("ngayNhapHoc", student.getngayNhapHoc());
+            update.set("ngayNghiHoc", student.getngayNghiHoc());            
             
             mongoOperations.findAndModify(query, update,  HocSinhDTO.class);
             return true;           
@@ -69,11 +69,11 @@ public class HocSinhDAO {
         return res;
     }
     
-    public HocSinhDTO getByMaHocSinh(String MaHocSinh){
-        Query query = Query.query(Criteria.where("MaHocSinh").is(MaHocSinh));
-        System.out.println(MaHocSinh);
+    public HocSinhDTO getBymaHocSinh(String maHocSinh){
+        Query query = Query.query(Criteria.where("maHocSinh").is(maHocSinh));
+        System.out.println(maHocSinh);
         System.out.println(query.toString());
-        HocSinhDTO obj = mongoOperations.findOne(query, HocSinhDTO.class);    
+        HocSinhDTO obj = mongoOperations.find(query, HocSinhDTO.class).get(0);    
         System.out.print(obj);
         return obj;
     }

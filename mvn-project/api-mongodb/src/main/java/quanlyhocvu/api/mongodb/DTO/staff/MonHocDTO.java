@@ -14,20 +14,20 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  */
 @Document
 public class MonHocDTO extends AbstractObjectDTO{
-    private String TenMonHoc;
+    private String tenMonHoc;
         
-    public String getTenMonHoc() {
-        return TenMonHoc;
+    public String gettenMonHoc() {
+        return tenMonHoc;
     }
 
-    public void setTenMonHoc(String TenMonHoc) {
-        this.TenMonHoc = TenMonHoc;
+    public void settenMonHoc(String tenMonHoc) {
+        this.tenMonHoc = tenMonHoc;
     }
     
     public MonHocDTO() {}
     
-    public MonHocDTO(String TenMonHoc, String MoTa) {
-        this.TenMonHoc = TenMonHoc;
-        this.MoTa = MoTa;       
+    public MonHocDTO(String tenMonHoc, String moTa) {
+        this.tenMonHoc = tenMonHoc;
+        this.moTa = moTa;       
     }
 }

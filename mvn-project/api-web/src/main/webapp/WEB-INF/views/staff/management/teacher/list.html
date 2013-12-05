@@ -19,13 +19,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:id="${giaovien.ID}" align="center" th:each="giaovien: ${listGiaoVien}">
-                        <td th:text="${giaovien.MaGiaoVien}" id="MaGiaoVien"/>
-                        <td th:text="${giaovien.HoTen}" id="HoTen"/>
-                        <td th:text="${giaovien.NgaySinh}" id="NgaySinh"/>
-                        <td th:text="${giaovien.GioiTinh}==1?${'Nam'}:${'Nữ'}" id="GioiTinh"/>
-                        <td th:text="${giaovien.NgayVaoLam}" id="NgayVaoLam"/>
-                        <td th:text="${giaovien.DiaChi}" id="DiaChi"/>
+                    <tr th:id="${giaoVien.ID}" align="center" th:each="giaoVien: ${listgiaoVien}">
+                        <td th:text="${giaoVien.magiaoVien}" id="magiaoVien"/>
+                        <td th:text="${giaoVien.hoTen}" id="hoTen"/>
+                        <td th:text="${giaoVien.ngaySinh}" id="ngaySinh"/>
+                        <td th:text="${giaoVien.gioiTinh}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>
+                        <td th:text="${giaoVien.ngayVaoLam}" id="ngayVaoLam"/>
+                        <td th:text="${giaoVien.diaChi}" id="diaChi"/>
                     </tr>
                 </tbody>
             </table>

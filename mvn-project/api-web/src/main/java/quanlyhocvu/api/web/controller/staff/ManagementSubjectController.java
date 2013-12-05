@@ -58,8 +58,8 @@ public class ManagementSubjectController {
     ModelAndView saveSubject(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         MonHocDTO obj = new MonHocDTO(
-                    request.getParameter("TenMonHoc"),
-                    request.getParameter("MoTa")                    
+                    request.getParameter("tenMonHoc"),
+                    request.getParameter("moTa")                    
                 );
         boolean res = mongoService.insertMonHoc(obj);
         map.put("message", "Đã thêm thành công 1 môn học");

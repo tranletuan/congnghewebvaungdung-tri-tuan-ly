@@ -12,42 +12,42 @@ import java.util.Date;
  * @author HuuTri
  */
 public class HocSinhDTO extends AbstractPersonDTO{
-   private String MaHocSinh;
-   private Date NgayNhapHoc;
-   private Date NgayNghiHoc;
+   private String maHocSinh;
+   private Date ngayNhapHoc;
+   private Date ngayNghiHoc;
 
    public HocSinhDTO(){};
-   public HocSinhDTO(String HoTen, int GioiTinh, Date NgaySinh, String DiaChi, String MaHocSinh, Date NgayNhapHoc, Date NgayNghiHoc){
-     this.HoTen = HoTen;
-     this.GioiTinh = GioiTinh;
-     this.NgaySinh = NgaySinh;
-     this.DiaChi = DiaChi;
-     this.MaHocSinh = MaHocSinh;
-     this.NgayNhapHoc = NgayNhapHoc;
-     this.NgayNghiHoc = NgayNghiHoc;
+   public HocSinhDTO(String hoTen, int gioiTinh, Date ngaySinh, String diaChi, String maHocSinh, Date ngayNhapHoc, Date ngayNghiHoc){
+     this.hoTen = hoTen;
+     this.gioiTinh = gioiTinh;
+     this.ngaySinh = ngaySinh;
+     this.diaChi = diaChi;
+     this.maHocSinh = maHocSinh;
+     this.ngayNhapHoc = ngayNhapHoc;
+     this.ngayNghiHoc = ngayNghiHoc;
              
    };
-    public String getMaHocSinh() {
-        return MaHocSinh;
+    public String getmaHocSinh() {
+        return maHocSinh;
     }
 
-    public void setMaHocSinh(String MaHocSinh) {
-        this.MaHocSinh = MaHocSinh;
+    public void setmaHocSinh(String maHocSinh) {
+        this.maHocSinh = maHocSinh;
     }
 
-    public Date getNgayNhapHoc() {
-        return NgayNhapHoc;
+    public Date getngayNhapHoc() {
+        return ngayNhapHoc;
     }
 
-    public void setNgayNhapHoc(Date NgayNhapHoc) {
-        this.NgayNhapHoc = NgayNhapHoc;
+    public void setngayNhapHoc(Date ngayNhapHoc) {
+        this.ngayNhapHoc = ngayNhapHoc;
     }
 
-    public Date getNgayNghiHoc() {
-        return NgayNghiHoc;
+    public Date getngayNghiHoc() {
+        return ngayNghiHoc;
     }
 
-    public void setNgayNghiHoc(Date NgayNghiHoc) {
-        this.NgayNghiHoc = NgayNghiHoc;
+    public void setngayNghiHoc(Date ngayNghiHoc) {
+        this.ngayNghiHoc = ngayNghiHoc;
     }
 }

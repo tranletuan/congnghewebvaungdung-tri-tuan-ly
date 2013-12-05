@@ -14,22 +14,22 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
 public class DiemDTO extends AbstractObjectDTO {
 
     private String MaDiem;
-    private String MaGiaoVien;
-    private String MaHocSinh;
-    private String MaKhoiLop;
+    private String magiaoVien;
+    private String maHocSinh;
+    private String MakhoiLop;
     private String MaMonHoc;
-    private String MaNamHoc;
+    private String ManamHoc;
     private float DiemSo;
 
-    public DiemDTO(String MaDiem, String MaGiaoVien, 
-            String MaHocSinh, String MaKhoiLop,
-            String MaMonHoc, String MaNamHoc, float DiemSo) {
+    public DiemDTO(String MaDiem, String magiaoVien, 
+            String maHocSinh, String MakhoiLop,
+            String MaMonHoc, String ManamHoc, float DiemSo) {
            this.MaDiem = MaDiem;
-           this.MaGiaoVien = MaGiaoVien;
-           this.MaHocSinh = MaHocSinh;
-           this.MaKhoiLop = MaKhoiLop;
+           this.magiaoVien = magiaoVien;
+           this.maHocSinh = maHocSinh;
+           this.MakhoiLop = MakhoiLop;
            this.MaMonHoc = MaMonHoc;
-           this.MaNamHoc = MaNamHoc;
+           this.ManamHoc = ManamHoc;
            this.DiemSo = DiemSo;
     }
 
@@ -41,28 +41,28 @@ public class DiemDTO extends AbstractObjectDTO {
         this.MaDiem = MaDiem;
     }
 
-    public String getMaGiaoVien() {
-        return MaGiaoVien;
+    public String getmagiaoVien() {
+        return magiaoVien;
     }
 
-    public void setMaGiaoVien(String MaGiaoVien) {
-        this.MaGiaoVien = MaGiaoVien;
+    public void setmagiaoVien(String magiaoVien) {
+        this.magiaoVien = magiaoVien;
     }
 
-    public String getMaHocSinh() {
-        return MaHocSinh;
+    public String getmaHocSinh() {
+        return maHocSinh;
     }
 
-    public void setMaHocSinh(String MaHocSinh) {
-        this.MaHocSinh = MaHocSinh;
+    public void setmaHocSinh(String maHocSinh) {
+        this.maHocSinh = maHocSinh;
     }
 
-    public String getMaKhoiLop() {
-        return MaKhoiLop;
+    public String getMakhoiLop() {
+        return MakhoiLop;
     }
 
-    public void setMaKhoiLop(String MaKhoiLop) {
-        this.MaKhoiLop = MaKhoiLop;
+    public void setMakhoiLop(String MakhoiLop) {
+        this.MakhoiLop = MakhoiLop;
     }
 
     public String getMaMonHoc() {
@@ -73,12 +73,12 @@ public class DiemDTO extends AbstractObjectDTO {
         this.MaMonHoc = MaMonHoc;
     }
 
-    public String getMaNamHoc() {
-        return MaNamHoc;
+    public String getManamHoc() {
+        return ManamHoc;
     }
 
-    public void setMaNamHoc(String MaNamHoc) {
-        this.MaNamHoc = MaNamHoc;
+    public void setManamHoc(String ManamHoc) {
+        this.ManamHoc = ManamHoc;
     }
 
     public float getDiemSo() {

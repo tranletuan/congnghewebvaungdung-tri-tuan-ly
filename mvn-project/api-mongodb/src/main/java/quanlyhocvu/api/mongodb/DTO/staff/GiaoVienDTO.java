@@ -15,26 +15,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class GiaoVienDTO extends AbstractStaffDTO {
 
-    private String MaGiaoVien;
+    private String maGiaoVien;
 
     public GiaoVienDTO() {}
     
-    public GiaoVienDTO(String MaGiaoVien, String HoTen, 
-            int GioiTinh, Date NgaySinh, 
-            String DiaChi, Date NgayVaoLam) {
-        this.MaGiaoVien = MaGiaoVien;
-        this.HoTen = HoTen;
-        this.NgaySinh = NgaySinh;
-        this.NgayVaoLam = NgayVaoLam;
-        this.DiaChi = DiaChi;
-        this.GioiTinh = GioiTinh;        
+    public GiaoVienDTO(String maGiaoVien, String hoTen, 
+            int gioiTinh, Date ngaySinh, 
+            String diaChi, Date ngayVaoLam) {
+        this.maGiaoVien = maGiaoVien;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.ngayVaoLam = ngayVaoLam;
+        this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;        
     }
     
-    public String getMaGiaoVien() {
-        return MaGiaoVien;
+    public String getmaGiaoVien() {
+        return maGiaoVien;
     }
 
-    public void setMaGiaoVien(String MaGiaoVien) {
-        this.MaGiaoVien = MaGiaoVien;
+    public void setmaGiaoVien(String maGiaoVien) {
+        this.maGiaoVien = maGiaoVien;
     }
 }

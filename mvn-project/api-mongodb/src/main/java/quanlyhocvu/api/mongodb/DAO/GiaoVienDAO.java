@@ -27,7 +27,7 @@ public class GiaoVienDAO {
     @Autowired
     MongoOperations mongoOperations;
     
-    public List<GiaoVienDTO> getAllGiaoVien() {
+    public List<GiaoVienDTO> getAllgiaoVien() {
         return mongoOperations.findAll(GiaoVienDTO.class);
     }
     
@@ -43,13 +43,13 @@ public class GiaoVienDAO {
     
     public boolean updateTeacher(GiaoVienDTO teacher) {
         try {
-            Query query = Query.query(Criteria.where("ID").is(teacher.getID()));
+            Query query = Query.query(Criteria.where("id").is(teacher.getid()));
             Update update = new Update();
-            update.set("HoTen", teacher.getHoTen());
-            update.set("GioiTinh", teacher.getGioiTinh());
-            update.set("NgaySinh", teacher.getNgaySinh());
-            update.set("DiaChi", teacher.getDiaChi());
-            update.set("MaGiaoVien", teacher.getMaGiaoVien());
+            update.set("hoTen", teacher.gethoTen());
+            update.set("gioiTinh", teacher.getgioiTinh());
+            update.set("ngaySinh", teacher.getngaySinh());
+            update.set("diaChi", teacher.getdiaChi());
+            update.set("maGiaoVien", teacher.getmaGiaoVien());
             
             mongoOperations.findAndModify(query, update,  GiaoVienDTO.class);
             return true;           

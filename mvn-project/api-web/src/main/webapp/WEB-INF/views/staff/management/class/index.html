@@ -20,10 +20,10 @@
                 <tbody>                       
                     <tr  th:id="${lophoc.ID}" align="center" th:each="lophoc: ${listLopHoc}">
                         <td  th:text="${stt++}"/>
-                        <td th:text="${lophoc.TenLopHoc}" id="TenLopHoc"/>
-                        <td th:text="${lophoc.IDGiaoVien}" id="IDGiaoVien"/>
-                        <td th:text="${lophoc.IDKhoiLop}" id="IDKhoiLop"/>
-                        <td th:text="${lophoc.IDNamHoc}" id="IDNamHoc"/>                        
+                        <td th:text="${lophoc.tenLopHoc}" id="tenLopHoc"/>
+                        <td th:text="${lophoc.IDgiaoVien}" id="IDgiaoVien"/>
+                        <td th:text="${lophoc.IDkhoiLop}" id="IDkhoiLop"/>
+                        <td th:text="${lophoc.IDnamHoc}" id="IDnamHoc"/>                        
                     </tr>
                 </tbody>
             </table>

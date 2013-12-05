@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
@@ -45,9 +46,9 @@ public class ManagementTeacherController {
           
         }
         
-        List<GiaoVienDTO> listGiaoVien = new ArrayList<GiaoVienDTO>();
-        listGiaoVien = mongoService.getAllGiaoVien();
-        map.put("listGiaoVien", listGiaoVien);
+        List<GiaoVienDTO> listgiaoVien = new ArrayList<GiaoVienDTO>();
+        listgiaoVien = mongoService.getAllgiaoVien();
+        map.put("listgiaoVien", listgiaoVien);
         return new ModelAndView("management/teacher/list", map);
     }
     
@@ -65,15 +66,18 @@ public class ManagementTeacherController {
     ModelAndView teacherSave(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         GiaoVienDTO obj = new GiaoVienDTO(
-                    request.getParameter("MaGiaoVien"),
-                    request.getParameter("HoTen"),
-                    Integer.parseInt(request.getParameter("GioiTinh")),
-                    Date.valueOf(request.getParameter("NgaySinh")),
-                    request.getParameter("DiaChi"),
-                    Date.valueOf(request.getParameter("NgayVaoLam"))
+                    request.getParameter("magiaoVien"),
+                    request.getParameter("hoTen"),
+                    Integer.parseInt(request.getParameter("gioiTinh")),
+                    Date.valueOf(request.getParameter("ngaySinh")),
+                    request.getParameter("diaChi"),
+                    Date.valueOf(request.getParameter("ngayVaoLam"))
                 );
-        boolean res = mongoService.insertGiaoVien(obj);
+        boolean res = mongoService.insertgiaoVien(obj);
         map.put("message", "Đã thêm thành công 1 giáo viên");
         return new ModelAndView("redirect:/staff/management/teacher/list", map);
     }
+    
+    
+
 }

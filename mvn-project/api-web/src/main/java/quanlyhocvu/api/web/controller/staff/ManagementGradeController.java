@@ -36,9 +36,9 @@ public class ManagementGradeController {
     public @ResponseBody
     ModelAndView gradeList(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();        
-        List<KhoiLopDTO> listKhoiLop = new ArrayList<KhoiLopDTO>();
-        listKhoiLop = mongoService.getAllKhoiLop();
-        map.put("listKhoiLop", listKhoiLop);
+        List<KhoiLopDTO> listkhoiLop = new ArrayList<KhoiLopDTO>();
+        listkhoiLop = mongoService.getAllkhoiLop();
+        map.put("listkhoiLop", listkhoiLop);
         return new ModelAndView("management/grade/index", map);
     }
 
@@ -56,10 +56,10 @@ public class ManagementGradeController {
     ModelAndView saveGrade(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         KhoiLopDTO obj = new KhoiLopDTO(
-                    request.getParameter("TenKhoiLop"),
-                    request.getParameter("MoTa")                    
+                    request.getParameter("tenkhoiLop"),
+                    request.getParameter("moTa")                    
                 );
-        boolean res = mongoService.insertKhoiLop(obj);
+        boolean res = mongoService.insertkhoiLop(obj);
         map.put("message", "Đã thêm thành công 1 khối lớp");
         return new ModelAndView("redirect:/staff/management/grade/index", map);
     }

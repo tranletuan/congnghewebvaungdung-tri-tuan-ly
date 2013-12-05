@@ -38,13 +38,13 @@ public class LopHocDAO {
     public boolean update(LopHocDTO dto) {
         boolean res = true;
         
-        Query query = Query.query(Criteria.where("ID").is(dto.getID()));
+        Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("IDGiaoVien", dto.getIDGiaoVien());
-        update.set("IDKhoiLop", dto.getIDKhoiLop());
-        update.set("IDNamHoc", dto.getIDNamHoc());
-        update.set("MoTa", dto.getMoTa());
-        update.set("ListIDHocSinh", dto.getLisIDHocSinh());
+        update.set("idgiaoVien", dto.getidGiaoVien());
+        update.set("idkhoiLop", dto.getidKhoiLop());
+        update.set("idnamHoc", dto.getidnamHoc());
+        update.set("moTa", dto.getmoTa());
+        update.set("listIDHocSinh", dto.getLisidHocSinh());
         
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
         
@@ -62,9 +62,9 @@ public class LopHocDAO {
     public boolean insertHocSinh(String classId, String studentIds) {
         boolean res = true;
         
-        Query query = Query.query(Criteria.where("ID").is(classId));
+        Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
-        update.push("ListIDHocSinh", studentIds);
+        update.push("listIDHocSinh", studentIds);
         
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
         
@@ -74,17 +74,17 @@ public class LopHocDAO {
     public boolean deleteHocSinh(String classId, String studentIds) {
         boolean res = true;
         
-        Query query = Query.query(Criteria.where("ID").is(classId));
+        Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
-        update.pull("ListIDHocSinh", studentIds);
+        update.pull("listIDHocSinh", studentIds);
         
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
         
         return res;
     }
     
-    public List<LopHocDTO> getListByNamHoc(String id) {
-        Query query = Query.query(Criteria.where("IDNamHoc").is(id));
+    public List<LopHocDTO> getListBynamHoc(String id) {
+        Query query = Query.query(Criteria.where("idnamHoc").is(id));
         return mongoOperation.find(query, LopHocDTO.class);
     }
     

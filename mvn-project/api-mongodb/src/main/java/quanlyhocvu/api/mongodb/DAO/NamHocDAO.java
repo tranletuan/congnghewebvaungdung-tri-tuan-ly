@@ -40,10 +40,10 @@ public class NamHocDAO {
     public boolean update(NamHocDTO dto) {
         boolean res = true;
 
-        Query query = Query.query(Criteria.where("ID").is(dto.getID()));
+        Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("TenNamHoc", dto.getTenNamHoc());
-        update.set("MoTa", dto.getMoTa());
+        update.set("tenNamHoc", dto.gettenNamHoc());
+        update.set("moTa", dto.getmoTa());
 
         mongoOperation.findAndModify(query, update, NamHocDTO.class);
         return res;
@@ -60,9 +60,9 @@ public class NamHocDAO {
         return mongoOperation.findAll(NamHocDTO.class);
     }
 
-    public NamHocDTO getNamHocById(String id) {
+    public NamHocDTO getnamHocById(String id) {
 
-        Query query = Query.query(Criteria.where("ID").is(id));
+        Query query = Query.query(Criteria.where("id").is(id));
         return mongoOperation.findOne(query, NamHocDTO.class);
     }
 }

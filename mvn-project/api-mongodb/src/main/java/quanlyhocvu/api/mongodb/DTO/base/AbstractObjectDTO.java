@@ -13,22 +13,22 @@ import org.springframework.data.annotation.Id;
  */
 public abstract class AbstractObjectDTO {
     @Id
-    protected String ID;
-    protected String MoTa;
+    protected String id;
+    protected String moTa;
 
-    public String getID() {
-        return ID;
+    public String getid() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setid(String id) {
+        this.id = id;
     }
 
-    public String getMoTa() {
-        return MoTa;
+    public String getmoTa() {
+        return moTa;
     }
 
-    public void setMoTa(String MoTa) {
-        this.MoTa = MoTa;
+    public void setmoTa(String moTa) {
+        this.moTa = moTa;
     }
 }

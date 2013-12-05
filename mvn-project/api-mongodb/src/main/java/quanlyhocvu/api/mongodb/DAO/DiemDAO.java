@@ -45,14 +45,14 @@ public class DiemDAO {
     
     public boolean updateDiem(DiemDTO diem) {
         try {
-            Query query = Query.query(Criteria.where("ID").is(diem.getID()));
+            Query query = Query.query(Criteria.where("id").is(diem.getid()));
             Update update = new Update();
             update.set("MaDiem" , diem.getMaDiem());
-            update.set("MaGiaoVien", diem.getMaGiaoVien());
-            update.set("MaHocSinh", diem.getMaHocSinh());
-            update.set("MaKhoiLop", diem.getMaKhoiLop());
+            update.set("magiaoVien", diem.getmagiaoVien());
+            update.set("maHocSinh", diem.getmaHocSinh());
+            update.set("MakhoiLop", diem.getMakhoiLop());
             update.set("MaMonHoc", diem.getMaMonHoc());
-            update.set("MaNamHoc", diem.getMaNamHoc());
+            update.set("ManamHoc", diem.getManamHoc());
             update.set("DiemSo", diem.getDiemSo());
             
             mongoOperations.findAndModify(query, update, DiemDTO.class);

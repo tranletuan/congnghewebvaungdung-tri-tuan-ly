@@ -8,42 +8,42 @@
             <div th:include="template :: footer"></div>
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/teacher/save}">
                 <div class="control-group">
-                    <label class="control-label" for="MaGiaoVien">Mã Giáo Viên</label>
+                    <label class="control-label" for="magiaoVien">Mã Giáo Viên</label>
                     <div class="controls">
-                        <input type="text" class="validate[required]" name="MaGiaoVien" id="MaGiaoVien" placeholder="Mã Giáo Viên"/>
+                        <input type="text" class="validate[required]" name="magiaoVien" id="magiaoVien" placeholder="Mã Giáo Viên"/>
                     </div>               
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="HoTen">Họ Tên</label>
+                    <label class="control-label" for="hoTen">Họ Tên</label>
                     <div class="controls">
-                        <input type="text" id="HoTen" name="HoTen" class="validate[required]" placeholder="Họ Tên Giáo Viên"/>
+                        <input type="text" id="hoTen" name="hoTen" class="validate[required]" placeholder="Họ Tên Giáo Viên"/>
                     </div>
                 </div>
                  <div class="control-group">
                     <label class="control-label" for="Giới Tính">Giới Tính</label>
                     <div class="controls">
-                        <select name="GioiTinh" class="validate[required]">
+                        <select name="gioiTinh" class="validate[required]">
                             <option  value="1">Nam</option>
                             <option value="0">Nữ</option>                            
                         </select>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="NgaySinh">Ngày Sinh</label>
+                    <label class="control-label" for="ngaySinh">Ngày Sinh</label>
                     <div class="controls">
-                        <input type="date" name="NgaySinh" class="validate[required, custom[date]]" />
+                        <input type="date" name="ngaySinh" class="validate[required, custom[date]]" />
                     </div>
                 </div>
                  <div class="control-group">
-                    <label class="control-label" for="DiaChi">Địa Chỉ</label>
+                    <label class="control-label" for="diaChi">Địa Chỉ</label>
                     <div class="controls">
-                        <input type="text" name="DiaChi" placeholder="Địa Chỉ" class="validate[required]"/>
+                        <input type="text" name="diaChi" placeholder="Địa Chỉ" class="validate[required]"/>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="NgayVaoLam">Ngày Vào Làm</label>
+                    <label class="control-label" for="ngayVaoLam">Ngày Vào Làm</label>
                     <div class="controls">
-                        <input type="date" name="NgayVaoLam" class="validate[required, custom[date]]"/>
+                        <input type="date" name="ngayVaoLam" class="validate[required, custom[date]]"/>
                     </div>
                 </div>
                 <div class="form-actions">
