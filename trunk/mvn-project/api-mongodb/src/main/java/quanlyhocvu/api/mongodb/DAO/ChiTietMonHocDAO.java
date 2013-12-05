@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.List;
@@ -14,43 +15,42 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.ChiTietMonHocDTO;
 
 /**
  *
  * @author Tuan
  */
 @Repository
-public class DiemDAO {
-
+public class ChiTietMonHocDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
-
+    
     @Autowired
     MongoOperations mongoOperation;
-
-    public boolean insert(DiemDTO dto) {
+    
+    public boolean insert(ChiTietMonHocDTO dto) {
         mongoOperation.insert(dto);
         return true;
     }
-
-    public boolean delete(DiemDTO dto) {
+    
+    public boolean delete(ChiTietMonHocDTO dto) {
         mongoOperation.remove(dto);
         return true;
     }
-
-    public boolean updateDiem(DiemDTO dto) {
-
+    
+    public boolean update(ChiTietMonHocDTO dto) {
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("idPhanCong", dto.getIdPhanCong());
-        update.set("idHocSinh", dto.getIdHocSinh());
-        update.set("DiemSo", dto.getDiemSo());
-
-        mongoOperation.findAndModify(query, update, DiemDTO.class);
+        update.set("idMonHoc", dto.getIdMonHoc());
+        update.set("idKhoiLop", dto.getIdKhoiLop());
+        
+        mongoOperation.findAndModify(query, update, ChiTietMonHocDTO.class);
         return true;
     }
-
-    public List<DiemDTO> getAllDiem() {
-        return mongoOperation.findAll(DiemDTO.class);
+    
+    public List<ChiTietMonHocDTO> getAllList() {
+        return mongoOperation.findAll(ChiTietMonHocDTO.class);
     }
+    
 }
+
