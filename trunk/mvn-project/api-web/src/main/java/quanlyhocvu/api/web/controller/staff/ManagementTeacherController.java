@@ -15,11 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
+import quanlyhocvu.api.mongodb.service.FunctionService;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
@@ -37,15 +39,7 @@ public class ManagementTeacherController {
     @RequestMapping(value="list")
     public @ResponseBody
     ModelAndView teacherList(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        
-        try {
-        int res = Integer.parseInt(request.getParameter("result"));
-        System.out.println("asfasdfadfadsfasdfadsfs " + res);
-        } catch (Exception ex) {
-          
-        }
-        
+        Map<String, Object> map = new HashMap<String, Object>();                
         List<GiaoVienDTO> listgiaoVien = new ArrayList<GiaoVienDTO>();
         listgiaoVien = mongoService.getAllgiaoVien();
         map.put("listgiaoVien", listgiaoVien);
@@ -67,17 +61,52 @@ public class ManagementTeacherController {
         Map<String, Object> map = new HashMap<String, Object>();
         GiaoVienDTO obj = new GiaoVienDTO(
                     request.getParameter("magiaoVien"),
-                    request.getParameter("hoTen"),
+                    request.getParameter("hoTen"),                
                     Integer.parseInt(request.getParameter("gioiTinh")),
-                    Date.valueOf(request.getParameter("ngaySinh")),
+                    new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngaySinh"))),                               
                     request.getParameter("diaChi"),
-                    Date.valueOf(request.getParameter("ngayVaoLam"))
+                    new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngayVaoLam")))
                 );
         boolean res = mongoService.insertgiaoVien(obj);
         map.put("message", "Đã thêm thành công 1 giáo viên");
         return new ModelAndView("redirect:/staff/management/teacher/list", map);
     }
     
+    @RequestMapping(value = "edit/{teacherId}")
+    public @ResponseBody
+    ModelAndView editTeacher(@PathVariable String teacherId, HttpServletRequest request){
+        Map<String,Object> map = new HashMap<String, Object>();
+        GiaoVienDTO obj = mongoService.getTeacherById(teacherId);
+        map.put("giaoVien", obj);
+        return new ModelAndView("management/teacher/edit", map);
+    }
     
+    @RequestMapping(value = "update/{teacherId}")
+    public @ResponseBody
+    ModelAndView updateTeacher(@PathVariable String teacherId, HttpServletRequest request){
+        Map<String, Object> map = new HashMap<String, Object>();
+        GiaoVienDTO obj = mongoService.getTeacherById(teacherId);
+        obj.setmaGiaoVien(request.getParameter("maGiaoVien"));
+        obj.sethoTen(request.getParameter("hoTen"));
+        obj.setdiaChi(request.getParameter("diaChi"));
+        obj.setgioiTinh(Integer.parseInt(request.getParameter("gioiTinh")));
+        String ngaySinh = request.getParameter("ngaySinh");
+        if (ngaySinh != "") {
+            obj.setngaySinh(new java.util.Date(FunctionService.formatStringDate(ngaySinh)));
+        }
+        
+        String ngayVaoLam = request.getParameter("ngayVaoLam");
+        if (ngayVaoLam != "") {
+            obj.setngayVaoLam(new java.util.Date(FunctionService.formatStringDate(ngayVaoLam)));
+        }
+        
+        String ngayNghiViec = request.getParameter("ngayNghiViec");
+        if (ngayNghiViec != "") {
+            obj.setngayNghiViec(new java.util.Date(FunctionService.formatStringDate(ngayNghiViec)));
+        }
+        
+        boolean res = mongoService.updategiaoVien(obj);
+        return new ModelAndView("redirect:/staff/management/teacher/list", map);
+    }
 
 }

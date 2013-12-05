@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 
 /**
@@ -50,6 +51,8 @@ public class GiaoVienDAO {
             update.set("ngaySinh", teacher.getngaySinh());
             update.set("diaChi", teacher.getdiaChi());
             update.set("maGiaoVien", teacher.getmaGiaoVien());
+            update.set("ngayVaoLam", teacher.getngayVaoLam());
+            update.set("ngayNghiViec", teacher.getngayNghiViec());
             
             mongoOperations.findAndModify(query, update,  GiaoVienDTO.class);
             return true;           
@@ -58,4 +61,11 @@ public class GiaoVienDAO {
             return false;
         }
     }
+    
+    public GiaoVienDTO getBymaGiaoVien(String maGiaoVien){
+        Query query = Query.query(Criteria.where("maGiaoVien").is(maGiaoVien));
+        GiaoVienDTO obj = mongoOperations.find(query, GiaoVienDTO.class).get(0);    
+        return obj;
+    }
+        
 }
