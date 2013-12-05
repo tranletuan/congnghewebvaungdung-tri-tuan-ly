@@ -41,15 +41,9 @@ public class ManagementStudentController {
     public @ResponseBody
     ModelAndView listStudents(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        System.out.println("Step 1");
         List<HocSinhDTO> listHocSinh = new ArrayList<HocSinhDTO>();
-        System.out.println("Step 2");
         listHocSinh = mongoService.getAllStudents();
-        System.out.println("Step 3");
-        System.out.println(listHocSinh);
         map.put("listHocSinh", listHocSinh);
-        System.out.println("Step 4");
-        System.out.println(map);
         return new ModelAndView("management/students/index", map);
     }
 
@@ -72,36 +66,75 @@ public class ManagementStudentController {
                 new java.util.Date(request.getParameter("ngaySinh")),
                 request.getParameter("diaChi"),
                 request.getParameter("maHocSinh"),
-                new java.util.Date(request.getParameter("ngayNhapHoc")),
-                new java.util.Date(request.getParameter("ngayNghiHoc"))
+                new java.util.Date(request.getParameter("ngayNhapHoc"))
                 );
         boolean res = mongoService.insertStudent(obj);        
         map.put("message", "Đã thêm thành công 1 học sinh");
         return new ModelAndView("redirect:/staff/management/students/index", map);
     }
     
+    
+    
     @RequestMapping(value = "edit/{studentId}")
     public @ResponseBody
     ModelAndView editStudent(@PathVariable String studentId,HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        System.out.println("Enter Edit");
-        System.out.println("Enter Edit Shit");
-        System.out.println(studentId);
-        HocSinhDTO obj = mongoService.getStudentByMaHS(studentId);
+        HocSinhDTO obj = mongoService.getStudentByMaHS(studentId);        
         map.put("hocSinh", obj);
-        System.out.println("Enter Edit Again");
         return new ModelAndView("management/students/edit", map);
+    }
+    
+    @RequestMapping(value = "update/{studentId}")
+    public @ResponseBody
+    ModelAndView updateStudent(@PathVariable String studentId,HttpServletRequest request) {        
+        Map<String, Object> map = new HashMap<String, Object>();
+        //get the student by studentId
+        System.out.println("StudentId: "+ studentId);
+        HocSinhDTO obj = mongoService.getStudentByMaHS(studentId); 
+        //update information for student
+        obj.setdiaChi(request.getParameter("diaChi"));
+        obj.sethoTen(request.getParameter("hoTen"));
+        
+        obj.setgioiTinh(Integer.parseInt(request.getParameter("gioiTinh")));
+        obj.setmaHocSinh(request.getParameter("maHocSinh"));
+        String ngaySinh = request.getParameter("ngaySinh");
+        if (ngaySinh != "") {
+            obj.setngaySinh(new java.util.Date(formatStringDate(ngaySinh)));
+        }         
+        String ngayNghiHoc = request.getParameter("ngayNghiHoc");
+        if (ngayNghiHoc != "") {
+            obj.setngayNghiHoc(new java.util.Date(formatStringDate(ngayNghiHoc)));
+        }  
+        String ngayNhapHoc = request.getParameter("ngayNhapHoc");
+        if (ngayNhapHoc != "") {
+            obj.setngayNhapHoc(new java.util.Date(formatStringDate(ngayNhapHoc)));
+        }        
+                
+        //update to database
+        boolean res = mongoService.updateStudent(obj);        
+        map.put("message", "Đã chỉnh sửa thành công 1 học sinh");
+        return new ModelAndView("redirect:/staff/management/students/index", map);
     }
     
     @RequestMapping(value="delete/{studentId}")
     public @ResponseBody
     ModelAndView deleteStudent(@PathVariable("studentId") String studentId, HttpServletRequest request){
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAa");
         Map<String, Object> map = new HashMap<String, Object>();
         System.out.println("Enter function");
         HocSinhDTO obj = mongoService.getStudentByMaHS(studentId);
         System.out.println(obj);
         boolean res = mongoService.deleteStudent(obj);
-        return new ModelAndView("redirect:/staff/management/students/index");
-    }        
+        map.put("message", "Đã xóa thành công 1 học sinh");
+        return new ModelAndView("redirect:/staff/management/students/index",map);
+    }      
+     
+    public String formatStringDate(String date){
+        String res = "";
+        String[] arr = date.split("/");
+        res += arr[1] + "/" + arr[0]+ "/" + arr[2];
+        return res;
+        
+    }
     
 }

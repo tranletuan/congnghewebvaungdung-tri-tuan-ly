@@ -24,15 +24,21 @@
                     <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">
                         <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
                         <td th:text="${hocsinh.gethoTen()}" id="hoTen"/>                        
-                        <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" id="ngaySinh"/>
+                        <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" th:if="${hocsinh.getngaySinh()}" id="ngaySinh"/>
+                        <td th:unless="${hocsinh.getngaySinh()}" id="ngaySinh"/>   
                         <td th:text="${hocsinh.getgioiTinh()}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
                         <td th:text="${hocsinh.getdiaChi()}" id="diaChi"/>
-                        <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}" id="ngayNhapHoc"/>
-                        <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}" id="ngayNghiHoc"/>
+                        <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}"   th:if="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>
+                        <td th:unless="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>   
+                        <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}"  th:if="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                        
+                        <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>     
+                        
+                        
                         <td>
                             <div class="btn-group">
-                                <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icondemo"></i></a>
-                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash"></i></a>
+                                <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
+<!--                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
+                                <a href="#" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>
                             </div>                            
                         </td>
                     </tr>
@@ -40,25 +46,25 @@
             </table>
             <div th:include="template :: footer"></div>
         </div>	
+<!--          HTML for modal popup-->
+        <!-- modal content -->
+        <div id='confirm'>
+                <div class='header'><span>Confirm Delete Student</span></div>
+                <div class='message'></div>
+                <div class='buttons'>
+                <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+                </div>
+        </div>
+        <!-- preload the images -->
+        <div style='display:none'>
+                <img src='img/confirm/header.gif' alt='' />
+                <img src='img/confirm/button.gif' alt='' />
+        </div>
+         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
+        <script src="" th:src="@{/media/js/student.js}"></script>
         <script th:inline="javascript">
             /*<![CDATA[*/
-            var self;
-            jQuery(document).ready(function() {
-                jQuery("#table").dataTable({"bJQueryUI": true});
-                COMMON.activeMenu("quanly_nav");
-                $('#table').on('click','.linkDelete', function(){
-                    self = $(this);                    
-                    event.preventDefault(); 
-                    console.log("Enter");
-                    console.log(self);
-                    $.ajax({
-                        url: self[0].href,
-                        type: 'DELETE',
-                        data: ({studentId:self[0].id})
-                    });
-                    console.log("OUT");
-                });
-            });
+            
             /*]]>*/            
         </script>    
     </body>

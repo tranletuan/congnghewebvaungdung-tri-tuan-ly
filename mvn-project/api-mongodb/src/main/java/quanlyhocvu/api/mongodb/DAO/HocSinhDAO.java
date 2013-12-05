@@ -71,10 +71,7 @@ public class HocSinhDAO {
     
     public HocSinhDTO getBymaHocSinh(String maHocSinh){
         Query query = Query.query(Criteria.where("maHocSinh").is(maHocSinh));
-        System.out.println(maHocSinh);
-        System.out.println(query.toString());
         HocSinhDTO obj = mongoOperations.find(query, HocSinhDTO.class).get(0);    
-        System.out.print(obj);
         return obj;
     }
 }
