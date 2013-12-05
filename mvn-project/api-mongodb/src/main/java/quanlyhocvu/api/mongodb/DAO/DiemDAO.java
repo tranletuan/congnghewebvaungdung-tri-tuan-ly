@@ -48,6 +48,8 @@ public class DiemDAO {
             Query query = Query.query(Criteria.where("id").is(diem.getid()));
             Update update = new Update();
             update.set("MaDiem" , diem.getMaDiem());
+            update.set("MaPhanCong", diem.getMaPhanCong());
+            update.set("MaHocSinh", diem.getmaHocSinh());
             update.set("magiaoVien", diem.getmagiaoVien());
             update.set("maHocSinh", diem.getmaHocSinh());
             update.set("MakhoiLop", diem.getMakhoiLop());

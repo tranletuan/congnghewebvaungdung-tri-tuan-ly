@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.mongodb.DTO.Teacher;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
 
 /**
@@ -13,18 +14,26 @@ import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
  */
 public class DiemDTO extends AbstractObjectDTO {
 
-    private String MaDiem;
+    private String MaPhanCong;
+    private String MaHocSinh;
+
     private String magiaoVien;
     private String maHocSinh;
     private String MakhoiLop;
     private String MaMonHoc;
     private String ManamHoc;
+
     private float DiemSo;
+
 
     public DiemDTO(String MaDiem, String magiaoVien, 
             String maHocSinh, String MakhoiLop,
             String MaMonHoc, String ManamHoc, float DiemSo) {
+
            this.MaDiem = MaDiem;
+
+           this.MaPhanCong = MaPhanCong;
+           this.MaHocSinh = MaHocSinh;
            this.magiaoVien = magiaoVien;
            this.maHocSinh = maHocSinh;
            this.MakhoiLop = MakhoiLop;
@@ -32,7 +41,7 @@ public class DiemDTO extends AbstractObjectDTO {
            this.ManamHoc = ManamHoc;
            this.DiemSo = DiemSo;
     }
-
+    
     public String getMaDiem() {
         return MaDiem;
     }
@@ -41,10 +50,18 @@ public class DiemDTO extends AbstractObjectDTO {
         this.MaDiem = MaDiem;
     }
 
+    public String getMaPhanCong() {
+        return MaPhanCong;
+    }
+    
     public String getmagiaoVien() {
         return magiaoVien;
     }
 
+    public void setMaPhanCong(String MaPhanCong) {
+        this.MaPhanCong = MaPhanCong;
+    }
+    
     public void setmagiaoVien(String magiaoVien) {
         this.magiaoVien = magiaoVien;
     }
@@ -88,5 +105,9 @@ public class DiemDTO extends AbstractObjectDTO {
     public void setDiemSo(float DiemSo) {
         this.DiemSo = DiemSo;
     }
+
+    
+
+   
 
 }
