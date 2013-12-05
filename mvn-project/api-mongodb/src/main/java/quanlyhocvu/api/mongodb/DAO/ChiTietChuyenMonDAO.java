@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.List;
@@ -14,43 +15,41 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.ChiTietChuyenMonDTO;
 
 /**
  *
  * @author Tuan
  */
 @Repository
-public class DiemDAO {
-
+public class ChiTietChuyenMonDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
-
+    
     @Autowired
     MongoOperations mongoOperation;
-
-    public boolean insert(DiemDTO dto) {
+    
+    public boolean insert(ChiTietChuyenMonDTO dto) {
         mongoOperation.insert(dto);
         return true;
     }
-
-    public boolean delete(DiemDTO dto) {
+    
+    public boolean update(ChiTietChuyenMonDTO dto) {
+        Query query = Query.query(Criteria.where("id").is(dto.getid()));
+        Update update = new Update();
+        update.set("idGiaoVien", dto.getIdGiaoVien());
+        update.set("idChiTietMonHoc", dto.getIdChiTietMonHoc());
+        update.set("mota", dto.getMota());
+        
+        mongoOperation.findAndModify(query, update, ChiTietChuyenMonDTO.class);
+        return true;
+    }
+          
+    public boolean delete(ChiTietChuyenMonDTO dto) {
         mongoOperation.remove(dto);
         return true;
     }
-
-    public boolean updateDiem(DiemDTO dto) {
-
-        Query query = Query.query(Criteria.where("id").is(dto.getid()));
-        Update update = new Update();
-        update.set("idPhanCong", dto.getIdPhanCong());
-        update.set("idHocSinh", dto.getIdHocSinh());
-        update.set("DiemSo", dto.getDiemSo());
-
-        mongoOperation.findAndModify(query, update, DiemDTO.class);
-        return true;
-    }
-
-    public List<DiemDTO> getAllDiem() {
-        return mongoOperation.findAll(DiemDTO.class);
+    
+    public List<ChiTietChuyenMonDTO> getAllList() {
+        return mongoOperation.findAll(ChiTietChuyenMonDTO.class);
     }
 }
