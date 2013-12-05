@@ -22,8 +22,8 @@ import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 @Repository
 public class MongoService {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-    
+    Logger logger = LoggerFactory.getLogger(getClass());    
+    //<editor-fold defaultstate="collapsed" desc="DAO variables">\
     @Autowired
     private AddressDAO addressDAO;
     
@@ -44,7 +44,9 @@ public class MongoService {
     
     @Autowired
     private HocSinhDAO hocsinhDAO;
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
     
     public boolean insertgiaoVien(GiaoVienDTO dto) {
         return giaoVienDAO.insertTeacher(dto);
@@ -53,6 +55,17 @@ public class MongoService {
     public List<GiaoVienDTO> getAllgiaoVien() {
         return giaoVienDAO.getAllgiaoVien();
     }
+    
+    public boolean updategiaoVien(GiaoVienDTO dto){
+        return giaoVienDAO.updateTeacher(dto);
+    }
+    
+    public GiaoVienDTO getTeacherById(String maGiaoVien){
+        return giaoVienDAO.getBymaGiaoVien(maGiaoVien);
+    }
+        
+    //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
     
     public HocSinhDAO getHocsinhDAO() {
@@ -97,10 +110,17 @@ public class MongoService {
         this.addressDAO = addressDAO;
     }
     
+    public GiaoVienDAO getGiaoVienDAO() {
+        return giaoVienDAO;
+    }
+
+    public void setGiaoVienDAO(GiaoVienDAO giaoVienDAO) {
+        this.giaoVienDAO = giaoVienDAO;
+    }
     
     //</editor-fold>
     
-    
+    //<editor-fold defaultstate="collapsed" desc="Function for SCHOOL_YEAR">\
     /**************************************************
      * function for school-year
      * @author: LyVV
@@ -121,7 +141,18 @@ public class MongoService {
         return namHocDAO.insert(dto);
     }
     
+    /**
+     * get namHoc by Id
+     * @param Id
+     * @return 
+     */
+    public NamHocDTO getnamHocById(String Id) {
+        return namHocDAO.getnamHocById(Id);
+    }
     
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Function for SUBJECT">\
     /**************************************************
      * function for subject
      * @author: LyVV
@@ -141,7 +172,9 @@ public class MongoService {
     public boolean insertMonHoc(MonHocDTO dto) {
         return monhocDAO.insert(dto);
     }
+    //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="Function for GRADE">\
     /**************************************************
      * function for grade
      * @author: LyVV
@@ -161,6 +194,10 @@ public class MongoService {
     public boolean insertkhoiLop(KhoiLopDTO dto) {
         return khoiLopDAO.insert(dto);
     }
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Function for CLASS">\
 
     /**************************************************
      * function for class
@@ -181,15 +218,9 @@ public class MongoService {
     public boolean insertLopHoc(LopHocDTO dto) {
         return lophocDAO.insert(dto);
     }
-
-    /**
-     * get namHoc by Id
-     * @param Id
-     * @return 
-     */
-    public NamHocDTO getnamHocById(String Id) {
-        return namHocDAO.getnamHocById(Id);
-    }
+    //</editor-fold>    
+    
+    //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
     
     /**************************************************
      * function for students
@@ -215,16 +246,7 @@ public class MongoService {
     public HocSinhDTO getStudentByMaHS(String maHocSinh){
         System.out.println("Eo");
         return hocsinhDAO.getBymaHocSinh(maHocSinh);
-    }
-
-    public GiaoVienDAO getGiaoVienDAO() {
-        return giaoVienDAO;
-    }
-
-    public void setGiaoVienDAO(GiaoVienDAO giaoVienDAO) {
-        this.giaoVienDAO = giaoVienDAO;
-    }
-
-
+    }    
+    //</editor-fold>
     
 }

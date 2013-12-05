@@ -4,54 +4,59 @@
     <head th:include="template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />   
-            <div th:include="template :: footer"></div>
+            <div th:substituteby="template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/teacher/save}">
-                <div class="control-group">
-                    <label class="control-label" for="magiaoVien">Mã Giáo Viên</label>
-                    <div class="controls">
-                        <input type="text" class="validate[required]" name="magiaoVien" id="magiaoVien" placeholder="Mã Giáo Viên"/>
-                    </div>               
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="hoTen">Họ Tên</label>
-                    <div class="controls">
-                        <input type="text" id="hoTen" name="hoTen" class="validate[required]" placeholder="Họ Tên Giáo Viên"/>
+                <div class="inner_form">
+                    <div class="control-group">
+                        <label class="control-label" for="magiaoVien">Mã Giáo Viên</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge validate[required]" name="magiaoVien" id="magiaoVien" placeholder="Mã Giáo Viên"/>
+                        </div>               
                     </div>
-                </div>
-                 <div class="control-group">
-                    <label class="control-label" for="Giới Tính">Giới Tính</label>
-                    <div class="controls">
-                        <select name="gioiTinh" class="validate[required]">
-                            <option  value="1">Nam</option>
-                            <option value="0">Nữ</option>                            
-                        </select>
+                    <div class="control-group">
+                        <label class="control-label" for="hoTen">Họ Tên</label>
+                        <div class="controls">
+                            <input type="text" id="hoTen" name="hoTen" class="input-xlarge validate[required]" placeholder="Họ Tên Giáo Viên"/>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="ngaySinh">Ngày Sinh</label>
-                    <div class="controls">
-                        <input type="date" name="ngaySinh" class="validate[required, custom[date]]" />
+                     <div class="control-group">
+                        <label class="control-label" for="Giới Tính">Giới Tính</label>
+                        <div class="controls">
+                            <select name="gioiTinh" class="input-xlarge custom_checkbox validate[required]">
+                                <option  value="1">Nam</option>
+                                <option value="0">Nữ</option>                            
+                            </select>
+                        </div>
                     </div>
-                </div>
-                 <div class="control-group">
-                    <label class="control-label" for="diaChi">Địa Chỉ</label>
-                    <div class="controls">
-                        <input type="text" name="diaChi" placeholder="Địa Chỉ" class="validate[required]"/>
+                    <div class="control-group">
+                        <label class="control-label" for="ngaySinh">Ngày Sinh</label>
+                        <div class="controls">
+                            <input type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge validate[required]"/>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="ngayVaoLam">Ngày Vào Làm</label>
-                    <div class="controls">
-                        <input type="date" name="ngayVaoLam" class="validate[required, custom[date]]"/>
+                    <div class="control-group">
+                      <label class="control-label" for="diaChi">Địa Chỉ</label>
+                      <div class="controls">                     
+                        <textarea id="diaChi" name="diaChi" class="input-xlarge validate[required]"></textarea>
+                      </div>
+                    </div>  
+                    <div class="control-group">
+                        <label class="control-label" for="ngayVaoLam">Ngày Vào Làm</label>
+                        <div class="controls">
+                            <input type="text" id="datepickerngayVaoLam" name="ngayVaoLam" class="input-xlarge validate[required]"/>
+                        </div>
+                    </div>                    
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary" id="save">Thêm Giáo Viên</button>
+                            <a th:href="@{/staff/management/teacher/list}" class="btn btn-info" id="cancel">Thoát</a>
+                        </div>
                     </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary" id="save">Thêm Giáo Viên</button>
-                    <a th:href="@{/staff/management/teacher/list}" class="btn btn-info" id="cancel">Thoát</a>
                 </div>
             </form>
+            <div th:include="template :: footer"></div>
         </div>	
+        <script src="" th:src="@{/media/js/teacher/teacher_new.js}"></script>            
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
