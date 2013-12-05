@@ -9,8 +9,7 @@
     
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />   
-            <div th:include="template :: footer"></div>
+            <div th:substituteby="template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{'/staff/management/students/update/'+${hocSinh.getmaHocSinh()}}">
                 <div class="inner_form">
                     <div class="control-group">
@@ -70,7 +69,9 @@
                     </div>
                 </div>
             </form>
+            <div th:include="template :: footer"></div>
         </div>	
+        
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
