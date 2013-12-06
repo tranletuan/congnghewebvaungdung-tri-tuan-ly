@@ -6,13 +6,13 @@
         <div class="container">
             <div th:substituteby="template :: nav" />   
             <div th:include="template :: footer"></div>
-            <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/grade/save}">                
+            <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/grade/save}">                
                 <div class="inner_form">
                 <!-- Text input-->
                 <div class="control-group">
                     <label class="control-label" for="tenkhoiLop">Tên Khối Lớp</label>
                     <div class="controls">
-                        <input id="tennamHoc" name="tenkhoiLop" type="text" placeholder="Mời bạn nhập vào tên khối lớp" class="input-xlarge"/>                    
+                        <input id="tennamHoc" name="tenkhoiLop" type="text" placeholder="Mời bạn nhập vào tên khối lớp" class="input-xlarge validate[required]"/>                    
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                 <div class="control-group">
                     <label class="control-label" for="moTa">Mô Tả</label>
                     <div class="controls">     
-                        <textarea id="moTa" name="moTa"></textarea>
+                        <textarea id="moTa" name="moTa" class="input-xlarge"></textarea>
                     </div>
                 </div>
 
@@ -38,7 +38,8 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
-                jQuery("#table").dataTable({"bJQueryUI": true});
+                $("#form-horizontal").validationEngine();
+//                jQuery("#table").dataTable({"bJQueryUI": true});
                 COMMON.activeMenu("quanly_nav");
             });
             /*]]>*/

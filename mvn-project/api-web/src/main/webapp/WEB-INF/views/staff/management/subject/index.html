@@ -16,10 +16,10 @@
                     </tr>
                 </thead>
                 <tbody>                       
-                    <tr th:id="${monhoc.tenMonHoc}" align="center" th:each="monhoc: ${listMonHoc}">
+                    <tr th:id="${monhoc.getid()}" align="center" th:each="monhoc: ${listMonHoc}">
                         <td>1</td>
-                        <td th:text="${monhoc.tenMonHoc}" id="tenMonHoc"/>                        
-                        <td th:text="${monhoc.moTa}" id="moTa"/>  
+                        <td th:text="${monhoc.gettenMonHoc()}" id="tenMonHoc"/>                        
+                        <td th:text="${monhoc.getmoTa()}" id="moTa"/>  
                     </tr>
                 </tbody>
             </table>

@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 
@@ -40,11 +41,11 @@ public class LopHocDAO {
         
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("idgiaoVien", dto.getidGiaoVien());
-        update.set("idkhoiLop", dto.getidKhoiLop());
-        update.set("idnamHoc", dto.getidnamHoc());
+        update.set("giaoVien", dto.getgiaoVien());
+        update.set("khoiLop", dto.getkhoiLop());
+        update.set("namHoc", dto.getnamHoc());
         update.set("moTa", dto.getmoTa());
-        update.set("listIDHocSinh", dto.getLisidHocSinh());
+        update.set("listHocSinh", dto.getlistHocSinh());
         
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
         
@@ -59,12 +60,12 @@ public class LopHocDAO {
         return res;
     }
     
-    public boolean insertHocSinh(String classId, String studentIds) {
+    public boolean insertHocSinh(String classId, HocSinhDTO studentIds) {
         boolean res = true;
         
         Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
-        update.push("listIDHocSinh", studentIds);
+        update.push("listHocSinh", studentIds);
         
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
         
@@ -82,11 +83,7 @@ public class LopHocDAO {
         
         return res;
     }
-    
-    public List<LopHocDTO> getListBynamHoc(String id) {
-        Query query = Query.query(Criteria.where("idnamHoc").is(id));
-        return mongoOperation.find(query, LopHocDTO.class);
-    }
+        
     
     public List<LopHocDTO> getAllList() {
         return mongoOperation.findAll(LopHocDTO.class);

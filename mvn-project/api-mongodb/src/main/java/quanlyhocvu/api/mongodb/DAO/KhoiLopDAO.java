@@ -59,4 +59,10 @@ public class KhoiLopDAO {
     public List<KhoiLopDTO> getAllList() {
         return mongoOperation.findAll(KhoiLopDTO.class);
     }
+    
+    public KhoiLopDTO getById(String id){
+        Query query = Query.query(Criteria.where("id").is(id));
+        KhoiLopDTO obj = mongoOperation.findOne(query, KhoiLopDTO.class);
+        return obj;
+    }
 }

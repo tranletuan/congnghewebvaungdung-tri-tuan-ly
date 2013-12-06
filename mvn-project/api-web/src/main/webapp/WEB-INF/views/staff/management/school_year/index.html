@@ -16,10 +16,10 @@
                     </tr>
                 </thead>
                 <tbody>                       
-                    <tr th:id="${namHoc.tennamHoc}" align="center" th:each="namHoc: ${listnamHoc}">
+                    <tr th:id="${namHoc.getid()}" align="center" th:each="namHoc: ${listnamHoc}">
                         <td>1</td>
-                        <td th:text="${namHoc.tennamHoc}" id="tennamHoc"/>                        
-                        <td th:text="${namHoc.moTa}" id="moTa"/>  
+                        <td th:text="${namHoc.gettenNamHoc()}" id="tennamHoc"/>                        
+                        <td th:text="${namHoc.getmoTa()}" id="moTa"/>  
                     </tr>
                 </tbody>
             </table>

@@ -67,5 +67,11 @@ public class GiaoVienDAO {
         GiaoVienDTO obj = mongoOperations.find(query, GiaoVienDTO.class).get(0);    
         return obj;
     }
+    
+    public GiaoVienDTO getById(String id){
+        Query query = Query.query(Criteria.where("id").is(id));
+        GiaoVienDTO obj = mongoOperations.findOne(query, GiaoVienDTO.class);
+        return obj;
+    }
         
 }

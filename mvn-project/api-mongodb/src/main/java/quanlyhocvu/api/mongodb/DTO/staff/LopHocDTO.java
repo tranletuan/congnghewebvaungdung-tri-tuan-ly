@@ -21,33 +21,33 @@ public class LopHocDTO extends AbstractObjectDTO {
     private String tenLopHoc;
     @DBRef
     private GiaoVienDTO giaoVien;
-    private String idGiaoVien;
+//    private String idGiaoVien;
     @DBRef
     private KhoiLopDTO khoiLop;
-    private String idKhoiLop;
+//    private String idKhoiLop;
     @DBRef
     private NamHocDTO namHoc;
-    private String idnamHoc;
+//    private String idnamHoc;
     @DBRef
     private List<HocSinhDTO> listHocSinh;
-    private List<String> ListidHocSinh;
+//    private List<String> ListidHocSinh;
     
     public LopHocDTO(){};
     
-    public LopHocDTO(String tenLopHoc, String idGiaoVien, String idKhoiLop, String idnamHoc){
-        this.tenLopHoc = tenLopHoc;
-        this.idGiaoVien = idGiaoVien;
-        this.idKhoiLop = idKhoiLop;
-        this.idnamHoc = idnamHoc;
-    }
+//    public LopHocDTO(String tenLopHoc, String idGiaoVien, String idKhoiLop, String idnamHoc){
+//        this.tenLopHoc = tenLopHoc;
+//        this.idGiaoVien = idGiaoVien;
+//        this.idKhoiLop = idKhoiLop;
+//        this.idnamHoc = idnamHoc;
+//    }
 
-    public List<String> getLisidHocSinh() {
-        return ListidHocSinh;
-    }
-
-    public void setListidHocSinh(List<String> ListidHocSinh) {
-        this.ListidHocSinh = ListidHocSinh;
-    }
+//    public List<String> getLisidHocSinh() {
+//        return ListidHocSinh;
+//    }
+//
+//    public void setListidHocSinh(List<String> ListidHocSinh) {
+//        this.ListidHocSinh = ListidHocSinh;
+//    }
 
     public String gettenLopHoc() {
         return tenLopHoc;
@@ -57,29 +57,29 @@ public class LopHocDTO extends AbstractObjectDTO {
         this.tenLopHoc = tenLopHoc;
     }
 
-    public String getidGiaoVien() {
-        return idGiaoVien;
-    }
-
-    public void setidGiaoVien(String idGiaoVien) {
-        this.idGiaoVien = idGiaoVien;
-    }
-
-    public String getidKhoiLop() {
-        return idKhoiLop;
-    }
-
-    public void setidKhoiLop(String idKhoiLop) {
-        this.idKhoiLop = idKhoiLop;
-    }
-
-    public String getidnamHoc() {
-        return idnamHoc;
-    }
-
-    public void setidnamHoc(String idnamHoc) {
-        this.idnamHoc = idnamHoc;
-    }
+//    public String getidGiaoVien() {
+//        return idGiaoVien;
+//    }
+//
+//    public void setidGiaoVien(String idGiaoVien) {
+//        this.idGiaoVien = idGiaoVien;
+//    }
+//
+//    public String getidKhoiLop() {
+//        return idKhoiLop;
+//    }
+//
+//    public void setidKhoiLop(String idKhoiLop) {
+//        this.idKhoiLop = idKhoiLop;
+//    }
+//
+//    public String getidnamHoc() {
+//        return idnamHoc;
+//    }
+//
+//    public void setidnamHoc(String idnamHoc) {
+//        this.idnamHoc = idnamHoc;
+//    }
 
     public GiaoVienDTO getgiaoVien() {
         return giaoVien;
