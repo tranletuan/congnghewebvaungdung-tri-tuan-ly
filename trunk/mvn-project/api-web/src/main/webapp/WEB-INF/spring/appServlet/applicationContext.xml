@@ -9,5 +9,7 @@
                
            
     <beans:import resource="classpath:noSqlApplicationContext.xml"/>
-    <beans:bean name="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService"/>              
+    <beans:import resource="classpath:jdbcApplicationContext.xml"/>
+    <beans:bean name="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService"/>     
+    <beans:bean name="jdbcService" class="quanlyhocvu.api.jdbc.service.JDBCService"/>         
 </beans:beans>

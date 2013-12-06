@@ -28,8 +28,18 @@ public class HocSinhDAO {
     @Autowired
     MongoOperations mongoOperations;
     
+    @SuppressWarnings("empty-statement")
+    public long Count() {
+        return mongoOperations.count(Query.query(Criteria.where("ID").lt("500000000")), HocSinhDTO.class);
+    }
+    
     public List<HocSinhDTO> getAllHocSinh() {
         return mongoOperations.findAll(HocSinhDTO.class);
+    }
+    
+    public List<HocSinhDTO> getHocSinhByID(String id) {
+        Query query = Query.query(Criteria.where("ID").exists(true));
+        return mongoOperations.find(query, HocSinhDTO.class);
     }
     
     public boolean insertStudent(HocSinhDTO student) {

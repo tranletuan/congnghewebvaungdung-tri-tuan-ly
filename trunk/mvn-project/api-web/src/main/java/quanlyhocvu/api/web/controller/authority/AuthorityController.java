@@ -22,16 +22,16 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class AuthorityController {
-    
+
     Logger logger = LoggerFactory.getLogger(getClass());
-    
-    @RequestMapping(value="check")
+
+    @RequestMapping(value = "check")
     public @ResponseBody
     ModelAndView check() {
         return new ModelAndView("forward:/authority/j_spring_security_check");
     }
-    
-    @RequestMapping(value="check_role")
+
+    @RequestMapping(value = "check_role")
     public @ResponseBody
     ModelAndView check_role(HttpServletRequest request) {
         if (request.isUserInRole("ADMIN")) {
@@ -49,7 +49,7 @@ public class AuthorityController {
         }
         return new ModelAndView("redirect:/guest/home");
     }
-    
+
     @RequestMapping(value = "noAccess", method = RequestMethod.GET)
     public @ResponseBody
     ModelAndView noAccess() {
