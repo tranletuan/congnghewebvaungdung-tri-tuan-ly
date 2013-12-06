@@ -134,6 +134,14 @@
                     <div class="container">
                         <ul class="nav">
                             <li class="active " id="home_nav"><a href="#" >Trang Chủ</a></li>
+                            <li class="dropdown" id="quanly_nav">
+                                <a class="dropdown-toggle" data-toggle="dropdown">Quản lý
+                                    <b class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a th:href="@{/authority/management/user/index}">Quản Lý Người Dùng</a></li>
+                                </ul>
+                            </li>
                             <li><a href="guest/logout" th:href="@{/guest/logout}">Thoát</a></li>
                         </ul>
                     </div>

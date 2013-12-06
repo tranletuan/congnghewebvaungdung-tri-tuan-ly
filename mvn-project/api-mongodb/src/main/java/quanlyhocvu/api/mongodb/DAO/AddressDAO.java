@@ -21,6 +21,9 @@ public class AddressDAO {
     @Autowired
     MongoOperations mongoOperations;
     
+    public MongoOperations getMongo() {
+        return mongoOperations;
+    }
 public AddressDAO() {}    
 //    
 ////<editor-fold defaultstate="collapsed" desc="ProvinceDAO">

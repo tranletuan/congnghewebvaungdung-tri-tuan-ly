@@ -26,10 +26,10 @@ public class MongoService {
     //<editor-fold defaultstate="collapsed" desc="DAO variables">\
     @Autowired
     private AddressDAO addressDAO;
-    
-    @Autowired 
+
+    @Autowired
     private GiaoVienDAO giaoVienDAO;
-    
+
     @Autowired
     private NamHocDAO namHocDAO;
     
@@ -45,13 +45,12 @@ public class MongoService {
     @Autowired
     private HocSinhDAO hocsinhDAO;
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
     
     public boolean insertgiaoVien(GiaoVienDTO dto) {
         return giaoVienDAO.insertTeacher(dto);
     }
-    
+
     public List<GiaoVienDTO> getAllgiaoVien() {
         return giaoVienDAO.getAllgiaoVien();
     }
@@ -78,7 +77,6 @@ public class MongoService {
     public void setHocsinhDAO(HocSinhDAO hocsinhDAO) {
         this.hocsinhDAO = hocsinhDAO;
     }
-    
     /**
      * @return the lophocDAO
      */
@@ -108,7 +106,7 @@ public class MongoService {
     public AddressDAO getAddressDAO() {
         return addressDAO;
     }
-    
+
     public void setAddressDAO(AddressDAO addressDAO) {
         this.addressDAO = addressDAO;
     }
@@ -120,17 +118,20 @@ public class MongoService {
     public void setGiaoVienDAO(GiaoVienDAO giaoVienDAO) {
         this.giaoVienDAO = giaoVienDAO;
     }
-    
+
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Function for SCHOOL_YEAR">\
     /**************************************************
      * function for school-year
+     *
      * @author: LyVV
-     *************************************************/
+     ************************************************
+     */
     /**
      * this function is used to return the list of school-year
-     * @return 
+     *
+     * @return
      */
     public List<NamHocDTO> getAllnamHoc(){
         return namHocDAO.getAllList();
