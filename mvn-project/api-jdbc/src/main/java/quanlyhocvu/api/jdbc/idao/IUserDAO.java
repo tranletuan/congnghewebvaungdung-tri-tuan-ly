@@ -6,7 +6,7 @@ package quanlyhocvu.api.jdbc.idao;
 
 import java.util.List;
 import javax.sql.DataSource;
-import quanlyhocvu.api.jdbc.dto.User;
+import quanlyhocvu.api.jdbc.dto.UserDTO;
 
 /**
  *
@@ -14,10 +14,10 @@ import quanlyhocvu.api.jdbc.dto.User;
  */
 public interface IUserDAO {
     public void setDataSource(DataSource datasource);
-    public int create(User user);
-    public int delete(User user);
-    public int update(User user);
+    public int create(UserDTO user);
+    public int delete(UserDTO user);
+    public int update(UserDTO user);
     public int setEnabled(String enabled, String username);
-    public User getUser(String username);
-    public List<User> getListUsers();
+    public UserDTO getUser(String username);
+    public List<UserDTO> getListUsers();
 }

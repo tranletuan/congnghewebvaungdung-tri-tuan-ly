@@ -8,7 +8,7 @@ package quanlyhocvu.api.jdbc.dto;
  *
  * @author HuuTri
  */
-public class Authority {
+public class AuthorityDTO {
     private String username;
     private String authority;
 

@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author HuuTri
  */
-public class User {
+public class UserDTO {
     private String username;
     private String password;
     private Integer enabled;

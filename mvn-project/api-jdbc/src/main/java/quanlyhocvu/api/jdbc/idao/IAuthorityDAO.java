@@ -6,7 +6,7 @@ package quanlyhocvu.api.jdbc.idao;
 
 import java.util.List;
 import javax.sql.DataSource;
-import quanlyhocvu.api.jdbc.dto.Authority;
+import quanlyhocvu.api.jdbc.dto.AuthorityDTO;
 
 /**
  *
@@ -25,7 +25,7 @@ public interface IAuthorityDAO {
      * @param authority
      * @return 
      */
-    public int delete(Authority authority);
+    public int delete(AuthorityDTO authority);
     
     /**
      * cap nhat authority old thanh authority moi
@@ -33,14 +33,14 @@ public interface IAuthorityDAO {
      * @param authority
      * @return 
      */
-    public int update(Authority old, Authority authority);
+    public int update(AuthorityDTO old, AuthorityDTO authority);
     
     /**
      * tao mot authority moi
      * @param authority
      * @return 
      */
-    public int create(Authority authority);
+    public int create(AuthorityDTO authority);
    
     /**
      * neu active = 0, xoa cap username-authority, nguoc lai them moi
@@ -55,7 +55,7 @@ public interface IAuthorityDAO {
      * lay toan bo gia tri trong bang authority
      * @return 
      */
-    public List<Authority> getListAuthorities();
+    public List<AuthorityDTO> getListAuthorities();
     
     /**
      * Lay danh sach authority theo usernam
@@ -69,7 +69,7 @@ public interface IAuthorityDAO {
      * @param authority
      * @return 
      */
-    public List<Authority> getListAuthoritiesByAuthority(String authority);
+    public List<AuthorityDTO> getListAuthoritiesByAuthority(String authority);
     
     /**
      * Xoa toan bo cac authorities co username

@@ -7,7 +7,7 @@
         <artifactId>mvn-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>quanlyhocvu</groupId>
+    <groupId>quanlyhocvu-api</groupId>
     <artifactId>api-jdbc</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>api-jdbc</name>
@@ -45,8 +45,6 @@
             <artifactId>spring-tx</artifactId>
             <version>3.2.4.RELEASE</version>
         </dependency>
- 
- 
         <!-- Spring AOP dependency -->
         <dependency>
             <groupId>cglib</groupId>

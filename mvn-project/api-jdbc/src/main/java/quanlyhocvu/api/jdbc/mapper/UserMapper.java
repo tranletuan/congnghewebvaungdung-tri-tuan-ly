@@ -7,7 +7,7 @@ package quanlyhocvu.api.jdbc.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
-import quanlyhocvu.api.jdbc.dto.User;
+import quanlyhocvu.api.jdbc.dto.UserDTO;
 
 /**
  *
@@ -16,8 +16,8 @@ import quanlyhocvu.api.jdbc.dto.User;
 public class UserMapper implements RowMapper {
 
     @Override
-    public User mapRow(ResultSet rs, int i) throws SQLException {
-        User user = new User();
+    public UserDTO mapRow(ResultSet rs, int i) throws SQLException {
+        UserDTO user = new UserDTO();
         
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));

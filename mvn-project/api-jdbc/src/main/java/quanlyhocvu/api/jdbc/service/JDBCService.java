@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import quanlyhocvu.api.jdbc.dao.AuthorityDAO;
 import quanlyhocvu.api.jdbc.dao.UserDAO;
-import quanlyhocvu.api.jdbc.dto.Authority;
-import quanlyhocvu.api.jdbc.dto.User;
+import quanlyhocvu.api.jdbc.dto.AuthorityDTO;
+import quanlyhocvu.api.jdbc.dto.UserDTO;
 
 /**
  * 
@@ -20,29 +20,29 @@ public class JDBCService {
 
     //<editor-fold defaultstate="collapsed" desc="User services">
     public int deleteUser(String username) {
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setUsername(username);
         authorityDAO.deleteAuthoritiesByUserName(username);
         return userDAO.delete(user);
     }
 
-    public int createUser(User user) {
+    public int createUser(UserDTO user) {
         return userDAO.create(user);
     }
 
-    public int updateUser(User user) {
+    public int updateUser(UserDTO user) {
         return userDAO.update(user);
     }
 
-    public List<User> getListUsers() {
-        List<User> users = userDAO.getListUsers();
-        for (User user : users) {
+    public List<UserDTO> getListUsers() {
+        List<UserDTO> users = userDAO.getListUsers();
+        for (UserDTO user : users) {
             user.setAuthorities(authorityDAO.getListAuthoritiesByUserName(user.getUsername()));
         }
         return users;
     }
 
-    public User getUser(String username) {
+    public UserDTO getUser(String username) {
         return userDAO.getUser(username);
     }
     
@@ -52,11 +52,11 @@ public class JDBCService {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="authority service">
-    public int createAuthority(Authority auth) {
+    public int createAuthority(AuthorityDTO auth) {
         return authorityDAO.create(auth);
     }
 
-    public int deleteAuthority(Authority auth) {
+    public int deleteAuthority(AuthorityDTO auth) {
         return authorityDAO.delete(auth);
     }
 
@@ -64,11 +64,11 @@ public class JDBCService {
         return authorityDAO.setAuthorityFromParam(username, authority, active);
     }
     
-    public int updateAuthority(Authority old, Authority auth) {
+    public int updateAuthority(AuthorityDTO old, AuthorityDTO auth) {
         return authorityDAO.update(old, auth);
     }
 
-    public List<Authority> getAllListAuthorities() {
+    public List<AuthorityDTO> getAllListAuthorities() {
         return authorityDAO.getListAuthorities();
     }
 
@@ -76,7 +76,7 @@ public class JDBCService {
         return authorityDAO.getListAuthoritiesByUserName(username);
     }
 
-    public List<Authority> getListAuthoritiesByAuthority(String authority) {
+    public List<AuthorityDTO> getListAuthoritiesByAuthority(String authority) {
         return authorityDAO.getListAuthoritiesByAuthority(authority);
     }
     //</editor-fold>
