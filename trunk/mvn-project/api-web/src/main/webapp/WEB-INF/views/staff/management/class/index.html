@@ -12,18 +12,18 @@
                     <tr>
                         <th>STT</th>
                         <th>Tên Lớp Học</th>
-                        <th>Mã Giáo Viên</th>
-                        <th>Tên Khối Học </th>
-                        <th>Tên Năm Học</th>                        
+                        <th>Giáo Viên</th>
+                        <th>Khối Học </th>
+                        <th>Năm Học</th>                        
                     </tr>
                 </thead>
                 <tbody>                       
-                    <tr  th:id="${lophoc.ID}" align="center" th:each="lophoc: ${listLopHoc}">
+                    <tr  th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">
                         <td  th:text="${stt++}"/>
-                        <td th:text="${lophoc.tenLopHoc}" id="tenLopHoc"/>
-                        <td th:text="${lophoc.IDgiaoVien}" id="IDgiaoVien"/>
-                        <td th:text="${lophoc.IDkhoiLop}" id="IDkhoiLop"/>
-                        <td th:text="${lophoc.IDnamHoc}" id="IDnamHoc"/>                        
+                        <td th:text="${lophoc.gettenLopHoc()}" id="tenLopHoc"/>
+                        <td th:text="${lophoc.getgiaoVien().gethoTen()}" id="giaoVien"/>
+                        <td th:text="${lophoc.getkhoiLop().gettenKhoiLop()}" id="khoiLop"/>
+                        <td th:text="${lophoc.getnamHoc().gettenNamHoc()}" id="namHoc"/>                        
                     </tr>
                 </tbody>
             </table>

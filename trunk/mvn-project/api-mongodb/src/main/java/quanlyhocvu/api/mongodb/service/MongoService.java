@@ -63,6 +63,9 @@ public class MongoService {
     public GiaoVienDTO getTeacherById(String maGiaoVien){
         return giaoVienDAO.getBymaGiaoVien(maGiaoVien);
     }
+    public GiaoVienDTO getTeacherByid(String id){
+        return giaoVienDAO.getById(id);
+    }
         
     //</editor-fold>
     
@@ -195,6 +198,9 @@ public class MongoService {
         return khoiLopDAO.insert(dto);
     }
     
+    public KhoiLopDTO getKhoiLopByid(String id){
+        return khoiLopDAO.getById(id);
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Function for CLASS">\

@@ -4,8 +4,7 @@
     <head th:include="template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />   
-            <div th:include="template :: footer"></div>
+            <div th:substituteby="template :: nav" />               
             <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/class/save}">                
                 <div class="inner_form">
                 <!-- Text input-->
@@ -20,8 +19,8 @@
                     <div class="control-group">
                       <label class="control-label" for="namHoc">Năm Học</label>
                       <div class="controls">
-                        <select id="namHoc" name="IDnamHoc" class="input-xlarge">
-                          <option th:each="namHoc : ${listnamHoc}" th:text="${namHoc.tennamHoc}" th:value="${namHoc.ID}"/>
+                        <select id="namHoc" name="IDnamHoc" class="input-xlarge custom_checkbox">
+                          <option th:each="namHoc : ${listnamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>
                         </select>
                       </div>
                     </div>
@@ -30,11 +29,8 @@
                     <div class="control-group">
                       <label class="control-label" for="khoiLop">Khối Lớp</label>
                       <div class="controls">
-                        <select id="khoiLop" name="IDkhoiLop" class="input-xlarge">
-                          <option>6</option>
-                          <option>7</option>
-                          <option>8</option>
-                          <option>9</option>
+                        <select id="khoiLop" name="IDkhoiLop" class="input-xlarge custom_checkbox">
+                          <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
                         </select>
                       </div>
                     </div>
@@ -43,9 +39,8 @@
                     <div class="control-group">
                       <label class="control-label" for="giaoVien">Giáo Viên</label>
                       <div class="controls">
-                        <select id="giaoVien" name="IDgiaoVien" class="input-xlarge">
-                          <option>Hạnh</option>
-                          <option>Loan</option>
+                        <select id="giaoVien" name="IDgiaoVien" class="input-xlarge custom_checkbox">
+                          <option th:each="giaoVien : ${listgiaoVien}" th:text="${giaoVien.gethoTen()}" th:value="${giaoVien.getid()}"/>                                                    
                         </select>
                       </div>
                     </div>
@@ -58,6 +53,7 @@
                     </div>
                 </div>
             </form>
+            <div th:include="template :: footer"></div>
         </div>	
         <script th:inline="javascript">
             /*<![CDATA[*/
