@@ -7,7 +7,7 @@ package quanlyhocvu.api.jdbc.dao;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import quanlyhocvu.api.jdbc.dto.User;
+import quanlyhocvu.api.jdbc.dto.UserDTO;
 import quanlyhocvu.api.jdbc.idao.IUserDAO;
 import quanlyhocvu.api.jdbc.mapper.UserMapper;
 
@@ -27,7 +27,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public int create(User user) {
+    public int create(UserDTO user) {
         String sql = "insert into users(username, password, enabled) values(?,?,?)";
         return jdbcTemplate.update(
                 sql,
@@ -38,7 +38,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public int delete(User user) {
+    public int delete(UserDTO user) {
         String sql = "delete from users where username=?";
         return jdbcTemplate.update(
                 sql,
@@ -46,7 +46,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public int update(User user) {
+    public int update(UserDTO user) {
         String sql = "update users set password=?, enabled=? where username=?";
         return jdbcTemplate.update(
                 sql,
@@ -57,20 +57,21 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User getUser(String username) {
+    public UserDTO getUser(String username) {
         String sql = "select * from users where username=?";
-        return (User) jdbcTemplate.queryForObject(
+        return (UserDTO) jdbcTemplate.queryForObject(
                 sql,
                 new Object[]{username},
                 new UserMapper());
     }
 
     @Override
-    public List<User> getListUsers() {
+    public List<UserDTO> getListUsers() {
         String sql = "select * from users";
-        return (List<User>) jdbcTemplate.query(
+        List<UserDTO> users = (List<UserDTO>) jdbcTemplate.query(
                 sql,
                 new UserMapper());
+        return users;
     }
 
     @Override
