@@ -1,12 +1,73 @@
 package quanlyhocvu.api.mongodb;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+import quanlyhocvu.api.mongodb.service.MongoService;
+import quanlyhocvu.api.mongodb.DTO.Teacher.*;
+import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
+
 class App {
 
     public static void main(String[] args) {
 
-//        ApplicationContext ctx = new GenericXmlApplicationContext(
-//                "noSqlApplicationContext.xml");
-//        MongoService mongoService = (MongoService) ctx.getBean("mongoService");
+        ApplicationContext ctx = new GenericXmlApplicationContext(
+                "noSqlApplicationContext.xml");
+        MongoService mongoService = (MongoService) ctx.getBean("mongoService");
+        
+        List<HocSinhDTO> hs = mongoService.getAllStudents();
+        LopHocDTO lop = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
+        lop.setlistHocSinh(hs);
+      
+//        List<HocSinhDTO> listHocSinh = lop.getlistHocSinh();
+//        
+//        System.out.print(listHocSinh.size());
+        
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        List<ChiTietChuyenMonDTO> listChuyenMon = mongoService.getListChiTietChuyenMonByIdGiaoVien("52a0aa8d44aeb4910f530db8");
+//        List<PhanCongDTO> listPhanCong = new ArrayList<PhanCongDTO>();
+//        
+//        for(int i = 0; i < listChuyenMon.size(); i++) {
+//            List<PhanCongDTO> listTemp = mongoService.getListPhanCongBy(listChuyenMon.get(i).getid());
+//            listPhanCong.addAll(listTemp);
+//            
+//        }
+//        
+//        System.out.print(listPhanCong.size());
+//        System.out.print("End");
+//        List<ChiTietChuyenMonDTO> ctcm = mongoService.getAllChiTietChuyenMon();
+//        List<LopHocDTO> lop = mongoService.getAllLopHoc();
+//        
+//        PhanCongDTO p = new PhanCongDTO();
+//        p.setChiTietChuyenMon(ctcm.get(0));
+//        p.setLopHoc(lop.get(0));
+//        p.setMota("Mo ta choi");
+//        
+//        mongoService.insertPhanCong(p);
+//        List<GiaoVienDTO> gv = mongoService.getAllgiaoVien();
+//        List<ChiTietMonHocDTO> ct = mongoService.getAllChiTietMonHoc();
+//        
+//        ChiTietChuyenMonDTO ctcm = new ChiTietChuyenMonDTO();
+//        ctcm.setChiTietMonHoc(ct.get(0));
+//        ctcm.setGiaoVien(gv.get(0));
+//        ctcm.setMota("Mo ta choi");
+//        
+//        mongoService.insertChiTietChuyenMon(ctcm);
+//        List<MonHocDTO> mon = mongoService.getAllMonHoc();
+//        List<KhoiLopDTO> khoi = mongoService.getAllkhoiLop();
+//        
+//        ChiTietMonHocDTO chitietmonhoc = new ChiTietMonHocDTO();
+//        chitietmonhoc.setKhoiLop(khoi.get(0));
+//        chitietmonhoc.setMonHoc(mon.get(0));
+//        
+//        mongoService.insertChiTietMonHoc(chitietmonhoc);
 //        //////////
 //        GiaoVienDTO giaoVien = new GiaoVienDTO();
 //        giaoVien.sethoTen("Vu Van Ly");

@@ -3,37 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quanlyhocvu.api.web.controller.teacher;
 
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
  *
- * @author HuuTri
+ * @author Tuan
  */
 @Controller
-public class TeacherController {
-    @RequestMapping(value="home")
+@RequestMapping(value = "marks")
+public class MarksController {
+    Logger logger = LoggerFactory.getLogger(getClass());
+    
+    @Autowired
+    MongoService mongoService;
+    
+    @RequestMapping(value = "index")
     public @ResponseBody
-    ModelAndView home () {
+    ModelAndView marks(HttpServletRequest request) {
         return new ModelAndView("home");
-    }
-    
-    @RequestMapping(value="logout") 
-    public @ResponseBody 
-    ModelAndView logout () {
-        return new ModelAndView("forward:/authority/logout");
-    }
-    
-    @RequestMapping(value="information") 
-    public @ResponseBody
-    ModelAndView information () {
-        return new ModelAndView("information");
     }
     
 }

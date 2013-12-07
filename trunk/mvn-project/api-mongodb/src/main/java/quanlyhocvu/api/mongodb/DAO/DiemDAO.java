@@ -42,14 +42,18 @@ public class DiemDAO {
 
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("idPhanCong", dto.getIdPhanCong());
-        update.set("idHocSinh", dto.getIdHocSinh());
-        update.set("DiemSo", dto.getDiemSo());
+        update.set("phanCong", dto.getPhanCong().getid());
+        update.set("hocSinh", dto.getHocSinh().getid());
+        update.set("diemSo", dto.getDiemSo());
 
         mongoOperation.findAndModify(query, update, DiemDTO.class);
         return true;
     }
 
+    public List<DiemDTO> getDiemByMaHs(String id){
+        Query query = Query.query(Criteria.where("idHocSinh").is(id));
+        return mongoOperation.find(query, DiemDTO.class);
+    }
     public List<DiemDTO> getAllDiem() {
         return mongoOperation.findAll(DiemDTO.class);
     }
