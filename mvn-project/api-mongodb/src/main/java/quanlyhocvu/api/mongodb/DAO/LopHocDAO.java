@@ -88,4 +88,9 @@ public class LopHocDAO {
     public List<LopHocDTO> getAllList() {
         return mongoOperation.findAll(LopHocDTO.class);
     }
+    
+    public LopHocDTO getLopHocById(String idLopHoc) {
+        Query query = Query.query(Criteria.where("id").is(idLopHoc));
+        return mongoOperation.findOne(query, LopHocDTO.class);
+    }
 }

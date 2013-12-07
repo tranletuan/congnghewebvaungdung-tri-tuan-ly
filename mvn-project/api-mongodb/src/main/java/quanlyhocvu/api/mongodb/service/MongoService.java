@@ -6,12 +6,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
+import quanlyhocvu.api.mongodb.DAO.ChiTietChuyenMonDAO;
+import quanlyhocvu.api.mongodb.DAO.ChiTietMonHocDAO;
+import quanlyhocvu.api.mongodb.DAO.DiemDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
 import quanlyhocvu.api.mongodb.DAO.HocSinhDAO;
 import quanlyhocvu.api.mongodb.DAO.KhoiLopDAO;
 import quanlyhocvu.api.mongodb.DAO.LopHocDAO;
 import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
+import quanlyhocvu.api.mongodb.DAO.PhanCongDAO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietChuyenMonDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietMonHocDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
@@ -42,8 +50,22 @@ public class MongoService {
     @Autowired 
     private LopHocDAO lophocDAO;
     
+    @Autowired 
+    private DiemDAO diemDAO;
+    
     @Autowired
     private HocSinhDAO hocsinhDAO;
+    
+    @Autowired
+    private PhanCongDAO phancongDAO;
+    
+    @Autowired
+    private ChiTietChuyenMonDAO chitietchuyenmonDAO;
+    
+    @Autowired
+    private ChiTietMonHocDAO chitietmonhocDAO;
+    
+   
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
     
@@ -225,6 +247,10 @@ public class MongoService {
     public boolean insertLopHoc(LopHocDTO dto) {
         return lophocDAO.insert(dto);
     }
+    
+    public LopHocDTO getLopHocById(String idLopHoc) {
+        return lophocDAO.getLopHocById(idLopHoc);
+    }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
@@ -256,4 +282,90 @@ public class MongoService {
     }    
     //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="Function for MARK">
+    
+    public List<DiemDTO> getAllMark() {
+        return diemDAO.getAllDiem();
+    }
+    
+    public boolean insertMark(DiemDTO dto) {
+        return diemDAO.insert(dto);
+    }
+    
+    public boolean deleteMark(DiemDTO dto) {
+        return diemDAO.delete(dto);
+    }
+    
+    public boolean updateMark(DiemDTO dto) {
+        return diemDAO.updateDiem(dto);
+    }
+    
+    public List<DiemDTO> getMarkByStudentID(String idStudent) {
+        return diemDAO.getDiemByMaHs(idStudent);
+    }
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="PHAN CONG">
+    public List<PhanCongDTO> getAllPhanCong(){
+        return phancongDAO.getAllList();
+    }
+    
+    public List<PhanCongDTO> getListPhanCongBy(String idChiTietChuyenMon) {
+        return phancongDAO.getListBy(idChiTietChuyenMon);
+    }
+    
+    public boolean insertPhanCong(PhanCongDTO dto) {
+        return phancongDAO.insert(dto);
+    }
+    
+    public boolean deletePhanCong(PhanCongDTO dto) {
+        return phancongDAO.delete(dto);
+    }
+    
+    public boolean updatePhanCong(PhanCongDTO dto) {
+        return phancongDAO.update(dto);
+    }
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="CHI TIET CHUYEN MON">
+    public List<ChiTietChuyenMonDTO> getAllChiTietChuyenMon() {
+        return chitietchuyenmonDAO.getAllList();
+    }
+    
+    public List<ChiTietChuyenMonDTO> getListChiTietChuyenMonByIdGiaoVien(String idGiaoVien) {
+        return chitietchuyenmonDAO.getListBy(idGiaoVien);
+    }
+    
+    public boolean insertChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
+        return chitietchuyenmonDAO.insert(dto);
+    }
+    
+    public boolean deleteChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
+        return chitietchuyenmonDAO.delete(dto);
+    }
+    
+    public boolean updateChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
+        return chitietchuyenmonDAO.update(dto);
+    }
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Chi Tiet Mon Hoc">
+    public boolean insertChiTietMonHoc(ChiTietMonHocDTO dto) {
+        return chitietmonhocDAO.insert(dto);
+    }
+    
+    public boolean deleteChiTietMonHoc(ChiTietMonHocDTO dto) {
+        return chitietmonhocDAO.delete(dto);
+    }
+    
+    public boolean updateChiTietMonHoc(ChiTietMonHocDTO dto) {
+        return chitietmonhocDAO.update(dto);
+    }
+    
+    public List<ChiTietMonHocDTO> getAllChiTietMonHoc() {
+        return chitietmonhocDAO.getAllList();
+    }
+//</editor-fold>
+    
+
 }

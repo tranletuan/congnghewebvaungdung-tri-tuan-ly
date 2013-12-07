@@ -3,18 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quanlyhocvu.api.mongodb.DTO.Teacher;
 
+import java.util.List;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
-import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 
 /**
  *
  * @author Tuan
  */
-public class DiemDTO extends AbstractObjectDTO {
+@Document
+public class ChiTietPhanCongDTO extends AbstractObjectDTO {
 
+    @DBRef
+    private PhanCongDTO phanCong;
+    
+    private String thoiGian;
+    
     public PhanCongDTO getPhanCong() {
         return phanCong;
     }
@@ -23,30 +31,11 @@ public class DiemDTO extends AbstractObjectDTO {
         this.phanCong = phanCong;
     }
 
-    public HocSinhDTO getHocSinh() {
-        return hocSinh;
+    public String getThoiGian() {
+        return thoiGian;
     }
 
-    public void setHocSinh(HocSinhDTO hocSinh) {
-        this.hocSinh = hocSinh;
+    public void setThoiGian(String thoiGian) {
+        this.thoiGian = thoiGian;
     }
-
-    public float getDiemSo() {
-        return diemSo;
-    }
-
-    public void setDiemSo(float diemSo) {
-        this.diemSo = diemSo;
-    }
-
-    @DBRef
-    private PhanCongDTO phanCong;
-    
-    @DBRef
-    private HocSinhDTO hocSinh;
-
-    private float diemSo;
-
-
-    
 }

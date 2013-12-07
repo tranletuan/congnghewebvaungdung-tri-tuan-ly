@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DTO.staff.ChiTietMonHocDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietMonHocDTO;
 
 /**
  *
@@ -41,8 +41,8 @@ public class ChiTietMonHocDAO {
     public boolean update(ChiTietMonHocDTO dto) {
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("idMonHoc", dto.getIdMonHoc());
-        update.set("idKhoiLop", dto.getIdKhoiLop());
+        update.set("monHoc", dto.getMonHoc().getid());
+        update.set("khoiLop", dto.getKhoiLop().getid());
         
         mongoOperation.findAndModify(query, update, ChiTietMonHocDTO.class);
         return true;
