@@ -22,7 +22,6 @@
     <modules>
         <module>api-mongodb</module>
         <module>api-web</module>
-    <module>api-jdbc</module>
   </modules>
    
 </project>
