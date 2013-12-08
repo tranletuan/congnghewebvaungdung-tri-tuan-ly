@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quanlyhocvu.api.mongodb.DAO;
 
-import java.util.List;
-import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,48 +14,46 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietDiemDTO;
 
 /**
  *
  * @author Tuan
  */
 @Repository
-public class DiemDAO {
-
+public class ChiTietDiemDAO {
     Logger logger = LoggerFactory.getLogger(getClass());
-
+    
     @Autowired
     MongoOperations mongoOperation;
-
-    public boolean insert(DiemDTO dto) {
+    
+    public boolean insert(ChiTietDiemDTO dto) {
         mongoOperation.insert(dto);
         return true;
     }
-
-    public boolean delete(DiemDTO dto) {
+    
+    public boolean delete(ChiTietDiemDTO dto) {
         mongoOperation.remove(dto);
         return true;
     }
-
-    public boolean updateDiem(DiemDTO dto) {
-
+    
+    public boolean update(ChiTietDiemDTO dto) {
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("phanCong", dto.getPhanCong().getid());
-        update.set("hocSinh", dto.getHocSinh().getid());
-        update.set("hocKy", dto.getHocKy());
-
-        mongoOperation.findAndModify(query, update, DiemDTO.class);
+        
+        update.set("diem", dto.getDiem());
+        update.set("ktmieng_1", dto.getKtmieng_1());
+        update.set("ktmieng_2", dto.getKtmieng_2());
+        update.set("ktmieng_3", dto.getKtmieng_3());
+        
+        update.set("kt15_1", dto.getKt15_1());
+        update.set("kt15_2", dto.getKt15_2());
+        update.set("kt15_3", dto.getKt15_3());
+        
+        update.set("kt1tiet_1", dto.getKt1tiet_1());
+        update.set("kt1tiet_2", dto.getKt1tiet_2());
+        
         return true;
     }
-
-    public List<DiemDTO> getDiemByMaHs(String id){
-        Query query = Query.query(Criteria.where("hocSinh.$id").is(new ObjectId(id)));
-        return mongoOperation.find(query, DiemDTO.class);
-    }
     
-    public List<DiemDTO> getAllDiem() {
-        return mongoOperation.findAll(DiemDTO.class);
-    }
 }

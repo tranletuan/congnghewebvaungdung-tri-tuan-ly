@@ -6,6 +6,8 @@
 
 package quanlyhocvu.api.web.controller.teacher;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
@@ -32,8 +35,11 @@ public class MarksController {
     @RequestMapping(value = "{studentId}")
     public @ResponseBody
     ModelAndView marks(@PathVariable String studentId, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        HocSinhDTO hocSinh = mongoService.getHocSinhById(studentId);
         
-        return new ModelAndView("mark");
+        map.put("hocSinh", hocSinh);
+        return new ModelAndView("mark", map);
     }
     
 }

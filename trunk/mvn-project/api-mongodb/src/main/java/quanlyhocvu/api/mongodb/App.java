@@ -25,6 +25,14 @@ class App {
         List<HocSinhDTO> hs = mongoService.getAllStudents();
         LopHocDTO lop = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
         lop.setlistHocSinh(hs);
+        mongoService.updateLopHoc(lop);
+        
+        LopHocDTO lop1 = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
+        System.out.println(lop1.gettenLopHoc());
+        System.out.println(lop1.getlistHocSinh().size());
+//        List<HocSinhDTO> hs = mongoService.getAllStudents();
+//        LopHocDTO lop = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
+//        lop.setlistHocSinh(hs);
       
 //        List<HocSinhDTO> listHocSinh = lop.getlistHocSinh();
 //        
