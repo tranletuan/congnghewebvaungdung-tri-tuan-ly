@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-function confirm(message, url, callback) {
-	$('#confirm').modal({
+function confirm(message, id, callback) {
+	$(id).modal({
 		closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
 		position: ["20%",],
 		overlayId: 'confirm-overlay',
@@ -40,7 +40,8 @@ $(document).ready(function(){
         var url = "/api-web/staff/management/students/delete/" + self[0].id;        
         // example of calling the confirm function
         // you must use a callback function to perform the "yes" action
-        confirm(message, url, function () {
+        id = '#confirm';
+        confirm(message, id, function () {
             console.log("ABC");
             console.log(url);
             
@@ -52,4 +53,19 @@ $(document).ready(function(){
             
         });
     });    
-})
+    
+    $('#xepLopHocSinh').on('click', function(e){
+        e.preventDefault();
+        self = $(this);
+        var url = "/api-web/staff/management/students/xeplop";
+        id = '#confirm';
+        message = "Bạn có chắc là bạn muốn xếp lớp cho học sinh mới hay không?";
+        confirm(message, id, function(){
+           $.ajax({
+                url: url,
+                type: 'POST'
+           });
+           document.location = "/api-web/staff/management/students/index";
+        });
+    })
+}) 

@@ -10,6 +10,7 @@ package quanlyhocvu.api.mongodb.service;
  * @author linhly
  */
 public class FunctionService {
+    public static int SoHocSinhToiDaMotLop = 10;
     //format date from "day/month/year" to "month/day/year"
     public static String formatStringDate(String date){
         String res = "";

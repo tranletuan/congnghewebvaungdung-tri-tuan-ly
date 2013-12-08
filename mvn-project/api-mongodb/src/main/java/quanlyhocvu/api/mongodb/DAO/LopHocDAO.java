@@ -7,6 +7,7 @@ package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +105,10 @@ public class LopHocDAO {
         update.set("listHocSinh", tempList);
         mongoOperation.findAndModify(query, update,  LopHocDTO.class);
         return true;
+    }
+    
+    public List<LopHocDTO> getLopHocTheoKhoiLop(String idKhoiLop){
+        Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)));
+        return mongoOperation.find(query, LopHocDTO.class);
     }
 }

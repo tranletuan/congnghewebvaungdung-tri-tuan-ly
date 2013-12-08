@@ -24,6 +24,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
+import quanlyhocvu.api.mongodb.service.FunctionService;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
@@ -107,7 +108,7 @@ public class ManagementClassController {
         map.put("message", "Lên lớp thành công");
         return new ModelAndView("redirect:/staff/management/class/index", map);
     }
-    
+        
     public boolean upgradeStudent(LopHocDTO lopHoc){                
         Iterator<HocSinhDTO> iterator = lopHoc.getlistHocSinh().iterator();
         //Create a new NamHoc if there is no next NamHoc in database
@@ -167,4 +168,5 @@ public class ManagementClassController {
         lopHoc.setTrangThaiLopHoc(LopHocDTO.TrangThaiLopHoc.DaLenLop) ;
         return true;
     }
+        
 }

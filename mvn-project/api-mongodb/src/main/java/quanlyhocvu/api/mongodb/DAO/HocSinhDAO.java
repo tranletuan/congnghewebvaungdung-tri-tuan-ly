@@ -92,5 +92,10 @@ public class HocSinhDAO {
         
     }
     
+    public List<HocSinhDTO> getHocSinhChuaXepLop(){
+        Query query = Query.query(Criteria.where("maLopHoc").is(null));
+        return mongoOperations.find(query, HocSinhDTO.class);
+    }
+    
     
 }

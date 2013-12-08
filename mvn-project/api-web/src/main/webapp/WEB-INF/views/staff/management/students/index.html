@@ -42,15 +42,24 @@
                     </tr>
                 </tbody>
             </table>
+            <a id="xepLopHocSinh" th:href="@{/staff/management/students/xeplop}" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>
             <div th:include="template :: footer"></div>
         </div>	
 <!--          HTML for modal popup-->
         <!-- modal content -->
-        <div id='confirm'>
+<!--        <div id='confirm'>
                 <div class='header'><span>Confirm Delete Student</span></div>
                 <div class='message'></div>
                 <div class='buttons'>
                 <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+                </div>
+        </div>-->
+        
+        <div id='confirm'>
+                <div class='header'><span>Xác nhận xếp lớp</span></div>
+                <div class='message'></div>
+                <div class='buttons'>
+                <div class='no simplemodal-close'>Không</div><div class='yes'>Có</div>
                 </div>
         </div>
         <!-- preload the images -->
