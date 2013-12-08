@@ -31,13 +31,6 @@ public class DiemDTO extends AbstractObjectDTO {
         this.hocSinh = hocSinh;
     }
 
-    public float getDiemSo() {
-        return diemSo;
-    }
-
-    public void setDiemSo(float diemSo) {
-        this.diemSo = diemSo;
-    }
 
     @DBRef
     private PhanCongDTO phanCong;
@@ -45,8 +38,4 @@ public class DiemDTO extends AbstractObjectDTO {
     @DBRef
     private HocSinhDTO hocSinh;
 
-    private float diemSo;
-
-
-    
 }
