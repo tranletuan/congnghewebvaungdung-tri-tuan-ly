@@ -6,6 +6,7 @@
 package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,16 +45,16 @@ public class DiemDAO {
         Update update = new Update();
         update.set("phanCong", dto.getPhanCong().getid());
         update.set("hocSinh", dto.getHocSinh().getid());
-        update.set("diemSo", dto.getDiemSo());
 
         mongoOperation.findAndModify(query, update, DiemDTO.class);
         return true;
     }
 
     public List<DiemDTO> getDiemByMaHs(String id){
-        Query query = Query.query(Criteria.where("idHocSinh").is(id));
+        Query query = Query.query(Criteria.where("hocSinh.&id").is(new ObjectId(id)));
         return mongoOperation.find(query, DiemDTO.class);
     }
+    
     public List<DiemDTO> getAllDiem() {
         return mongoOperation.findAll(DiemDTO.class);
     }
