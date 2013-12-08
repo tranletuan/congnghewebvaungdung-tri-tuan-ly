@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:id="${staff.id}" align="center" th:each="staff: ${staffs}">
+                    <tr th:id="${staff.getid()}" align="center" th:each="staff: ${staffs}">
                         <td th:text="${staff.manhanvien}" id="mastaff"/>
                         <td th:text="${staff.hoTen}" id="hoTen"/>                        
                         <td th:text="${#dates.format(staff.ngaySinh,'dd/MM/yyyy')}" th:if="${staff.ngaySinh}" id="ngaySinh"/>

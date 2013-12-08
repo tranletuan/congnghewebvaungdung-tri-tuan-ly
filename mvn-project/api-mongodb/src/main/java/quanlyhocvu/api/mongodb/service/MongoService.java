@@ -452,4 +452,11 @@ public class MongoService {
     }
 
 //</editor-fold>   
+
+     
+     //<editor-fold defaultstate="collapsed" desc="Function for Staff">
+     public StaffDTO getStaffById(String staffId) {
+          return staffDAO.getStaffById(staffId);
+     }
+//</editor-fold>
 }
