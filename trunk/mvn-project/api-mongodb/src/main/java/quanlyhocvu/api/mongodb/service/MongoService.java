@@ -16,6 +16,7 @@ import quanlyhocvu.api.mongodb.DAO.LopHocDAO;
 import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
 import quanlyhocvu.api.mongodb.DAO.PhanCongDAO;
+import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietChuyenMonDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietMonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
@@ -26,6 +27,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 
 @Repository
 public class MongoService {
@@ -366,6 +368,22 @@ public class MongoService {
         return chitietmonhocDAO.getAllList();
     }
 //</editor-fold>
-    
 
+     public UserDTO loadUserByUserName(String username) {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
+
+     public void insertStaff(StaffDTO staff) {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
+
+     public List<StaffDTO> getAllStaff() {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
+
+     public List<UserDTO> getAllUser() {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
+    
+    
 }
