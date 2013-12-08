@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import quanlyhocvu.api.jdbc.service.JDBCService;
 
 /**
  *
@@ -23,13 +22,12 @@ import quanlyhocvu.api.jdbc.service.JDBCService;
 public class ManagementUserController {
 
     @Autowired
-    JDBCService jdbcService;
 
     @RequestMapping(value = "index")
     public @ResponseBody
     ModelAndView index() {
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("users", jdbcService.getListUsers());
+        
         return new ModelAndView("management/user/index", model);
     }
 }
