@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,21 +47,29 @@ public class ManagementStaffController {
           return new ModelAndView("management/staff/add", model);
      }
      
-     @RequestMapping(value="save")
-     public @ResponseBody
-     ModelAndView save(HttpServletRequest request) {
-          Map<String, Object> model = new HashMap<>();
-          
-          StaffDTO staff = new StaffDTO();
-          staff.setdiaChi(request.getParameter("diachi"));
-          staff.setgioiTinh(Integer.parseInt(request.getParameter("gioitinh")));
-          staff.sethoTen(request.getParameter("hoten"));
-          staff.setmoTa(request.getParameter("mota"));
-          staff.setngayNghiViec(new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngaynghiviec"))));
-          staff.setngaySinh(new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngaysinh"))));
-          staff.setngayVaoLam(new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngayvaolam"))));
-          
-          mongoService.insertStaff(staff);
-          return new ModelAndView("redirect:/management/staff/index", model);
-     }
+    @RequestMapping(value="save")
+    public @ResponseBody
+    ModelAndView teacherSave(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        StaffDTO obj = new StaffDTO(
+                    request.getParameter("manhanvien"),
+                    request.getParameter("hoTen"),                
+                    Integer.parseInt(request.getParameter("gioiTinh")),
+                    new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngaySinh"))),                               
+                    request.getParameter("diaChi"),
+                    new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngayVaoLam")))
+                );
+        mongoService.insertStaff(obj);
+        map.put("message", "Đã thêm thành công 1 nhân viên");
+        return new ModelAndView("redirect:/admin/management/staff/index", map);
+    }
+    
+    @RequestMapping(value = "edit/{staffId}")
+    public @ResponseBody
+    ModelAndView editStaff(@PathVariable String staffId, HttpServletRequest request){
+        Map<String,Object> map = new HashMap<>();
+        StaffDTO obj = mongoService.getStaffById(staffId);
+        map.put("staff", obj);
+        return new ModelAndView("management/staff/edit", map);
+    }
 }

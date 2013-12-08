@@ -36,4 +36,13 @@ public class StaffDAO {
      public void insertStaff(StaffDTO staff) {
           mongoOperation.save(staff);
      }
+     
+     /**
+      * get staff by id string
+      * @param staffId
+      * @return 
+      */
+     public StaffDTO getStaffById(String staffId) {
+          return mongoOperation.findById(new StaffDTO(staffId), StaffDTO.class);
+     }
 }
