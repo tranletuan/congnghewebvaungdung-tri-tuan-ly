@@ -6,6 +6,8 @@
 package quanlyhocvu.api.mongodb.DTO.base;
 
 import java.util.Date;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 
 /**
  *
@@ -15,8 +17,45 @@ public class HocSinhDTO extends AbstractPersonDTO{
    private String maHocSinh;
    private Date ngayNhapHoc;
    private Date ngayNghiHoc;
+   private String maLopHoc;
+   private TrangThaiHS trangThaiHS;
 
-   public HocSinhDTO(){};
+    /**
+     * @return the trangThaiHS
+     */
+    public TrangThaiHS getTrangThaiHS() {
+        return trangThaiHS;
+    }
+
+    /**
+     * @param trangThaiHS the trangThaiHS to set
+     */
+    public void setTrangThaiHS(TrangThaiHS trangThaiHS) {
+        this.trangThaiHS = trangThaiHS;
+    }
+
+    /**
+     * @return the maLopHoc
+     */
+    public String getMaLopHoc() {
+        return maLopHoc;
+    }
+
+    /**
+     * @param maLopHoc the maLopHoc to set
+     */
+    public void setMaLopHoc(String maLopHoc) {
+        this.maLopHoc = maLopHoc;
+    }
+   public enum TrangThaiHS{
+       DaNghi,
+       DaTotNghiep,
+       DangHoc
+   }
+
+   public HocSinhDTO(){
+       this.trangThaiHS = TrangThaiHS.DangHoc;
+   };
    public HocSinhDTO(String id, String hoTen, int gioiTinh, Date ngaySinh, String diaChi, String maHocSinh, Date ngayNhapHoc, Date ngayNghiHoc){
      this.id = id;
      this.hoTen = hoTen;
@@ -26,6 +65,7 @@ public class HocSinhDTO extends AbstractPersonDTO{
      this.maHocSinh = maHocSinh;
      this.ngayNhapHoc = ngayNhapHoc;
      this.ngayNghiHoc = ngayNghiHoc;
+     this.trangThaiHS = TrangThaiHS.DangHoc;
              
    };
    public HocSinhDTO(String hoTen, int gioiTinh, Date ngaySinh, String diaChi, String maHocSinh, Date ngayNhapHoc){
@@ -34,7 +74,8 @@ public class HocSinhDTO extends AbstractPersonDTO{
      this.ngaySinh = ngaySinh;
      this.diaChi = diaChi;
      this.maHocSinh = maHocSinh;
-     this.ngayNhapHoc = ngayNhapHoc;     
+     this.ngayNhapHoc = ngayNhapHoc;  
+     this.trangThaiHS = TrangThaiHS.DangHoc;
              
    };
     public String getmaHocSinh() {
@@ -59,5 +100,21 @@ public class HocSinhDTO extends AbstractPersonDTO{
 
     public void setngayNghiHoc(Date ngayNghiHoc) {
         this.ngayNghiHoc = ngayNghiHoc;
+    }        
+    
+    /*
+    Check whether this student can upgrade from grade lower to higher
+    */
+    public boolean canUpgrade(){
+        return true;
     }
+    
+    /*
+    Check whether this student can graduate or not
+    */
+    public boolean canGraduate(){
+        return true;
+    }
+
+    
 }

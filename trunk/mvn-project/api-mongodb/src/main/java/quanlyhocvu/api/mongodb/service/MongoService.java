@@ -203,6 +203,10 @@ public class MongoService {
      public NamHocDTO getnamHocById(String Id) {
           return namHocDAO.getnamHocById(Id);
      }
+     
+     public NamHocDTO getnamHocByName(String tenNamHoc){
+        return namHocDAO.getNamHocByName(tenNamHoc);
+    }
 
      //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for SUBJECT">\
@@ -232,36 +236,37 @@ public class MongoService {
      }
     //</editor-fold>
 
-     //<editor-fold defaultstate="collapsed" desc="Function for GRADE">\
-     /**
-      * ************************************************
-      * function for grade
-      *
-      * @author: LyVV ***********************************************
-      */
-     /**
-      * this function is used to return the list of khoiLop
-      *
-      * @return
-      */
-     public List<KhoiLopDTO> getAllkhoiLop() {
-          return khoiLopDAO.getAllList();
-     }
-
-     /**
-      * Insert new khoiLop into list
-      *
-      * @param dto
-      * @return
-      */
-     public boolean insertkhoiLop(KhoiLopDTO dto) {
-          return khoiLopDAO.insert(dto);
-     }
-
-     public KhoiLopDTO getKhoiLopByid(String id) {
-          return khoiLopDAO.getById(id);
-     }
+    
+    //<editor-fold defaultstate="collapsed" desc="Function for GRADE">\
+    /**************************************************
+     * function for grade
+     * @author: LyVV
+     *************************************************/
+    /**
+     * this function is used to return the list of khoiLop
+     * @return 
+     */
+    public List<KhoiLopDTO> getAllkhoiLop(){
+        return khoiLopDAO.getAllList();
+    }
+    /**
+     * Insert new khoiLop into list
+     * @param dto
+     * @return 
+     */
+    public boolean insertkhoiLop(KhoiLopDTO dto) {
+        return khoiLopDAO.insert(dto);
+    }
+    
+    public KhoiLopDTO getKhoiLopByid(String id){
+        return khoiLopDAO.getById(id);
+    }
+    
+    public KhoiLopDTO getKhoiLopByName(String tenKhoiLop){
+        return khoiLopDAO.getByName(tenKhoiLop);
+    }
     //</editor-fold>
+    
 
      //<editor-fold defaultstate="collapsed" desc="Function for CLASS">\
      /**
@@ -292,6 +297,12 @@ public class MongoService {
      public LopHocDTO getLopHocById(String idLopHoc) {
           return lophocDAO.getLopHocById(idLopHoc);
      }
+    
+    
+    public boolean addStudent(HocSinhDTO hs, String id){
+        System.out.println("Mongo Service");
+        return lophocDAO.addStudent(hs, id);
+    }
     //</editor-fold>    
 
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
@@ -318,10 +329,13 @@ public class MongoService {
           return hocsinhDAO.delete(dto);
      }
 
-     public HocSinhDTO getStudentByMaHS(String maHocSinh) {
-          System.out.println("Eo");
+     public HocSinhDTO getStudentByMaHS(String maHocSinh) {          
           return hocsinhDAO.getBymaHocSinh(maHocSinh);
      }
+    
+    public List<HocSinhDTO> getStudentsByLopHoc(String maLopHoc){
+        return hocsinhDAO.getByLopHoc(maLopHoc);
+    }
     //</editor-fold>
 
      //<editor-fold defaultstate="collapsed" desc="Function for MARK">

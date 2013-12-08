@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 
 /**
  *
@@ -84,4 +85,12 @@ public class HocSinhDAO {
         HocSinhDTO obj = mongoOperations.find(query, HocSinhDTO.class).get(0);    
         return obj;
     }
+    
+    public List<HocSinhDTO> getByLopHoc(String maLopHoc){
+        Query query = Query.query(Criteria.where("maLopHoc").is(maLopHoc));
+        return mongoOperations.find(query, HocSinhDTO.class);
+        
+    }
+    
+    
 }

@@ -5,11 +5,15 @@
  */
 package quanlyhocvu.api.mongodb.DTO.staff;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import quanlyhocvu.api.mongodb.DTO.base.AbstractObjectDTO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
  *
@@ -21,33 +25,27 @@ public class LopHocDTO extends AbstractObjectDTO {
     private String tenLopHoc;
     @DBRef
     private GiaoVienDTO giaoVien;
-//    private String idGiaoVien;
     @DBRef
     private KhoiLopDTO khoiLop;
-//    private String idKhoiLop;
     @DBRef
     private NamHocDTO namHoc;
-//    private String idnamHoc;
     @DBRef
     private List<HocSinhDTO> listHocSinh;
-//    private List<String> ListidHocSinh;
     
-    public LopHocDTO(){};
+    private TrangThaiLopHoc trangThaiLopHoc;    
     
-//    public LopHocDTO(String tenLopHoc, String idGiaoVien, String idKhoiLop, String idnamHoc){
-//        this.tenLopHoc = tenLopHoc;
-//        this.idGiaoVien = idGiaoVien;
-//        this.idKhoiLop = idKhoiLop;
-//        this.idnamHoc = idnamHoc;
-//    }
-
-//    public List<String> getLisidHocSinh() {
-//        return ListidHocSinh;
-//    }
-//
-//    public void setListidHocSinh(List<String> ListidHocSinh) {
-//        this.ListidHocSinh = ListidHocSinh;
-//    }
+    public enum TrangThaiLopHoc{
+        ChuaLenLop,
+        DaLenLop
+        
+    }
+    @Autowired
+    MongoService mongoService;
+    public LopHocDTO(){
+        listHocSinh = new ArrayList<>();
+        trangThaiLopHoc = TrangThaiLopHoc.ChuaLenLop;
+    };
+    
 
     public String gettenLopHoc() {
         return tenLopHoc;
@@ -56,30 +54,6 @@ public class LopHocDTO extends AbstractObjectDTO {
     public void settenLopHoc(String tenLopHoc) {
         this.tenLopHoc = tenLopHoc;
     }
-
-//    public String getidGiaoVien() {
-//        return idGiaoVien;
-//    }
-//
-//    public void setidGiaoVien(String idGiaoVien) {
-//        this.idGiaoVien = idGiaoVien;
-//    }
-//
-//    public String getidKhoiLop() {
-//        return idKhoiLop;
-//    }
-//
-//    public void setidKhoiLop(String idKhoiLop) {
-//        this.idKhoiLop = idKhoiLop;
-//    }
-//
-//    public String getidnamHoc() {
-//        return idnamHoc;
-//    }
-//
-//    public void setidnamHoc(String idnamHoc) {
-//        this.idnamHoc = idnamHoc;
-//    }
 
     public GiaoVienDTO getgiaoVien() {
         return giaoVien;
@@ -112,4 +86,45 @@ public class LopHocDTO extends AbstractObjectDTO {
     public void setlistHocSinh(List<HocSinhDTO> listHocSinh) {
         this.listHocSinh = listHocSinh;
     }
+    
+    /**
+     * @return the trangThaiLopHoc
+     */
+    public TrangThaiLopHoc getTrangThaiLopHoc() {
+        return trangThaiLopHoc;
+    }
+
+    /**
+     * @param trangThaiLopHoc the trangThaiLopHoc to set
+     */
+    public void setTrangThaiLopHoc(TrangThaiLopHoc trangThaiLopHoc) {
+        this.trangThaiLopHoc = trangThaiLopHoc;
+    }
+    
+    
+    public String getNextNamHoc(){
+        String namHoc = "";
+        String[] res = this.namHoc.gettenNamHoc().split("\\D");
+        int startNextYear = Integer.parseInt(res[0]) + 1;
+        int endNextYear = Integer.parseInt(res[1]) + 1;
+        return startNextYear + "-" + endNextYear;
+    }
+    
+    public String getNextKhoiLop(){
+        String khoiLop = "";
+        int nextKhoiLop = Integer.parseInt(this.khoiLop.gettenKhoiLop()) + 1;
+        return String.valueOf(nextKhoiLop);
+    }
+    
+    public void setOLaiLop(HocSinhDTO hs){
+        String maLopHoc = hs.getMaLopHoc();
+        //Tu cho nay minh se lay ra thong tin lop de luu hoc sinh o lai lop nay
+        //Logic o day se thuc hien sau
+    }
+    
+    public void addStudents(){
+        List<HocSinhDTO> listHocSinh = mongoService.getStudentsByLopHoc(this.id);
+        this.setlistHocSinh(listHocSinh);
+    }
+    
 }

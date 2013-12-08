@@ -1,4 +1,4 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="template :: header" />
@@ -9,8 +9,7 @@
             <div class="clearfix"></div>
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
-                    <tr>
-                        <th>STT</th>
+                    <tr>                        
                         <th>Tên Lớp Học</th>
                         <th>Giáo Viên</th>
                         <th>Khối Học </th>
@@ -18,10 +17,10 @@
                     </tr>
                 </thead>
                 <tbody>                       
-                    <tr  th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">
-                        <td  th:text="${stt++}"/>
-                        <td th:text="${lophoc.gettenLopHoc()}" id="tenLopHoc"/>
-                        <td th:text="${lophoc.getgiaoVien().gethoTen()}" id="giaoVien"/>
+                    <tr  th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">                        
+                        <td id="tenLopHoc"><a th:text="${lophoc.gettenLopHoc()}" th:href="@{'/staff/management/class/view/' + ${lophoc.getid()}}"></a></td>
+                        <td th:text="${lophoc.getgiaoVien().gethoTen()}" th:if="${lophoc.getgiaoVien()}" id="giaoVien"/>
+                        <td th:unless="${lophoc.getgiaoVien()}" id="giaoVien"/>
                         <td th:text="${lophoc.getkhoiLop().gettenKhoiLop()}" id="khoiLop"/>
                         <td th:text="${lophoc.getnamHoc().gettenNamHoc()}" id="namHoc"/>                        
                     </tr>

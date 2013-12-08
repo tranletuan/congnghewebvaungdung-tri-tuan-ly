@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <!--<a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>-->
+            <div class="clearfix"></div>
+            <label>Tên Lớp Học: <span th:text="${lopHoc.gettenLopHoc()}"></span></label>
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>                        
+                        <th>Mã Học Sinh</th>
+                        <th>Họ Tên</th>
+                        <th>Ngày Sinh</th>
+                        <th>Giới Tính</th>                        
+                        <th>Địa Chỉ</th>
+                        <th>Ngày Nhập Học</th>
+                        <th>Ngày Nghỉ Học</th>
+                        <th>Tác Vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">                        
+                        <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
+                        <td th:text="${hocsinh.gethoTen()}" id="hoTen"/>                        
+                        <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" th:if="${hocsinh.getngaySinh()}" id="ngaySinh"/>
+                        <td th:unless="${hocsinh.getngaySinh()}" id="ngaySinh"/>   
+                        <td th:text="${hocsinh.getgioiTinh()}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
+                        <td th:text="${hocsinh.getdiaChi()}" id="diaChi"/>
+                        <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}"   th:if="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>
+                        <td th:unless="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>   
+                        <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}"  th:if="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                        
+                        <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                                                     
+                        <td>
+                            <div class="btn-group">
+                                <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
+<!--                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
+                                <!--<a href="#" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
+                            </div>                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a th:href="@{'/staff/management/class/upgrade/'+${lopHoc.getid()}}" class="btn btn-primary float_right margin_button_bottom">Lên Lớp</a>
+            <div th:include="template :: footer"></div>
+        </div>	
+<!--          HTML for modal popup-->
+        <!-- modal content -->
+<!--        <div id='confirm'>
+                <div class='header'><span>Confirm Delete Student</span></div>
+                <div class='message'></div>
+                <div class='buttons'>
+                <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+                </div>
+        </div>-->
+        <!-- preload the images -->
+<!--        <div style='display:none'>
+                <img src='img/confirm/header.gif' alt='' />
+                <img src='img/confirm/button.gif' alt='' />
+        </div>-->
+         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
+        <script src="" th:src="@{/media/js/student.js}"></script>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            
+            /*]]>*/            
+        </script>    
+    </body>
+</html>
