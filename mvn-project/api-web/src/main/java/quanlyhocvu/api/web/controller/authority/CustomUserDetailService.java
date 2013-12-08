@@ -17,7 +17,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import quanlyhocvu.api.mongodb.DTO.Authority.RoleDTO;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
-
 /**
  *
  * @author HuuTri
@@ -26,6 +25,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
      @Autowired
      MongoService mongoService;
+
 
      @Override
      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
