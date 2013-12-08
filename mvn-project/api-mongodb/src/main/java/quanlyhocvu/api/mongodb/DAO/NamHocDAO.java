@@ -65,4 +65,9 @@ public class NamHocDAO {
         Query query = Query.query(Criteria.where("id").is(id));
         return mongoOperation.findOne(query, NamHocDTO.class);
     }
+    
+    public NamHocDTO getNamHocByName(String tenNamHoc){
+        Query query = Query.query(Criteria.where("tenNamHoc").is(tenNamHoc));
+        return mongoOperation.findOne(query, NamHocDTO.class);
+    }
 }

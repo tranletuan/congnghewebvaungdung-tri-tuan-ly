@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.mongodb.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,8 +90,19 @@ public class LopHocDAO {
         return mongoOperation.findAll(LopHocDTO.class);
     }
     
-    public LopHocDTO getLopHocById(String idLopHoc) {
-        Query query = Query.query(Criteria.where("id").is(idLopHoc));
+    public LopHocDTO getLopHocById(String id){
+        Query query = Query.query(Criteria.where("id").is(id));
         return mongoOperation.findOne(query, LopHocDTO.class);
+    }    
+    
+    public boolean addStudent(HocSinhDTO hs, String classId){
+        LopHocDTO lopHoc = getLopHocById(classId);    
+        List<HocSinhDTO> tempList = lopHoc.getlistHocSinh();
+        tempList.add(hs);
+        Query query = Query.query(Criteria.where("id").is(classId));
+        Update update = new Update();
+        update.set("listHocSinh", tempList);
+        mongoOperation.findAndModify(query, update,  LopHocDTO.class);
+        return true;
     }
 }

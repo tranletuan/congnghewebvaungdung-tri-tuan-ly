@@ -65,4 +65,10 @@ public class KhoiLopDAO {
         KhoiLopDTO obj = mongoOperation.findOne(query, KhoiLopDTO.class);
         return obj;
     }
+    
+    public KhoiLopDTO getByName(String tenKhoiLop){
+        Query query = Query.query(Criteria.where("tenKhoiLop").is(tenKhoiLop));
+        KhoiLopDTO obj = mongoOperation.findOne(query, KhoiLopDTO.class);
+        return obj;
+    }
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.service.FunctionService;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
@@ -39,7 +40,7 @@ public class ManagementStudentController {
     @RequestMapping(value = "index")
     public @ResponseBody
     ModelAndView listStudents(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();        
         List<HocSinhDTO> listHocSinh = new ArrayList<HocSinhDTO>();
         listHocSinh = mongoService.getAllStudents();
         map.put("listHocSinh", listHocSinh);
@@ -59,6 +60,8 @@ public class ManagementStudentController {
     public @ResponseBody
     ModelAndView saveStudent(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
+        //add student to class -> just Demo        
+        //LopHocDTO lopHoc = mongoService.getAllLopHoc().get(2);//Demo to add Student to Class        
         java.util.Date ex = new java.util.Date(request.getParameter("ngaySinh"));        
         HocSinhDTO obj = new HocSinhDTO();
         obj.sethoTen(request.getParameter("hoTen"));
@@ -72,8 +75,11 @@ public class ManagementStudentController {
         String ngayNhapHoc = request.getParameter("ngayNhapHoc");
         if (ngayNhapHoc != "") {
             obj.setngayNhapHoc(new java.util.Date(FunctionService.formatStringDate(ngayNhapHoc)));            
-        }                
-        boolean res = mongoService.insertStudent(obj);        
+        }    
+//        obj.setLopHoc(lopHoc);
+        //obj.setMaLopHoc(lopHoc.getid());//Demo to add Student to Class
+        boolean res = mongoService.insertStudent(obj);   
+        //mongoService.addStudent(obj, lopHoc.getid());
         map.put("message", "Đã thêm thành công 1 học sinh");
         return new ModelAndView("redirect:/staff/management/students/index", map);
     }
