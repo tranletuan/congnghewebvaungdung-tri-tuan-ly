@@ -59,6 +59,7 @@ public class ClassTeachingController {
         Map<String, Object> map = new HashMap<String, Object>();
         LopHocDTO lop = mongoService.getLopHocById(classId);
         List<HocSinhDTO> listHocSinh = lop.getlistHocSinh();
+        map.put("lopHoc", lop);
         map.put("listHocSinh", listHocSinh);
         return new ModelAndView("class", map);
     }

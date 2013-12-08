@@ -37,4 +37,8 @@ and open the template in the editor.
 .invisible{
     display: none;
 }
+
+.strong_text{
+    font-weight: bold;
+}
 /*Css for modal*/

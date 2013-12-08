@@ -38,4 +38,13 @@ public class DiemDTO extends AbstractObjectDTO {
     @DBRef
     private HocSinhDTO hocSinh;
 
+    public int getHocKy() {
+        return hocKy;
+    }
+
+    public void setHocKy(int hocKy) {
+        this.hocKy = hocKy;
+    }
+
+    private int hocKy;
 }
