@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <a th:href="@{/staff/management/teacher/add}" class="btn btn-primary float_right margin_button_bottom">Thêm Giáo Viên Mới</a>
+            <div class="clearfix"></div>
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Họ Tên</th>
+                        <th>Ngày Sinh</th>
+                        <th>Giới Tính</th>
+                        <th>Ngày Vào Làm</th>
+                        <th>Ngày Nghỉ Việc</th>
+                        <th>Địa Chỉ</th>
+                        <th>Tác Vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${staff.id()}" align="center" th:each="staff: ${liststaff}">
+                        <td th:text="${staff.manhanvien}" id="mastaff"/>
+                        <td th:text="${staff.hoTen}" id="hoTen"/>                        
+                        <td th:text="${#dates.format(staff.ngaysinh,'dd/MM/yyyy')}" th:if="${staff.ngaysinh}" id="ngaySinh"/>
+                        <td th:unless="${staff.ngaysinh}" id="ngaySinh"/>                         
+                        <td th:text="${staff.gioiTinh}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
+                        <td th:text="${#dates.format(staff.ngayVaoLam,'dd/MM/yyyy')}" th:if="${staff.ngayVaoLam}" id="ngayVaoLam"/>
+                        <td th:unless="${staff.ngayVaoLam}" id="ngayVaoLam"/>
+                        <td th:text="${#dates.format(staff.ngayNghiViec,'dd/MM/yyyy')}" th:if="${staff.ngayNghiViec}" id="ngayNghiViec"/>
+                        <td th:unless="${staff.ngayNghiViec}" id="ngayNghiViec"/>
+                        <td th:text="${staff.diaChi}" id="diaChi"/>
+                        <td>
+                            <a th:href="@{'/admin/management/staff/edit/'+${staff.manhanvien}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="template :: footer"></div>
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>
