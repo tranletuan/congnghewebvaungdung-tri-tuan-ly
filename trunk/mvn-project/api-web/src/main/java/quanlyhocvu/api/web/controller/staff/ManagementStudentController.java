@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.service.FunctionService;
 import quanlyhocvu.api.mongodb.service.MongoService;
@@ -136,4 +137,36 @@ public class ManagementStudentController {
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }      
     
+    @RequestMapping(value="xeplop")
+    public @ResponseBody
+    ModelAndView xeplopHocSinh(HttpServletRequest request){
+        Map<String, Object> map = new HashMap<String, Object>();        
+        xepHocSinhVaoLopHoc();
+        map.put("message", "Đã xếp lớp thành công cho tất cả học sinh mới");
+        return new ModelAndView("redirect:/staff/management/students/index",map);
+    }
+    
+    public void xepHocSinhVaoLopHoc(){
+        List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLop();
+        KhoiLopDTO khoiLop = mongoService.getKhoiLopByName("6");
+        List<LopHocDTO> listLopHoc = mongoService.getLopHocTheoKhoiLop(khoiLop.getid());          
+        int count = 0;        
+        for (int i = 0; i < listHocSinh.size(); i++) {
+            if (listLopHoc.size() == 0) {
+                System.out.println("Khong con co lop nao trong de them Hoc Sinh Vao");
+                break;
+            }
+            
+            if (count >= listLopHoc.size()) {
+                count = 0;
+            }
+            if (listLopHoc.get(count).getlistHocSinh().size() < FunctionService.SoHocSinhToiDaMotLop) {
+                mongoService.addStudent(listHocSinh.get(i), listLopHoc.get(count).getid());
+            }else{
+                listLopHoc.remove(listLopHoc.get(count));
+            }            
+            count++;
+        }
+    }
+            
 }

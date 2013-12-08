@@ -33,6 +33,7 @@ public class LopHocDTO extends AbstractObjectDTO {
     private List<HocSinhDTO> listHocSinh;
     
     private TrangThaiLopHoc trangThaiLopHoc;    
+        
     
     public enum TrangThaiLopHoc{
         ChuaLenLop,

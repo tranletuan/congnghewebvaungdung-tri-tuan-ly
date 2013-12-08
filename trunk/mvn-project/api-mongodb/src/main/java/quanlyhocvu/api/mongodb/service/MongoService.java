@@ -313,6 +313,10 @@ public class MongoService {
         System.out.println("Mongo Service");
         return lophocDAO.addStudent(hs, id);
     }
+    
+    public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop){
+        return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
+    }
     //</editor-fold>    
 
     //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
@@ -346,6 +350,10 @@ public class MongoService {
 
     public List<HocSinhDTO> getStudentsByLopHoc(String maLopHoc) {
         return hocsinhDAO.getByLopHoc(maLopHoc);
+    }
+    
+    public List<HocSinhDTO> getHocSinhChuaXepLop(){
+        return hocsinhDAO.getHocSinhChuaXepLop();
     }
     //</editor-fold>
 
