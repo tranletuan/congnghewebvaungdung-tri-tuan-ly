@@ -35,7 +35,7 @@ public class MarksController {
     @RequestMapping(value = "{studentId}")
     public @ResponseBody
     ModelAndView marks(@PathVariable String studentId, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         HocSinhDTO hocSinh = mongoService.getHocSinhById(studentId);
         
         map.put("hocSinh", hocSinh);
