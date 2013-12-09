@@ -20,18 +20,18 @@ public class ChiTietDiemDTO extends AbstractObjectDTO{
     @DBRef
     private DiemDTO diem;
     
-    private float ktmieng_1;
-    private float ktmieng_2;
-    private float ktmieng_3;
+    private float ktmieng_1 = -1;
+    private float ktmieng_2 = -1;
+    private float ktmieng_3 = -1;
     
-    private float kt15_1;
-    private float kt15_2;
-    private float kt15_3;
+    private float kt15_1 = -1;
+    private float kt15_2 = -1;
+    private float kt15_3 = -1;
     
-    private float kt1tiet_1;
-    private float kt1tiet_2;
+    private float kt1tiet_1 = -1;
+    private float kt1tiet_2 = -1;
     
-    private float diemTB;
+    private float diemTB = -1;
 
     public DiemDTO getDiem() {
         return diem;

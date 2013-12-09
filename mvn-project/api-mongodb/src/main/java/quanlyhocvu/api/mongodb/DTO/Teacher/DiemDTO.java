@@ -47,4 +47,6 @@ public class DiemDTO extends AbstractObjectDTO {
     }
 
     private int hocKy;
+    
+    
 }

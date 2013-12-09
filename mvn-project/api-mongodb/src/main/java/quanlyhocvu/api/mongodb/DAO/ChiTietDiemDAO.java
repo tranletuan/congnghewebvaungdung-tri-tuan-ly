@@ -6,6 +6,7 @@
 
 package quanlyhocvu.api.mongodb.DAO;
 
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +57,8 @@ public class ChiTietDiemDAO {
         return true;
     }
     
+    public ChiTietDiemDTO getChiTietDiemByIdDiem(String idDiem) {
+        Query query = Query.query(Criteria.where("diem.$id").is(new ObjectId(idDiem)));
+        return mongoOperation.findOne(query, ChiTietDiemDTO.class);
+    }
 }

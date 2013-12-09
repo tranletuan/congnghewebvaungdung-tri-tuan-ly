@@ -10,25 +10,23 @@
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
                     <tr>                        
-                        <th>Mã Học Sinh</th>
-                        <th>Tên Học Sinh</th>
-                        <th>Ngày Sinh</th>
-                        <th>Số Ngày Nghỉ Học</th>
-                        <th>Điểm</th>
+                        <th>Lớp Học</th>
+                        <th>Môn Học</th>
+                        <th>Khối Lớp</th>
+                        <th>Chấm Điểm</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">                        
-                        <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
-                        <td th:text="${hocsinh.gettenHocSinh()}" id="tenHocSinh"/>
-                        <td th:text="${hocsinh.getngaySinh()}" id="ngaySinh"/>
-                        <td th:text="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>
+                    <tr th:id="${phancong.getid()}" align="center" th:each="phancong: ${listPhanCong}">                        
+                        <td th:text="${phancong.getLopHoc().gettenLopHoc()}"/>
+                        <td th:text="${phancong.getChiTietChuyenMon().getChiTietMonHoc().getMonHoc().gettenMonHoc()}"/>
+                        <td th:text="${phancong.getChiTietChuyenMon().getChiTietMonHoc().getKhoiLop().gettenKhoiLop()}"/>
                         <td>
-                            <a th:href="@{'/teacher/classteaching/'+ ${phancong.getLopHoc().getid()}}" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
+                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()}}" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
                         </td>
                     </tr>
                 </tbody>
-            </table>-->
+            </table>
             <div th:include="template :: footer"></div>
         </div>	
 <!--          HTML for modal popup-->
@@ -45,8 +43,9 @@
                 <img src='img/confirm/header.gif' alt='' />
                 <img src='img/confirm/button.gif' alt='' />
         </div>
-         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
+        <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
         <script src="" th:src="@{/media/js/teacher_module/class.js}"></script>
+
         <script th:inline="javascript">
             /*<![CDATA[*/
             

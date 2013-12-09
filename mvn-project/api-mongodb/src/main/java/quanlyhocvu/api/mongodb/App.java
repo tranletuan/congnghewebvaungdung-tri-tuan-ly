@@ -1,8 +1,12 @@
 package quanlyhocvu.api.mongodb;
 
+import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import quanlyhocvu.api.mongodb.DAO.StaffDAO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
+import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
@@ -11,9 +15,26 @@ class App {
     public static void main(String[] args) {
 
         ApplicationContext ctx = new GenericXmlApplicationContext(
-                "noSqlApplicationContext.xml", "aopApplicationContext.xml");
+//                "aopApplicationContext.xml",
+                "noSqlApplicationContext.xml");
         MongoService mongoService = (MongoService) ctx.getBean("mongoService");
         
+//        PhanCongDTO pc = mongoService.getPhanCongById("52a37e9fa5d4a39519ae6a4e");
+//        List<HocSinhDTO> l = mongoService.getAllStudents();
+//        for(int i = 0; i < l.size(); i++) {
+//            DiemDTO diem = new DiemDTO();
+//            diem.setHocKy(1);
+//            diem.setHocSinh(l.get(i));
+//            diem.setPhanCong(pc);
+//            mongoService.insertDiem(diem);
+//        }
+//        List<DiemDTO> l = mongoService.getAllDiem();
+//        for(int  i = 0; i < l.size();i++) {
+//            
+//            mongoService.deleteDiem(l.get(i));
+//        }
+        DiemDTO diem = mongoService.getDiemByTwoId("52a37e9fa5d4a39519ae6a4e", "52a065d244aec97c67db9491");
+        System.out.println(diem.getHocKy());
         //mongoService.generateAllUser();
         //mongoService.getAuthorityDAO().insertUserAccount("admin", "admin", null, Authorities.ADMIN);
 //        List<HocSinhDTO> hs = mongoService.getAllStudents();
