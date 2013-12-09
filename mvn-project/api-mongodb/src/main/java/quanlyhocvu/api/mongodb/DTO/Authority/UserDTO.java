@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quanlyhocvu.api.mongodb.DTO.Authority;
 
 import java.util.ArrayList;
@@ -18,8 +17,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class UserDTO {
-     @Indexed(unique=true)
-     private String username; 
+
+     @Indexed(unique = true)
+     private String username;
      private boolean enabled;
      private boolean nonlocked;
      private String password;
@@ -28,14 +28,19 @@ public class UserDTO {
      private List<RoleDTO> roles;
 
      public UserDTO(String username, String password, String userId) {
+          this.Initialize(username, password, userId);
+     }
+
+     public final void Initialize(String username, String password, String userId) {
           this.username = username;
           this.userId = userId;
           this.password = password;
           this.roles = new ArrayList<>();
           this.enabled = true;
           this.nonlocked = true;
+          this.roles = new ArrayList<>();
      }
-     
+
      public String getUsername() {
           return username;
      }
@@ -51,7 +56,7 @@ public class UserDTO {
      public void setPassword(String password, boolean md5) {
           this.password = password;
      }
-     
+
      public void setPassword(String password) {
           this.password = password;
      }

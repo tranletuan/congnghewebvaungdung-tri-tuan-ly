@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quanlyhocvu.api.web.controller.admin;
 
 import java.util.HashMap;
@@ -25,51 +24,91 @@ import quanlyhocvu.api.mongodb.service.MongoService;
  * @author HuuTri
  */
 @Controller
-@RequestMapping(value="management/staff")
+@RequestMapping(value = "management/staff")
 public class ManagementStaffController {
+
      @Autowired
      MongoService mongoService;
-     
-     @RequestMapping(value="index")
-     public @ResponseBody 
+
+     @RequestMapping(value = "index")
+     public @ResponseBody
      ModelAndView index(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
-          List<StaffDTO> staffs  = mongoService.getAllStaff();
+          List<StaffDTO> staffs = mongoService.getAllStaff();
           model.put("staffs", staffs);
           return new ModelAndView("management/staff/index", model);
      }
-     
-     @RequestMapping(value="add")
+
+     @RequestMapping(value = "add")
      public @ResponseBody
      ModelAndView add(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
-          
+
           return new ModelAndView("management/staff/add", model);
      }
-     
-    @RequestMapping(value="save")
-    public @ResponseBody
-    ModelAndView teacherSave(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<>();
-        StaffDTO obj = new StaffDTO(
-                    request.getParameter("manhanvien"),
-                    request.getParameter("hoTen"),                
-                    Integer.parseInt(request.getParameter("gioiTinh")),
-                    new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngaySinh"))),                               
-                    request.getParameter("diaChi"),
-                    new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngayVaoLam")))
-                );
-        mongoService.insertStaff(obj);
-        map.put("message", "Đã thêm thành công 1 nhân viên");
-        return new ModelAndView("redirect:/admin/management/staff/index", map);
-    }
-    
-    @RequestMapping(value = "edit/{staffId}")
-    public @ResponseBody
-    ModelAndView editStaff(@PathVariable String staffId, HttpServletRequest request){
-        Map<String,Object> map = new HashMap<>();
-        StaffDTO obj = mongoService.getStaffById(staffId);
-        map.put("staff", obj);
-        return new ModelAndView("management/staff/edit", map);
-    }
+
+     @RequestMapping(value = "save")
+     public @ResponseBody
+     ModelAndView teacherSave(HttpServletRequest request) {
+          Map<String, Object> map = new HashMap<>();
+          StaffDTO obj = new StaffDTO(
+                  request.getParameter("manhanvien"),
+                  request.getParameter("hoTen"),
+                  Integer.parseInt(request.getParameter("gioiTinh")),
+                  new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngaySinh"))),
+                  request.getParameter("diaChi"),
+                  new java.util.Date(FunctionService.formatStringDate(request.getParameter("ngayVaoLam")))
+          );
+          try {
+               mongoService.insertStaff(obj);
+               map.put("message", "Đã thêm thành công 1 nhân viên");
+               return new ModelAndView("redirect:/admin/management/staff/index", map);
+          } catch (Exception ex) {
+               map.put("message", ex.getMessage());
+               return new ModelAndView("management/staff/add", map);
+          }
+     }
+
+     @RequestMapping(value = "edit/{manhanvien}")
+     public @ResponseBody
+     ModelAndView editStaff(@PathVariable String manhanvien, HttpServletRequest request) {
+          Map<String, Object> map = new HashMap<>();
+          StaffDTO obj = mongoService.getStaffById(manhanvien);
+          map.put("staff", obj);
+          return new ModelAndView("management/staff/edit", map);
+     }
+
+     @RequestMapping(value = "update/{manhanvien}")
+     public @ResponseBody
+     ModelAndView updateTeacher(@PathVariable String manhanvien, HttpServletRequest request) {
+          Map<String, Object> map = new HashMap<>();
+          StaffDTO obj = mongoService.getStaffById(manhanvien);
+          obj.setManhanvien(request.getParameter("manhanvien"));
+          obj.sethoTen(request.getParameter("hoTen"));
+          obj.setdiaChi(request.getParameter("diaChi"));
+          obj.setgioiTinh(Integer.parseInt(request.getParameter("gioiTinh")));
+          String ngaySinh = request.getParameter("ngaySinh");
+          if (!"".equals(ngaySinh)) {
+               obj.setngaySinh(new java.util.Date(FunctionService.formatStringDate(ngaySinh)));
+          }
+
+          String ngayVaoLam = request.getParameter("ngayVaoLam");
+          if (!"".equals(ngayVaoLam)) {
+               obj.setngayVaoLam(new java.util.Date(FunctionService.formatStringDate(ngayVaoLam)));
+          }
+
+          String ngayNghiViec = request.getParameter("ngayNghiViec");
+          if (!"".equals(ngayNghiViec)) {
+               obj.setngayNghiViec(new java.util.Date(FunctionService.formatStringDate(ngayNghiViec)));
+          }
+
+          try {
+               mongoService.updateStaff(obj);
+               return new ModelAndView("redirect:/admin/management/staff/index", map);
+          } catch (Exception ex) {
+               map.put("message", ex.getMessage());
+               return new ModelAndView("management/staff/add", map);
+          }
+     }
 }
+

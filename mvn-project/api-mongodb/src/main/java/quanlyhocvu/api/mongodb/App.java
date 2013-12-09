@@ -1,35 +1,29 @@
 package quanlyhocvu.api.mongodb;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import quanlyhocvu.api.mongodb.DAO.StaffDAO;
+import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
-import quanlyhocvu.api.mongodb.DTO.Teacher.*;
-import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
-import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
-import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
-import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
-import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 
 class App {
 
     public static void main(String[] args) {
 
         ApplicationContext ctx = new GenericXmlApplicationContext(
-                "noSqlApplicationContext.xml");
+                "noSqlApplicationContext.xml", "aopApplicationContext.xml");
         MongoService mongoService = (MongoService) ctx.getBean("mongoService");
         
-        List<HocSinhDTO> hs = mongoService.getAllStudents();
-        LopHocDTO lop = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
-        lop.setlistHocSinh(hs);
-        mongoService.updateLopHoc(lop);
-        
-        LopHocDTO lop1 = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
-        System.out.println(lop1.gettenLopHoc());
-        System.out.println(lop1.getlistHocSinh().size());
+        //mongoService.generateAllUser();
+        //mongoService.getAuthorityDAO().insertUserAccount("admin", "admin", null, Authorities.ADMIN);
+//        List<HocSinhDTO> hs = mongoService.getAllStudents();
+//        LopHocDTO lop = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
+//        lop.setlistHocSinh(hs);
+//        mongoService.updateLopHoc(lop);
+//        
+//        LopHocDTO lop1 = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
+//        System.out.println(lop1.gettenLopHoc());
+//        System.out.println(lop1.getlistHocSinh().size());
 //        List<HocSinhDTO> hs = mongoService.getAllStudents();
 //        LopHocDTO lop = mongoService.getLopHocById("52a1429344ae1dabcd60b2bc");
 //        lop.setlistHocSinh(hs);

@@ -38,8 +38,8 @@ public class StaffDTO extends AbstractStaffDTO {
           this.gioiTinh = gioiTinh;
      }
 
-     public StaffDTO(String id) {
-          this.id = id;
+     public StaffDTO(String manhanvien) {
+          this.manhanvien = manhanvien;
      }
      
      public StaffDTO() {}
