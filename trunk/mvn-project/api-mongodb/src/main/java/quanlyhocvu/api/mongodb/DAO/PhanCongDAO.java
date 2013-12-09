@@ -57,4 +57,9 @@ public class PhanCongDAO {
         Query query = Query.query(Criteria.where("chiTietChuyenMon.$id").is(new ObjectId(idChiTietChuyenMon)));
         return mongoOperation.find(query, PhanCongDTO.class);
     }
+    
+    public PhanCongDTO getPhanCongById(String idPhanCong) {
+        Query query = Query.query(Criteria.where("id").is(idPhanCong));
+        return mongoOperation.findOne(query, PhanCongDTO.class);
+    }
 }

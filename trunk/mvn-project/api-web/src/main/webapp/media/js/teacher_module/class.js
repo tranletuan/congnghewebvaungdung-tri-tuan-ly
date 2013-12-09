@@ -7,6 +7,5 @@ var table;
 $(document).ready(function(){
     table = $("#table");
     table.dataTable({"bJQueryUI": true});
-    COMMOM.activeMenu("quanly_nav");
+    COMMON.activeMenu("quanly_nav");
 })
-

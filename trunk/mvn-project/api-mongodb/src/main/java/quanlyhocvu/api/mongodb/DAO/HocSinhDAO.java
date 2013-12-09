@@ -79,8 +79,9 @@ public class HocSinhDAO {
     }
     
     public HocSinhDTO getBymaHocSinh(String maHocSinh){
+        
         Query query = Query.query(Criteria.where("maHocSinh").is(maHocSinh));
-        HocSinhDTO obj = mongoOperations.find(query, HocSinhDTO.class).get(0);    
+        HocSinhDTO obj = mongoOperations.findOne(query, HocSinhDTO.class);
         return obj;
     }
     
@@ -90,10 +91,14 @@ public class HocSinhDAO {
         
     }
     
+    public HocSinhDTO getHocSinhById(String idHocSinh) {
+        Query query = Query.query(Criteria.where("id").is(idHocSinh));
+        return mongoOperations.findOne(query, HocSinhDTO.class);
+    }
+    
     public List<HocSinhDTO> getHocSinhChuaXepLop(){
         Query query = Query.query(Criteria.where("maLopHoc").is(null));
         return mongoOperations.find(query, HocSinhDTO.class);
     }
-    
     
 }

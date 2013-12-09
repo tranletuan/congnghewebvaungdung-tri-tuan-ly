@@ -9,6 +9,6 @@
                
            
     <beans:import resource="classpath:noSqlApplicationContext.xml"/>
-    <beans:import resource="classpath:aopApplicationContext.xml"/>
+    <!--<beans:import resource="classpath:aopApplicationContext.xml"/>-->
     <beans:bean name="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService"/>              
 </beans:beans>

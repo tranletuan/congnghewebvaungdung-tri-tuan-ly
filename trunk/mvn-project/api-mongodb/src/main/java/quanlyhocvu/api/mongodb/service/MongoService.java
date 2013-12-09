@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.AuthorityDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietChuyenMonDAO;
+import quanlyhocvu.api.mongodb.DAO.ChiTietDiemDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietMonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.DiemDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
@@ -20,6 +21,7 @@ import quanlyhocvu.api.mongodb.DAO.PhanCongDAO;
 import quanlyhocvu.api.mongodb.DAO.StaffDAO;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietChuyenMonDTO;
+import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietDiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietMonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
@@ -75,6 +77,9 @@ public class MongoService {
      @Autowired
      private StaffDAO staffDAO;
 
+     @Autowired 
+     private ChiTietDiemDAO chitietdiemDAO;
+     
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
      //</editor-fold>
@@ -304,13 +309,18 @@ public class MongoService {
      }
 
      public boolean addStudent(HocSinhDTO hs, String id) {
-          System.out.println("Mongo Service");
           return lophocDAO.addStudent(hs, id);
      }
+    
+    public boolean updateLopHoc(LopHocDTO dto) {
+        return lophocDAO.update(dto);
+    }
     
     public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop){
         return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
     }
+    
+    
     //</editor-fold>    
 
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
@@ -338,7 +348,6 @@ public class MongoService {
      }
 
      public HocSinhDTO getStudentByMaHS(String maHocSinh) {
-          System.out.println("Eo");
           return hocsinhDAO.getBymaHocSinh(maHocSinh);
      }
 
@@ -346,37 +355,60 @@ public class MongoService {
           return hocsinhDAO.getByLopHoc(maLopHoc);
      }
     
+    public HocSinhDTO getHocSinhById(String idStudent) {
+        return hocsinhDAO.getHocSinhById(idStudent);
+    }
+    
     public List<HocSinhDTO> getHocSinhChuaXepLop(){
         return hocsinhDAO.getHocSinhChuaXepLop();
     }
     
-    public HocSinhDTO getHocSinhById(String studentId) {
-         return hocsinhDAO.getHocSinhByID(studentId).get(0);
-    }
     //</editor-fold>
 
      //<editor-fold defaultstate="collapsed" desc="Function for MARK">
-     public List<DiemDTO> getAllMark() {
+     public List<DiemDTO> getAllDiem() {
           return diemDAO.getAllDiem();
      }
 
-     public boolean insertMark(DiemDTO dto) {
+     public boolean insertDiem(DiemDTO dto) {
           return diemDAO.insert(dto);
      }
 
-     public boolean deleteMark(DiemDTO dto) {
+     public boolean deleteDiem(DiemDTO dto) {
           return diemDAO.delete(dto);
      }
 
-     public boolean updateMark(DiemDTO dto) {
+     public boolean updateDiem(DiemDTO dto) {
           return diemDAO.updateDiem(dto);
      }
 
-     public List<DiemDTO> getMarkByStudentID(String idStudent) {
-          return diemDAO.getDiemByMaHs(idStudent);
+     public List<DiemDTO> getDiemByStudentId(String idStudent) {
+          return diemDAO.getDiemByIdHocSinh(idStudent);
+     }
+     
+     public DiemDTO getDiemByTwoId(String idPhanCong, String idStudent) {
+         return diemDAO.getDiemByTwoId(idPhanCong, idStudent);
      }
 //</editor-fold>
 
+     //<editor-fold defaultstate="collapsed" desc="CHI TIET DIEM">
+     public boolean insertChiTietDiem(ChiTietDiemDTO dto) {
+         return chitietdiemDAO.insert(dto);
+     }
+     
+     public boolean deleteChiTietDiem(ChiTietDiemDTO dto) {
+         return chitietdiemDAO.delete(dto);
+     }
+     
+     public boolean updateChiTietDiem(ChiTietDiemDTO dto) {
+         return chitietdiemDAO.update(dto);
+     }
+     
+     public ChiTietDiemDTO getChiTietDiemByIdDiem(String idDiem) {
+         return chitietdiemDAO.getChiTietDiemByIdDiem(idDiem);
+     }
+//</editor-fold>
+     
      //<editor-fold defaultstate="collapsed" desc="PHAN CONG">
      public List<PhanCongDTO> getAllPhanCong() {
           return phancongDAO.getAllList();
@@ -396,6 +428,10 @@ public class MongoService {
 
      public boolean updatePhanCong(PhanCongDTO dto) {
           return phancongDAO.update(dto);
+     }
+     
+     public PhanCongDTO getPhanCongById(String idPhanCong) {
+         return phancongDAO.getPhanCongById(idPhanCong);
      }
 //</editor-fold>
 
@@ -461,6 +497,7 @@ public class MongoService {
           authorityDAO.generateAllUser();
      }
 //</editor-fold>   
+     
      //<editor-fold defaultstate="collapsed" desc="Function for Staff">
      public StaffDTO getStaffById(String manhanvien) {
           return staffDAO.getStaffById(manhanvien);

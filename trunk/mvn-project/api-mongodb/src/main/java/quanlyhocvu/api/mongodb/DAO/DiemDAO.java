@@ -51,12 +51,19 @@ public class DiemDAO {
         return true;
     }
 
-    public List<DiemDTO> getDiemByMaHs(String id){
+    public List<DiemDTO> getDiemByIdHocSinh(String id) {
         Query query = Query.query(Criteria.where("hocSinh.$id").is(new ObjectId(id)));
         return mongoOperation.find(query, DiemDTO.class);
     }
-    
+
     public List<DiemDTO> getAllDiem() {
         return mongoOperation.findAll(DiemDTO.class);
+    }
+
+    public DiemDTO getDiemByTwoId(String idPhanCong, String idStudent) {
+        Query query = Query.query(Criteria.where("hocSinh.$id").is(new ObjectId(idStudent))
+                .andOperator(Criteria.where("phanCong.$id").is(new ObjectId(idPhanCong))));
+        
+        return mongoOperation.findOne(query, DiemDTO.class);
     }
 }

@@ -111,4 +111,6 @@ public class LopHocDAO {
         Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)));
         return mongoOperation.find(query, LopHocDTO.class);
     }
+    
+   
 }
