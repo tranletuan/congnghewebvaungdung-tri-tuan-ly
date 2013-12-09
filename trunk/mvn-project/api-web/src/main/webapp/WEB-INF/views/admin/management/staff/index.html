@@ -23,15 +23,15 @@
                 <tbody>
                     <tr th:id="${staff.getid()}" align="center" th:each="staff: ${staffs}">
                         <td th:text="${staff.manhanvien}" id="mastaff"/>
-                        <td th:text="${staff.hoTen}" id="hoTen"/>                        
-                        <td th:text="${#dates.format(staff.ngaySinh,'dd/MM/yyyy')}" th:if="${staff.ngaySinh}" id="ngaySinh"/>
-                        <td th:unless="${staff.ngaySinh}" id="ngaySinh"/>                         
-                        <td th:text="${staff.gioiTinh}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
-                        <td th:text="${#dates.format(staff.ngayVaoLam,'dd/MM/yyyy')}" th:if="${staff.ngayVaoLam}" id="ngayVaoLam"/>
-                        <td th:unless="${staff.ngayVaoLam}" id="ngayVaoLam"/>
-                        <td th:text="${#dates.format(staff.ngayNghiViec,'dd/MM/yyyy')}" th:if="${staff.ngayNghiViec}" id="ngayNghiViec"/>
-                        <td th:unless="${staff.ngayNghiViec}" id="ngayNghiViec"/>
-                        <td th:text="${staff.diaChi}" id="diaChi"/>
+                        <td th:text="${staff.gethoTen()}" id="hoTen"/>                        
+                        <td th:text="${#dates.format(staff.getngaySinh(),'dd/MM/yyyy')}" th:if="${staff.getngaySinh()}" id="ngaySinh"/>
+                        <td th:unless="${staff.getngaySinh()}" id="ngaySinh"/>                         
+                        <td th:text="${staff.getgioiTinh()}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
+                        <td th:text="${#dates.format(staff.getngayVaoLam(),'dd/MM/yyyy')}" th:if="${staff.getngayVaoLam()}" id="ngayVaoLam"/>
+                        <td th:unless="${staff.getngayVaoLam()}" id="ngayVaoLam"/>
+                        <td th:text="${#dates.format(staff.getngayNghiViec(),'dd/MM/yyyy')}" th:if="${staff.getngayNghiViec()}" id="ngayNghiViec"/>
+                        <td th:unless="${staff.getngayNghiViec()}" id="ngayNghiViec"/>
+                        <td th:text="${staff.getdiaChi()}" id="diaChi"/>
                         <td>
                             <a th:href="@{'/admin/management/staff/edit/'+${staff.manhanvien}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
                         </td>

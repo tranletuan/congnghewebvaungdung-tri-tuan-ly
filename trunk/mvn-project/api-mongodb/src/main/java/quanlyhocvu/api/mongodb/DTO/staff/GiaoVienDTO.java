@@ -6,6 +6,7 @@
 package quanlyhocvu.api.mongodb.DTO.staff;
 
 import java.util.Date;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class GiaoVienDTO extends AbstractStaffDTO {
 
+    @Indexed(unique = true)
     private String maGiaoVien;
 
     public GiaoVienDTO() {}
@@ -27,7 +29,8 @@ public class GiaoVienDTO extends AbstractStaffDTO {
         this.ngaySinh = ngaySinh;
         this.ngayVaoLam = ngayVaoLam;
         this.diaChi = diaChi;
-        this.gioiTinh = gioiTinh;        
+        this.gioiTinh = gioiTinh;     
+        
     }
     
     public String getmaGiaoVien() {

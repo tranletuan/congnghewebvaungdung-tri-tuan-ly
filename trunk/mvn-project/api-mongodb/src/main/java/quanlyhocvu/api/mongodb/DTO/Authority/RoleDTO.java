@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class RoleDTO {
+
      @Id
      private String id;
      private String rolename;
@@ -23,14 +24,6 @@ public class RoleDTO {
      public RoleDTO(String rolename, String roleDescription) {
           this.rolename = rolename;
           this.roleDescription = roleDescription;
-     }
-
-     public String getId() {
-          return id;
-     }
-
-     public void setId(String id) {
-          this.id = id;
      }
 
      public String getRolename() {
@@ -47,5 +40,13 @@ public class RoleDTO {
 
      public void setRoleDescription(String roleDescription) {
           this.roleDescription = roleDescription;
+     }
+
+     public String getId() {
+          return id;
+     }
+
+     public void setId(String id) {
+          this.id = id;
      }
 }
