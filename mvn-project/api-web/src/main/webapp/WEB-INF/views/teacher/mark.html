@@ -8,54 +8,59 @@
             <div th:substituteby="template :: nav" />   
             <!--<a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>-->
             <div class="clearfix"></div>
-            
+
             <label>
                 Mã Học Sinh: <span class="strong_text" th:text="${hocSinh.getmaHocSinh()}"/>
             </label>
             <label>
                 Tên Học Sinh: <span class="strong_text" th:text="${hocSinh.gethoTen()}"/>
             </label>
-            
+
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
                     <tr>
-                        <th colspan="9" class="border_table">Học kỳ: <span class="strong_text" th:text="${diem.getHocKy()}"/></th>           
+                        <th colspan="11" class="border_table">Học kỳ: <span class="strong_text" th:text="${diem.getHocKy()}"/></th>           
                     </tr>
                     <tr>
                         <th colspan="3" class="border_table">Kiểm tra miệng</th>                        
-                        <th colspan="3" class="border_table">Kiểm tra 15</th>
-                        <th colspan="2" class="border_table">Kiểm tra 1 TIẾT</th>
-                        <th rowspan="2" class="border_table">Điểm</th>
+                        <th colspan="3" class="border_table">Kiểm tra 15 phút</th>
+                        <th colspan="2" class="border_table">Kiểm tra 1 tiết</th>
+                        <th rowspan="2" class="border_table">Giữa kỳ</th>
+                        <th rowspan="2" class="border_table">Cuối kỳ</th>
+                        <th rowspan="2" class="border_table">Điểm TB </th>
                     </tr>                        
                     <tr>                                           
-                        <th>Cột 1</th>
-                        <th>Cột 2</th>
-                        <th>Cột 3</th>                                        
-                        <th>Cột 1</th>
-                        <th>Cột 2</th>
-                        <th>Cột 3</th>                    
-                        <th>Cột 1</th>
-                        <th>Cột 2</th>
-                    </tr>                    
+                        <th class="border_table">Cột 1</th>
+                        <th class="border_table">Cột 2</th>
+                        <th class="border_table">Cột 3</th>                                        
+                        <th class="border_table">Cột 1</th>
+                        <th class="border_table">Cột 2</th>
+                        <th class="border_table">Cột 3</th>                    
+                        <th class="border_table">Cột 1</th>
+                        <th class="border_table">Cột 2</th>
+                    </tr>  
+                    
                 </thead>
                 <tbody>
-<!--                    <tr>
                         
-                    </tr>-->
+                    <tr th:object="${chiTietDiem}" align="center" class="border_table">
+                        <th th:text="*{ktmieng_1} > -1? *{ktmieng_1} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{ktmieng_2} > -1? *{ktmieng_2} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{ktmieng_3} > -1? *{ktmieng_3} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{kt15_1} > -1? *{kt15_1} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{kt15_2} > -1? *{kt15_2} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{kt15_3} > -1? *{kt15_3} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{kt1tiet_1} > -1? *{kt1tiet_1} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{kt1tiet_2} > -1? *{kt1tiet_2} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{diemGiuaKy} > -1? *{diemGiuaKy} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{diemCuoiKy} > -1? *{diemCuoiKy} : ${'chưa có'}" class="border_table"/>
+                        <th th:text="*{diemTB} > -1? *{diemTB} : ${'chưa có'}" class="border_table"/>
+                    </tr>
                 </tbody>
             </table>
             <div th:include="template :: footer"></div>
         </div>	
-        <!--          HTML for modal popup-->
-        <!-- modal content -->
-        <!--        <div id='confirm'>
-                        <div class='header'><span>Confirm Delete Student</span></div>
-                        <div class='message'></div>
-                        <div class='buttons'>
-                        <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
-                        </div>
-                </div>-->
-        <!-- preload the images -->
+
         <div style='display:none'>
             <img src='img/confirm/header.gif' alt='' />
             <img src='img/confirm/button.gif' alt='' />
@@ -63,9 +68,7 @@
         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
         <script src="" th:src="@{/media/js/teacher_module/mark.js}"></script>
         <script th:inline="javascript">
-            /*<![CDATA[*/
 
-            /*]]>*/
         </script>    
     </body>
 </html>

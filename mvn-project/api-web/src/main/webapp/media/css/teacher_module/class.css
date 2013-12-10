@@ -11,3 +11,8 @@ and open the template in the editor.
 .border_table {
     border: solid 1px black;
 }
+
+.font_mark {
+  direction: inherit;
+  font: italic;
+}
