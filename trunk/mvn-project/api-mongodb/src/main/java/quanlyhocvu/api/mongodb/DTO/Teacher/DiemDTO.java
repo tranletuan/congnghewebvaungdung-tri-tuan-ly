@@ -23,20 +23,10 @@ public class DiemDTO extends AbstractObjectDTO {
         this.phanCong = phanCong;
     }
 
-    public HocSinhDTO getHocSinh() {
-        return hocSinh;
-    }
-
-    public void setHocSinh(HocSinhDTO hocSinh) {
-        this.hocSinh = hocSinh;
-    }
-
-
+   
     @DBRef
     private PhanCongDTO phanCong;
     
-    @DBRef
-    private HocSinhDTO hocSinh;
 
     public int getHocKy() {
         return hocKy;

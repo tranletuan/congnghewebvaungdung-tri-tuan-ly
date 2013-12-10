@@ -320,6 +320,9 @@ public class MongoService {
         return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
     }
     
+    public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
+        return lophocDAO.getHocSinhById(dto, idHocSinh);
+    }
     
     //</editor-fold>    
 
@@ -382,13 +385,10 @@ public class MongoService {
           return diemDAO.updateDiem(dto);
      }
 
-     public List<DiemDTO> getDiemByStudentId(String idStudent) {
-          return diemDAO.getDiemByIdHocSinh(idStudent);
+     public DiemDTO getDiemByIdPhanCong(String idPhanCong) {
+         return diemDAO.getDiemByIdPhanCong(idPhanCong);
      }
-     
-     public DiemDTO getDiemByTwoId(String idPhanCong, String idStudent) {
-         return diemDAO.getDiemByTwoId(idPhanCong, idStudent);
-     }
+   
 //</editor-fold>
 
      //<editor-fold defaultstate="collapsed" desc="CHI TIET DIEM">

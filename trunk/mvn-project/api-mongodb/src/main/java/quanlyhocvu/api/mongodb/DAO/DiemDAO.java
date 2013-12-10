@@ -44,26 +44,19 @@ public class DiemDAO {
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
         update.set("phanCong", dto.getPhanCong().getid());
-        update.set("hocSinh", dto.getHocSinh().getid());
         update.set("hocKy", dto.getHocKy());
 
         mongoOperation.findAndModify(query, update, DiemDTO.class);
         return true;
     }
 
-    public List<DiemDTO> getDiemByIdHocSinh(String id) {
-        Query query = Query.query(Criteria.where("hocSinh.$id").is(new ObjectId(id)));
-        return mongoOperation.find(query, DiemDTO.class);
-    }
-
     public List<DiemDTO> getAllDiem() {
         return mongoOperation.findAll(DiemDTO.class);
     }
-
-    public DiemDTO getDiemByTwoId(String idPhanCong, String idStudent) {
-        Query query = Query.query(Criteria.where("hocSinh.$id").is(new ObjectId(idStudent))
-                .andOperator(Criteria.where("phanCong.$id").is(new ObjectId(idPhanCong))));
-        
+    
+    public DiemDTO getDiemByIdPhanCong(String idPhanCong) {
+        Query query = Query.query(Criteria.where("phanCong.$id").is(new ObjectId(idPhanCong)));
         return mongoOperation.findOne(query, DiemDTO.class);
     }
+    
 }

@@ -26,21 +26,22 @@ import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
  */
 @Repository
 public class LopHocDAO {
+
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     MongoOperations mongoOperation;
-    
+
     public boolean insert(LopHocDTO dto) {
         boolean res = true;
-        
+
         mongoOperation.insert(dto);
-        
+
         return res;
     }
-    
+
     public boolean update(LopHocDTO dto) {
         boolean res = true;
-        
+
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
         update.set("giaoVien", dto.getgiaoVien());
@@ -48,69 +49,80 @@ public class LopHocDAO {
         update.set("namHoc", dto.getnamHoc());
         update.set("moTa", dto.getmoTa());
         update.set("listHocSinh", dto.getlistHocSinh());
-        
+
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
-        
+
         return res;
     }
-    
+
     public boolean delete(LopHocDTO dto) {
         boolean res = true;
-        
+
         mongoOperation.remove(dto);
-        
+
         return res;
     }
-    
+
     public boolean insertHocSinh(String classId, HocSinhDTO studentIds) {
         boolean res = true;
-        
+
         Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
         update.push("listHocSinh", studentIds);
-        
+
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
-        
+
         return res;
     }
-    
+
     public boolean deleteHocSinh(String classId, String studentIds) {
         boolean res = true;
-        
+
         Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
         update.pull("listIDHocSinh", studentIds);
-        
+
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
-        
+
         return res;
     }
-        
-    
+
     public List<LopHocDTO> getAllList() {
         return mongoOperation.findAll(LopHocDTO.class);
     }
-    
-    public LopHocDTO getLopHocById(String id){
+
+    public LopHocDTO getLopHocById(String id) {
         Query query = Query.query(Criteria.where("id").is(id));
         return mongoOperation.findOne(query, LopHocDTO.class);
-    }    
-    
-    public boolean addStudent(HocSinhDTO hs, String classId){
-        LopHocDTO lopHoc = getLopHocById(classId);    
+    }
+
+    public boolean addStudent(HocSinhDTO hs, String classId) {
+        LopHocDTO lopHoc = getLopHocById(classId);
         List<HocSinhDTO> tempList = lopHoc.getlistHocSinh();
         tempList.add(hs);
         Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
         update.set("listHocSinh", tempList);
-        mongoOperation.findAndModify(query, update,  LopHocDTO.class);
+        mongoOperation.findAndModify(query, update, LopHocDTO.class);
         return true;
     }
-    
-    public List<LopHocDTO> getLopHocTheoKhoiLop(String idKhoiLop){
+
+    public List<LopHocDTO> getLopHocTheoKhoiLop(String idKhoiLop) {
         Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)));
         return mongoOperation.find(query, LopHocDTO.class);
     }
-    
-   
+
+    public HocSinhDTO getHocSinhById(LopHocDTO dto, String idHocSinh) {
+        HocSinhDTO hocSinh = new HocSinhDTO();
+        List<HocSinhDTO> list = dto.getlistHocSinh();
+
+        for (HocSinhDTO hs : list) {
+            if (hs.getid().equalsIgnoreCase(idHocSinh)) {
+                hocSinh = hs;
+                break;
+            }
+        }
+        return hocSinh;
+    }
+
 }
