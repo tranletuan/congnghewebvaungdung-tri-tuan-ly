@@ -81,9 +81,11 @@ public class MarksController {
         LopHocDTO lopHoc = phanCong.getLopHoc();
         HocSinhDTO hocSinh = mongoService.getHocSinhLopHocById(lopHoc, studentId);
         DiemDTO diem = mongoService.getDiemByIdPhanCong(majorId);
-       
+        ChiTietDiemDTO chiTietDiem = mongoService.getChiTietDiemByIdDiem(diem);
+        
         map.put("diem", diem);
         map.put("hocSinh", hocSinh);
+        map.put("chiTietDiem", chiTietDiem);
         return new ModelAndView("mark", map);
     }
 

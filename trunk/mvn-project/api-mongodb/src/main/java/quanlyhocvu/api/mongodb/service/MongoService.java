@@ -406,8 +406,8 @@ public class MongoService {
          return chitietdiemDAO.update(dto);
      }
      
-     public ChiTietDiemDTO getChiTietDiemByIdDiem(String idDiem) {
-         return chitietdiemDAO.getChiTietDiemByIdDiem(idDiem);
+     public ChiTietDiemDTO getChiTietDiemByIdDiem(DiemDTO diem) {
+         return chitietdiemDAO.getChiTietDiemByIdDiem(diem);
      }
 //</editor-fold>
      

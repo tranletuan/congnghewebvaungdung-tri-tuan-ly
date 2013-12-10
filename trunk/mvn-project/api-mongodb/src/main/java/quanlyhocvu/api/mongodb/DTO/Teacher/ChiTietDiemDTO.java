@@ -30,9 +30,15 @@ public class ChiTietDiemDTO extends AbstractObjectDTO{
     
     private float kt1tiet_1 = -1;
     private float kt1tiet_2 = -1;
+
     
+    
+    private float diemGiuaKy = -1;
+    private float diemCuoiKy = -1;
     private float diemTB = -1;
 
+    
+    
     public DiemDTO getDiem() {
         return diem;
     }
@@ -111,5 +117,21 @@ public class ChiTietDiemDTO extends AbstractObjectDTO{
 
     public void setDiemTB(float diemTB) {
         this.diemTB = diemTB;
+    }
+    
+    public float getDiemGiuaKy() {
+        return diemGiuaKy;
+    }
+
+    public void setDiemGiuaKy(float diemGiuaKy) {
+        this.diemGiuaKy = diemGiuaKy;
+    }
+
+    public float getDiemCuoiKy() {
+        return diemCuoiKy;
+    }
+
+    public void setDiemCuoiKy(float diemCuoiKy) {
+        this.diemCuoiKy = diemCuoiKy;
     }
 }
