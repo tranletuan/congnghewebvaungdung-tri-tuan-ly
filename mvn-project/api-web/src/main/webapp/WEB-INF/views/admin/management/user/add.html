@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />       
+            <div id="message" class="alert alert-error" th:text="${message}" th:if="${message}">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+            </div>
+            <legend>Thêm Người Dùng</legend>
+            <form id="form-horizontal" class="form-horizontal bs-docs-example" th:action="@{/admin/management/user/save}">
+                <fieldset>
+
+                        <!-- Form Name -->
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="username">Tên Người  Dùng</label>
+                            <div class="controls">
+                                <input autocomplete="off" id="username" name="username" type="text" placeholder="" class="  validate[required] input-xlarge" required="">
+                                </input>
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="control-group">
+                            <label class="control-label" for="password">Mật Khẩu</label>
+                            <div class="controls">
+                                <input  autocomplete="off" id="password" name="password" type="password" placeholder="" class="input-xlarge validate[required]" required="">
+                                </input>
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="control-group">
+                            <label class="control-label" for="password_confirm">Xác Nhận Mật Khẩu</label>
+                            <div class="controls">
+                                <input  autocomplete="off" id="password_confirm" name="password_confirm" type="password" placeholder="" class="input-xlarge validate[required,equals[password]]" required="">
+                                </input>
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="control-group">
+                            <label class="control-label" for="rolename">Phân Quyền</label>
+                            <div class="controls">
+                                <select id="rolename" name="rolename" class="validate[required] input-xlarge" >
+                                    <option  th:text="${role.rolename}" th:value="${role.rolename}" th:each="role : ${roles}"/>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Button (Double) -->
+                        <div class="control-group">
+                            <label class="control-label" for="submit"></label>
+                            <div class="controls">
+                                <button id="submit" name="submit" class="btn btn-primary">Lưu Lại</button>
+                                <a th:href="@{/admin/management/user/index}" id="cancel" name="cancel" class="btn btn-default">Thoát</a>
+                            </div>
+                        </div>
+                </fieldset>
+            </form>
+
+            <div th:include="template :: footer"></div>
+        </div>	
+        <script src="" th:src="@{/media/js/admin/admin_user_new.js}"></script>            
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#form-horizontal").validationEngine();
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>
