@@ -321,11 +321,18 @@ public class MongoService {
     public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop){
         return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
     }
+
+    
+    public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){
+        return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
+    }
+
     
     public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
         return lophocDAO.getHocSinhById(dto, idHocSinh);
     }
     
+
     //</editor-fold>    
 
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
