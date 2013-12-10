@@ -13,12 +13,12 @@
             </thead>
             <tbody>
                 <tr th:id="${user.username}" align="center" th:each="user: ${users}">
-                    <td th:text="${user.username}" id="username"/>
+                    <td th:text="${user.username}"/>
                     <td>
-                        <input type="checkbox" th:checked="${user.enabled}==${true}?${true}:${false}" id="enabled"/>
+                        <input type="checkbox" th:checked="${user.enabled}==${true}?${true}:${false}" class="enabled"/>
                     </td>
                     <td>
-                        <input type="checkbox" th:checked="${user.nonlocked}==${true}?${false}:${true}" id="nonlocked"/>
+                        <input type="checkbox" th:checked="${user.nonlocked}==${true}?${false}:${true}" class="nonlocked"/>
                     </td>
                     <td>
                         <a th:href="@{'/admin/management/user/edit/'+${user.username}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
@@ -26,8 +26,10 @@
                 </tr>
             </tbody>
         </table>
+        <script type="text/javascript" th:src="@{/media/js/admin/admin_user_index_table.js}"/>
         <script th:inline="javascript">
             /*<![CDATA[*/
+            var suburl = /*[[@{/admin/management/user/update/}]]*/ "url";
             jQuery(document).ready(function() {
                 jQuery("#table").dataTable({"bJQueryUI": true});
                 COMMON.activeMenu("quanly_nav");

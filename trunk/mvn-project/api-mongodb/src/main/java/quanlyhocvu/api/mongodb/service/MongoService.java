@@ -81,9 +81,9 @@ public class MongoService {
 
      @Autowired
      private ChiTietDiemDAO chitietdiemDAO;
-     
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
+
+     //</editor-fold>
+     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
      //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
      public boolean insertgiaoVien(GiaoVienDTO dto) {
@@ -106,7 +106,7 @@ public class MongoService {
           return giaoVienDAO.getById(id);
      }
 
-    //</editor-fold>
+     //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
      public StaffDAO getStaffDAO() {
           return staffDAO;
@@ -176,7 +176,6 @@ public class MongoService {
           this.giaoVienDAO = giaoVienDAO;
      }
 
-       //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for SCHOOL_YEAR">\
      /**
       * ************************************************
@@ -314,23 +313,24 @@ public class MongoService {
           return lophocDAO.addStudent(hs, id);
      }
    
-    public boolean updateLopHoc(LopHocDTO dto) {
-        return lophocDAO.update(dto);
-    }
-   
-    public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop){
-        return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
-    }
-   
-    public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
-        return lophocDAO.getHocSinhById(dto, idHocSinh);
-    }
-   
     public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){
         return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
     }
     //</editor-fold>    
 
+     public boolean updateLopHoc(LopHocDTO dto) {
+          return lophocDAO.update(dto);
+     }
+
+     public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop) {
+          return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
+     }
+
+     public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
+          return lophocDAO.getHocSinhById(dto, idHocSinh);
+     }
+
+      //</editor-fold>    
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
      /**
       * ************************************************
@@ -373,6 +373,7 @@ public class MongoService {
    
     //</editor-fold>
 
+     //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for MARK">
      public List<DiemDTO> getAllDiem() {
           return diemDAO.getAllDiem();
@@ -391,29 +392,27 @@ public class MongoService {
      }
 
      public DiemDTO getDiemByIdPhanCong(String idPhanCong) {
-         return diemDAO.getDiemByIdPhanCong(idPhanCong);
+          return diemDAO.getDiemByIdPhanCong(idPhanCong);
      }
-   
-//</editor-fold>
 
+//</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="CHI TIET DIEM">
      public boolean insertChiTietDiem(ChiTietDiemDTO dto) {
-         return chitietdiemDAO.insert(dto);
+          return chitietdiemDAO.insert(dto);
      }
-     
+
      public boolean deleteChiTietDiem(ChiTietDiemDTO dto) {
-         return chitietdiemDAO.delete(dto);
+          return chitietdiemDAO.delete(dto);
      }
-     
+
      public boolean updateChiTietDiem(ChiTietDiemDTO dto) {
-         return chitietdiemDAO.update(dto);
+          return chitietdiemDAO.update(dto);
      }
-     
      public ChiTietDiemDTO getChiTietDiemByIdDiem(DiemDTO diem) {
          return chitietdiemDAO.getChiTietDiemByIdDiem(diem);
      }
 //</editor-fold>
-     
+
      //<editor-fold defaultstate="collapsed" desc="PHAN CONG">
      public List<PhanCongDTO> getAllPhanCong() {
           return phancongDAO.getAllList();
@@ -434,9 +433,9 @@ public class MongoService {
      public boolean updatePhanCong(PhanCongDTO dto) {
           return phancongDAO.update(dto);
      }
-     
+
      public PhanCongDTO getPhanCongById(String idPhanCong) {
-         return phancongDAO.getPhanCongById(idPhanCong);
+          return phancongDAO.getPhanCongById(idPhanCong);
      }
 //</editor-fold>
 
@@ -482,7 +481,7 @@ public class MongoService {
 
      //<editor-fold defaultstate="collapsed" desc="Function For User">
      public UserDTO loadUserByUserName(String username) {
-          return authorityDAO.loadUserDTOByUserName(username);
+          return authorityDAO.getUserByUserName(username);
      }
 
      public void insertStaff(StaffDTO staff) {
@@ -501,11 +500,30 @@ public class MongoService {
      public void generateAllUser() {
           authorityDAO.generateAllUser();
      }
-     
+
      public List<UserDTO> getUsersByRoleName(String rolename) {
           return authorityDAO.getUsersByRoleName(rolename);
      }
+
+     public RoleDTO getRoleByRoleName(String RoleName) {
+          return authorityDAO.getRoleByRoleName(RoleName);
+     }
      
+     public UserDTO getUserByUserName(String username) {
+          return authorityDAO.getUserByUserName(username);
+     }
+
+     public void updateUser(UserDTO user) {
+          authorityDAO.updateUser(user);
+     }
+
+     public void insertUser(String username, String password, String rolename, String userId) throws Throwable {
+          UserDTO user = new UserDTO(username, password, userId);
+          RoleDTO role = authorityDAO.getRoleByRoleName(rolename);
+          user.getRoles().add(role);
+          authorityDAO.insertUser(user);
+     }
+
      public List<RoleDTO> getAllRole() {
           List<RoleDTO> roles = authorityDAO.getAllRoles();
           RoleDTO temp = null;
@@ -518,7 +536,7 @@ public class MongoService {
           return roles;
      }
 //</editor-fold>  
-     
+
      //<editor-fold defaultstate="collapsed" desc="Function for Staff">
      public StaffDTO getStaffById(String manhanvien) {
           return staffDAO.getStaffById(manhanvien);

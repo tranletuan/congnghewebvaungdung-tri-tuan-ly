@@ -4,3 +4,14 @@
  * and open the template in the editor.
  */
 
+/*<![CDATA[*/
+function loadframe() {
+    jQuery.ajax({
+        url: viewUrl + $("#rolename").val(),
+        success: function(data) {
+            jQuery('#tableframe').html(data);
+        }
+    });
+}
+;
+/*]]>*/

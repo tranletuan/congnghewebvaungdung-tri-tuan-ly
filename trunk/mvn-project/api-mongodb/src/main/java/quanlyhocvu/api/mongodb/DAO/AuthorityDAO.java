@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DTO.Authority.RoleDTO;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
@@ -36,7 +37,7 @@ public class AuthorityDAO {
       * @param username
       * @return UserDTO object
       */
-     public UserDTO loadUserDTOByUserName(String username) {
+     public UserDTO getUserByUserName(String username) {
           Query query = Query.query(Criteria.where("username").is(username));
           return mongoOperation.findOne(query, UserDTO.class);
      }
@@ -76,6 +77,7 @@ public class AuthorityDAO {
       * @param user
       */
      public void insertUser(UserDTO user) {
+          user.setPassword(MD5.getMD5(user.getPassword()));
           mongoOperation.save(user);
      }
 
@@ -201,5 +203,22 @@ public class AuthorityDAO {
           Query query = Query.query(Criteria.where("roles.$id").is(new ObjectId(role.getId())));
           return mongoOperation.find(query, UserDTO.class);
      }
-
+     
+     /**
+      * update user by current user
+      * @param user 
+      */
+     public void updateUser(UserDTO user) {
+          Query query = Query.query(Criteria.where("username").is(user.getUsername()));
+          Update update = new Update();
+          update.set("enabled", user.isEnabled());
+          update.set("nonlocked", user.isNonlocked());
+          if (user.getRoles().size() > 0) {
+               update.set("roles", user.getRoles());
+          }
+          if (!"".equals(user.getPassword())) {
+               update.set("password", MD5.getMD5(user.getPassword()));
+          }
+          mongoOperation.findAndModify(query, update, UserDTO.class);
+     }
 }

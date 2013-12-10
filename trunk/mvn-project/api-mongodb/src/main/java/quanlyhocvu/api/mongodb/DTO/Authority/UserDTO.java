@@ -38,7 +38,6 @@ public class UserDTO {
           this.roles = new ArrayList<>();
           this.enabled = true;
           this.nonlocked = true;
-          this.roles = new ArrayList<>();
      }
 
      public String getUsername() {
@@ -83,7 +82,7 @@ public class UserDTO {
 
      public void setEnabled(boolean enabled) {
           this.enabled = enabled;
-     }
+     }    
 
      public boolean isNonlocked() {
           return nonlocked;
