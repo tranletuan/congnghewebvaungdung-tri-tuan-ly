@@ -19,6 +19,7 @@ import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
 import quanlyhocvu.api.mongodb.DAO.PhanCongDAO;
 import quanlyhocvu.api.mongodb.DAO.StaffDAO;
+import quanlyhocvu.api.mongodb.DTO.Authority.RoleDTO;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietChuyenMonDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietDiemDTO;
@@ -32,6 +33,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
+import quanlyhocvu.api.mongodb.utils.Authorities;
 
 @Repository
 public class MongoService {
@@ -495,6 +497,22 @@ public class MongoService {
 
      public void generateAllUser() {
           authorityDAO.generateAllUser();
+     }
+     
+     public List<UserDTO> getUsersByRoleName(String rolename) {
+          return authorityDAO.getUsersByRoleName(rolename);
+     }
+     
+     public List<RoleDTO> getAllRole() {
+          List<RoleDTO> roles = authorityDAO.getAllRoles();
+          RoleDTO temp = null;
+          for (RoleDTO role : roles) {
+               if (role.getRolename().equals(Authorities.ADMIN.toString())) {
+                    temp = role;
+               }
+          }
+          roles.remove(temp);
+          return roles;
      }
 //</editor-fold>   
      

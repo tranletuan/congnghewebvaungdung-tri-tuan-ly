@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />
+            <a th:href="@{/admin/management/user/generate}" class="btn btn-primary float_right margin_button_bottom">Sinh Thêm Người Dùng</a>
+            <b>Loại Phân Quyền: </b>
+            <select th:value="${currRoleName}" id="rolenames">
+                <option  th:text="${role.rolename}" th:value="${role.rolename}" th:each="role: ${roles}"/>
+            </select>
+            <div id="tableframe"/>
+            <div th:include="template :: footer"></div>
+        </div>	
+        <form id="form" style="display:hidden" th:action="@{/admin/management/user/index}" method="POST">
+            <input type="hidden" id="rolename" name="rolename" th:value="${currRoleName}"/>
+        </form>
+        <script th:inline="javascript" >
+            /*<![CDATA[*/
+            $(document).ready(function() {
+                $("#rolenames").val($("#rolename").val());
+                loadframe();
+            });
+            $("#rolenames").on('change', function() {
+                var role = $("#rolenames").val();
+                $("#rolename").val(role);
+                loadframe();
+            });
+            function loadframe() {
+                var viewUrl = /*[[@{/admin/management/user/index_table/}]]*/ "viewUrl";
+                jQuery.ajax({
+                    url: viewUrl + $("#rolename").val(),
+                    success: function(data) {
+                        jQuery('#tableframe').html(data);
+                    }
+                });
+            }
+            ;
+            /*]]>*/
+        </script> 
+    </body>
+</html>

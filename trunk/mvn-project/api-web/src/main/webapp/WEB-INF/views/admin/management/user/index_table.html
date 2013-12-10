@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+            <thead>
+                <tr>
+                    <th>Tên Đăng Nhập</th>
+                    <th>Đã Kích Hoạt</th>
+                    <th>Khóa Tạm Thời</th>
+                    <th>Thao Tác </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:id="${user.username}" align="center" th:each="user: ${users}">
+                    <td th:text="${user.username}" id="username"/>
+                    <td>
+                        <input type="checkbox" th:checked="${user.enabled}==${true}?${true}:${false}" id="enabled"/>
+                    </td>
+                    <td>
+                        <input type="checkbox" th:checked="${user.nonlocked}==${true}?${false}:${true}" id="nonlocked"/>
+                    </td>
+                    <td>
+                        <a th:href="@{'/admin/management/user/edit/'+${user.username}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script>   
+    </body>
+
+</html>
