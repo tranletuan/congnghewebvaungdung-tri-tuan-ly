@@ -5,8 +5,7 @@
     <body>
         <link href="" th:href="@{/media/css/staff_module/student.css}" rel="stylesheet" media="screen"/>
         <div class="container">
-            <div th:substituteby="template :: nav" />    
-                
+            <div th:substituteby="template :: nav" />                
                 <!--<div class="clearfix"></div>-->
                 <span th:id="${namHienTai.getid()}" class="namHocHienTai"></span>
                 <label class="select_label">Xem Theo Năm Học</label>
@@ -23,19 +22,29 @@
                 <div id="mainContent">                
                 </div>
                 <a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom right_button">Thêm Học Sinh Mới</a>
-                <a id="xepLopHocSinh" th:href="@{/staff/management/students/xeplop}" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>
+<!--                <a id="xepLopHocSinh" th:href="@{/staff/management/students/xeplop}" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>-->
+                <a data-toggle="modal" data-target="#xepLopHocSinhModal" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>                
                 
+                <div class="modal fade" id="xepLopHocSinhModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Xác Nhận Xếp Lớp</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>Bạn có thực sự muốn xếp lớp cho tất cả học sinh này không?</div>
+                        </div>
+                        <div class="modal-footer align_center">
+                          <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
+                          <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">No</button>
+                        </div>
+                      </div>
+                    </div> 
+                </div> 
+
                 <div th:include="template :: footer"></div>
         </div>	       
-        <div id='confirm'>
-                <div class='header'><span>Xác nhận xếp lớp</span></div>
-                <div class='message'></div>
-                <div class='buttons'>
-                <div class='no simplemodal-close'>Không</div><div class='yes'>Có</div>
-                </div>
-        </div>
-        <!-- preload the images -->       
-         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
         <script src="" th:src="@{/media/js/student.js}"></script>
         <script th:inline="javascript">
             /*<![CDATA[*/            

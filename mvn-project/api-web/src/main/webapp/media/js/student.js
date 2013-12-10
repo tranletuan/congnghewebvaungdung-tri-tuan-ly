@@ -4,29 +4,6 @@
  * and open the template in the editor.
  */
 
-function confirm(message, id, callback) {
-	$(id).modal({
-		closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
-		position: ["20%",],
-		overlayId: 'confirm-overlay',
-		containerId: 'confirm-container', 
-		onShow: function (dialog) {
-			var modal = this;
-
-			$('.message', dialog.data[0]).append(message);
-
-			// if the user clicks "yes"
-			$('.yes', dialog.data[0]).click(function () {
-				// call the callback
-				if ($.isFunction(callback)) {
-					callback.apply();
-				}
-				// close the dialog
-				modal.close(); // or $.modal.close();
-			});
-		}
-	});
-}
 var table;
 $(document).ready(function(){    
     //set nam Hoc hien tai cho select
@@ -99,19 +76,17 @@ $(document).ready(function(){
 //            
 //        });
 //    });    
-//    
-    $('#xepLopHocSinh').on('click', function(e){
-        e.preventDefault();
-        self = $(this);
+
+    $("#xepLopButton").on('click', function(){        
         var url = xeplop_url;
-        id = '#confirm';
-        message = "Bạn có chắc là bạn muốn xếp lớp cho học sinh mới hay không?";
-        confirm(message, id, function(){
-           $.ajax({
+         $.ajax({
                 url: url,
-                type: 'POST'
-           });
-           document.location = request_data_url;
+                type: 'POST',
+                success: function(){
+                    document.location = index_url;
+                }
         });
+        //Close Modal
+        $('#xepLopHocSinhModal').modal('hide');        
     })
 }) 
