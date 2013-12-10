@@ -3,58 +3,30 @@
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="template :: header" />
     <body>
+        <link href="" th:href="@{/media/css/staff_module/student.css}" rel="stylesheet" media="screen"/>
         <div class="container">
-            <div th:substituteby="template :: nav" />   
-            <a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>
-            <div class="clearfix"></div>
-            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
-                <thead>
-                    <tr>                        
-                        <th>Mã Học Sinh</th>
-                        <th>Họ Tên</th>
-                        <th>Ngày Sinh</th>
-                        <th>Giới Tính</th>                        
-                        <th>Địa Chỉ</th>
-                        <th>Ngày Nhập Học</th>
-                        <th>Ngày Nghỉ Học</th>
-                        <th>Tác Vụ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">                        
-                        <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
-                        <td th:text="${hocsinh.gethoTen()}" id="hoTen"/>                        
-                        <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" th:if="${hocsinh.getngaySinh()}" id="ngaySinh"/>
-                        <td th:unless="${hocsinh.getngaySinh()}" id="ngaySinh"/>   
-                        <td th:text="${hocsinh.getgioiTinh()}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
-                        <td th:text="${hocsinh.getdiaChi()}" id="diaChi"/>
-                        <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}"   th:if="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>
-                        <td th:unless="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>   
-                        <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}"  th:if="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                        
-                        <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                                                     
-                        <td>
-                            <div class="btn-group">
-                                <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
-<!--                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
-                                <!--<a href="#" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
-                            </div>                            
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <a id="xepLopHocSinh" th:href="@{/staff/management/students/xeplop}" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>
-            <div th:include="template :: footer"></div>
-        </div>	
-<!--          HTML for modal popup-->
-        <!-- modal content -->
-<!--        <div id='confirm'>
-                <div class='header'><span>Confirm Delete Student</span></div>
-                <div class='message'></div>
-                <div class='buttons'>
-                <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+            <div th:substituteby="template :: nav" />    
+                
+                <!--<div class="clearfix"></div>-->
+                <span th:id="${namHienTai.getid()}" class="namHocHienTai"></span>
+                <label class="select_label">Xem Theo Năm Học</label>
+                <select id="IDNamHoc" name="IDNamHoc" class="input-xlarge custom_checkbox">
+                    <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
+                </select>
+                <div class="clearfix"></div>
+                <span th:id="${khoiLopMacDinh.getid()}" class="khoiLopMacDinh"></span>
+                <label class="select_label">Xem Theo Khối Lớp</label>
+                <select id="IDKhoiLop" name="IDKhoiLop" class="input-xlarge custom_checkbox">
+                    <option th:each="khoiLop : ${listKhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
+                </select>
+                <div class="clearfix"></div>   
+                <div id="mainContent">                
                 </div>
-        </div>-->
-        
+                <a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom right_button">Thêm Học Sinh Mới</a>
+                <a id="xepLopHocSinh" th:href="@{/staff/management/students/xeplop}" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>
+                
+                <div th:include="template :: footer"></div>
+        </div>	       
         <div id='confirm'>
                 <div class='header'><span>Xác nhận xếp lớp</span></div>
                 <div class='message'></div>
@@ -62,16 +34,17 @@
                 <div class='no simplemodal-close'>Không</div><div class='yes'>Có</div>
                 </div>
         </div>
-        <!-- preload the images -->
-        <div style='display:none'>
-                <img src='img/confirm/header.gif' alt='' />
-                <img src='img/confirm/button.gif' alt='' />
-        </div>
+        <!-- preload the images -->       
          <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
         <script src="" th:src="@{/media/js/student.js}"></script>
         <script th:inline="javascript">
-            /*<![CDATA[*/
-            
+            /*<![CDATA[*/            
+            var request = /*[[@{/admin/management/user/index_table/}]]*/"request";
+            var request_data_url = /*[[@{/staff/management/students/request_data/}]]*/ "demo";
+            var xeplop_url = /*[[@{/staff/management/students/xeplop/}]]*/"demo";
+            var delete_url = /*[[@{/staff/management/students/delete/}]]*/"demo";
+            var index_url = /*[[@{/staff/management/students/index/}]]*/"demo";
+            var load_url = /*[[@{/staff/management/students/load/}]]*/"demo";
             /*]]>*/            
         </script>    
     </body>

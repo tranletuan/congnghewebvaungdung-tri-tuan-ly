@@ -7,6 +7,7 @@ package quanlyhocvu.api.mongodb.DTO.base;
 
 import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 
 /**
@@ -19,6 +20,8 @@ public class HocSinhDTO extends AbstractPersonDTO{
    private Date ngayNghiHoc;
    private String maLopHoc;
    private TrangThaiHS trangThaiHS;
+   @DBRef
+   private KhoiLopDTO khoiLopHienTai;
 
     /**
      * @return the trangThaiHS
@@ -46,6 +49,20 @@ public class HocSinhDTO extends AbstractPersonDTO{
      */
     public void setMaLopHoc(String maLopHoc) {
         this.maLopHoc = maLopHoc;
+    }
+
+    /**
+     * @return the khoiLopHienTai
+     */
+    public KhoiLopDTO getKhoiLopHienTai() {
+        return khoiLopHienTai;
+    }
+
+    /**
+     * @param khoiLopHienTai the khoiLopHienTai to set
+     */
+    public void setKhoiLopHienTai(KhoiLopDTO khoiLopHienTai) {
+        this.khoiLopHienTai = khoiLopHienTai;
     }
    public enum TrangThaiHS{
        DaNghi,
