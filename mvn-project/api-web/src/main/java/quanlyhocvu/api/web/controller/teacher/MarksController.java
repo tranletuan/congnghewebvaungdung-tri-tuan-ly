@@ -77,12 +77,13 @@ public class MarksController {
     public @ResponseBody
     ModelAndView marks(@PathVariable String majorId, @PathVariable String studentId, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
-        HocSinhDTO hocSinh = mongoService.getHocSinhById(studentId);
-        DiemDTO diem = mongoService.getDiemByTwoId(majorId, studentId);
-        ChiTietDiemDTO chiTietDiem = mongoService.getChiTietDiemByIdDiem(diem.getid());
-        map.put("hocSinh", hocSinh);
+        PhanCongDTO phanCong = mongoService.getPhanCongById(majorId);
+        LopHocDTO lopHoc = phanCong.getLopHoc();
+        HocSinhDTO hocSinh = mongoService.getHocSinhLopHocById(lopHoc, studentId);
+        DiemDTO diem = mongoService.getDiemByIdPhanCong(majorId);
+       
         map.put("diem", diem);
-        map.put("chiTietDiem", chiTietDiem);
+        map.put("hocSinh", hocSinh);
         return new ModelAndView("mark", map);
     }
 

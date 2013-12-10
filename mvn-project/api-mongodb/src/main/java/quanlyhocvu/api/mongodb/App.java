@@ -7,6 +7,7 @@ import quanlyhocvu.api.mongodb.DAO.StaffDAO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
@@ -19,6 +20,12 @@ class App {
                 "noSqlApplicationContext.xml");
         MongoService mongoService = (MongoService) ctx.getBean("mongoService");
         
+        PhanCongDTO phanCong = mongoService.getPhanCongById("52a37e9fa5d4a39519ae6a4e");
+        System.out.println(phanCong.getLopHoc().gettenLopHoc());
+        LopHocDTO lopHoc = phanCong.getLopHoc();
+        System.out.println(phanCong.getLopHoc().getlistHocSinh().size());
+        HocSinhDTO hocSinh = mongoService.getHocSinhLopHocById(lopHoc, "52a08ac344ae1b042422312c");
+        System.out.println(hocSinh.gethoTen());
 //        PhanCongDTO pc = mongoService.getPhanCongById("52a37e9fa5d4a39519ae6a4e");
 //        List<HocSinhDTO> l = mongoService.getAllStudents();
 //        for(int i = 0; i < l.size(); i++) {
@@ -33,8 +40,7 @@ class App {
 //            
 //            mongoService.deleteDiem(l.get(i));
 //        }
-        DiemDTO diem = mongoService.getDiemByTwoId("52a37e9fa5d4a39519ae6a4e", "52a065d244aec97c67db9491");
-        System.out.println(diem.getHocKy());
+        
         //mongoService.generateAllUser();
         //mongoService.getAuthorityDAO().insertUserAccount("admin", "admin", null, Authorities.ADMIN);
 //        List<HocSinhDTO> hs = mongoService.getAllStudents();
