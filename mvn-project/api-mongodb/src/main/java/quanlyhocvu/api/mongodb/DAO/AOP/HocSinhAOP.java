@@ -18,7 +18,7 @@ import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 public class HocSinhAOP {
 
      @Around("execution(* quanlyhocvu.api.mongodb.DAO.HocSinhDAO.*(..))")
-     public void LookTestAOP(ProceedingJoinPoint joinPoint) throws Throwable {
+     public Object LookTestAOP(ProceedingJoinPoint joinPoint) throws Throwable {
           boolean result = true;
           for (Object obj : joinPoint.getArgs()) {
                if (obj instanceof HocSinhDTO) {
@@ -31,7 +31,7 @@ public class HocSinhAOP {
           if (!result) {
                throw new Exception("Sai thông tin học sinh");
           } else {
-               joinPoint.proceed();
+              return  joinPoint.proceed();
           }
      }
 

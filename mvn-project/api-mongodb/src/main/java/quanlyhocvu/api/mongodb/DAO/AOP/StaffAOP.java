@@ -18,7 +18,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 public class StaffAOP {
 
      @Around("execution(* quanlyhocvu.api.mongodb.DAO.StaffDAO.*(..))")
-     public void LookTestAOP(ProceedingJoinPoint joinPoint) throws Throwable {
+     public Object LookTestAOP(ProceedingJoinPoint joinPoint) throws Throwable {
           boolean result = true;
           for (Object obj : joinPoint.getArgs()) {
                if (obj instanceof StaffDTO) {
@@ -31,7 +31,7 @@ public class StaffAOP {
           if (!result)
                throw new Exception("Sai thông tin nhân viên");
           else 
-               joinPoint.proceed();
+               return joinPoint.proceed();
 
      }
 
