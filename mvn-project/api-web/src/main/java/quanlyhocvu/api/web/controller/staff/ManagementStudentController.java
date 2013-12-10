@@ -6,6 +6,8 @@
 package quanlyhocvu.api.web.controller.staff;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 import quanlyhocvu.api.mongodb.service.FunctionService;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
@@ -41,19 +44,102 @@ public class ManagementStudentController {
     @RequestMapping(value = "index")
     public @ResponseBody
     ModelAndView listStudents(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();        
-        List<HocSinhDTO> listHocSinh = new ArrayList<HocSinhDTO>();
-        listHocSinh = mongoService.getAllStudents();
+        Map<String, Object> map = new HashMap<String, Object>();         
+        List<NamHocDTO> listNamHoc = mongoService.getAllnamHoc();        
+        List<KhoiLopDTO> listKhoiLop = mongoService.getAllkhoiLop();
+        NamHocDTO namHocDuocChon = null;
+        KhoiLopDTO khoiLopDuocChon = null;        
+        
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int nextYear = currentYear + 1;
+        String namHienTai =  currentYear + "-" + nextYear;
+        namHocDuocChon = mongoService.getnamHocByName(namHienTai);  
+        
+        khoiLopDuocChon = mongoService.getKhoiLopByName("6");    
+        
+        map.put("namHienTai", namHocDuocChon);
+        map.put("listNamHoc", listNamHoc);
+        map.put("khoiLopMacDinh", khoiLopDuocChon);
+        map.put("listKhoiLop", listKhoiLop);
+        
+        System.out.println(map);
+        //Lay nam hoc Hien Tai
+        
+        return new ModelAndView("management/students/index", map);        
+        
+    }
+    
+    @RequestMapping(value="load")
+    public @ResponseBody
+    ModelAndView loadStudents(HttpServletRequest request){
+        Map<String, Object> map = new HashMap<String, Object>();         
+        String namHocId = request.getParameter("namHocId");
+        String khoiLopId = request.getParameter("khoiLopId");
+        List<LopHocDTO> listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
+        List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLop();  
+        LopHocDTO lopHocDuocChon = null;
+        
+        map.put("listLopHoc", listLopHoc);
         map.put("listHocSinh", listHocSinh);
-        map.put("stt", 1);
-        return new ModelAndView("management/students/index", map);
+        map.put("namHocId", namHocId);
+        map.put("khoiLopId", khoiLopId);
+        map.put("lopHocDuocChon", lopHocDuocChon);
+        return new ModelAndView("management/students/subindex", map);
+    }
+    
+    @RequestMapping(value = "request_data")
+    public @ResponseBody
+    ModelAndView requestDataStudents(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<String, Object>(); 
+        List<HocSinhDTO> listHocSinh = new ArrayList<HocSinhDTO>();        
+        List<LopHocDTO> listLopHoc = new ArrayList<LopHocDTO>(); ; 
+        String namHocId;
+        String khoiLopId;
+        String lopHocId;
+        LopHocDTO lopHocDuocChon = null;
+        if(request.getParameter("requestElement").equals("namHoc") || request.getParameter("requestElement").equals("khoiLop")){                                    
+            namHocId = request.getParameter("namHocId");
+            khoiLopId = request.getParameter("khoiLopId");
+            listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
+            System.out.println(listLopHoc);
+            if (listLopHoc.size() > 0 ) {
+                lopHocDuocChon = listLopHoc.get(0);
+                listHocSinh = mongoService.getStudentsByLopHoc(lopHocDuocChon.getid());
+            }else{
+                lopHocDuocChon = null;
+                listHocSinh = mongoService.getHocSinhChuaXepLop();  
+            }  
+            
+            map.put("listHocSinh", listHocSinh);        
+            map.put("listLopHoc", listLopHoc);
+            map.put("namHocId", namHocId);
+            map.put("khoiLopId", khoiLopId);
+            map.put("lopHocDuocChon", lopHocDuocChon);
+            System.out.println(map);
+            //Lay nam hoc Hien Tai        
+            return new ModelAndView("management/students/subindex", map); 
+            
+        }else if(request.getParameter("requestElement").equals("lopHoc")){            
+            lopHocId = request.getParameter("lopHocId");
+            if (lopHocId.equals("0")) {
+                listHocSinh = mongoService.getHocSinhChuaXepLop(); 
+            }else{
+                listHocSinh = mongoService.getStudentsByLopHoc(lopHocId);
+            }            
+            map.put("listHocSinh", listHocSinh);
+            return new ModelAndView("management/students/sub_table_student", map); 
+        }  
+        return new ModelAndView("management/students/subindex", map); 
     }
 
     @RequestMapping(value = "new")
     public @ResponseBody
     ModelAndView newStudent(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-
+        List<KhoiLopDTO> listkhoiLop = mongoService.getAllkhoiLop();
+        KhoiLopDTO khoiLop6 = mongoService.getKhoiLopByName("6");
+        map.put("listkhoiLop", listkhoiLop);
+        map.put("khoiLop6", khoiLop6);
         return new ModelAndView("management/students/new", map);
     }
 
@@ -79,6 +165,8 @@ public class ManagementStudentController {
         }    
 //        obj.setLopHoc(lopHoc);
         //obj.setMaLopHoc(lopHoc.getid());//Demo to add Student to Class
+        KhoiLopDTO khoiLopHienTai = mongoService.getKhoiLopByid(request.getParameter("IDKhoiLop"));
+        obj.setKhoiLopHienTai(khoiLopHienTai);
         boolean res = mongoService.insertStudent(obj);   
         //mongoService.addStudent(obj, lopHoc.getid());
         map.put("message", "Đã thêm thành công 1 học sinh");
@@ -144,6 +232,14 @@ public class ManagementStudentController {
         xepHocSinhVaoLopHoc();
         map.put("message", "Đã xếp lớp thành công cho tất cả học sinh mới");
         return new ModelAndView("redirect:/staff/management/students/index",map);
+    }
+    
+    @RequestMapping(value="laydanhsachlophoc")
+    public @ResponseBody
+    Map layDanhSachLopHoc(HttpServletRequest request){
+        Map<String, Object> map = new HashMap<String, Object>();      
+        
+        return map;
     }
     
     public void xepHocSinhVaoLopHoc(){

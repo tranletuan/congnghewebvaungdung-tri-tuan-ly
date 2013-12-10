@@ -52,12 +52,16 @@
                             <input type="text" id="datepickerNhapHoc" name="ngayNhapHoc" class="input-xlarge" />
                         </div>
                     </div>
-<!--                    <div class="control-group">
-                        <label class="control-label" for="ngayNghiHoc">Ngày Nghỉ Học</label>
-                        <div class="controls">
-                            <input type="text" id="datepickerNghiHoc" name="ngayNghiHoc" class="input-xlarge" />
-                        </div>
-                    </div>-->
+                    
+                    <div class="control-group">                        
+                      <label class="control-label" for="khoiLop">Khối Lớp</label>
+                      <div class="controls">
+                        <span class="invisible span_select" th:id="${khoiLop6.getid()}"></span>
+                        <select id="khoiLop" name="IDkhoiLop" class="input-xlarge custom_checkbox">
+                          <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
+                        </select>
+                      </div>
+                    </div>
                      <!-- Button -->
                     <div class="control-group">                    
                         <div class="controls">
@@ -74,6 +78,7 @@
             jQuery(document).ready(function() {
                 jQuery("#form-horizontal").validationEngine();
                 COMMON.activeMenu("quanly_nav");
+                $("#khoiLop")[0].value = $("span.span_select")[0].id;
             });
             /*]]>*/
             var today = new Date();
@@ -91,12 +96,6 @@
                     changeYear: true,
                     dateFormat: "dd/mm/yy"
                 });
-//                $( "#datepickerNghiHoc" ).datepicker({
-//                    yearRange: "2000:2023",
-//                    changeMonth: true,
-//                    changeYear: true,
-//                    dateFormat: "dd/mm/yy"
-//                });
                 $('#maHocSinh').focus();
               });
               

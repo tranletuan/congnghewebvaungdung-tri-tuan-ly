@@ -79,7 +79,7 @@ public class MongoService {
      @Autowired
      private StaffDAO staffDAO;
 
-     @Autowired 
+     @Autowired
      private ChiTietDiemDAO chitietdiemDAO;
      
     //</editor-fold>
@@ -313,26 +313,22 @@ public class MongoService {
      public boolean addStudent(HocSinhDTO hs, String id) {
           return lophocDAO.addStudent(hs, id);
      }
-    
+   
     public boolean updateLopHoc(LopHocDTO dto) {
         return lophocDAO.update(dto);
     }
-    
+   
     public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop){
         return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
     }
-
-    
-    public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){
-        return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
-    }
-
-    
+   
     public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
         return lophocDAO.getHocSinhById(dto, idHocSinh);
     }
-    
-
+   
+    public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){
+        return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
+    }
     //</editor-fold>    
 
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
@@ -366,15 +362,15 @@ public class MongoService {
      public List<HocSinhDTO> getStudentsByLopHoc(String maLopHoc) {
           return hocsinhDAO.getByLopHoc(maLopHoc);
      }
-    
+   
     public HocSinhDTO getHocSinhById(String idStudent) {
         return hocsinhDAO.getHocSinhById(idStudent);
     }
-    
+   
     public List<HocSinhDTO> getHocSinhChuaXepLop(){
         return hocsinhDAO.getHocSinhChuaXepLop();
     }
-    
+   
     //</editor-fold>
 
      //<editor-fold defaultstate="collapsed" desc="Function for MARK">
@@ -521,7 +517,7 @@ public class MongoService {
           roles.remove(temp);
           return roles;
      }
-//</editor-fold>   
+//</editor-fold>  
      
      //<editor-fold defaultstate="collapsed" desc="Function for Staff">
      public StaffDTO getStaffById(String manhanvien) {
@@ -533,3 +529,4 @@ public class MongoService {
      }
 //</editor-fold>
 }
+

@@ -112,6 +112,13 @@ public class LopHocDAO {
         return mongoOperation.find(query, LopHocDTO.class);
     }
 
+    
+    public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){
+        Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)).and("namHoc.$id").is(new ObjectId(idNamHoc)));
+        return mongoOperation.find(query, LopHocDTO.class);
+    }
+
+
     public HocSinhDTO getHocSinhById(LopHocDTO dto, String idHocSinh) {
         HocSinhDTO hocSinh = new HocSinhDTO();
         List<HocSinhDTO> list = dto.getlistHocSinh();
@@ -124,5 +131,6 @@ public class LopHocDAO {
         } 
         return hocSinh;
     }
+
 
 }

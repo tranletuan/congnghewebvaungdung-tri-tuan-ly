@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <body>   
+        <span th:id="${lopHocId}" class="lopHocId_span"></span>
+        <table id="subtable" style="table-layout: fixed; word-wrap: break-word;">
+            <thead>
+                <tr>                        
+                    <th>Mã Học Sinh</th>
+                    <th>Họ Tên</th>
+                    <th>Ngày Sinh</th>
+                    <th>Giới Tính</th>                        
+                    <th>Địa Chỉ</th>
+                    <th>Ngày Nhập Học</th>
+                    <th>Ngày Nghỉ Học</th>                    
+                    <th>Tác Vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:id="${hocsinh.getid()}" align="center" th:each="hocsinh: ${listHocSinh}">                        
+                    <td th:text="${hocsinh.getmaHocSinh()}" id="maHocSinh"/>
+                    <td th:text="${hocsinh.gethoTen()}" id="hoTen"/>                        
+                    <td th:text="${#dates.format(hocsinh.getngaySinh(),'dd/MM/yyyy')}" th:if="${hocsinh.getngaySinh()}" id="ngaySinh"/>
+                    <td th:unless="${hocsinh.getngaySinh()}" id="ngaySinh"/>   
+                    <td th:text="${hocsinh.getgioiTinh()}==1?${'Nam'}:${'Nữ'}" id="gioiTinh"/>                        
+                    <td th:text="${hocsinh.getdiaChi()}" id="diaChi"/>
+                    <td th:text="${#dates.format(hocsinh.getngayNhapHoc(),'dd/MM/yyyy')}"   th:if="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>
+                    <td th:unless="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>   
+                    <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}"  th:if="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                        
+                    <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                                                     
+                    <td>
+                        <div class="btn-group">
+                            <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
+    <!--                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
+                            <a href="#" title="Xếp lớp" class="linkXepLop" th:id="${hocsinh.getmaHocSinh()}" data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign icon-action"></i></a>
+                        </div>                            
+                    </td>
+                </tr>
+            </tbody>
+        </table>   
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                  <div>ABC</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#subtable").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("quanly_nav");
+            }); 
+            
+            var lopHocId =$("#IDLopHoc")[0].value;            
+            if (lopHocId != "0") {                    
+                    var listLink = $(".linkXepLop");                    
+                    for (i = 0; i < listLink.length; i++) {                        
+                        listLink[i].style.display = "none";
+                    }
+                };
+            /*]]>*/
+        </script>    
+    </body>
+</html>

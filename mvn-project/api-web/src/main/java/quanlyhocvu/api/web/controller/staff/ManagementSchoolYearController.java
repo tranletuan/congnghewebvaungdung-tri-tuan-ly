@@ -57,11 +57,18 @@ public class ManagementSchoolYearController {
     ModelAndView saveSchoolYear(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         NamHocDTO obj = new NamHocDTO(
-                    request.getParameter("tennamHoc"),
+                    formatSchoolYear(request.getParameter("tennamHoc")),
                     request.getParameter("moTa")                    
                 );
         boolean res = mongoService.insertnamHoc(obj);
         map.put("message", "Đã thêm thành công 1 năm học");
         return new ModelAndView("redirect:/staff/management/school_year/index", map);
+    }
+    
+    public String formatSchoolYear(String namHoc){        
+        String[] res = namHoc.split("\\D");
+        int startYear = Integer.parseInt(res[0]);
+        int endYear = Integer.parseInt(res[1]);
+        return startYear + "-" + endYear;
     }
 }
