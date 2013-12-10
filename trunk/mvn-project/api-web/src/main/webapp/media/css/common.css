@@ -46,4 +46,12 @@ and open the template in the editor.
 .strong_text{
     font-weight: bold;
 }
+
+.align_center{
+    text-align: center;
+}
+
+.min_width_button_modal{
+    min-width: 100px;
+}
 /*Css for modal*/
