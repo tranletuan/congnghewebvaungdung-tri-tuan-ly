@@ -6,6 +6,7 @@
 package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,8 @@ public class HocSinhDAO {
             update.set("diaChi", student.getdiaChi());
             update.set("maHocSinh", student.getmaHocSinh());
             update.set("ngayNhapHoc", student.getngayNhapHoc());
-            update.set("ngayNghiHoc", student.getngayNghiHoc());            
+            update.set("ngayNghiHoc", student.getngayNghiHoc());   
+            update.set("maLopHoc", student.getMaLopHoc());
             
             mongoOperations.findAndModify(query, update,  HocSinhDTO.class);
             return true;           
@@ -98,6 +100,11 @@ public class HocSinhDAO {
     
     public List<HocSinhDTO> getHocSinhChuaXepLop(){
         Query query = Query.query(Criteria.where("maLopHoc").is(null));
+        return mongoOperations.find(query, HocSinhDTO.class);
+    }
+    
+    public List<HocSinhDTO> getHocSinhChuaXepLopTheoKhoiLop(String khoiLopId){
+        Query query = Query.query(Criteria.where("maLopHoc").is(null).and("khoiLopHienTai.$id").is(new ObjectId(khoiLopId)));
         return mongoOperations.find(query, HocSinhDTO.class);
     }
     

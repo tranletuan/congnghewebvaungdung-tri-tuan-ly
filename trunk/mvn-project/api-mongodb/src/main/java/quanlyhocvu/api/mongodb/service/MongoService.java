@@ -370,6 +370,10 @@ public class MongoService {
     public List<HocSinhDTO> getHocSinhChuaXepLop(){
         return hocsinhDAO.getHocSinhChuaXepLop();
     }
+    
+    public List<HocSinhDTO> getHocSinhChuaXepLopTheoKhoiLop(String khoiLopId){
+        return hocsinhDAO.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
+    }
    
     //</editor-fold>
 

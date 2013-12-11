@@ -48,22 +48,14 @@ public class ManagementStudentController {
         List<NamHocDTO> listNamHoc = mongoService.getAllnamHoc();        
         List<KhoiLopDTO> listKhoiLop = mongoService.getAllkhoiLop();
         NamHocDTO namHocDuocChon = null;
-        KhoiLopDTO khoiLopDuocChon = null;        
-        
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int nextYear = currentYear + 1;
-        String namHienTai =  currentYear + "-" + nextYear;
-        namHocDuocChon = mongoService.getnamHocByName(namHienTai);  
-        
-        khoiLopDuocChon = mongoService.getKhoiLopByName("6");    
-        
+        KhoiLopDTO khoiLopDuocChon = null;                        
+        String namHienTai =  FunctionService.namHocHienTai();
+        namHocDuocChon = mongoService.getnamHocByName(namHienTai);          
+        khoiLopDuocChon = mongoService.getKhoiLopByName("6");            
         map.put("namHienTai", namHocDuocChon);
         map.put("listNamHoc", listNamHoc);
         map.put("khoiLopMacDinh", khoiLopDuocChon);
-        map.put("listKhoiLop", listKhoiLop);
-        
-        System.out.println(map);
-        //Lay nam hoc Hien Tai
+        map.put("listKhoiLop", listKhoiLop);               
         
         return new ModelAndView("management/students/index", map);        
         
@@ -76,7 +68,7 @@ public class ManagementStudentController {
         String namHocId = request.getParameter("namHocId");
         String khoiLopId = request.getParameter("khoiLopId");
         List<LopHocDTO> listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
-        List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLop();  
+        List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);  
         LopHocDTO lopHocDuocChon = null;
         
         map.put("listLopHoc", listLopHoc);
@@ -99,34 +91,48 @@ public class ManagementStudentController {
         LopHocDTO lopHocDuocChon = null;
         if(request.getParameter("requestElement").equals("namHoc") || request.getParameter("requestElement").equals("khoiLop")){                                    
             namHocId = request.getParameter("namHocId");
+            NamHocDTO namHocDuocChon = mongoService.getnamHocById(namHocId);
             khoiLopId = request.getParameter("khoiLopId");
             listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
-            System.out.println(listLopHoc);
-            if (listLopHoc.size() > 0 ) {
-                lopHocDuocChon = listLopHoc.get(0);
-                listHocSinh = mongoService.getStudentsByLopHoc(lopHocDuocChon.getid());
-            }else{
+            boolean laNamHienTai = false;//Bien nay dung de kiem tra neu la nam hien tai thi khong hien Hoc Sinh Chua Xep Lop           
+            //Neu lam nam hoc hien tai thi se lay danh sach hoc sinh chua xep lop
+            //Nguoc lai se lay danh sach hoc sinh cua lop dau tien trong khoi, nam hoc do
+            if (namHocDuocChon.gettenNamHoc().equals(FunctionService.namHocHienTai())) {                
+                laNamHienTai = true;
                 lopHocDuocChon = null;
-                listHocSinh = mongoService.getHocSinhChuaXepLop();  
-            }  
-            
+                listHocSinh = mongoService.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
+            } else {
+                //Neu co danh sach lop hoc thi lay lop dau tien
+                //Nguoi lai thi tra ve null
+                if (listLopHoc.size() > 0 ) {
+                    lopHocDuocChon = listLopHoc.get(0);
+                    listHocSinh = mongoService.getStudentsByLopHoc(lopHocDuocChon.getid());
+                }else{
+                    lopHocDuocChon = null;
+                    listHocSinh = null;  
+                } 
+            }                         
+            map.put("laNamHienTai", laNamHienTai);
             map.put("listHocSinh", listHocSinh);        
             map.put("listLopHoc", listLopHoc);
             map.put("namHocId", namHocId);
             map.put("khoiLopId", khoiLopId);
-            map.put("lopHocDuocChon", lopHocDuocChon);
-            System.out.println(map);
-            //Lay nam hoc Hien Tai        
+            map.put("lopHocDuocChon", lopHocDuocChon);                           
             return new ModelAndView("management/students/subindex", map); 
             
         }else if(request.getParameter("requestElement").equals("lopHoc")){            
             lopHocId = request.getParameter("lopHocId");
+            namHocId = request.getParameter("namHocId");
+            khoiLopId = request.getParameter("khoiLopId");
             if (lopHocId.equals("0")) {
-                listHocSinh = mongoService.getHocSinhChuaXepLop(); 
+                //Lay danh sach hoc sinh theo khoi Lop
+                listHocSinh = mongoService.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId); 
             }else{
                 listHocSinh = mongoService.getStudentsByLopHoc(lopHocId);
             }            
+            listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
             map.put("listHocSinh", listHocSinh);
+            map.put("listLopHoc", listLopHoc);
             return new ModelAndView("management/students/sub_table_student", map); 
         }  
         return new ModelAndView("management/students/subindex", map); 
@@ -231,6 +237,18 @@ public class ManagementStudentController {
         Map<String, Object> map = new HashMap<String, Object>();        
         xepHocSinhVaoLopHoc();
         map.put("message", "Đã xếp lớp thành công cho tất cả học sinh mới");
+        return new ModelAndView("redirect:/staff/management/students/index",map);
+    }
+    
+    @RequestMapping(value="xeplop_hocsinh")
+    public @ResponseBody
+    ModelAndView xepLopHocSinh(HttpServletRequest request){
+        Map<String, Object> map = new HashMap<String, Object>();            
+        String hocSinhId = request.getParameter("hocSinhId");
+        String lopHocId = request.getParameter("lopHocId");
+        HocSinhDTO hocSinh = mongoService.getHocSinhById(hocSinhId);
+        hocSinh.setMaLopHoc(lopHocId);
+        mongoService.updateStudent(hocSinh);
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }
     

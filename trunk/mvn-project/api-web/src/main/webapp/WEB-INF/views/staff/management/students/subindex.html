@@ -41,7 +41,7 @@
                             <div class="btn-group">
                                 <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
         <!--                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
-                                <a title="Xếp lớp" class="linkXepLop" th:id="${hocsinh.getmaHocSinh()}" data-toggle="modal" href="#xepLopMotHocSinhModal"><i class="icon-plus-sign icon-action"></i></a>
+                                <a title="Xếp lớp" class="linkXepLop" th:id="${hocsinh.getid()}" data-toggle="modal" href="#xepLopMotHocSinhModal"><i class="icon-plus-sign icon-action"></i></a>
                             </div>                            
                         </td>
                     </tr>
@@ -54,10 +54,13 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">Xác Nhận Xếp Lớp</h4>
+                  <h4 class="modal-title" id="myModalLabel">Xếp Lớp Học Sinh</h4>
                 </div>
                 <div class="modal-body">
-                    <div>Bạn có thực sự muốn xếp lớp cho tất cả học sinh này không?</div>
+                    <label class="select_label">Chọn Lớp Để Xếp</label>
+                    <select id="IDLopHocXepLop" name="IDLopHocXepLop" class="input-xlarge custom_checkbox">
+                        <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}" class="lopHocModal"/>                                                  
+                    </select> 
                 </div>
                 <div class="modal-footer align_center">
                   <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
@@ -72,14 +75,46 @@
                 jQuery("#table").dataTable({"bJQueryUI": true});
                 COMMON.activeMenu("quanly_nav");
             });
-            //invisible Xep lop link if LopHoc khong phai la Chua xep lop
-            var lopHocId =$("#IDLopHoc")[0].value;            
-            if (lopHocId != "0") {                    
-                    var listLink = $(".linkXepLop");                    
-                    for (i = 0; i < listLink.length; i++) {                        
-                        listLink[i].style.display = "none";
+            
+            var studentId;
+            $(".linkXepLop").on('click', function(){                
+                studentId = $(this)[0].id;                
+            })
+            var xepLopMotHocSinh_url = /*[[@{/staff/management/students/xeplop_hocsinh/}]]*/ "demo";                        
+            var index_url = /*[[@{/staff/management/students/index/}]]*/"demo";
+            $("#xepLopButton").on('click', function(e){                
+                var lopHocId = $("#IDLopHocXepLop")[0].value;                
+                $.ajax({
+                    url: xepLopMotHocSinh_url,
+                    type: 'GET',
+                    data: {lopHocId: lopHocId, hocSinhId: studentId},
+                    success: function(){
+                        document.location = index_url;
                     }
-                };
+                })
+                $('#xepLopMotHocSinhModal').modal('hide');
+                
+            })
+            
+//            var xepLopMotHocSinh_url = /*[[@{/staff/management/students/xeplop_hocsinh/}]]*/ "demo";                        
+//            $("#xepLopButton").on('click', function(e){
+//                var lopHocId = $("#IDLopHocXepLop")[0].value;
+//                console.log(lopHocId);
+//                
+//            })
+//            
+            if ($(".lopHocDuocChon")[0].id == "1"){
+                console.log("AAAAAAAAAAAAAAAAAAA");
+                $("#IDLopHoc")[0].value = "0";
+            }
+            //invisible Xep lop link if LopHoc khong phai la Chua xep lop
+//            var lopHocId =$("#IDLopHoc")[0].value;            
+//            if (lopHocId != "0") {                    
+//                    var listLink = $(".linkXepLop");                    
+//                    for (i = 0; i < listLink.length; i++) {                        
+//                        listLink[i].style.display = "none";
+//                    }
+//                };
             var request_data_url = /*[[@{/staff/management/students/request_data/}]]*/ "demo";
             $("#IDLopHoc").on('change', function(){
                 var self = $(this);
@@ -89,7 +124,7 @@
                 $.ajax({
                     url: request_data_url,
                     type: 'GET',
-                    data: { lopHocId: lopHocId, requestElement: "lopHoc"},
+                    data: { lopHocId: lopHocId,namHocId: namHocId, khoiLopId:khoiLopId, requestElement: "lopHoc"},
                     success: function(data){                           
                         $("#subTable")[0].style.display = "none";
                         $("#mainTable").html(data);
