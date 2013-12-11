@@ -5,6 +5,8 @@
  */
 package quanlyhocvu.api.mongodb.service;
 
+import java.util.Calendar;
+
 /**
  *
  * @author linhly
@@ -18,6 +20,12 @@ public class FunctionService {
         res += arr[1] + "/" + arr[0]+ "/" + arr[2];
         return res;
         
+    }
+    
+    public static String namHocHienTai(){
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int nextYear = currentYear + 1;
+        return  currentYear + "-" + nextYear;        
     }
         
     
