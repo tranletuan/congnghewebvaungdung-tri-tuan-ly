@@ -79,9 +79,15 @@ $(document).ready(function(){
 
     $("#xepLopButton").on('click', function(){        
         var url = xeplop_url;
+        var chonKhoiSau = $("#radios-0")[0].checked;
+        var dataChon = "6789";
+        if (chonKhoiSau) {
+            dataChon = "6";           
+        }
          $.ajax({
                 url: url,
                 type: 'POST',
+                data: {radio_value: dataChon},
                 success: function(){
                     document.location = index_url;
                 }
