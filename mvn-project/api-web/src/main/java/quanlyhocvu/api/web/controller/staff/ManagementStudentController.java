@@ -235,7 +235,7 @@ public class ManagementStudentController {
     public @ResponseBody
     ModelAndView xeplopHocSinh(HttpServletRequest request){
         Map<String, Object> map = new HashMap<String, Object>();        
-        xepHocSinhVaoLopHoc();
+        xepHocSinhVaoLopHoc("6");
         map.put("message", "Đã xếp lớp thành công cho tất cả học sinh mới");
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }
@@ -249,38 +249,36 @@ public class ManagementStudentController {
         HocSinhDTO hocSinh = mongoService.getHocSinhById(hocSinhId);
         hocSinh.setMaLopHoc(lopHocId);
         mongoService.updateStudent(hocSinh);
+        mongoService.addStudent(hocSinh, lopHocId);
         return new ModelAndView("redirect:/staff/management/students/index",map);
-    }
+    }        
     
-    @RequestMapping(value="laydanhsachlophoc")
-    public @ResponseBody
-    Map layDanhSachLopHoc(HttpServletRequest request){
-        Map<String, Object> map = new HashMap<String, Object>();      
-        
-        return map;
-    }
-    
-    public void xepHocSinhVaoLopHoc(){
-        List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLop();
-        KhoiLopDTO khoiLop = mongoService.getKhoiLopByName("6");
-        List<LopHocDTO> listLopHoc = mongoService.getLopHocTheoKhoiLop(khoiLop.getid());          
+    public void xepHocSinhVaoLopHoc(String tenKhoiLop){
+        //Xep hoc sinh vao theo khoi lop
+        KhoiLopDTO khoiLop = mongoService.getKhoiLopByName(tenKhoiLop);
+        List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLopTheoKhoiLop(khoiLop.getid());        
+        List<LopHocDTO> listLopHoc = mongoService.getLopHocTheoKhoiLop(khoiLop.getid());                          
+        HocSinhDTO hocSinh;
+        LopHocDTO lopHoc;
         int count = 0;        
-        for (int i = 0; i < listHocSinh.size(); i++) {
-            if (listLopHoc.size() == 0) {
-                System.out.println("Khong con co lop nao trong de them Hoc Sinh Vao");
-                break;
+        if (listLopHoc.size() > 0) {
+            for (int i = 0; i < listHocSinh.size(); i++) {                
+                if (count >= listLopHoc.size()) {
+                    count = 0;
+                }
+                if (listLopHoc.get(count).getlistHocSinh().size() < FunctionService.SoHocSinhToiDaMotLop) {                    
+                    hocSinh = listHocSinh.get(i);
+                    lopHoc = listLopHoc.get(count);
+                    hocSinh.setMaLopHoc(lopHoc.getid());
+                    mongoService.updateStudent(hocSinh);
+                    mongoService.addStudent(hocSinh, lopHoc.getid());
+                }else{
+                    listLopHoc.remove(listLopHoc.get(count));
+                }            
+                count++;
             }
-            
-            if (count >= listLopHoc.size()) {
-                count = 0;
-            }
-            if (listLopHoc.get(count).getlistHocSinh().size() < FunctionService.SoHocSinhToiDaMotLop) {
-                mongoService.addStudent(listHocSinh.get(i), listLopHoc.get(count).getid());
-            }else{
-                listLopHoc.remove(listLopHoc.get(count));
-            }            
-            count++;
         }
+        
     }
             
 }

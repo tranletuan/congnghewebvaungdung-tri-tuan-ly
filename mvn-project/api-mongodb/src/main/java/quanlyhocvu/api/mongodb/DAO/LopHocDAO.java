@@ -98,11 +98,11 @@ public class LopHocDAO {
 
     public boolean addStudent(HocSinhDTO hs, String classId) {
         LopHocDTO lopHoc = getLopHocById(classId);
-        List<HocSinhDTO> tempList = lopHoc.getlistHocSinh();
+        List<HocSinhDTO> tempList = lopHoc.getlistHocSinh();     
         tempList.add(hs);
         Query query = Query.query(Criteria.where("id").is(classId));
         Update update = new Update();
-        update.set("listHocSinh", tempList);
+        update.set("listHocSinh", tempList);       
         mongoOperation.findAndModify(query, update, LopHocDTO.class);
         return true;
     }
