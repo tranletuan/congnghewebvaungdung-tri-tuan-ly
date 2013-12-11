@@ -54,4 +54,7 @@ and open the template in the editor.
 .min_width_button_modal{
     min-width: 100px;
 }
+.bs-docs-example:after{
+    content: none !important;
+}
 /*Css for modal*/
