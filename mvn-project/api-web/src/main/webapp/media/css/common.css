@@ -57,4 +57,11 @@ and open the template in the editor.
 .bs-docs-example:after{
     content: none !important;
 }
+
+.radio_khoiLop{
+    width: 50%;
+}
+.message_modal{
+    margin-bottom: 10px;
+}
 /*Css for modal*/

@@ -234,8 +234,16 @@ public class ManagementStudentController {
     @RequestMapping(value="xeplop")
     public @ResponseBody
     ModelAndView xeplopHocSinh(HttpServletRequest request){
-        Map<String, Object> map = new HashMap<String, Object>();        
-        xepHocSinhVaoLopHoc("6");
+        Map<String, Object> map = new HashMap<String, Object>();    
+        if (request.getParameter("radio_value").equals("6")){            
+            xepHocSinhVaoLopHoc("6");
+        }else{            
+            xepHocSinhVaoLopHoc("6");
+            xepHocSinhVaoLopHoc("7");
+            xepHocSinhVaoLopHoc("8");
+            xepHocSinhVaoLopHoc("9");
+            
+        };        
         map.put("message", "Đã xếp lớp thành công cho tất cả học sinh mới");
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }
