@@ -111,6 +111,11 @@ public class LopHocDAO {
         Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)));
         return mongoOperation.find(query, LopHocDTO.class);
     }
+    
+    public List<LopHocDTO> getLopHocTheoNamHoc(String namHocId){
+        Query query = Query.query(Criteria.where("namHoc.$id").is(new ObjectId(namHocId)));
+        return mongoOperation.find(query, LopHocDTO.class);
+    }
 
     
     public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){

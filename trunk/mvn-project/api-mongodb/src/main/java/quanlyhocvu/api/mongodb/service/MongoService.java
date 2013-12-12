@@ -325,6 +325,10 @@ public class MongoService {
      public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop) {
           return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
      }
+     
+     public List<LopHocDTO> getLopHocTheoNamHoc(String namHocId){
+         return lophocDAO.getLopHocTheoNamHoc(namHocId);
+     }
 
      public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
           return lophocDAO.getHocSinhById(dto, idHocSinh);

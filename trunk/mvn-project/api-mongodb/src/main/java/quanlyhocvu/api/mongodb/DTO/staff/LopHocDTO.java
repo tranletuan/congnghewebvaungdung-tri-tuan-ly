@@ -47,6 +47,9 @@ public class LopHocDTO extends AbstractObjectDTO {
         trangThaiLopHoc = TrangThaiLopHoc.ChuaLenLop;
     };
     
+    public int getSiSo(){
+        return listHocSinh.size();
+    }
 
     public String gettenLopHoc() {
         return tenLopHoc;

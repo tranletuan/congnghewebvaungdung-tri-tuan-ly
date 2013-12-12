@@ -13,7 +13,7 @@
                     <th>Địa Chỉ</th>
                     <th>Ngày Nhập Học</th>
                     <th>Ngày Nghỉ Học</th>                    
-                    <th>Tác Vụ</th>
+                    <th>Tác Vụ</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -28,12 +28,17 @@
                     <td th:unless="${hocsinh.getngayNhapHoc()}" id="ngayNhapHoc"/>   
                     <td th:text="${#dates.format(hocsinh.getngayNghiHoc(),'dd/MM/yyyy')}"  th:if="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                        
                     <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                                                     
-                    <td>
+                    <td th:unless="${hocsinh.maLopHoc}">
+                        <div class="btn-group">
+                            <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>     
+                            <a title="Xếp Lớp" class="linkXepLop" th:id="${hocsinh.getid()}" data-toggle="modal" href="#xepLopMotHocSinhModal"><i class="icon-plus-sign icon-action"></i></a>
+                        </div>                            
+                    </td>
+                    <td th:if="${hocsinh.maLopHoc}">
                         <div class="btn-group">
                             <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
-    <!--                                <a th:href="@{'/staff/management/students/delete/'+${hocsinh.getmaHocSinh()}}" title="Xóa" class="linkDelete" th:id="${hocsinh.getmaHocSinh()}"><i class="icon-trash icon-action"></i></a>-->
-                            <a href="#" title="Xếp lớp" class="linkXepLop" th:id="${hocsinh.getid()}"  data-toggle="modal"  data-id="${hocsinh.getmaHocSinh()}"  data-target="#xepLopMotHocSinhModal"><i class="icon-plus-sign icon-action"></i></a>
-                        </div>                            
+
+                        </div> 
                     </td>
                 </tr>
             </tbody>
