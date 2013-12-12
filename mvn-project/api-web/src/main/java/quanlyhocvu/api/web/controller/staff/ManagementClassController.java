@@ -44,11 +44,30 @@ public class ManagementClassController {
     public @ResponseBody
     ModelAndView classList(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<LopHocDTO> listLopHoc = new ArrayList<LopHocDTO>();
-        listLopHoc = mongoService.getAllLopHoc();
-        map.put("listLopHoc", listLopHoc);
+        List<LopHocDTO> listLopHoc = new ArrayList<LopHocDTO>();        
+        String namHienTai =  FunctionService.namHocHienTai();
+        NamHocDTO namHienTaidto = mongoService.getnamHocByName(namHienTai);
+        List<NamHocDTO> listNamHoc = mongoService.getAllnamHoc(); 
+        listLopHoc = mongoService.getLopHocTheoNamHoc(namHienTaidto.getid());
+        
+        map.put("listNamHoc", listNamHoc);
+        map.put("namHienTai", namHienTaidto);
+//        map.put("listLopHoc", listLopHoc);
         map.put("stt", 1);
         return new ModelAndView("management/class/index", map);
+    }
+    
+    @RequestMapping(value = "load")
+    public @ResponseBody
+    ModelAndView loadClass(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<LopHocDTO> listLopHoc = new ArrayList<LopHocDTO>();        
+        NamHocDTO namDuocChon = mongoService.getnamHocById(request.getParameter("namHocId"));
+        List<NamHocDTO> listNamHoc = mongoService.getAllnamHoc(); 
+        listLopHoc = mongoService.getLopHocTheoNamHoc(namDuocChon.getid());
+        
+        map.put("listLopHoc", listLopHoc);        
+        return new ModelAndView("management/class/subindex", map);
     }
 
     @RequestMapping(value = "new")

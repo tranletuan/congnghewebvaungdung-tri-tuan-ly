@@ -7,29 +7,18 @@
             <div th:substituteby="template :: nav" />   
             <a th:href="@{/staff/management/class/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Lớp Học Mới</a>
             <div class="clearfix"></div>
-            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
-                <thead>
-                    <tr>                        
-                        <th>Tên Lớp Học</th>
-                        <th>Giáo Viên</th>
-                        <th>Khối Học </th>
-                        <th>Năm Học</th>                        
-                    </tr>
-                </thead>
-                <tbody>                       
-                    <tr  th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">                        
-                        <td id="tenLopHoc"><a th:text="${lophoc.gettenLopHoc()}" th:href="@{'/staff/management/class/view/' + ${lophoc.getid()}}"></a></td>
-                        <td th:text="${lophoc.getgiaoVien().gethoTen()}" th:if="${lophoc.getgiaoVien()}" id="giaoVien"/>
-                        <td th:unless="${lophoc.getgiaoVien()}" id="giaoVien"/>
-                        <td th:text="${lophoc.getkhoiLop().gettenKhoiLop()}" id="khoiLop"/>
-                        <td th:text="${lophoc.getnamHoc().gettenNamHoc()}" id="namHoc"/>                        
-                    </tr>
-                </tbody>
-            </table>
+            <span th:id="${namHienTai.getid()}" class="namHocHienTai"></span>
+            <label class="select_label">Xem Theo Năm Học</label>
+            <select id="IDNamHoc" name="IDNamHoc" class="input-xlarge custom_checkbox">
+                <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
+            </select>
+            <div id="mainTable"></div>
             <div th:include="template :: footer"></div>
         </div>	
+        <script src="" th:src="@{/media/js/staff_module/class_index.js}"></script>
         <script th:inline="javascript">
             /*<![CDATA[*/
+            var load_lophoc_url = /*[[@{/staff/management/class/load}]]*/"demo";
             jQuery(document).ready(function() {
                 jQuery("#table").dataTable({"bJQueryUI": true});
                 COMMON.activeMenu("quanly_nav");

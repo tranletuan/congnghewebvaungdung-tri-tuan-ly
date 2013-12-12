@@ -70,7 +70,12 @@ public class ManagementStudentController {
         List<LopHocDTO> listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
         List<HocSinhDTO> listHocSinh = mongoService.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);  
         LopHocDTO lopHocDuocChon = null;
-        
+        String laNamHienTai = "1";
+        NamHocDTO namHoc = mongoService.getnamHocById(namHocId);
+        if (namHoc.gettenNamHoc().equals(FunctionService.namHocHienTai())) {                
+                laNamHienTai = null;                
+            }
+        map.put("laNamHienTai", laNamHienTai);
         map.put("listLopHoc", listLopHoc);
         map.put("listHocSinh", listHocSinh);
         map.put("namHocId", namHocId);
@@ -94,11 +99,11 @@ public class ManagementStudentController {
             NamHocDTO namHocDuocChon = mongoService.getnamHocById(namHocId);
             khoiLopId = request.getParameter("khoiLopId");
             listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
-            boolean laNamHienTai = false;//Bien nay dung de kiem tra neu la nam hien tai thi khong hien Hoc Sinh Chua Xep Lop           
+            String laNamHienTai = "1";//Bien nay dung de kiem tra neu la nam hien tai thi khong hien Hoc Sinh Chua Xep Lop           
             //Neu lam nam hoc hien tai thi se lay danh sach hoc sinh chua xep lop
             //Nguoc lai se lay danh sach hoc sinh cua lop dau tien trong khoi, nam hoc do
             if (namHocDuocChon.gettenNamHoc().equals(FunctionService.namHocHienTai())) {                
-                laNamHienTai = true;
+                laNamHienTai = null;
                 lopHocDuocChon = null;
                 listHocSinh = mongoService.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
             } else {

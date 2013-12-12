@@ -46,25 +46,13 @@
             <a th:href="@{'/staff/management/class/upgrade/'+${lopHoc.getid()}}" class="btn btn-primary float_right margin_button_bottom">Lên Lớp</a>
             <div th:include="template :: footer"></div>
         </div>	
-<!--          HTML for modal popup-->
-        <!-- modal content -->
-<!--        <div id='confirm'>
-                <div class='header'><span>Confirm Delete Student</span></div>
-                <div class='message'></div>
-                <div class='buttons'>
-                <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
-                </div>
-        </div>-->
-        <!-- preload the images -->
-<!--        <div style='display:none'>
-                <img src='img/confirm/header.gif' alt='' />
-                <img src='img/confirm/button.gif' alt='' />
-        </div>-->
-         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
-        <script src="" th:src="@{/media/js/student.js}"></script>
+
+<!--         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>-->
+<!--        <script src="" th:src="@{/media/js/student.js}"></script>-->
         <script th:inline="javascript">
             /*<![CDATA[*/
-            
+            jQuery("#table").dataTable({"bJQueryUI": true});
+            COMMON.activeMenu("quanly_nav");
             /*]]>*/            
         </script>    
     </body>
