@@ -50,7 +50,7 @@ public class ClassTeachingController {
         
         map.put("listPhanCong", listPhanCong);
         
-        return new ModelAndView("classteaching", map);
+        return new ModelAndView("teacher/classteaching", map);
     }
     
     @RequestMapping(value = "classteaching/{classId}")
@@ -61,6 +61,6 @@ public class ClassTeachingController {
         List<HocSinhDTO> listHocSinh = lop.getlistHocSinh();
         map.put("lopHoc", lop);
         map.put("listHocSinh", listHocSinh);
-        return new ModelAndView("class", map);
+        return new ModelAndView("teacher/class", map);
     }
 }

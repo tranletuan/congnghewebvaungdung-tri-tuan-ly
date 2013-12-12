@@ -36,7 +36,7 @@ public class ManagementStaffController {
           Map<String, Object> model = new HashMap<>();
           List<StaffDTO> staffs = mongoService.getAllStaff();
           model.put("staffs", staffs);
-          return new ModelAndView("management/staff/index", model);
+          return new ModelAndView("admin/management/staff/index", model);
      }
 
      @RequestMapping(value = "add")
@@ -44,7 +44,7 @@ public class ManagementStaffController {
      ModelAndView add(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
 
-          return new ModelAndView("management/staff/add", model);
+          return new ModelAndView("admin/management/staff/add", model);
      }
 
      @RequestMapping(value = "save")
@@ -65,7 +65,7 @@ public class ManagementStaffController {
                return new ModelAndView("redirect:/admin/management/staff/index", map);
           } catch (Exception ex) {
                map.put("message", ex.getMessage());
-               return new ModelAndView("management/staff/add", map);
+               return new ModelAndView("admin/management/staff/add", map);
           }
      }
 
@@ -75,7 +75,7 @@ public class ManagementStaffController {
           Map<String, Object> map = new HashMap<>();
           StaffDTO obj = mongoService.getStaffById(manhanvien);
           map.put("staff", obj);
-          return new ModelAndView("management/staff/edit", map);
+          return new ModelAndView("admin/management/staff/edit", map);
      }
 
      @RequestMapping(value = "update/{manhanvien}")
@@ -107,7 +107,7 @@ public class ManagementStaffController {
                return new ModelAndView("redirect:/admin/management/staff/index", map);
           } catch (Exception ex) {
                map.put("message", ex.getMessage());
-               return new ModelAndView("management/staff/add", map);
+               return new ModelAndView("admin/management/staff/add", map);
           }
      }
 }

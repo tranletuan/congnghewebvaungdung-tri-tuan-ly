@@ -21,7 +21,7 @@ public class TeacherController {
     @RequestMapping(value="home")
     public @ResponseBody
     ModelAndView home () {
-        return new ModelAndView("home");
+        return new ModelAndView("teacher/home");
     }
     
     @RequestMapping(value="logout") 
@@ -33,7 +33,7 @@ public class TeacherController {
     @RequestMapping(value="information") 
     public @ResponseBody
     ModelAndView information () {
-        return new ModelAndView("information");
+        return new ModelAndView("teacher/information");
     }
     
 }

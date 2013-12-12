@@ -20,6 +20,6 @@ public class HomeController {
     @RequestMapping(value="home") 
     public @ResponseBody
     ModelAndView home(HttpServletRequest request) {
-        return new ModelAndView("home");
+        return new ModelAndView("staff/home");
     }
 }

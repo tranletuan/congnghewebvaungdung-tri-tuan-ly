@@ -57,7 +57,7 @@ public class ManagementStudentController {
         map.put("khoiLopMacDinh", khoiLopDuocChon);
         map.put("listKhoiLop", listKhoiLop);               
         
-        return new ModelAndView("management/students/index", map);        
+        return new ModelAndView("staff/management/students/index", map);        
         
     }
     
@@ -81,7 +81,7 @@ public class ManagementStudentController {
         map.put("namHocId", namHocId);
         map.put("khoiLopId", khoiLopId);
         map.put("lopHocDuocChon", lopHocDuocChon);
-        return new ModelAndView("management/students/subindex", map);
+        return new ModelAndView("staff/management/students/subindex", map);
     }
     
     @RequestMapping(value = "request_data")
@@ -123,7 +123,7 @@ public class ManagementStudentController {
             map.put("namHocId", namHocId);
             map.put("khoiLopId", khoiLopId);
             map.put("lopHocDuocChon", lopHocDuocChon);                           
-            return new ModelAndView("management/students/subindex", map); 
+            return new ModelAndView("staff/management/students/subindex", map); 
             
         }else if(request.getParameter("requestElement").equals("lopHoc")){            
             lopHocId = request.getParameter("lopHocId");

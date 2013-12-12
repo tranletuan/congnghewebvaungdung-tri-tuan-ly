@@ -40,7 +40,7 @@ public class ManagementSchoolYearController {
         List<NamHocDTO> listnamHoc = new ArrayList<NamHocDTO>();
         listnamHoc = mongoService.getAllnamHoc();
         map.put("listnamHoc", listnamHoc);
-        return new ModelAndView("management/school_year/index", map);
+        return new ModelAndView("staff/management/school_year/index", map);
     }
 
     @RequestMapping(value="new")
@@ -49,7 +49,7 @@ public class ManagementSchoolYearController {
         Map<String, Object> map = new HashMap<String, Object>();
         
         
-        return new ModelAndView("management/school_year/new", map);
+        return new ModelAndView("staff/management/school_year/new", map);
     }
     
     @RequestMapping(value="save")

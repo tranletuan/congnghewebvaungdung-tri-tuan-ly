@@ -14,8 +14,12 @@ import org.springframework.security.core.userdetails.User;
  * @author HuuTri
  */
 public class Tools {
-    public static User getCurrentUser() {
-        Authentication auth  = SecurityContextHolder.getContext().getAuthentication();
-        return (User)auth.getPrincipal();
-    }
+
+     public static String getCurrentUser() {
+          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+          if (auth != null) {
+               return auth.getName();
+          }
+          return null;
+     }
 }

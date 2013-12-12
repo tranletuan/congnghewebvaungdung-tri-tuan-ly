@@ -24,12 +24,12 @@ import quanlyhocvu.api.mongodb.service.MongoService;
 public class AdminController {
      @Autowired
      MongoService mongoService;
-     
+    
      @RequestMapping(value="home")
      public @ResponseBody
      ModelAndView index(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
           
-          return new ModelAndView("home", model);
+          return new ModelAndView("admin/home", model);
      }
 }

@@ -1,11 +1,105 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header" />
+<html xmlns="http://www.w3.org/1999/html5"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+    <head th:include="admin/template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />   
-            <div th:include="template :: footer"></div>
+            <div th:substituteby="admin/template :: nav" />   
+            <div class="row container">
+                <div class="container">
+                    <div class="col-md-3 list-group">
+                        <div class="">
+                            <form id="custom-search-form" class="form-search form-horizontal pull left">
+                                <div class="in  put-append">
+                                    <input type="text" class="form-control search-query" placeholder="Search"/>
+                                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <hr/>
+                        <div th:unless="${user}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form accept-charset="UTF-8" role="form" method="POST">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                    <input class="form-control" placeholder="Tên đăng nhập" name="username" type="Tên đăng nhập"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                                    <input class="form-control" placeholder="Mật khẩu" name="password" type="password"  />
+                                                </div>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="remember" type="checkbox" value="Ghi Nhớ"/> Ghi nhớ
+                                                </label>
+                                            </div>
+                                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Đăng nhập"/>
+                                        </fieldset>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media" th:if="${user}">
+                            <a class="thumbnail pull-left" href="#">
+                                <img class="media-object" src=""/>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading" th:inline="text">Hi, [[${user.username}]]</h4>
+                                <p><span class="label label-info">888 photos</span> <span class="label label-warning">0 cảnh báo</span></p>
+                                <p>
+                                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> 1 tin nhắn mới</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-9 pull-right">
+                        <div class="row">
+                            <div class="panel panel-default widget margin-left-panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <span class="glyphicon glyphicon-list-alt"></span> Thông báo <span class="label label-info">78</span></h3>
+                                </div>
+                                <div class="">
+                                    <ul class="">
+                                        <li class="">
+                                            <div class="row" th:each="news : ${listnews}" th:id="${new.id}">
+                                                <div >
+                                                    <a th:href="${news.url}" th:inline="text">[[${new.title}]]</a>
+                                                    <div class="mic-info" th:inline="text">
+                                                        Thể loại: <a href="#" th:inline="text">[[${new.catalog}]]</a> [[${news.date}]]
+                                                    </div>
+
+                                                    <div class="comment-text" th:inline="text">
+                                                        [[${news.thumbnail}]]
+                                                    </div>
+                                                    <div class="action"  sec:authorize="hasRole('STAFF')">
+                                                        <a  class="btn btn-primary btn-xs" title="Sửa" th:href="@{''}">
+                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                        </a>
+                                                        <button type="button"  class="btn btn-danger btn-xs" title="Xóa">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> Xem thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+            <div th:include="admin/template :: footer"></div>
         </div>	
         <script th:inline="javascript">
             /*<![CDATA[*/

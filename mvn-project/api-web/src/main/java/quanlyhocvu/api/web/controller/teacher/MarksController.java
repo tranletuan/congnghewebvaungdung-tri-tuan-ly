@@ -53,7 +53,7 @@ public class MarksController {
 
         map.put("listPhanCong", listPhanCong);
 
-        return new ModelAndView("class", map);
+        return new ModelAndView("teacher/class", map);
     }
 
     @RequestMapping(value = "class/{majorId}")
@@ -70,7 +70,7 @@ public class MarksController {
         map.put("lopHoc", lopHoc);
         map.put("monHoc", monHoc);
         map.put("listHocSinh", listHocSinh);
-        return new ModelAndView("list", map);
+        return new ModelAndView("teacher/list", map);
     }
 
     @RequestMapping(value = "class/{majorId}/{studentId}")
@@ -86,7 +86,7 @@ public class MarksController {
         map.put("diem", diem);
         map.put("hocSinh", hocSinh);
         map.put("chiTietDiem", chiTietDiem);
-        return new ModelAndView("mark", map);
+        return new ModelAndView("teacher/mark", map);
     }
 
 }

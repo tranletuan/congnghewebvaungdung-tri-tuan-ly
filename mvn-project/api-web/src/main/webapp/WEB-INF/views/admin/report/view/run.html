@@ -1,16 +1,16 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header" />
+    <head th:include="admin/template :: header" />
     <body th:onload="${'REPORT.runReport('''+reportViewUrl+''');'}">
         <div class="container">
-            <div th:substituteby="template :: nav"/>
+            <div th:substituteby="admin/template :: nav"/>
             <div th:each="rpt: ${report}">
                 <span class="custom-bar">
                     <a th:text="${rpt.reportName}" th:onclick="${'REPORT.runReport('''+viewUrl+rpt.reportIdFile+''')'}"/>
                 </span>
             </div>
-            <div class="control-group" >
+            <div class="form-group" >
                 <div class="report-viewer" id="success-reportView"/>
             </div>
         </div>

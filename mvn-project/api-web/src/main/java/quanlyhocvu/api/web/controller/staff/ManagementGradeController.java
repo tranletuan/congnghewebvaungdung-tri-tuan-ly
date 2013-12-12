@@ -39,7 +39,7 @@ public class ManagementGradeController {
         List<KhoiLopDTO> listkhoiLop = new ArrayList<KhoiLopDTO>();
         listkhoiLop = mongoService.getAllkhoiLop();
         map.put("listkhoiLop", listkhoiLop);
-        return new ModelAndView("management/grade/index", map);
+        return new ModelAndView("staff/management/grade/index", map);
     }
 
     @RequestMapping(value="new")
@@ -48,7 +48,7 @@ public class ManagementGradeController {
         Map<String, Object> map = new HashMap<String, Object>();
         
         
-        return new ModelAndView("management/grade/new", map);
+        return new ModelAndView("staff/management/grade/new", map);
     }
     
     @RequestMapping(value="save")

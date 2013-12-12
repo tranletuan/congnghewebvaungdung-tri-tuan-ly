@@ -1,59 +1,61 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header" />
+    <head th:include="admin/template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />               
+            <div th:substituteby="admin/template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/admin/management/staff/save}">
-                <div class="control-group">
-                    <label class="control-label" for="manhanvien">Mã Nhân Viên</label>
-                    <div class="controls">
-                        <input type="text" class="input-xlarge validate[required]" name="manhanvien" id="manhanvien" placeholder="Mã Nhân Viên"/>
-                    </div>               
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="hoTen">Họ Tên</label>
-                    <div class="controls">
-                        <input type="text" id="hoTen" name="hoTen" class="input-xlarge validate[required]" placeholder="Họ Tên Nhân Viên"/>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="manhanvien">Mã nhân viên</label>  
+                    <div class="col-md-5">
+                        <input id="manhanvien" name="manhanvien" type="text" placeholder="" class="form-control input-md validate[required]" />
+
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="Giới Tính">Giới Tính</label>
-                    <div class="controls">
-                        <select name="gioiTinh" class="input-xlarge custom_checkbox validate[required]">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="hoTen">Họ Tên</label>
+                    <div class="col-md-5">
+                        <input type="text" id="hoTen" name="hoTen" class="form-control input-md validate[required]" placeholder="Họ Tên Nhân Viên"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Giới Tính">Giới Tính</label>
+                    <div class="col-md-5">
+                        <select name="gioiTinh" class="form-control validate[required]">
                             <option  value="1">Nam</option>
                             <option value="0">Nữ</option>                            
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="ngaySinh">Ngày Sinh</label>
-                    <div class="controls">
-                        <input type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge validate[required]"/>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="ngaySinh">Ngày Sinh</label>
+                    <div class="col-md-5">
+                        <input type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control validate[required]"/>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="diaChi">Địa Chỉ</label>
-                    <div class="controls">                     
-                        <textarea id="diaChi" name="diaChi" class="input-xlarge validate[required]"></textarea>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="diaChi">Địa Chỉ</label>
+                    <div class="col-md-5">                     
+                        <textarea id="diaChi" name="diaChi" class="form-control validate[required]"></textarea>
                     </div>
                 </div>  
-                <div class="control-group">
-                    <label class="control-label" for="ngayVaoLam">Ngày Vào Làm</label>
-                    <div class="controls">
-                        <input type="text" id="datepickerngayVaoLam" name="ngayVaoLam" class="input-xlarge validate[required]"/>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="ngayVaoLam">Ngày Vào Làm</label>
+                    <div class="col-md-5">
+                        <input type="text" id="datepickerngayVaoLam" name="ngayVaoLam" class="form-control validate[required]"/>
                     </div>
                 </div>                    
-                <div class="control-group">
-                    <div class="controls">
+                <div class="form-group">
+                    <div class="col-md-4"/>
+                    <div class="col-md-5">
                         <button type="submit" class="btn btn-primary" id="save">Thêm Nhân Viên</button>
                         <a th:href="@{/admin/management/staff/index}" class="btn btn-info" id="cancel">Thoát</a>
                     </div>
                 </div>
 
             </form>
-            <div th:include="template :: footer"></div>
+            <div th:include="admin/template :: footer"></div>
         </div>	
         <script src="" th:src="@{/media/js/admin/admin_staff_new.js}"></script>            
         <script th:inline="javascript">

@@ -34,19 +34,6 @@ public class AuthorityController {
     @RequestMapping(value = "check_role")
     public @ResponseBody
     ModelAndView check_role(HttpServletRequest request) {
-        if (request.isUserInRole("ADMIN")) {
-            logger.debug("You are logged in admin");
-            return new ModelAndView("redirect:/admin/home");
-        } else if (request.isUserInRole("STAFF")) {
-            logger.debug("You are logged in staff");
-            return new ModelAndView("redirect:/staff/home");
-        } else if (request.isUserInRole("TEACHER")) {
-            logger.debug("You are logged in Teacher");
-            return new ModelAndView("redirect:/teacher/home");
-        } else if (request.isUserInRole("STUDENT")) {
-            logger.debug("You are logged in Student");
-            return new ModelAndView("redirect:/student/home");
-        }
         return new ModelAndView("redirect:/guest/home");
     }
 

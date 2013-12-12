@@ -41,7 +41,7 @@ public class ManagementSubjectController {
         List<MonHocDTO> listMonHoc = new ArrayList<MonHocDTO>();
         listMonHoc = mongoService.getAllMonHoc();
         map.put("listMonHoc", listMonHoc);
-        return new ModelAndView("management/subject/index", map);
+        return new ModelAndView("staff/management/subject/index", map);
     }
 
     @RequestMapping(value="new")
@@ -50,7 +50,7 @@ public class ManagementSubjectController {
         Map<String, Object> map = new HashMap<String, Object>();
         
         
-        return new ModelAndView("management/subject/new", map);
+        return new ModelAndView("staff/management/subject/new", map);
     }
     
     @RequestMapping(value="save")

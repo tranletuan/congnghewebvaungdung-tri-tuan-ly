@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.AuthorityDAO;
+import quanlyhocvu.api.mongodb.DAO.CatalogNewsDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietChuyenMonDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietDiemDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietMonHocDAO;
@@ -17,6 +18,7 @@ import quanlyhocvu.api.mongodb.DAO.KhoiLopDAO;
 import quanlyhocvu.api.mongodb.DAO.LopHocDAO;
 import quanlyhocvu.api.mongodb.DAO.MonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.NamHocDAO;
+import quanlyhocvu.api.mongodb.DAO.NewsDAO;
 import quanlyhocvu.api.mongodb.DAO.PhanCongDAO;
 import quanlyhocvu.api.mongodb.DAO.StaffDAO;
 import quanlyhocvu.api.mongodb.DTO.Authority.RoleDTO;
@@ -27,11 +29,13 @@ import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietMonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.CatalogNewsDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 import quanlyhocvu.api.mongodb.utils.Authorities;
 
@@ -40,6 +44,12 @@ public class MongoService {
 
      Logger logger = LoggerFactory.getLogger(getClass());
      //<editor-fold defaultstate="collapsed" desc="DAO variables">\
+     @Autowired
+     private NewsDAO newsDAO;
+
+     @Autowired
+     private CatalogNewsDAO catalogNewsDAO;
+
      @Autowired
      private AddressDAO addressDAO;
 
@@ -108,6 +118,22 @@ public class MongoService {
 
      //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
+     public NewsDAO getNewsDAO() {
+          return newsDAO;
+     }
+
+     public void setNewsDAO(NewsDAO newsDAO) {
+          this.newsDAO = newsDAO;
+     }
+
+     public CatalogNewsDAO getCatalogNewsDAO() {
+          return catalogNewsDAO;
+     }
+
+     public void setCatalogNewsDAO(CatalogNewsDAO catalogNewsDAO) {
+          this.catalogNewsDAO = catalogNewsDAO;
+     }
+
      public StaffDAO getStaffDAO() {
           return staffDAO;
      }
@@ -312,11 +338,11 @@ public class MongoService {
      public boolean addStudent(HocSinhDTO hs, String id) {
           return lophocDAO.addStudent(hs, id);
      }
-   
-    public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop){
-        return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
-    }
-    //</editor-fold>    
+
+     public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop) {
+          return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
+     }
+     //</editor-fold>    
 
      public boolean updateLopHoc(LopHocDTO dto) {
           return lophocDAO.update(dto);
@@ -325,16 +351,15 @@ public class MongoService {
      public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop) {
           return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
      }
-     
-     public List<LopHocDTO> getLopHocTheoNamHoc(String namHocId){
-         return lophocDAO.getLopHocTheoNamHoc(namHocId);
+
+     public List<LopHocDTO> getLopHocTheoNamHoc(String namHocId) {
+          return lophocDAO.getLopHocTheoNamHoc(namHocId);
      }
 
      public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
           return lophocDAO.getHocSinhById(dto, idHocSinh);
      }
-
-      //</editor-fold>    
+  
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
      /**
       * ************************************************
@@ -366,21 +391,20 @@ public class MongoService {
      public List<HocSinhDTO> getStudentsByLopHoc(String maLopHoc) {
           return hocsinhDAO.getByLopHoc(maLopHoc);
      }
-   
-    public HocSinhDTO getHocSinhById(String idStudent) {
-        return hocsinhDAO.getHocSinhById(idStudent);
-    }
-   
-    public List<HocSinhDTO> getHocSinhChuaXepLop(){
-        return hocsinhDAO.getHocSinhChuaXepLop();
-    }
-    
-    public List<HocSinhDTO> getHocSinhChuaXepLopTheoKhoiLop(String khoiLopId){
-        return hocsinhDAO.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
-    }
-   
-    //</editor-fold>
 
+     public HocSinhDTO getHocSinhById(String idStudent) {
+          return hocsinhDAO.getHocSinhById(idStudent);
+     }
+
+     public List<HocSinhDTO> getHocSinhChuaXepLop() {
+          return hocsinhDAO.getHocSinhChuaXepLop();
+     }
+
+     public List<HocSinhDTO> getHocSinhChuaXepLopTheoKhoiLop(String khoiLopId) {
+          return hocsinhDAO.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
+     }
+
+     //</editor-fold>
      //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for MARK">
      public List<DiemDTO> getAllDiem() {
@@ -416,8 +440,9 @@ public class MongoService {
      public boolean updateChiTietDiem(ChiTietDiemDTO dto) {
           return chitietdiemDAO.update(dto);
      }
+
      public ChiTietDiemDTO getChiTietDiemByIdDiem(DiemDTO diem) {
-         return chitietdiemDAO.getChiTietDiemByIdDiem(diem);
+          return chitietdiemDAO.getChiTietDiemByIdDiem(diem);
      }
 //</editor-fold>
 
@@ -516,7 +541,7 @@ public class MongoService {
      public RoleDTO getRoleByRoleName(String RoleName) {
           return authorityDAO.getRoleByRoleName(RoleName);
      }
-     
+
      public UserDTO getUserByUserName(String username) {
           return authorityDAO.getUserByUserName(username);
      }
@@ -554,5 +579,19 @@ public class MongoService {
           staffDAO.updateStaff(obj);
      }
 //</editor-fold>
-}
 
+     //<editor-fold defaultstate="collapsed" desc="Function for News">
+     public void insertCatalogNews(CatalogNewsDTO catalog) {
+          catalogNewsDAO.insertCatalog(catalog);
+     }
+
+     public List<CatalogNewsDTO> getAllCatalog() {
+          return catalogNewsDAO.getAllCatalog();
+     }
+     
+     public void insertNews(NewsDTO news) {
+          newsDAO.insertNews(news);
+     }
+//</editor-fold>
+
+}

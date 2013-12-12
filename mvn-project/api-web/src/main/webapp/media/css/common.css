@@ -70,3 +70,17 @@ and open the template in the editor.
 }
 
 /*Css for modal*/
+
+.main-container {
+/*    background-color: 	#FEFEFE;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";*/
+}
+.main-body {
+    font-family: "segoe ui";
+    /*background-color: #FFFFFF;*/
+}

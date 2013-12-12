@@ -9,23 +9,25 @@
            
     <http pattern="/**/login" security="none" />
     <http pattern="/**/media/**" security="none"/>
-    <http pattern="/guest/**" security="none"/>
+    <http pattern="/**/media/**/**" security="none"/>
     <http pattern="/authority/check" security="none" />
-    <http pattern="/teacher/**" security="none" />
-    <http pattern="/staff/**" security="none" />
+    <!--<http pattern="/teacher/**" security="none" />-->
+    <!--<http pattern="/staff/**" security="none" />-->
     <http auto-config='true' use-expressions="true">     
         <!--config ROLE_VIEW-->
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
-        <!--<intercept-url pattern="/teacher/**" access="hasRole('TEACHER')"/>-->
-        <!--<intercept-url pattern="/staff/**" access="hasRole('STAFF')"/>-->
+        <intercept-url pattern="/guest/**" access="permitAll" />
+        <intercept-url pattern="/teacher/**" access="hasRole('TEACHER')"/>
+        <intercept-url pattern="/staff/**" access="hasRole('STAFF')"/>
         <intercept-url pattern="/student/**" access="hasRole('STUDENT')"/>
         <form-login login-page="/guest/login" login-processing-url="/authority/j_spring_security_check"  default-target-url="/authority/check_role"
                     always-use-default-target='true' authentication-failure-url="/authority/noAccess" />
         <session-management  invalid-session-url="/guest/invalidSession" /> 
-        <logout logout-url="/authority/logout" invalidate-session="true" logout-success-url="/guest/login"/>
+        <logout logout-url="/authority/logout" invalidate-session="true" logout-success-url="/guest/home"/>
     </http>
     <beans:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"   id="passwordEncoder"/>
     <beans:bean id="userService" class="quanlyhocvu.api.web.controller.authority.CustomUserDetailService"/>
+   
     <authentication-manager>
         <authentication-provider user-service-ref="userService">
             <password-encoder ref="passwordEncoder" />

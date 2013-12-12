@@ -54,7 +54,7 @@
     p:prefix="/WEB-INF/views/admin/" p:suffix=".jsp" /> -->
     <beans:bean id="templateResolver"
                 class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-        <beans:property name="prefix" value="/WEB-INF/views/admin/" />
+        <beans:property name="prefix" value="/WEB-INF/views/" />
         <beans:property name="suffix" value=".html" />
         <beans:property name="templateMode" value="HTML5" />
         <beans:property name="characterEncoding" value="UTF-8" />

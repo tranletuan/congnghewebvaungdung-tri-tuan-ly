@@ -34,6 +34,6 @@ public class ManagementRoleController {
           Map<String, Object> model = new HashMap<>();
           List<UserDTO> users = mongoService.getAllUser();
           model.put("users", users);
-          return new ModelAndView("management/role/index", model);
+          return new ModelAndView("admin/management/role/index", model);
      }
 }

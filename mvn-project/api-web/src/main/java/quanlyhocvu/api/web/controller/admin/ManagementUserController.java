@@ -51,7 +51,7 @@ public class ManagementUserController {
           List<RoleDTO> roles = mongoService.getAllRole();
           model.put("roles", roles);
 
-          return new ModelAndView("management/user/index", model);
+          return new ModelAndView("admin/management/user/index", model);
      }
 
      @RequestMapping(value = "index_table/{rolename}")
@@ -62,7 +62,7 @@ public class ManagementUserController {
           List<UserDTO> users = mongoService.getUsersByRoleName(rolename);
           model.put("users", users);
 
-          return new ModelAndView("management/user/index_table", model);
+          return new ModelAndView("admin/management/user/index_table", model);
      }
 
      @RequestMapping(value = "update")
@@ -87,7 +87,7 @@ public class ManagementUserController {
                message = "Không thể cập nhật thông tin người dùng";
           }
           model.put("message", message);
-          return new ModelAndView("management/user/edit/" + user.getUsername(), model);
+          return new ModelAndView("admin/management/user/edit/" + user.getUsername(), model);
      }
 
      @RequestMapping(value = "update/{username}/{active_enabled}/{active_nonlocked}")
@@ -118,7 +118,7 @@ public class ManagementUserController {
 
           model.put("roles", roles);
           model.put("message", message);
-          return new ModelAndView("management/user/add", model);
+          return new ModelAndView("admin/management/user/add", model);
      }
 
      @RequestMapping(value = "edit/{username}")
@@ -138,7 +138,7 @@ public class ManagementUserController {
 
           }
 
-          return new ModelAndView("management/user/edit", model);
+          return new ModelAndView("admin/management/user/edit", model);
      }
 
      @RequestMapping(value = "save")
