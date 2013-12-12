@@ -54,7 +54,7 @@ public class ManagementClassController {
         map.put("namHienTai", namHienTaidto);
 //        map.put("listLopHoc", listLopHoc);
         map.put("stt", 1);
-        return new ModelAndView("management/class/index", map);
+        return new ModelAndView("staff/management/class/index", map);
     }
     
     @RequestMapping(value = "load")
@@ -67,7 +67,7 @@ public class ManagementClassController {
         listLopHoc = mongoService.getLopHocTheoNamHoc(namDuocChon.getid());
         
         map.put("listLopHoc", listLopHoc);        
-        return new ModelAndView("management/class/subindex", map);
+        return new ModelAndView("staff/management/class/subindex", map);
     }
 
     @RequestMapping(value = "new")
@@ -81,7 +81,7 @@ public class ManagementClassController {
         map.put("listnamHoc", listnamHoc);
         map.put("listgiaoVien", listgiaoVien);
         map.put("listkhoiLop", listkhoiLop);
-        return new ModelAndView("management/class/new", map);
+        return new ModelAndView("staff/management/class/new", map);
     }
 
     @RequestMapping(value = "save")
@@ -108,7 +108,7 @@ public class ManagementClassController {
         listHocSinh = lopHoc.getlistHocSinh();
         map.put("lopHoc", lopHoc);        
         map.put("listHocSinh", listHocSinh);
-        return new ModelAndView("management/class/view", map);
+        return new ModelAndView("staff/management/class/view", map);
     }
     
     @RequestMapping(value="upgrade/{classId}")

@@ -28,6 +28,6 @@ public class ManagementUserController {
     ModelAndView index() {
         Map<String, Object> model = new HashMap<String, Object>();
         
-        return new ModelAndView("management/user/index", model);
+        return new ModelAndView("authority/management/user/index", model);
     }
 }

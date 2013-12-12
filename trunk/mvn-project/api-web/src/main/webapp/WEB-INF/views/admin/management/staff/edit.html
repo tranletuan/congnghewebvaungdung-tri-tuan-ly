@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header">
+    <head th:include="admin/template :: header">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -9,67 +9,67 @@
     
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />               
+            <div th:substituteby="admin/template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{'/admin/management/staff/update/'+${staff.manhanvien}}">
                 <div class="inner_form">
-                    <div class="control-group">
-                        <label class="control-label" for="manhanvien">Mã Nhân Viên</label>
-                        <div class="controls">
-                          <input th:value="${staff.manhanvien}" id="manhanvien" name="manhanvien" type="text" placeholder="Mã nhân viên" class="validate[required] input-xlarge"/>                      
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="manhanvien">Mã Nhân Viên</label>
+                        <div class="col-md-5">
+                          <input th:value="${staff.manhanvien}" id="manhanvien" name="manhanvien" type="text" placeholder="Mã nhân viên" class="validate[required] form-control"/>                      
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="hoTen">Họ Tên</label>
-                        <div class="controls">
-                          <input th:value="${staff.gethoTen()}" id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] input-xlarge"/>                      
+                        <div class="form-control">
+                          <input th:value="${staff.gethoTen()}" id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] form-control"/>                      
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="Giới Tính">Giới Tính</label>
-                        <div class="controls">
+                        <div class="form-control">
                             <span class="invisible span_select" th:id="${staff.getgioiTinh()}"></span>
-                            <select id="checkBox_edit" name="gioiTinh" class="validate[required] input-xlarge custom_checkbox">
+                            <select id="checkBox_edit" name="gioiTinh" class="validate[required] form-control custom_checkbox">
                                 <option  value="1">Nam</option>
                                 <option value="0">Nữ</option>                            
                             </select>
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="ngaySinh">Ngày Sinh</label>
-                        <div class="controls">
-                            <input  th:value="${#dates.format(staff.getngaySinh(),'dd/MM/yyyy')}" th:if="${staff.getngaySinh()}"  type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge"/>
-                            <input th:unless="${staff.getngaySinh()}" type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge" />
+                        <div class="form-control">
+                            <input  th:value="${#dates.format(staff.getngaySinh(),'dd/MM/yyyy')}" th:if="${staff.getngaySinh()}"  type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control"/>
+                            <input th:unless="${staff.getngaySinh()}" type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control" />
                         </div>
                     </div>                     
-                    <div class="control-group">
+                    <div class="form-group">
                       <label class="control-label" for="diaChi">Địa Chỉ</label>
-                      <div class="controls">                     
-                        <textarea th:text="${staff.getdiaChi()}" id="diaChi" name="diaChi" class="input-xlarge"></textarea>
+                      <div class="form-control">                     
+                        <textarea th:text="${staff.getdiaChi()}" id="diaChi" name="diaChi" class="form-control"></textarea>
                       </div>
                     </div>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="ngayVaoLam">Ngày Vào Làm</label>
-                        <div class="controls">
-                            <input th:value="${#dates.format(staff.getngayVaoLam(),'dd/MM/yyyy')}" th:if="${staff.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="input-xlarge" />
-                            <input th:unless="${staff.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="input-xlarge" />
+                        <div class="form-control">
+                            <input th:value="${#dates.format(staff.getngayVaoLam(),'dd/MM/yyyy')}" th:if="${staff.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="form-control" />
+                            <input th:unless="${staff.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="form-control" />
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="ngayNghiViec">Ngày Nghỉ Việc</label>
-                        <div class="controls">
-                            <input th:value="${#dates.format(staff.getngayNghiViec(),'dd/MM/yyyy')}" th:if="${staff.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="input-xlarge" />
-                            <input th:unless="${staff.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="input-xlarge" />
+                        <div class="form-control">
+                            <input th:value="${#dates.format(staff.getngayNghiViec(),'dd/MM/yyyy')}" th:if="${staff.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="form-control" />
+                            <input th:unless="${staff.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="form-control" />
                         </div>
                     </div>                      
-                    <div class="control-group">                    
-                        <div class="controls">
+                    <div class="form-group">                    
+                        <div class="form-control">
                             <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Cập Nhật</button>
                             <a th:href="@{/admin/management/staff/index}" class="btn">Trở Lại</a>
                         </div>
                     </div>
                 </div>
             </form>
-            <div th:include="template :: footer"></div>
+            <div th:include="admin/template :: footer"></div>
             <script src="" th:src="@{/media/js/admin/admin_staff_edit.js}"></script>
         </div>	                
     </body>

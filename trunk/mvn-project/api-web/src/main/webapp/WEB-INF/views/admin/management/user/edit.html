@@ -1,10 +1,10 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header" />
+    <head th:include="admin/template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />       
+            <div th:substituteby="admin/template :: nav" />       
             <div id="message" class="alert alert-error" th:text="${message}" th:if="${message}">
                 <button type="button" class="close" data-dismiss="alert">×</button>
             </div>
@@ -16,35 +16,35 @@
                 <input type="hidden" id="username" name="username" th:value="${username}"/>
 
                 <!-- Text input-->
-                <div class="control-group">
-                    <label class="control-label" for="password">Mật Khẩu Mới</label>
-                    <div class="controls">
-                        <input id="password" name="password" type="text" placeholder="Không cập nhật bỏ trống" class="input-xlarge validate[required]">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="password">Mật Khẩu Mới</label>
+                    <div class="col-md-5">
+                        <input id="password" name="password" type="text" placeholder="Không cập nhật bỏ trống" class="form-control validate[required]">
                         </input>
                     </div>
                 </div>
 
                 <!-- Select Basic -->
-                <div class="control-group">
-                    <label class="control-label" for="rolename">Phân Quyền</label>
-                    <div class="controls">
-                        <select id="rolename" name="rolename" class="input-xlarge validate[required]">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="rolename">Phân Quyền</label>
+                    <div class="col-md-5">
+                        <select id="rolename" name="rolename" class="form-control validate[required]">
                             <option th:text="${role.rolename}" th:value="${role.rolename}" th:each="role : ${roles}"/>
                         </select>
                     </div>
                 </div>
 
                 <!-- Button (Double) -->
-                <div class="control-group">
-                    <label class="control-label" for="submit"></label>
-                    <div class="controls">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="submit"></label>
+                    <div class="col-md-5">
                         <button id="submit" name="submit" class="btn btn-primary">Lưu Lại</button>
                         <a th:href="@{/admin/management/user/index}" id="cancel" name="cancel" class="btn btn-default">Thoát</a>
                     </div>
                 </div>
             </form>
 
-            <div th:include="template :: footer"></div>
+            <div th:include="admin/template :: footer"></div>
         </div>	
         <!--<script src="" th:src="@{/media/js/admin/admin_user_edit.js}"></script>-->            
         <script th:inline="javascript">

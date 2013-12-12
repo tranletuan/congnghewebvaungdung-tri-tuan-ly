@@ -1,15 +1,15 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header" />
+    <head th:include="admin/template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />
+            <div th:substituteby="admin/template :: nav" />
             <!--<a class="btn btn-primary float_right margin_button_bottom">Sinh Thêm Người Dùng-->
             <div id="message" class="alert alert-error" th:text="${message}" th:if="${messge}">
             </div>
             <div class="btn-group float_right">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     Thêm Người Dùng <span class="caret caret-up"></span>
                 </button>
                 <ul class="dropdown-menu drop-up" role="menu">
@@ -23,7 +23,7 @@
                 <option  th:text="${role.rolename}" th:value="${role.rolename}" th:each="role: ${roles}"/>
             </select>
             <div id="tableframe"/>
-            <div th:include="template :: footer"></div>
+            <div th:include="admin/template :: footer"></div>
         </div>	
         <form id="form" style="display:hidden" th:action="@{/admin/management/user/index}" method="POST">
             <input type="hidden" id="rolename" name="rolename" th:value="${currRoleName}"/>

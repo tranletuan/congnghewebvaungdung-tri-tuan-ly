@@ -1,1 +1,1 @@
-<% response.sendRedirect("guest/login"); %>
+<% response.sendRedirect("guest/home"); %>

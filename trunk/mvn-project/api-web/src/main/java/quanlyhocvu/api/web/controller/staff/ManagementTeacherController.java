@@ -43,7 +43,7 @@ public class ManagementTeacherController {
         List<GiaoVienDTO> listgiaoVien = new ArrayList<GiaoVienDTO>();
         listgiaoVien = mongoService.getAllgiaoVien();
         map.put("listgiaoVien", listgiaoVien);
-        return new ModelAndView("management/teacher/list", map);
+        return new ModelAndView("staff/management/teacher/list", map);
     }
     
     @RequestMapping(value="add")
@@ -52,7 +52,7 @@ public class ManagementTeacherController {
         Map<String, Object> map = new HashMap<String, Object>();
         
         
-        return new ModelAndView("management/teacher/add", map);
+        return new ModelAndView("staff/management/teacher/add", map);
     }
     
     @RequestMapping(value="save")
@@ -78,7 +78,7 @@ public class ManagementTeacherController {
         Map<String,Object> map = new HashMap<String, Object>();
         GiaoVienDTO obj = mongoService.getTeacherById(teacherId);
         map.put("giaoVien", obj);
-        return new ModelAndView("management/teacher/edit", map);
+        return new ModelAndView("staff/management/teacher/edit", map);
     }
     
     @RequestMapping(value = "update/{teacherId}")

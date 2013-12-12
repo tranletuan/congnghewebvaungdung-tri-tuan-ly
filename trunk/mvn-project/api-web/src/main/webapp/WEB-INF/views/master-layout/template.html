@@ -1,0 +1,167 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+    <head  th:fragment="header">
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>QUẢN LÝ HỌC VỤ</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Bootstrap -->
+        <link href="" th:href="@{/media/css/smoothness/jquery-ui-1.10.1.custom.min.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/jquery.dataTables.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/jquery.dataTables_themeroller.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/jquery-ui-timepicker-addon.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/validationEngine.jquery.css}" rel="stylesheet" media="screen"/> 
+        <link href="" th:href="@{/media/css/application.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/common.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/confirm.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/master/template.css}" rel="stylesheet" media="screen"/>
+        <link href="" th:href="@{/media/css/bootstrap-responsive.min.css}" rel="stylesheet" media="screen" />
+
+        <script src="media/js/jquery.js" th:src="@{/media/js/jquery-1.9.1.js}"></script>
+        <script src="media/js/jquery.js" th:src="@{/media/js/jquery.dataTables.min.js}"></script>
+        <script src="" th:src="@{/media/js/jquery-ui-1.10.1.custom.min.js}"></script>
+        <script src="" th:src="@{/media/js/jquery-ui-timepicker-addon.js}"></script>
+        <script src="" th:src="@{/media/js/bootstrap.min.js}"></script>
+        <script src="" th:src="@{/media/js/jquery.validationEngine.js}"></script>
+        <script src="" th:src="@{/media/js/jquery.validationEngine-vi.js}"></script>
+        <script src="" th:src="@{/media/js/jquery.timer.js}"></script>
+        <script src="" th:src="@{/media/js/application.js}"></script>
+    </head>    
+    <body >
+        <div th:fragment="nav" class="masthead" id="masthead">
+            <h3 class="muted">TRƯỜNG TRUNG HỌC PHỔ THÔNG A</h3>
+            <nav class="custom_nav_bar navbar navbar-default row container" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" th:href="@{'/guest/home'}"> <span class="glyphicon glyphicon-home" />  </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Giới thiệu                  
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Tin tức và sự kiện                       
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Liên hệ                    
+                            </a>
+                        </li>
+                        <!--STAFF Menu-->
+                        <li class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Học sinh - lớp học<i class="caret"/></a>
+                            <ul class="dropdown-menu">
+                                <li ><a th:href="@{/staff/management/students/index}"><span class="glyphicon glyphicon-list "/>Danh sách học sinh</a></li>
+                                <li><a th:href="@{/staff/management/class/index}"><span class="glyphicon glyphicon-list"/> Danh sách lớp học</a></li>
+                                <li class="divider"/>
+                                <li> <a th:href="@{/staff/management/students/new}"><span class="glyphicon-plus glyphicon"/>Thêm mới học sinh</a></li>
+                                <li><a th:href="@{/staff/management/class/new}"><span class="glyphicon glyphicon-plus"/> Thêm mới lớp học</a></li>
+                            </ul>
+                        </li>
+                                
+                        <li class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Quản lý giáo viên <i class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu" >
+                                <li>
+                                    <a th:href="@{'#'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Thời khóa biểu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{'#'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Hiển thị danh sách
+
+                                    </a>
+                                </li>
+                                <li class="divider"/>
+                            </ul>
+                        </li>
+                                <!--Website-->
+                                 <li class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Website<i class="caret"/></a>
+                            <ul class="dropdown-menu">
+                                <li ><a th:href="@{/staff/management/news/add}"><span class="glyphicon glyphicon-pencil "/>Viết bản tin</a></li>                              
+                            </ul>
+                        </li>
+
+                        <!--ADMIN menu-->
+                        <li class="dropdown" sec:authorize="hasRole('ADMIN')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!--<span class="glyphicon glyphicon-user" />-->
+                                Quản lý nhân viên                          
+                                <strong class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu" sec:authorize="hasRole('ADMIN')">
+                                <li>
+                                    <a th:href="@{'/admin/management/staff/index'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Hiển thị danh sách
+
+                                    </a>
+                                </li>
+                                <li class="divider"/>
+                                <li>
+                                    <a th:href="@{'/admin/management/staff/add'}">
+                                        <span class='glyphicon glyphicon-plus'/>
+                                        Thêm nhân viên mới</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" sec:authorize="hasRole('ADMIN')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!--<span class="glyphicon glyphicon-user" />--> 
+                                Quản lý người dùng
+                                <strong class="caret"></strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a th:href="@{'/admin/management/user/index'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Hiển thị danh sách</a>
+                                </li>
+                                <li class="divider"/>
+                                <li>
+                                    <a th:href="@{'/admin/management/user/add'}">
+                                        <span class='glyphicon glyphicon-plus'/>
+                                        Thêm người dùng mới</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{'/admin/management/user/generate'}">
+                                        <span class='glyphicon glyphicon-share'/>
+                                        Tự động tạo người dùng</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--/.navbar -->
+            <!--/.navbar -->
+        </div>
+        <footer th:fragment="footer">
+            <hr class="ft"/>
+            <p class="align_center footer">Copyright © 2013 Trường Trung Học Phổ Thông A by T2L</p>
+        </footer>
+        <script th:inline = "javascript" >
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+
+            });
+            /*]]>*/
+        </script>    
+
+    </body>
+</html>

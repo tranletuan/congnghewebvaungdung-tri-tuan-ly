@@ -21,7 +21,7 @@ public class SecurityController {
 
         Map<String, Object> model = new HashMap<String, Object>();
 
-        return new ModelAndView("login", model);
+        return new ModelAndView("guest/login", model);
     }
 
     @RequestMapping(value = "invalidSession", method = RequestMethod.GET)
@@ -32,7 +32,7 @@ public class SecurityController {
 
         model.put("message", "Bạn không được truy cập chức năng này");
 
-        return new ModelAndView("login", model);
+        return new ModelAndView("redirect:/guest/home", model);
     }
     
     @RequestMapping(value="check") 

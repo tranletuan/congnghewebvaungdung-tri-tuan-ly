@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="template :: header">
+    <head th:include="staff/template :: header">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -9,7 +9,7 @@
     
     <body>
         <div class="container">
-            <div th:substituteby="template :: nav" />               
+            <div th:substituteby="staff/template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{'/staff/management/students/update/'+${hocSinh.getmaHocSinh()}}">
                 <div class="inner_form">
                     <div class="control-group">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </form>
-            <div th:include="template :: footer"></div>
+            <div th:include="staff/template :: footer"></div>
         </div>	
         
         <script th:inline="javascript">
