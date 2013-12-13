@@ -71,7 +71,13 @@ public class ManagementStudentController {
         KhoiLopDTO khoiLopDuocChon = null;                        
         String namHienTai =  FunctionService.namHocHienTai();
         namHocDuocChon = mongoService.getnamHocByName(namHienTai);          
-        khoiLopDuocChon = mongoService.getKhoiLopByName("6");            
+        if (namHocDuocChon == null && listNamHoc.size() > 0) {
+            namHocDuocChon = listNamHoc.get(0);
+        }
+        khoiLopDuocChon = mongoService.getKhoiLopByName("6");     
+        if (khoiLopDuocChon == null && listKhoiLop.size() > 0) {
+            khoiLopDuocChon = listKhoiLop.get(0);
+        }
         map.put("namHienTai", namHocDuocChon);
         map.put("listNamHoc", listNamHoc);
         map.put("khoiLopMacDinh", khoiLopDuocChon);
@@ -158,9 +164,9 @@ public class ManagementStudentController {
             listLopHoc = mongoService.getLopHocTheoNamHocKhoiLop(namHocId, khoiLopId);
             map.put("listHocSinh", listHocSinh);
             map.put("listLopHoc", listLopHoc);
-            return new ModelAndView("management/students/sub_table_student", map); 
+            return new ModelAndView("staff/management/students/sub_table_student", map); 
         }  
-        return new ModelAndView("management/students/subindex", map); 
+        return new ModelAndView("staff/management/students/subindex", map); 
     }
 
     @RequestMapping(value = "new")
@@ -171,7 +177,7 @@ public class ManagementStudentController {
         KhoiLopDTO khoiLop6 = mongoService.getKhoiLopByName("6");
         map.put("listkhoiLop", listkhoiLop);
         map.put("khoiLop6", khoiLop6);
-        return new ModelAndView("management/students/new", map);
+        return new ModelAndView("staff/management/students/new", map);
     }
 
     @RequestMapping(value = "save")
@@ -212,7 +218,7 @@ public class ManagementStudentController {
         Map<String, Object> map = new HashMap<String, Object>();
         HocSinhDTO obj = mongoService.getStudentByMaHS(studentId);        
         map.put("hocSinh", obj);
-        return new ModelAndView("management/students/edit", map);
+        return new ModelAndView("staff/management/students/edit", map);
     }
     
     @RequestMapping(value = "update/{studentId}")
