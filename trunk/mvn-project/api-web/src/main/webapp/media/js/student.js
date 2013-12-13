@@ -59,29 +59,7 @@ $(document).ready(function(){
                 $("#mainContent").html(data);
             }            
         })
-    })
-    //Chi thay doi danh sach hoc sinh khi co thong tin lop hoc thay doi
-    
-//    table.on('click','.linkDelete', function(e){                            
-//        e.preventDefault();
-//        self = $(this);  
-//        var message = "Are you sure you want to delete this student?";
-//        var url = "/api-web/staff/management/students/delete/" + self[0].id;        
-//        // example of calling the confirm function
-//        // you must use a callback function to perform the "yes" action
-//        id = '#confirm';
-//        confirm(message, id, function () {
-//            console.log("ABC");
-//            console.log(url);
-//            
-//             $.ajax({
-//                url: url,
-//                type: 'POST'
-//            });
-//            document.location = request_data_url;
-//            
-//        });
-//    });    
+    })    
 
     $("#xepLopButton").on('click', function(){        
         var url = xeplop_url;
@@ -102,8 +80,7 @@ $(document).ready(function(){
         $('#xepLopHocSinhModal').modal('hide');        
     });
     
-    $("#btnhapDanhSachHocSinh").on('click', function(){
-        console.log("AAAAAAAAAAAA");
+    $("#btnhapDanhSachHocSinh").on('click', function(){        
         $("#formNhapDanhSach").submit();
     })
     
@@ -112,7 +89,7 @@ $(document).ready(function(){
         var exportType = "0";// mac dinh la export theo danh sacsh lpp
         if (valueExport) {
             exportType = "1"; //export theo danh sach hocsinh
-        }
+        }        
         $.ajax({
             url: xuatDanhSachHS_url,
             type: 'POST',
@@ -122,7 +99,6 @@ $(document).ready(function(){
                 console.log(res);
             }
         })
-        $('#xuatDanhSachHocSinh').modal('hide');      
-        console.log(exportType);
+        $('#xuatDanhSachHocSinh').modal('hide');              
     })
 }) 
