@@ -2,26 +2,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="staff/template :: header" />
-    <body>
-        <div class="container">
+    <body class="main-body">
+        <div class="container main-container">
             <div th:substituteby="staff/template :: nav" />   
-            <a th:href="@{/staff/management/class/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Lớp Học Mới</a>
             <div class="clearfix"></div>
             <span th:id="${namHienTai.getid()}" class="namHocHienTai"></span>
-            <label class="select_label">Xem Theo Năm Học</label>
-            <select id="IDNamHoc" name="IDNamHoc" class="input-xlarge custom_checkbox">
-                <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
-            </select>
+            <div class="form-group col-md-12">
+                <div class="pull-right">
+                    <a th:href="@{/staff/management/class/new}" class="btn btn-primary">Thêm Lớp Học Mới</a>
+                </div>
+                <label class="control-label col-md-2">Năm Học</label>
+                <div class="col-md-3">
+                    <select id="IDNamHoc" name="IDNamHoc" class="form-control">
+                        <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
+                    </select>
+                </div>
+            </div>
             <div id="mainTable"></div>
-            <div th:include="staff/template :: footer"></div>
         </div>	
+        <div th:include="staff/template :: footer" class="main-container container"></div>
         <script src="" th:src="@{/media/js/staff_module/class_index.js}"></script>
         <script th:inline="javascript">
             /*<![CDATA[*/
             var load_lophoc_url = /*[[@{/staff/management/class/load}]]*/"demo";
             jQuery(document).ready(function() {
                 jQuery("#table").dataTable({"bJQueryUI": true});
-                COMMON.activeMenu("quanly_nav");
+                COMMON.activeMenu("nav_lophoc");
             });
             /*]]>*/
         </script>    

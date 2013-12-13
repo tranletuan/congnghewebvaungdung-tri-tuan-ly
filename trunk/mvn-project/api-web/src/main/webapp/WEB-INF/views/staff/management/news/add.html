@@ -21,7 +21,6 @@
                         <label class="col-md-4 control-label" for="title">Tên bản tin</label>  
                         <div class="col-md-6">
                             <input id="title" name="title" type="text" placeholder="" class="form-control input-md validate[required]"/>
-
                         </div>
                     </div>
 
@@ -60,8 +59,8 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
-                jQuery("#form-horizontal").validationEngine();
-                COMMON.activeMenu("news_nav");
+                jQuery(".form-horizontal").validationEngine();
+                COMMON.activeMenu("nav_website");
             });
             /*]]>*/
         </script>    

@@ -1,46 +1,56 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="staff/template :: header" />
-    <body>
-        <div class="container">
-            <div th:substituteby="staff/template :: nav" />   
-            <div th:include="staff/template :: footer"></div>
-            <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/subject/save}">                
-                <div class="inner_form">
-                <!-- Text input-->
-                    <div class="control-group">
-                        <label class="control-label" for="tenMonHoc">Tên Môn Học</label>
-                        <div class="controls">
-                            <input id="tenMonHoc" name="tenMonHoc" type="text" placeholder="Mời bạn nhập vào tên môn học" class="input-xlarge validate[required]"/>                    
+    <head th:include="staff/template :: header" >
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    </head>
+
+    <body class="main-body">
+        <div class="container main-container">
+            <div th:substituteby="staff/template :: nav" />
+            <form class="form-horizontal" method="post" th:action="@{/staff/management/subject/save}">                
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Tạo môn học</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tenMonHoc">Tên Môn Học</label>
+                        <div class="col-md-6">
+                            <input id="tenMonHoc" name="tenMonHoc" type="text" 
+                                   placeholder="" 
+                                   class="form-control input-md validate[required]"/>                    
                         </div>
                     </div>
 
                     <!-- Textarea -->
-                    <div class="control-group">
-                        <label class="control-label" for="moTa">Mô Tả</label>
-                        <div class="controls ">     
-                            <textarea id="moTa" name="moTa" class="input-xlarge"></textarea>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="moTa">Mô Tả</label>
+                        <div class="col-md-6 ">     
+                            <textarea id="moTa" name="moTa" class="form-control validate[required]"></textarea>
                         </div>
                     </div>
 
                     <!-- Button -->
-                    <div class="control-group">
-                        <label class="control-label" for="ThemBtn"></label>
-                        <div class="controls">
-                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="ThemBtn"></label>
+                        <div class="col-md-4">
+                            <input type="submit" id="submit" name="submit" class="btn btn-primary" text="Lưu lại"></input>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
 
-        </div>	
+            <div th:include="staff/template :: footer"></div>
+        </div>
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
-                jQuery("#form-horizontal").validationEngine();
-//                jQuery("#table").dataTable({"bJQueryUI": true});
-                COMMON.activeMenu("quanly_nav");
+                jQuery(".form-horizontal").validationEngine();
+                //                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("nav_monhoc");
             });
             /*]]>*/
         </script>    

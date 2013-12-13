@@ -10,14 +10,12 @@
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
                     <tr>
-                        <th>STT</th>
                         <th>Tên Môn Học</th>                        
                         <th>Mô tả</th>
                     </tr>
                 </thead>
                 <tbody>                       
                     <tr th:id="${monhoc.getid()}" align="center" th:each="monhoc: ${listMonHoc}">
-                        <td>1</td>
                         <td th:text="${monhoc.gettenMonHoc()}" id="tenMonHoc"/>                        
                         <td th:text="${monhoc.getmoTa()}" id="moTa"/>  
                     </tr>
@@ -29,7 +27,7 @@
             /*<![CDATA[*/
             jQuery(document).ready(function() {
                 jQuery("#table").dataTable({"bJQueryUI": true});
-                COMMON.activeMenu("quanly_nav");
+                COMMON.activeMenu("nav_monhoc");
             });
             /*]]>*/
         </script>    

@@ -5,19 +5,17 @@
     <body>
         <div class="container">
             <div th:substituteby="staff/template :: nav" />   
-            <a th:href="@{/staff/management/grade/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Năm Học Mới</a>
+            <a th:href="@{/staff/management/grade/new}" class="btn btn-primary float_right margin_button_bottom">Thêm khối lớp</a>
             <div class="clearfix"></div>
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
                     <tr>
-                        <th>STT</th>
                         <th>Tên Khối Lớp</th>                        
                         <th>Mô tả</th>
                     </tr>
                 </thead>
                 <tbody>                       
                     <tr th:id="${khoiLop.getid()}" align="center" th:each="khoiLop: ${listkhoiLop}">
-                        <td>1</td>
                         <td th:text="${khoiLop.gettenKhoiLop()}" id="tenkhoiLop"/>                        
                         <td th:text="${khoiLop.getmoTa()}" id="moTa"/>  
                     </tr>
@@ -29,7 +27,7 @@
             /*<![CDATA[*/
             jQuery(document).ready(function() {
                 jQuery("#table").dataTable({"bJQueryUI": true});
-                COMMON.activeMenu("quanly_nav");
+                COMMON.activeMenu("nav_lophoc");
             });
             /*]]>*/
         </script>    
