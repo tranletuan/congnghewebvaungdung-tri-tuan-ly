@@ -24,6 +24,8 @@ public class PhanCongDTO extends AbstractObjectDTO{
     @DBRef
     private LopHocDTO lopHoc;
     
+    private int hocKy;
+
     private String mota;
     
     public ChiTietChuyenMonDTO getChiTietChuyenMon() {
@@ -50,4 +52,11 @@ public class PhanCongDTO extends AbstractObjectDTO{
         this.mota = mota;
     }
     
+    public int getHocKy() {
+        return hocKy;
+    }
+
+    public void setHocKy(int hocKy) {
+        this.hocKy = hocKy;
+    }
 }

@@ -10,46 +10,61 @@
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
                     <tr>                        
-                        <th>Lớp Học</th>
-                        <th>Môn Học</th>
-                        <th>Khối Lớp</th>
-                        <th>Chấm Điểm</th>
+                        <th rowspan="2">Lớp Học</th>
+                        <th rowspan="2">Môn Học</th>
+                        <th colspan="5">Điểm</th>
+                    </tr>
+                    <tr>
+                        <th>Miệng</th>
+                        <th>15 phút</th>
+                        <th>1 tiết</th>
+                        <th>Giữa kỳ </th>
+                        <th>Cuối kỳ</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:id="${phancong.getid()}" align="center" th:each="phancong: ${listPhanCong}">                        
-                        <td th:text="${phancong.getLopHoc().gettenLopHoc()}"/>
+                        <td th:text="${phancong.getChiTietChuyenMon().getChiTietMonHoc().getKhoiLop().gettenKhoiLop()} + ${phancong.getLopHoc().gettenLopHoc()}"/>
                         <td th:text="${phancong.getChiTietChuyenMon().getChiTietMonHoc().getMonHoc().gettenMonHoc()}"/>
-                        <td th:text="${phancong.getChiTietChuyenMon().getChiTietMonHoc().getKhoiLop().gettenKhoiLop()}"/>
                         <td>
-                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()}}" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
+                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()} + '/ktmieng'}" id="mieng" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
+                        </td>
+                        <td>
+                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()} + '/kt15'}" id="15" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
+                        </td>
+                        <td>
+                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()} + '/kt1tiet'}" id="tiet" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
+                        </td>
+                        <td>
+                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()} + '/ktgiuaky'}" id="giuaky" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
+                        </td>
+                        <td>
+                            <a th:href="@{'/teacher/class/'+ ${phancong.getid()} + '/ktcuoiky'}" id="cuoiky" title="Chấm điểm"><i class="icon-pencil icon-action"></i></a>                      
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div th:include="teacher/template :: footer"></div>
         </div>	
-<!--          HTML for modal popup-->
+        <!--          HTML for modal popup-->
         <!-- modal content -->
-<!--        <div id='confirm'>
-                <div class='header'><span>Confirm Delete Student</span></div>
-                <div class='message'></div>
-                <div class='buttons'>
-                <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
-                </div>
-        </div>-->
+        <!--        <div id='confirm'>
+                        <div class='header'><span>Confirm Delete Student</span></div>
+                        <div class='message'></div>
+                        <div class='buttons'>
+                        <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+                        </div>
+                </div>-->
         <!-- preload the images -->
         <div style='display:none'>
-                <img src='img/confirm/header.gif' alt='' />
-                <img src='img/confirm/button.gif' alt='' />
+            <img src='img/confirm/header.gif' alt='' />
+            <img src='img/confirm/button.gif' alt='' />
         </div>
         <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
         <script src="" th:src="@{/media/js/teacher_module/class.js}"></script>
 
         <script th:inline="javascript">
-            /*<![CDATA[*/
-            
-            /*]]>*/            
+//             var chamDiemURL = /*[[@{/teacher/class/}]]*/ "chamDiem";
         </script>    
     </body>
 </html>
