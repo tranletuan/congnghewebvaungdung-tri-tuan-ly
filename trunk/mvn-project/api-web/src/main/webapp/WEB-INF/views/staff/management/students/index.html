@@ -22,9 +22,11 @@
                 <div id="mainContent">                
                 </div>
                 <a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom right_button">Thêm Học Sinh Mới</a>
-<!--                <a id="xepLopHocSinh" th:href="@{/staff/management/students/xeplop}" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>-->
-                <a data-toggle="modal" data-target="#xepLopHocSinhModal" class="btn btn-primary float_right margin_button_bottom">Xếp Lớp Học Sinh Mới</a>                
+                <a data-toggle="modal" data-target="#xepLopHocSinhModal" class="btn btn-primary float_right margin_button_bottom right_button">Xếp Lớp Học Sinh Mới</a>                                
+                <a data-toggle="modal" data-target="#nhapDanhSachHocSinh" class="btn btn-primary float_right margin_button_bottom right_button">Nhập Danh Sách HS</a>
+                <a data-toggle="modal" data-target="#xuatDanhSachHocSinh" class="btn btn-primary float_right margin_button_bottom">Xuất Danh Sách HS</a>
                 
+<!--                Modal cho xếp lớp-->
                 <div class="modal fade" id="xepLopHocSinhModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -55,6 +57,62 @@
                       </div>
                     </div> 
                 </div> 
+<!--                Modal cho nhập danh sách-->
+                <div class="modal fade" id="nhapDanhSachHocSinh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Nhập Danh Sách Học Sinh</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form enctype="multipart/form-data" id="formNhapDanhSach" method="post" th:action="@{/staff/management/students/nhap_hocsinh}">
+                                <div class="control-group">
+                                    <label class="control-label float_left margin_label_right" for="filebutton">Tải danh sách lên</label>
+                                    <div class="controls">
+                                      <input id="filebutton" name="danhSachHocSinh" class="input-file" type="file" accept=".xls"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer align_center">
+                          <button type="button" class="btn btn-primary min_width_button_modal" id="btnhapDanhSachHocSinh">Đồng Ý</button>
+                          <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">Không</button>
+                        </div>
+                      </div>
+                    </div> 
+                </div>
+                <!--                Modal cho xuất danh sách-->
+                <div class="modal fade" id="xuatDanhSachHocSinh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Nhập Danh Sách Học Sinh</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="message_modal">Bạn muốn xuất học sinh theo danh sách theo lớp hay theo danh sách học sinh?</div>
+                            
+                            <div class="radio pull-left radio_khoiLop">
+                                <label for="radiosXuatDS-0">
+                                    <input type="radio" name="radiosXuatDS" id="radiosXuatDS-0" value="1" checked="checked"/>
+                                  Theo Lớp
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radiosXuatDS-1">
+                                  <input type="radio" name="radiosXuatDS" id="radiosXuatDS-1" value="2"/>
+                                  Theo Học Sinh
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer align_center">
+                          <button type="button" class="btn btn-primary min_width_button_modal" id="btxuatDanhSachHocSinh">Đồng Ý</button>
+                          <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">Không</button>
+                        </div>
+                      </div>
+                    </div> 
+                </div>
                 <div class="clearfix"></div> 
                 <div th:include="staff/template :: footer"></div>
         </div>	       
@@ -67,6 +125,7 @@
             var delete_url = /*[[@{/staff/management/students/delete/}]]*/"demo";
             var index_url = /*[[@{/staff/management/students/index/}]]*/"demo";
             var load_url = /*[[@{/staff/management/students/load/}]]*/"demo";
+            var xuatDanhSachHS_url = /*[[@{/staff/management/students/xuat_hocsinh/}]]*/"demo";
             /*]]>*/            
         </script>    
     </body>

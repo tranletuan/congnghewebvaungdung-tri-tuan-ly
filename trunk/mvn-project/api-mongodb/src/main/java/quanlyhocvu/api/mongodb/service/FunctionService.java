@@ -6,6 +6,8 @@
 package quanlyhocvu.api.mongodb.service;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -26,6 +28,16 @@ public class FunctionService {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int nextYear = currentYear + 1;
         return  currentYear + "-" + nextYear;        
+    }
+    //Chuyen tu dang String 365/12/1992 sang Date 30/12/1992
+    public static Date formatStringDateExcel(String date){
+        String[] arr = date.split("/"); 
+        Date end = new Date(Integer.parseInt(arr[2]), Integer.parseInt(arr[1])-1 , 1);
+        Date begin = new Date(Integer.parseInt(arr[2]), 0, 1);
+        long diffInMillies = end.getTime() - begin.getTime();
+        long dayDiff = TimeUnit.DAYS.convert(diffInMillies,TimeUnit.MILLISECONDS);
+        Date res = new Date(Integer.parseInt(arr[2]) - 1900, Integer.parseInt(arr[1])-1, (int)(Integer.parseInt(arr[0])- dayDiff));
+        return res;
     }
         
     
