@@ -7,8 +7,14 @@
 var table;
 $(document).ready(function(){    
     //set nam Hoc hien tai cho select
-    $("#IDNamHoc")[0].value = $("span.namHocHienTai")[0].id;
-    $("#IDKhoiLop")[0].value = $("span.khoiLopMacDinh")[0].id;    
+    var namHocHienTai = $("span.namHocHienTai");
+    if(namHocHienTai.length > 0){
+        $("#IDNamHoc")[0].value = namHocHienTai[0].id;
+    }
+    var khoiLopHienTai = $("span.khoiLopMacDinh");
+    if (khoiLopHienTai.length > 0) {
+        $("#IDKhoiLop")[0].value = khoiLopHienTai[0].id; 
+    }           
     //send Ajax Request to get data when loading
     var namHocId = $("#IDNamHoc")[0].value;
     var khoiLopId = $("#IDKhoiLop")[0].value;  
