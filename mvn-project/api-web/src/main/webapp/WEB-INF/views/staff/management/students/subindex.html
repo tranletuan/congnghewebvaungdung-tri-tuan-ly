@@ -4,13 +4,17 @@
     <body> 
         <span th:id="${namHocId}" class="namHocDuocChon_frame"></span>
         <span th:id="${khoiLopId}" class="khoiLopDuocChon_frame"></span>
-        <label class="select_label">Xem Theo Lớp Học</label>
-        <span th:id="${lopHocDuocChon.getid()}" th:if="${lopHocDuocChon}" class="lopHocDuocChon"></span>
-        <span id="1" th:unless="${lopHocDuocChon}" class="lopHocDuocChon"></span>
-        <select id="IDLopHoc" name="IDLopHoc" class="input-xlarge custom_checkbox">
-            <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}"/>                          
-            <option value="0" th:unless="${laNamHienTai}">Chưa xếp lớp</option>
-        </select>  
+        <div class="main-container col-md-12">
+            <label class="col-md-2 control-label">Lớp Học</label>
+            <span th:id="${lopHocDuocChon.getid()}" th:if="${lopHocDuocChon}" class="lopHocDuocChon"></span>
+            <span id="1" th:unless="${lopHocDuocChon}" class="lopHocDuocChon"></span>
+            <div class="col-md-3">
+                 <select id="IDLopHoc" name="IDLopHoc" class="form-control">
+                    <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}"/>                          
+                    <option value="0" th:unless="${laNamHienTai}">Chưa xếp lớp</option>
+                </select>  
+            </div>
+        </div>
         <div id="subTable">
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
@@ -46,7 +50,7 @@
                         <td th:if="${hocsinh.maLopHoc}">
                             <div class="btn-group">
                                 <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
-                                
+
                             </div> 
                         </td>
                     </tr>
@@ -56,22 +60,22 @@
         <div id="mainTable"></div>   
         <div class="modal fade" id="xepLopMotHocSinhModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">Xếp Lớp Học Sinh</h4>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Xếp Lớp Học Sinh</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label class="select_label">Chọn Lớp Để Xếp</label>
+                        <select id="IDLopHocXepLop" name="IDLopHocXepLop" class="input-xlarge custom_checkbox">
+                            <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}" class="lopHocModal"/>                                                  
+                        </select> 
+                    </div>
+                    <div class="modal-footer align_center">
+                        <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
+                        <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">No</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <label class="select_label">Chọn Lớp Để Xếp</label>
-                    <select id="IDLopHocXepLop" name="IDLopHocXepLop" class="input-xlarge custom_checkbox">
-                        <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}" class="lopHocModal"/>                                                  
-                    </select> 
-                </div>
-                <div class="modal-footer align_center">
-                  <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
-                  <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">No</button>
-                </div>
-              </div>
             </div> 
         </div> 
         <script th:inline="javascript">
@@ -80,27 +84,27 @@
                 jQuery("#table").dataTable({"bJQueryUI": true});
                 COMMON.activeMenu("quanly_nav");
             });
-            
+
             var studentId;
-            $(".linkXepLop").on('click', function(){                
-                studentId = $(this)[0].id;                
+            $(".linkXepLop").on('click', function() {
+                studentId = $(this)[0].id;
             })
-            var xepLopMotHocSinh_url = /*[[@{/staff/management/students/xeplop_hocsinh/}]]*/ "demo";                        
+            var xepLopMotHocSinh_url = /*[[@{/staff/management/students/xeplop_hocsinh/}]]*/ "demo";
             var index_url = /*[[@{/staff/management/students/index/}]]*/"demo";
-            $("#xepLopButton").on('click', function(e){                
-                var lopHocId = $("#IDLopHocXepLop")[0].value;                
+            $("#xepLopButton").on('click', function(e) {
+                var lopHocId = $("#IDLopHocXepLop")[0].value;
                 $.ajax({
                     url: xepLopMotHocSinh_url,
                     type: 'GET',
                     data: {lopHocId: lopHocId, hocSinhId: studentId},
-                    success: function(){
+                    success: function() {
                         document.location = index_url;
                     }
                 })
                 $('#xepLopMotHocSinhModal').modal('hide');
-                
+
             })
-            
+
 //            var xepLopMotHocSinh_url = /*[[@{/staff/management/students/xeplop_hocsinh/}]]*/ "demo";                        
 //            $("#xepLopButton").on('click', function(e){
 //                var lopHocId = $("#IDLopHocXepLop")[0].value;
@@ -108,7 +112,7 @@
 //                
 //            })
 //            
-            if ($(".lopHocDuocChon")[0].id == "1"){
+            if ($(".lopHocDuocChon")[0].id == "1") {
                 console.log("AAAAAAAAAAAAAAAAAAA");
                 $("#IDLopHoc")[0].value = "0";
             }
@@ -121,19 +125,19 @@
 //                    }
 //                };
             var request_data_url = /*[[@{/staff/management/students/request_data/}]]*/ "demo";
-            $("#IDLopHoc").on('change', function(){
+            $("#IDLopHoc").on('change', function() {
                 var self = $(this);
-                var lopHocId = self[0].value;                                                
+                var lopHocId = self[0].value;
                 var namHocId = $(".namHocDuocChon_frame")[0].id;
-                var khoiLopId = $(".khoiLopDuocChon_frame")[0].id;                
+                var khoiLopId = $(".khoiLopDuocChon_frame")[0].id;
                 $.ajax({
                     url: request_data_url,
                     type: 'GET',
-                    data: { lopHocId: lopHocId,namHocId: namHocId, khoiLopId:khoiLopId, requestElement: "lopHoc"},
-                    success: function(data){                           
+                    data: {lopHocId: lopHocId, namHocId: namHocId, khoiLopId: khoiLopId, requestElement: "lopHoc"},
+                    success: function(data) {
                         $("#subTable")[0].style.display = "none";
                         $("#mainTable").html(data);
-                    }            
+                    }
                 })
             })
             /*]]>*/

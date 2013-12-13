@@ -2,64 +2,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="staff/template :: header" />
-    <body>
-        <div class="container">
+    <body class="main-body">
+        <div class="container main-container">
             <div th:substituteby="staff/template :: nav" />               
-            <form class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/class/save}">                
-                <div class="inner_form">
-                <!-- Text input-->
-                    <div class="control-group">
-                      <label class="control-label" for="tenLopHoc">Tên Lớp Học</label>
-                      <div class="controls">
-                        <input id="tenLopHoc" name="tenLopHoc" type="text" placeholder="Tên Lớp Học" class="input-xlarge"/>                    
-                      </div>
+            <form class="form-horizontal" method="post" th:action="@{/staff/management/class/save}">    
+                <fieldset>
+                    <legend>Thêm lớp học</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tenLopHoc">Tên Lớp Học</label>
+                        <div class="col-md-6">
+                            <input id="tenLopHoc" name="tenLopHoc" type="text" placeholder="Tên Lớp Học" 
+                                   class=" form-control validate[required]"/>                    
+                        </div>
                     </div>
 
                     <!-- Select Basic -->
-                    <div class="control-group">
-                      <label class="control-label" for="namHoc">Năm Học</label>
-                      <div class="controls">
-                        <select id="namHoc" name="IDnamHoc" class="input-xlarge custom_checkbox">
-                          <option th:each="namHoc : ${listnamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>
-                        </select>
-                      </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="namHoc">Năm Học</label>
+                        <div class="col-md-6">
+                            <select id="namHoc" name="IDnamHoc" class="form-control input-xlarge custom_checkbox validate[required]">
+                                <option th:each="namHoc : ${listnamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Select Basic -->
-                    <div class="control-group">
-                      <label class="control-label" for="khoiLop">Khối Lớp</label>
-                      <div class="controls">
-                        <select id="khoiLop" name="IDkhoiLop" class="input-xlarge custom_checkbox">
-                          <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
-                        </select>
-                      </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="khoiLop">Khối Lớp</label>
+                        <div class="col-md-6">
+                            <select id="khoiLop" name="IDkhoiLop" class="form-control input-xlarge custom_checkbox validate[required]">
+                                <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Select Basic -->
-                    <div class="control-group">
-                      <label class="control-label" for="giaoVien">Giáo Viên</label>
-                      <div class="controls">
-                        <select id="giaoVien" name="IDgiaoVien" class="input-xlarge custom_checkbox">
-                          <option th:each="giaoVien : ${listgiaoVien}" th:text="${giaoVien.gethoTen()}" th:value="${giaoVien.getid()}"/>                                                    
-                        </select>
-                      </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="giaoVien">Giáo Viên</label>
+                        <div class="col-md-6">
+                            <select id="giaoVien" name="IDgiaoVien" class="form-control input-xlarge custom_checkbox validate[required]">
+                                <option th:each="giaoVien : ${listgiaoVien}" th:text="${giaoVien.gethoTen()}" th:value="${giaoVien.getid()}"/>                                                    
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Button -->
-                    <div class="control-group">                    
-                        <div class="controls">
-                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
+                    <div class="form-group">  
+                        <label class="col-md-4 control-label" for="ThemBtn"></label>
+                        <div class="col-md-4">
+                            <button id="ThemBtn" name="ThemBtn" class="form-control btn btn-primary">Thêm</button>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
             <div th:include="staff/template :: footer"></div>
         </div>	
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
-                jQuery("#form-horizontal").validationEngine();
-                COMMON.activeMenu("quanly_nav");
+                jQuery(".form-horizontal").validationEngine();
+                COMMON.activeMenu("nav_lophoc");
             });
             /*]]>*/
         </script>    

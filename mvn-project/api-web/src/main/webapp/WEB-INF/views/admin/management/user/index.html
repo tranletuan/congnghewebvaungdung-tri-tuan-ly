@@ -33,7 +33,9 @@
             /*<![CDATA[*/
             var viewUrl = /*[[@{/admin/management/user/index_table/}]]*/ "viewUrl";
             $(document).ready(function() {
-                $("#rolenames").val($("#rolename").val());  
+                jQuery("#form-horizontal").validationEngine();
+                COMMON.activeMenu("nav_quanlynguoidung");
+                $("#rolenames").val($("#rolename").val());
                 loadframe();
             });
             $("#rolenames").on('change', function() {

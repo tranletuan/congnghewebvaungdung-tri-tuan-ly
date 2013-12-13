@@ -2,123 +2,137 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="staff/template :: header" />
-    <body>
+    <body class="main-body">
         <link href="" th:href="@{/media/css/staff_module/student.css}" rel="stylesheet" media="screen"/>
-        <div class="container">
+        <div class="container main-container">
             <div th:substituteby="staff/template :: nav" />                
-                <!--<div class="clearfix"></div>-->
-                <span th:id="${namHienTai.getid()}" th:if="${namHienTai}" class="namHocHienTai"></span>
-                <label class="select_label">Xem Theo Năm Học</label>
-                <select id="IDNamHoc" name="IDNamHoc" class="input-xlarge custom_checkbox">
-                    <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
-                </select>
-                <div class="clearfix"></div>
-                <span th:id="${khoiLopMacDinh.getid()}" th:if="${khoiLopMacDinh}" class="khoiLopMacDinh"></span>
-                <label class="select_label">Xem Theo Khối Lớp</label>
-                <select id="IDKhoiLop" name="IDKhoiLop" class="input-xlarge custom_checkbox">
-                    <option th:each="khoiLop : ${listKhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
-                </select>
-                <div class="clearfix"></div>   
-                <div id="mainContent">                
+            <!--<div class="clearfix"></div>-->
+            <span th:id="${namHienTai.getid()}" th:if="${namHienTai}" class="namHocHienTai"></span>
+            <div class="main-container col-md-12 ">
+                <label class="col-md-2 control-label">Năm Học</label>
+                <div class="col-md-3 ">
+                    <select id="IDNamHoc" name="IDNamHoc" class="form-control input-large">
+                        <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
+                    </select>
                 </div>
-                <a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom right_button">Thêm Học Sinh Mới</a>
-                <a data-toggle="modal" data-target="#xepLopHocSinhModal" class="btn btn-primary float_right margin_button_bottom right_button">Xếp Lớp Học Sinh Mới</a>                                
-                <a data-toggle="modal" data-target="#nhapDanhSachHocSinh" class="btn btn-primary float_right margin_button_bottom right_button">Nhập Danh Sách HS</a>
-                <a data-toggle="modal" data-target="#xuatDanhSachHocSinh" class="btn btn-primary float_right margin_button_bottom">Xuất Danh Sách HS</a>
-                
-<!--                Modal cho xếp lớp-->
-                <div class="modal fade" id="xepLopHocSinhModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
+                <div class="col-md-8"/>
+            </div>
+            <div class="clearfix"></div>
+            <div class="main-container col-md-12">
+                <span th:id="${khoiLopMacDinh.getid()}" th:if="${khoiLopMacDinh}" class="khoiLopMacDinh"></span>
+                <label class="col-md-2 control-label">Khối Lớp </label>
+                <div class="col-md-3">
+                    <select id="IDKhoiLop" name="IDKhoiLop" class="form-control input-large">
+                        <option th:each="khoiLop : ${listKhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
+                    </select>
+                </div>
+                <div class="col-md-8"/>
+            </div>
+            <div class="clearfix"></div>   
+            <div id="mainContent">                
+            </div>
+            <a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom right_button">Thêm Học Sinh Mới</a>
+            <a data-toggle="modal" data-target="#xepLopHocSinhModal" class="btn btn-primary float_right margin_button_bottom right_button">Xếp Lớp Học Sinh Mới</a>                                
+            <a data-toggle="modal" data-target="#nhapDanhSachHocSinh" class="btn btn-primary float_right margin_button_bottom right_button">Nhập Danh Sách HS</a>
+            <a data-toggle="modal" data-target="#xuatDanhSachHocSinh" class="btn btn-primary float_right margin_button_bottom">Xuất Danh Sách HS</a>
+
+            <!--                Modal cho xếp lớp-->
+            <div class="modal fade" id="xepLopHocSinhModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="myModalLabel">Xác Nhận Xếp Lớp</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Xác Nhận Xếp Lớp</h4>
                         </div>
                         <div class="modal-body">
                             <div class="message_modal">Bạn muốn xếp lớp cho Khối Lớp 6 hay Tất cả các khối?</div>
-                            
+
                             <div class="radio pull-left radio_khoiLop">
                                 <label for="radios-0">
                                     <input type="radio" name="radios" id="radios-0" value="1" checked="checked"/>
-                                  Khối lớp 6
+                                    Khối lớp 6
                                 </label>
                             </div>
                             <div class="radio">
                                 <label for="radios-1">
-                                  <input type="radio" name="radios" id="radios-1" value="2"/>
-                                  Tất cả các khối
+                                    <input type="radio" name="radios" id="radios-1" value="2"/>
+                                    Tất cả các khối
                                 </label>
                             </div>
                         </div>
                         <div class="modal-footer align_center">
-                          <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
-                          <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
+                            <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">No</button>
                         </div>
-                      </div>
-                    </div> 
+                    </div>
                 </div> 
-<!--                Modal cho nhập danh sách-->
-                <div class="modal fade" id="nhapDanhSachHocSinh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
+            </div> 
+            <!--                Modal cho nhập danh sách-->
+            <div class="modal fade" id="nhapDanhSachHocSinh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="myModalLabel">Nhập Danh Sách Học Sinh</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Nhập Danh Sách Học Sinh</h4>
                         </div>
                         <div class="modal-body">
                             <form enctype="multipart/form-data" id="formNhapDanhSach" method="post" th:action="@{/staff/management/students/nhap_hocsinh}">
                                 <div class="control-group">
                                     <label class="control-label float_left margin_label_right" for="filebutton">Tải danh sách lên</label>
                                     <div class="controls">
-                                      <input id="filebutton" name="danhSachHocSinh" class="input-file" type="file" accept=".xls"/>
+                                        <input id="filebutton" name="danhSachHocSinh" class="input-file" type="file" accept=".xls"/>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer align_center">
-                          <button type="button" class="btn btn-primary min_width_button_modal" id="btnhapDanhSachHocSinh">Đồng Ý</button>
-                          <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">Không</button>
+                            <button type="button" class="btn btn-primary min_width_button_modal" id="btnhapDanhSachHocSinh">Đồng Ý</button>
+                            <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">Không</button>
                         </div>
-                      </div>
-                    </div> 
-                </div>
-                <!--                Modal cho xuất danh sách-->
-                <div class="modal fade" id="xuatDanhSachHocSinh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
+                    </div>
+                </div> 
+            </div>
+            <!--                Modal cho xuất danh sách-->
+            <div class="modal fade" id="xuatDanhSachHocSinh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="myModalLabel">Nhập Danh Sách Học Sinh</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Nhập Danh Sách Học Sinh</h4>
                         </div>
                         <div class="modal-body">
                             <div class="message_modal">Bạn muốn xuất học sinh theo danh sách theo lớp hay theo danh sách học sinh?</div>
-                            
+
                             <div class="radio pull-left radio_khoiLop">
                                 <label for="radiosXuatDS-0">
                                     <input type="radio" name="radiosXuatDS" id="radiosXuatDS-0" value="1" checked="checked"/>
-                                  Theo Lớp
+                                    Theo Lớp
                                 </label>
                             </div>
                             <div class="radio">
                                 <label for="radiosXuatDS-1">
-                                  <input type="radio" name="radiosXuatDS" id="radiosXuatDS-1" value="2"/>
-                                  Theo Học Sinh
+                                    <input type="radio" name="radiosXuatDS" id="radiosXuatDS-1" value="2"/>
+                                    Theo Học Sinh
                                 </label>
                             </div>
                         </div>
                         <div class="modal-footer align_center">
-                          <button type="button" class="btn btn-primary min_width_button_modal" id="btxuatDanhSachHocSinh">Đồng Ý</button>
-                          <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">Không</button>
+                            <button type="button" class="btn btn-primary min_width_button_modal" id="btxuatDanhSachHocSinh">Đồng Ý</button>
+                            <button type="button" class="btn btn-default min_width_button_modal" data-dismiss="modal">Không</button>
                         </div>
-                      </div>
-                    </div> 
-                </div>
-                <div class="clearfix"></div> 
-                <div th:include="staff/template :: footer"></div>
+                    </div>
+                </div> 
+            </div>
+            <div class="clearfix"></div> 
+            <div th:include="staff/template :: footer"></div>
         </div>	       
         <script src="" th:src="@{/media/js/student.js}"></script>
         <script th:inline="javascript">
-            /*<![CDATA[*/            
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#form-horizontal").validationEngine();
+                COMMON.activeMenu("nav_hocsinh");
+            });
             var request = /*[[@{/admin/management/user/index_table/}]]*/"request";
             var request_data_url = /*[[@{/staff/management/students/request_data/}]]*/ "demo";
             var xeplop_url = /*[[@{/staff/management/students/xeplop/}]]*/"demo";
@@ -126,7 +140,7 @@
             var index_url = /*[[@{/staff/management/students/index/}]]*/"demo";
             var load_url = /*[[@{/staff/management/students/load/}]]*/"demo";
             var xuatDanhSachHS_url = /*[[@{/staff/management/students/xuat_hocsinh/}]]*/"demo";
-            /*]]>*/            
+            /*]]>*/
         </script>    
     </body>
 </html>

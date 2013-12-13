@@ -46,31 +46,34 @@
                                 Giới thiệu                  
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Tin tức và sự kiện                       
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        <li id="nav_lienhe" class="dropdown">
+                            <a href="#" class=" dropdown-toggle" data-toggle="dropdown">
                                 Liên hệ                    
                             </a>
                         </li>
                         <!--STAFF Menu-->
-                        <li class='dropdown' sec:authorize="hasRole('STAFF')">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Học sinh - lớp học<i class="caret"/></a>
+                        <li id="nav_hocsinh" class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Học sinh<i class="caret"/></a>
                             <ul class="dropdown-menu">
                                 <li ><a th:href="@{/staff/management/students/index}"><span class="glyphicon glyphicon-list "/>Danh sách học sinh</a></li>
-                                <li><a th:href="@{/staff/management/class/index}"><span class="glyphicon glyphicon-list"/> Danh sách lớp học</a></li>
                                 <li class="divider"/>
                                 <li> <a th:href="@{/staff/management/students/new}"><span class="glyphicon-plus glyphicon"/>Thêm mới học sinh</a></li>
-                                <li><a th:href="@{/staff/management/class/new}"><span class="glyphicon glyphicon-plus"/> Thêm mới lớp học</a></li>
                             </ul>
                         </li>
-                                
-                        <li class='dropdown' sec:authorize="hasRole('STAFF')">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Quản lý giáo viên <i class="caret"/>
+                        <li id="nav_lophoc" class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lớp học- khối lớp<i class="caret"/></a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/staff/management/grade/index}"><span class="glyphicon glyphicon-list"/> Danh sách khối lớp</a></li>
+                                <li><a th:href="@{/staff/management/class/index}"><span class="glyphicon glyphicon-list"/> Danh sách lớp học</a></li>
+                                <li class="divider"/>
+                                <li><a th:href="@{/staff/management/class/new}"><span class="glyphicon glyphicon-plus"/> Thêm mới lớp học</a></li>
+                                <li><a th:href="@{/staff/management/grade/new}"><span class="glyphicon glyphicon-plus"/> Thêm mới khối lớp</a></li>
+                            </ul>
+                        </li>
+                        <li id="nav_giaovien" class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="nav-teacher dropdown-toggle" data-toggle="dropdown">
+                                Giáo viên <i class="caret"/>
                             </a>
                             <ul class="dropdown-menu" >
                                 <li>
@@ -80,17 +83,57 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a th:href="@{'#'}">
+                                    <a th:href="@{'/staff/management/teacher/list'}">
                                         <span class='glyphicon glyphicon-list'/>
                                         Hiển thị danh sách
 
                                     </a>
                                 </li>
                                 <li class="divider"/>
+                                <li>
+                                    <a th:href="@{'/staff/management/teacher/add'}">
+                                        <span class='glyphicon glyphicon-plus'/>
+                                        Thêm giáo viên
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-                                <!--Website-->
-                                 <li class='dropdown' sec:authorize="hasRole('STAFF')">
+
+                        <li id="nav_monhoc" class='dropdown' sec:authorize="hasRole('STAFF')">
+                            <a href="#" class="nav-teacher dropdown-toggle" data-toggle="dropdown">
+                                Môn học-năm học <i class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu" >
+                                <li>
+                                    <a th:href="@{'/staff/management/subject/index'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Danh sách môn học
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{'/staff/management/school_year/index'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Danh sách năm học
+
+                                    </a>
+                                </li>
+                                <li class="divider"/>
+                                <li>
+                                    <a th:href="@{'/staff/management/subject/new'}">
+                                        <span class='glyphicon glyphicon-plus'/>
+                                        Thêm môn học
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{'/staff/management/school_year/new'}">
+                                        <span class='glyphicon glyphicon-plus'/>
+                                        Thêm năm học
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--Website-->
+                        <li id="nav_website" class=' dropdown' sec:authorize="hasRole('STAFF')">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Website<i class="caret"/></a>
                             <ul class="dropdown-menu">
                                 <li ><a th:href="@{/staff/management/news/add}"><span class="glyphicon glyphicon-pencil "/>Viết bản tin</a></li>                              
@@ -98,7 +141,7 @@
                         </li>
 
                         <!--ADMIN menu-->
-                        <li class="dropdown" sec:authorize="hasRole('ADMIN')">
+                        <li id="nav_quanlynhanvien" class=" dropdown" sec:authorize="hasRole('ADMIN')">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!--<span class="glyphicon glyphicon-user" />-->
                                 Quản lý nhân viên                          
@@ -120,7 +163,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown" sec:authorize="hasRole('ADMIN')">
+                        <li id="nav_quanlynguoidung" class="nav-man-user dropdown" sec:authorize="hasRole('ADMIN')">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!--<span class="glyphicon glyphicon-user" />--> 
                                 Quản lý người dùng
