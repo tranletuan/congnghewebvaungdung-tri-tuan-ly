@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quanlyhocvu.api.mongodb.DTO.staff;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -17,26 +19,47 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class NewsDTO {
-     @Id 
+
+     @Id
      private String id;
      private String title;
      private String author;
      private Date date;
      private String content;
      private String url;
-     private List<String> catalogIds;
+     @DBRef
+     private List<CatalogNewsDTO> catalogs;
 
-     
-     public NewsDTO() {}
-     
-     public NewsDTO(String title, String author, Date date, String content, String url, List<String> catalogIds) {
+     public List<CatalogNewsDTO> getCatalogs() {
+          return catalogs;
+     }
+
+     public void setCatalogs(List<CatalogNewsDTO> catalogs) {
+          this.catalogs = catalogs;
+     }
+
+     public NewsDTO() {
+          catalogs = new ArrayList<>();
+     }
+
+     public NewsDTO(String title, String author, Date date, String content, String url, List<CatalogNewsDTO> catalogs) {
           this.title = title;
           this.author = author;
           this.date = date;
           this.content = content;
           this.url = url;
-          this.catalogIds = catalogIds;
+          this.catalogs = catalogs;
      }
+
+     public NewsDTO(String title, String author, Date date, String content, String url, CatalogNewsDTO... catalogs) {
+          this.title = title;
+          this.author = author;
+          this.date = date;
+          this.content = content;
+          this.url = url;
+          this.catalogs = Arrays.asList(catalogs);
+     }
+
      public String getId() {
           return id;
      }
@@ -83,13 +106,5 @@ public class NewsDTO {
 
      public void setUrl(String url) {
           this.url = url;
-     }
-
-     public List<String> getCatalogIds() {
-          return catalogIds;
-     }
-
-     public void setCatalogIds(List<String> catalogIds) {
-          this.catalogIds = catalogIds;
      }
 }

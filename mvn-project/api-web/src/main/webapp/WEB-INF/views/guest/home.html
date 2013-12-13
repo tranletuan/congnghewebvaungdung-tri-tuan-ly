@@ -76,17 +76,17 @@
                     </div>
                     <!--News-->
                     <div class="news-container col-md-9 pull-right">
-                        <ul class="nav nav-tabs faq-cat-tabs">
-                            <li class="active"><a href="#faq-cat-1" data-toggle="tab">Tất cả</a></li>
-                            <li th:each="catalog : ${listCatalogs}"><a href="#faq-cat-1" data-toggle="tab" th:text="${catalog.name}"></a></li>
+                        <ul id ="catalogs" class="nav nav-tabs faq-cat-tabs">
+                            <li id="0" class="active catalog_item"><a href="#faq-cat-1" data-toggle="tab">Tất cả</a></li>
+                            <li class="catalog_item" th:id ="${catalog.id}" th:each="catalog : ${listCatalogs}"><a href="#faq-cat-1" data-toggle="tab" th:text="${catalog.name}"></a></li>
                         </ul>
                         <div id="list_news">
                         </div>
                         <div>
-                            <ul class="pagination">
+                            <ul id="page_num" class="pagination">
                                 <li ><a href="#">&laquo;</a></li>
-                                <li class='active'><a >1</a></li>
-                                <li th:each="index : ${listPages}" th:id="${'page_'} + ${index}"><a th:text="${index}"></a></li>
+                                <li class='active page_item'><a  >1</a></li>
+                                <li th:each="index : ${listPages}" class='page_item'><a  th:text="${index}"></a></li>
                                 <li id="page_more"><a>...</a></li>
                                 <li ><a href="#">&raquo;</a></li>
                             </ul>
@@ -161,15 +161,21 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
             var viewUrl = /*[[@{/guest/login}]]*/ "viewUrl";
+            var newsUrl = /*[[@{/guest/home_list_news}]]*/ "newsUrl";
             jQuery(document).ready(function() {
                 jQuery("#form-horizontal").validationEngine();
                 COMMON.activeMenu("home_nav");
+                
                 loadCarousel();
                 $('#media').carousel({
                     pause: true,
                     interval: 4000
                 });
                 loadFrame();
+                loadNews(null);
+            });
+            $(".catalog_item").on('click', function() {
+               loadNews(this);
             });
             /*]]>*/
         </script>    

@@ -73,4 +73,5 @@ public class CatalogNewsDAO {
 //          query.skip(offset);
 //          return mongoOperation.find(query, )
 //     }
+
 }

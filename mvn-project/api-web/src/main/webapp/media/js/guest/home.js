@@ -13,6 +13,19 @@
  * http://www.opensource.org/licenses/mit-license.php
  * 
  */
+function loadNews(obj) {
+    var catalogId = obj===null? $("#catalogs").children(".active")[0].id : obj.id;
+    catalogId = catalogId==="" ? 0:catalogId;
+    console.log(catalogId);
+    var page  = $("#page_num").children(".active")[0].children[0].text;
+    jQuery.ajax({
+        url: newsUrl + "/" +catalogId + "/" + page,
+        success: function(data) {
+            jQuery('#list_news').html(data);
+        }
+    });
+}
+;
 function loadFrame() {
     jQuery.ajax({
         url: viewUrl,

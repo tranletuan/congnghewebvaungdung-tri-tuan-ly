@@ -8,23 +8,23 @@
         <div class="">
             <div class="panel">
                 <div class="">
-                    <ul class="news-tabs">
-                        <li th:if="${catalog}" class="list-group-item" th:each="news : ${catalog.listNews}">
+                    <ul class="news-tabs" th:if="${listNews}" style="min-height:400px">
+                        <li class="list-group-item" th:each="news : ${listNews}">
                             <div class="row">
-                                <div class="col-xs-10">
-                                    <div>
-                                        <span class='glyphicon glyphicon-info-sign'/>
-                                        <a th:href="${news.url}" th:text="${news.title}"/>
-                                        <div class="mic-info" th:inline="text">Ngày đăng: [[${news.date}]]</div>
-                                    </div>
-                                    <div class="action" sec:authorize="hasRole('STAFF')">
-                                        <button type="button" class="btn btn-primary btn-xs" title="sửa">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-xs" title="xóa">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                    </div>
+                                <div class="col-xs-10"> 
+                                        <div>
+                                            <span class='glyphicon glyphicon-info-sign'/>
+                                            <a th:href="${news.url}" th:text="${news.title}"/>
+                                            <div class="mic-info" th:inline="text">Ngày đăng: [[${#dates.format(news.date,'dd/MM/yyyy - hh:mm:ss')}]]</div>
+                                        </div>
+                                        <div class="action pull-right" sec:authorize="hasRole('STAFF')">
+                                            <button type="button" class="btn btn-primary btn-xs" title="sửa">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs" title="xóa">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
                                 </div>
                             </div>
                         </li>

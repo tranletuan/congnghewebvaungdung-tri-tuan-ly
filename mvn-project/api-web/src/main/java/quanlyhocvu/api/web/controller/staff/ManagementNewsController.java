@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quanlyhocvu.api.web.controller.staff;
 
 import java.util.ArrayList;
@@ -26,19 +25,20 @@ import quanlyhocvu.api.web.util.Tools;
  * @author HuuTri
  */
 @Controller
-@RequestMapping(value="management/news")
+@RequestMapping(value = "management/news")
 public class ManagementNewsController {
+
      @Autowired
      MongoService mongoService;
-     
-     @RequestMapping(value="add")
+
+     @RequestMapping(value = "add")
      public ModelAndView add(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
           model.put("listCatalogs", mongoService.getAllCatalog());
-          return new ModelAndView("staff/management/new/add", model);
+          return new ModelAndView("staff/management/news/add", model);
      }
-     
-     @RequestMapping(value="save")
+
+     @RequestMapping(value = "save")
      public ModelAndView save(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
           //////////////////////
@@ -46,17 +46,29 @@ public class ManagementNewsController {
           String author = Tools.getCurrentUser();
           Date date = new Date();
           String content = request.getParameter("content");
-          String catalogIds[] = request.getParameterValues("catalogId");
+          String catalogIds[] = request.getParameterValues("catalogs");
           String url = "";
+          System.out.println(title + author + content);
           if ("".equals(title) || "".equals(author) || "".equals(content)) {
                model.put("message", "Tạo tin tức không thành công");
-               return new ModelAndView ("redirect:/guest/home", model);
+               return new ModelAndView("redirect:/guest/home", model);
           }
-          List<String> listCatalogs = new ArrayList<>(Arrays.asList(catalogIds));
-          NewsDTO news = new NewsDTO(title, author, date, content, url, listCatalogs);
+          
+          NewsDTO news = new NewsDTO(title, author, date,
+                  content, url,
+                  mongoService.getCatalogsFromIds(catalogIds));
           mongoService.insertNews(news);
           model.put("message", "Tạo tin tức thành công");
           return new ModelAndView("redirect:/guest/home", model);
-          
+
+     }
+     
+     @RequestMapping(value = "delete")
+     public ModelAndView delete(HttpServletRequest request) {
+          Map<String, Object> model = new HashMap<>();
+          String newsId = request.getParameter("newsId");
+          mongoService.deleteNewsById(newsId);
+          model.put("message", "Xóa thành công một bản tin");
+          return new ModelAndView("redirect:/guest/home", model);
      }
 }

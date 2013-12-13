@@ -6,68 +6,35 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Đăng nhập</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Bootstrap -->
-        <link href="media/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-        <style type="text/css">
-            body {
-                padding-top: 40px;
-                padding-bottom: 40px;
-            }
-
-            .form-signin {
-                max-width: 300px;
-                padding: 19px 29px 29px;
-                margin: 0 auto 20px;
-                background-color: #fff;
-                border: 1px solid #e5e5e5;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            }
-            .form-signin .form-signin-heading,
-            .form-signin .checkbox {
-                margin-bottom: 10px;
-            }
-            .form-signin input[type="text"],
-            .form-signin input[type="password"] {
-                font-size: 16px;
-                height: auto;
-                margin-bottom: 15px;
-                padding: 7px 9px;
-            }
-
-        </style>
-        <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen" />
     </head>
-    <body>
-       <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <form accept-charset="UTF-8" role="form" method="POST" th:action="@{/guest/check}">
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                                    <input class="form-control" placeholder="Tên đăng nhập" name="j_username" type="Tên đăng nhập"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                                                    <input class="form-control" placeholder="Mật khẩu" name="j_password" type="password"  />
-                                                </div>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="remember" type="checkbox" value="Ghi Nhớ"/> Ghi nhớ
-                                                </label>
-                                            </div>
-                                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Đăng nhập"/>
-                                        </fieldset>
-                                    </form> 
-                                </div>
+    <body class="main-body">
+        <div class="panel panel-default main-container">
+            <div class="panel-body">
+                <form accept-charset="UTF-8" role="form" method="POST" th:action="@{/guest/check}">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control" placeholder="Tên đăng nhập" name="j_username" type="Tên đăng nhập"/>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                <input class="form-control" placeholder="Mật khẩu" name="j_password" type="password"  />
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="remember" type="checkbox" value="Ghi Nhớ"/> Ghi nhớ
+                            </label>
+                        </div>
+                        <input class="btn btn-lg btn-success btn-block" type="submit" value="Đăng nhập"/>
+                    </fieldset>
+                </form> 
+            </div>
+        </div>
+        <link href="" th:href="@{/media/css/guest/guest.css}" rel="stylesheet" media="screen" />
+        <script th:src="@{/media/js/guest/home.js}" type="text/javascript"/>
     </body>
 </html>
