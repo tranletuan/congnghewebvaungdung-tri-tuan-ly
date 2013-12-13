@@ -5,26 +5,46 @@
  */
 package quanlyhocvu.api.web.controller.staff;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.read.biff.BiffException;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
 import quanlyhocvu.api.mongodb.service.FunctionService;
+import quanlyhocvu.api.mongodb.service.HandleExcelFile;
 import quanlyhocvu.api.mongodb.service.MongoService;
 
 /**
@@ -37,7 +57,7 @@ public class ManagementStudentController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
     
-    
+    private ServletContext servletContext;
     @Autowired
     MongoService mongoService;
 
@@ -266,6 +286,85 @@ public class ManagementStudentController {
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }        
     
+    @RequestMapping(value="nhap_hocsinh", headers = "content-type=multipart/*", method=RequestMethod.POST)
+    public @ResponseBody
+    ModelAndView importHocSinh(@RequestParam(value = "danhSachHocSinh", required = false) MultipartFile danhSachHocSinh) throws IOException{
+        Map<String, Object> map = new HashMap<String, Object>(); 
+//        File file = new File(servletContext.getRealPath("/") + "/"
+//                    + filename);
+        //String path = servletContext.getRealPath("/");                
+        KhoiLopDTO khoiLop = mongoService.getKhoiLopByName("6");
+        //System.out.println(request.getParameter("danhSachHocSinh"));
+        //System.out.println(path);
+        File temp_file = new File("uploaded.xls");
+        byte[] bytes = danhSachHocSinh.getBytes();
+        BufferedOutputStream stream =
+                new BufferedOutputStream(new FileOutputStream(temp_file));
+        stream.write(bytes);
+        stream.close();
+        System.out.println(danhSachHocSinh.getOriginalFilename());
+        Workbook w;
+        try {
+            w = Workbook.getWorkbook(temp_file);
+            //Get the first sheet
+            Sheet sheet = w.getSheet(0);
+            for (int i = 1; i < sheet.getRows(); i++) {
+                HocSinhDTO hs = new HocSinhDTO();
+                //Do columns co 6 cot nen se lay 6 cot
+                Cell[] listCell = new Cell[7];
+                for (int j = 0; j < 7; j++) {
+                    listCell[j] = sheet.getCell(j, i);
+                }
+                
+                String hoTen = listCell[1].getContents();
+                hs.sethoTen(hoTen);
+                
+                String gioiTinh = listCell[2].getContents();
+                if (gioiTinh == "Nam") {
+                    hs.setgioiTinh(1);
+                }else{
+                    hs.setgioiTinh(0);
+                }
+                
+                String ngaySinh = listCell[3].getContents();
+                Date ngaySinhDate = FunctionService.formatStringDateExcel(ngaySinh);
+                hs.setngaySinh(ngaySinhDate);
+                
+                String ngayNhapHoc = listCell[4].getContents();
+                Date ngayNhapHocDate = FunctionService.formatStringDateExcel(ngayNhapHoc);
+                hs.setngayNhapHoc(ngayNhapHocDate);
+                
+                String diaChi = listCell[5].getContents();
+                hs.setdiaChi(diaChi);
+                
+                String moTa = listCell[6].getContents();
+                hs.setmoTa(moTa);
+                hs.setKhoiLopHienTai(khoiLop);
+                mongoService.insertStudent(hs);
+            }
+        } catch (BiffException ex) {
+            java.util.logging.Logger.getLogger(ManagementStudentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ModelAndView("redirect:/staff/management/students/index",map);
+    }
+         
+    @RequestMapping(value="xuat_hocsinh")
+    public @ResponseBody
+    ModelAndView exportHocSinh(HttpServletRequest request) throws IOException, WriteException{
+        Map<String, Object> map = new HashMap<String, Object>(); 
+        String typeExport = request.getParameter("exportType");
+        String filepath_download = "abc";
+        map.put("file_path", filepath_download);
+        map.put("typeExpot", typeExport);
+        
+        //dau tien la se export la 1 Sheet chua toan bo danh sach hoc sinh
+        File file = new File("DanhSachHocSinh_export.xls");
+        HandleExcelFile excelFactory = new HandleExcelFile();
+        excelFactory.setOutputFile("DanhSachHocSinh_export.xls");
+        excelFactory.write();
+        return new ModelAndView("redirect:/staff/management/students/index",map);
+    }
+        
     public void xepHocSinhVaoLopHoc(String tenKhoiLop){
         //Xep hoc sinh vao theo khoi lop
         KhoiLopDTO khoiLop = mongoService.getKhoiLopByName(tenKhoiLop);

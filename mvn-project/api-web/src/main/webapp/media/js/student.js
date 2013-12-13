@@ -94,5 +94,29 @@ $(document).ready(function(){
         });
         //Close Modal
         $('#xepLopHocSinhModal').modal('hide');        
+    });
+    
+    $("#btnhapDanhSachHocSinh").on('click', function(){
+        console.log("AAAAAAAAAAAA");
+        $("#formNhapDanhSach").submit();
+    })
+    
+    $("#btxuatDanhSachHocSinh").on('click', function(){
+        var valueExport = $("#radiosXuatDS-0")[0].checked;
+        var exportType = "0";// mac dinh la export theo danh sacsh lpp
+        if (valueExport) {
+            exportType = "1"; //export theo danh sach hocsinh
+        }
+        $.ajax({
+            url: xuatDanhSachHS_url,
+            type: 'POST',
+            data: {exportType: exportType},
+            success: function(res){
+                console.log("Xuat danh sach thanh cong");
+                console.log(res);
+            }
+        })
+        $('#xuatDanhSachHocSinh').modal('hide');      
+        console.log(exportType);
     })
 }) 

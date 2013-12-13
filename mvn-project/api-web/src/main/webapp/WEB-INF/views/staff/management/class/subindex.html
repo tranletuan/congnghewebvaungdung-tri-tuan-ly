@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+            <thead>
+                <tr>                        
+                    <th>Tên Lớp Học</th>
+                    <th>Giáo Viên</th>
+                    <th>Sĩ Số </th>                                           
+                </tr>
+            </thead>
+            <tbody>                       
+                <tr  th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">                        
+                    <td id="tenLopHoc"><a th:text="${lophoc.getkhoiLop().gettenKhoiLop()} + ${lophoc.gettenLopHoc()}" th:href="@{'/staff/management/class/view/' + ${lophoc.getid()}}"></a></td>
+                    <td th:text="${lophoc.getgiaoVien().gethoTen()}" th:if="${lophoc.getgiaoVien()}" id="giaoVien"/>
+                    <td th:unless="${lophoc.getgiaoVien()}" id="giaoVien"/>
+                    <td th:text="${lophoc.getSiSo()}"></td>                                           
+                </tr>
+            </tbody>
+        </table>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("quanly_nav");
+            });
+            /*]]>*/
+        </script> 
+    </body>
+</html>
