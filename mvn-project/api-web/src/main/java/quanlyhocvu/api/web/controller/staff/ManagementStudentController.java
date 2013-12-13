@@ -367,7 +367,9 @@ public class ManagementStudentController {
         File file = new File("DanhSachHocSinh_export.xls");
         HandleExcelFile excelFactory = new HandleExcelFile();
         excelFactory.setOutputFile("DanhSachHocSinh_export.xls");
-        excelFactory.write();
+        //lay data de export
+        List<HocSinhDTO> listHocSinh = mongoService.getAllStudents();
+        excelFactory.write(listHocSinh);
         return new ModelAndView("redirect:/staff/management/students/index",map);
     }
         
