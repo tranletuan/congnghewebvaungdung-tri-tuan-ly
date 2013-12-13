@@ -46,18 +46,19 @@
                         </div>
                         <div class="modal-body">
                             <div class="message_modal">Bạn muốn xếp lớp cho Khối Lớp 6 hay Tất cả các khối?</div>
-
-                            <div class="radio pull-left radio_khoiLop">
-                                <label for="radios-0">
-                                    <input type="radio" name="radios" id="radios-0" value="1" checked="checked"/>
-                                    Khối lớp 6
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label for="radios-1">
-                                    <input type="radio" name="radios" id="radios-1" value="2"/>
-                                    Tất cả các khối
-                                </label>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="radios-0">
+                                        <input type="radio" name="radios" id="radios-0" value="1" checked="checked"/>
+                                        Khối lớp 6
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="radios-1">
+                                        <input type="radio" name="radios" id="radios-1" value="2"/>
+                                        Tất cả các khối
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer align_center">
@@ -77,9 +78,9 @@
                         </div>
                         <div class="modal-body">
                             <form enctype="multipart/form-data" id="formNhapDanhSach" method="post" th:action="@{/staff/management/students/nhap_hocsinh}">
-                                <div class="control-group">
-                                    <label class="control-label float_left margin_label_right" for="filebutton">Tải danh sách lên</label>
-                                    <div class="controls">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="filebutton">Tải danh sách lên</label>
+                                    <div class="col-md-4">
                                         <input id="filebutton" name="danhSachHocSinh" class="input-file" type="file" accept=".xls"/>
                                     </div>
                                 </div>
@@ -102,18 +103,19 @@
                         </div>
                         <div class="modal-body">
                             <div class="message_modal">Bạn muốn xuất học sinh theo danh sách theo lớp hay theo danh sách học sinh?</div>
-
-                            <div class="radio pull-left radio_khoiLop">
-                                <label for="radiosXuatDS-0">
-                                    <input type="radio" name="radiosXuatDS" id="radiosXuatDS-0" value="1" checked="checked"/>
-                                    Theo Lớp
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label for="radiosXuatDS-1">
-                                    <input type="radio" name="radiosXuatDS" id="radiosXuatDS-1" value="2"/>
-                                    Theo Học Sinh
-                                </label>
+                            <div class="form-group">   
+                                <div class="col-md-6"> 
+                                    <label for="radiosXuatDS-0">
+                                        <input type="radio" name="radiosXuatDS" id="radiosXuatDS-0" value="1" checked="checked"/>
+                                        Theo Lớp
+                                    </label>
+                                </div>
+                                <div class="col-md-6"> 
+                                    <label for="radiosXuatDS-1">
+                                        <input type="radio" name="radiosXuatDS" id="radiosXuatDS-1" value="2"/>
+                                        Theo Học Sinh
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer align_center">
