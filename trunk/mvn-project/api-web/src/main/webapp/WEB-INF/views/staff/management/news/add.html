@@ -10,7 +10,7 @@
     <body class="main-body">
         <div class="container main-container">
             <div th:substituteby="staff/template :: nav" />               
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" th:action="@{/staff/management/news/save}">
                 <fieldset>
 
                     <!-- Form Name -->

@@ -1,5 +1,6 @@
 package quanlyhocvu.api.mongodb.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -359,7 +360,7 @@ public class MongoService {
      public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
           return lophocDAO.getHocSinhById(dto, idHocSinh);
      }
-  
+
      //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
      /**
       * ************************************************
@@ -585,13 +586,38 @@ public class MongoService {
           catalogNewsDAO.insertCatalog(catalog);
      }
 
+      public List<NewsDTO> getAllNewsByPage(int limit, int offset) {
+           return newsDAO.getAllNewsByPage(limit, offset);
+      }
+     
+     public void deleteNewsById(String newsId) {
+          newsDAO.deleteNewsById(newsId);
+     }
+
      public List<CatalogNewsDTO> getAllCatalog() {
           return catalogNewsDAO.getAllCatalog();
      }
-     
+
      public void insertNews(NewsDTO news) {
           newsDAO.insertNews(news);
      }
-//</editor-fold>
 
+     public List<CatalogNewsDTO> getCatalogsFromIds(String[] parameterValues) {
+          List<CatalogNewsDTO> list = new ArrayList<>();
+          for (String id : parameterValues) {
+               CatalogNewsDTO catalog = catalogNewsDAO.getCatalogById(id);
+               if (catalog != null) {
+                    list.add(catalog);
+               }
+          }
+          return list;
+     }
+
+     public List<NewsDTO> getNewsByCatalogIdAndPage(String catalogId, int limit, int offset) {
+          return newsDAO.getNewsByCatalogIdAndPate(catalogId, limit, offset);
+     }
+
+//</editor-fold>   
+
+    
 }
