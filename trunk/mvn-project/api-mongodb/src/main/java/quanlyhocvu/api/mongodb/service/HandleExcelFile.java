@@ -96,7 +96,7 @@ public class HandleExcelFile {
         CellView cv = new CellView();
         cv.setFormat(times);
         cv.setFormat(timesBoldUnderline);
-        cv.setAutosize(true);
+        //cv.setAutosize(true);
 
         // Write Header
         String[] listHeader = {"STT", "Mã Học Sinh", "Họ Tên", "Giới Tính", "Ngày Sinh", "Địa Chỉ", "Lớp", "Ngày Nhập Học", "Ngày Nghỉ Học", "Trạng Thái Học Sinh"};

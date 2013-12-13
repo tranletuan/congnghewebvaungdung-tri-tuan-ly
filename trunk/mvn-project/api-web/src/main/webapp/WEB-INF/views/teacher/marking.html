@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="template :: header" />
+    <body>
+        <div class="container">
+            <div th:substituteby="template :: nav" />   
+            <!--<a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>-->
+            <div class="clearfix"></div>
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>                        
+                        <td align="center" colspan="3">Học Kỳ : <span th:text="${phanCong.getHocKy()}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Mã Học Sinh</th>
+                        <th>Họ và Tên</th>
+                        <th align="center" th:text="'Điểm ' + ${tenLoaiDiem}"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${diem.getid()}" align="center" th:each="diem: ${listDiem}">   
+                        <th th:text="${diem.getHocSinh().getmaHocSinh()}"/>
+                        <th align="left" th:text="${diem.getHocSinh().gethoTen()}"/>
+                        <th contenteditable="true" class="cham_diem"
+                            th:text="${loaiDiem} eq 'ktmieng'? ${diem.getListDiemKTMieng().get(0)}" >
+<!--                            ${loaiDiem eq 'kt15'}? ${diem.getListDiemKT15().get(0)} : 
+                            ${loaiDiem eq 'kt1tiet'}? ${diem.getListDiemKT1Tiet().get(0)} :
+                            ${loaiDiem eq 'ktgiuaky'}? ${diem.getDiemGiuaKy() : ${diem.getDiemCuoiKy()}}" -->
+                            Chưa có</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="template :: footer"></div>
+        </div>	
+        <!--          HTML for modal popup-->
+        <!-- modal content -->
+        <!--        <div id='confirm'>
+                        <div class='header'><span>Confirm Delete Student</span></div>
+                        <div class='message'></div>
+                        <div class='buttons'>
+                        <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+                        </div>
+                </div>-->
+        <!-- preload the images -->
+        <div style='display:none'>
+            <img src='img/confirm/header.gif' alt='' />
+            <img src='img/confirm/button.gif' alt='' />
+        </div>
+        <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
+        <script src="" th:src="@{/media/js/teacher_module/marking.js}"></script>
+
+        <script th:inline="javascript">
+            var chamDiemURL = /*[[@{'/teacher/class/' + ${phanCong.getid()} + '/' + ${loaiDiem} + '/diem_moi'}]]*/ "chamDiem";
+            console.log(chamDiemURL);
+           
+        </script>    
+    </body>
+</html>
