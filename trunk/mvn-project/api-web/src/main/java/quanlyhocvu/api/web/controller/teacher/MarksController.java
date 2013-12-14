@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,47 +50,41 @@ public class MarksController {
         Map<String, Object> map = new HashMap<>();
         PhanCongDTO phanCong = mongoService.getPhanCongById(phanCongId);
         ChiTietMonHocDTO chiTietMonHoc = phanCong.getChiTietChuyenMon().getChiTietMonHoc();
+        LopHocDTO lopHoc = phanCong.getLopHoc();
         List<HocSinhDTO> listHocSinh = phanCong.getLopHoc().getlistHocSinh();
         List<DiemDTO> listDiem = new ArrayList();
+        String tenLop = chiTietMonHoc.getKhoiLop().gettenKhoiLop() + lopHoc.gettenLopHoc();
+        String monHoc = chiTietMonHoc.getMonHoc().gettenMonHoc();
+        int hocKy = phanCong.getHocKy();
 
         for (HocSinhDTO hs : listHocSinh) {
             DiemDTO diem = mongoService.getDiemByHocSinhChiTietMonHoc(hs, chiTietMonHoc);
             listDiem.add(diem);
         }
 
+        map.put("hocKy", hocKy);
+        map.put("tenLop", tenLop);
+        map.put("monHoc", monHoc);
         map.put("listDiem", listDiem);
-        map.put("listHocSinh", listHocSinh);
-        map.put("phanCong", phanCong);
         map.put("loaiDiem", loaiDiem);
         map.put("tenLoaiDiem", tenLoaiDiem(loaiDiem));
 
-        return new ModelAndView("marking", map);
+        return new ModelAndView("teacher/marking", map);
     }
 
-//    @RequestMapping(value = "{phanCongId/{loaiDiem}/diem_moi}")
-//    public @ResponseBody
-//    ModelAndView save_mark(@PathVariable String phanCongId, @PathVariable String loaiDiem, HttpServletRequest request) {
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        float diemSo = Float.valueOf(request.getParameter("diemSo"));
-//
-//        PhanCongDTO phanCong = mongoService.getPhanCongById(phanCongId);
-//        HocSinhDTO hocSinh = new HocSinhDTO();
-//        DiemDTO diem = mongoService.getDiemByHocSinh(hocSinh);
-//
-//        if (loaiDiem == "ktmieng") {
-//            mongoService.insertDiemSo("DiemKTMieng", diem.getid(), diemSo);
-//        } else if (loaiDiem == "kt15") {
-//            mongoService.insertDiemSo("DiemKT15", diem.getid(), diemSo);
-//        } else if (loaiDiem == "kt1tiet") {
-//            mongoService.insertDiemSo("DiemKT1Tiet", diem.getid(), diemSo);
-//        } else if (loaiDiem == "ktgiuaky") {
-//            mongoService.insertDiemSo("DiemGiuaKy", diem.getid(), diemSo);
-//        } else if (loaiDiem == "ktcuoiky") {
-//            mongoService.insertDiemSo("DiemCuoiKy", diem.getid(), diemSo);
-//        }
-//
-//        return new ModelAndView("marking");
-//    }
+    @RequestMapping(value = "chamdiem")
+    public @ResponseBody
+    ModelAndView saveMark(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        System.out.println("Nhon Ly");
+        Float diemMoi = Float.valueOf(request.getParameter("diemSo"));
+        Float diemCu = Float.valueOf(request.getParameter("diemCu"));
+        String idDiem = request.getParameter("idDiem");
+        String loaiDiemKT = request.getParameter("loaiDiemKT");
+    
+        mongoService.updateDiemSo(loaiDiemKT, idDiem, diemCu, diemMoi);
+        return new ModelAndView("teacher/marking", map);
+    }
 
     private String tenLoaiDiem(String type) {
         switch (type) {
