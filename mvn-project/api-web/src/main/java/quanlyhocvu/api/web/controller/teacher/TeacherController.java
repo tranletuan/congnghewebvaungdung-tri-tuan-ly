@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author HuuTri
  */
 @Controller
+@RequestMapping(value="teacher")
 public class TeacherController {
     @RequestMapping(value="home")
     public @ResponseBody

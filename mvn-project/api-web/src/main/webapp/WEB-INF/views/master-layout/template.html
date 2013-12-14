@@ -139,7 +139,6 @@
                                 <li ><a th:href="@{/staff/management/news/add}"><span class="glyphicon glyphicon-pencil "/>Viết bản tin</a></li>                              
                             </ul>
                         </li>
-
                         <!--ADMIN menu-->
                         <li id="nav_quanlynhanvien" class=" dropdown" sec:authorize="hasRole('ADMIN')">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -161,6 +160,28 @@
                                         <span class='glyphicon glyphicon-plus'/>
                                         Thêm nhân viên mới</a>
                                 </li>
+                            </ul>
+                        </li>
+
+                        <!--TEACHER-->
+                        <li id="nav_giaovien" class="nav-teacher" sec:authorize="hasRole('TEACHER')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Quản lý
+                                <strong class="caret"></strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a th:href="@{'/teacher/class'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Các lớp đang dạy</a>
+                                </li>
+                                <!--<li class="divider"/>-->
+                                <li>
+                                    <a th:href="@{'/class/time/'}">
+                                        <span class='glyphicon glyphicon-list'/>
+                                        Thời gian dạy</a>
+                                </li>
+                               
                             </ul>
                         </li>
                         <li id="nav_quanlynguoidung" class="nav-man-user dropdown" sec:authorize="hasRole('ADMIN')">

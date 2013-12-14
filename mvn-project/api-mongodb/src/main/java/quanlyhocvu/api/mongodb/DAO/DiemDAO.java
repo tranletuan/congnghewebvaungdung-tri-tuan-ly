@@ -46,7 +46,7 @@ public class DiemDAO {
 
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("hocSinh", dto.getHocSinh().getid());
+        update.set("hocSinh", dto.getHocSinh());
         update.set("chiTietMonHoc", dto.getChiTietMonHoc());
         update.set("listDiemKTMieng", dto.getListDiemKTMieng());
         update.set("listDiemKT15", dto.getListDiemKT15());
@@ -65,7 +65,7 @@ public class DiemDAO {
 
     public DiemDTO getDiemByHocSinhChiTietMonHoc(HocSinhDTO hocSinh, ChiTietMonHocDTO chiTietMonHoc) {
         DiemDTO dto = new DiemDTO();
-        Query query = Query.query(Criteria.where("hocSinh.&id").is(hocSinh.getid())).addCriteria(Criteria.where("chiTietMonHoc.&id").is(chiTietMonHoc.getid()));
+        Query query = Query.query(Criteria.where("hocSinh.$id").is(new ObjectId(hocSinh.getid())).and("chiTietMonHoc.$id").is(new ObjectId(chiTietMonHoc.getid())));
         dto = mongoOperation.findOne(query, DiemDTO.class);
         
         if(dto == null) {
@@ -135,27 +135,38 @@ public class DiemDAO {
 
     public boolean updateDiemSo(String loaiDiem, String idDiem, Float diemCu, Float diemMoi) {
         DiemDTO dto = getDiemById(idDiem);
-        if (loaiDiem == "DiemKTMieng") {
-            List<Float> tempList = dto.getListDiemKTMieng();
-            int index = tempList.indexOf(diemCu);
-            tempList.set(index, diemMoi);
-            dto.setListDiemKTMieng(tempList);
-        } else if (loaiDiem == "DiemKT15") {
-            List<Float> tempList = dto.getListDiemKT15();
-            int index = tempList.indexOf(diemCu);
-            tempList.set(index, diemMoi);
-            dto.setListDiemKTMieng(tempList);
-        } else if (loaiDiem == "DiemKT15") {
-            List<Float> tempList = dto.getListDiemKT1Tiet();
-            int index = tempList.indexOf(diemCu);
-            tempList.set(index, diemMoi);
-            dto.setListDiemKTMieng(tempList);
-        } else if (loaiDiem == "DiemGiuaKy") {
-            dto.setDiemGiuaKy(diemMoi);
-        } else if (loaiDiem == "DiemCuoiKy") {
-            dto.setDiemCuoiKy(diemMoi);
+        switch (loaiDiem) {
+            case "ktmieng":
+                {
+                    List<Float> tempList = dto.getListDiemKTMieng();
+                    int index = tempList.indexOf(diemCu);
+                    tempList.set(index, diemMoi);
+                    dto.setListDiemKTMieng(tempList);
+                    break;
+                }
+            case "kt15":
+                {
+                    List<Float> tempList = dto.getListDiemKT15();
+                    int index = tempList.indexOf(diemCu);
+                    tempList.set(index, diemMoi);
+                    dto.setListDiemKTMieng(tempList);
+                    break;
+                }
+            case "kt1tiet":
+                {
+                    List<Float> tempList = dto.getListDiemKT1Tiet();
+                    int index = tempList.indexOf(diemCu);
+                    tempList.set(index, diemMoi);
+                    dto.setListDiemKTMieng(tempList);
+                    break;
+                }
+            case "ktgiuaky":
+                dto.setDiemGiuaKy(diemMoi);
+                break;
+            case "ktcuoiky":
+                dto.setDiemCuoiKy(diemMoi);
+                break;
         }
-
         update(dto);
         return true;
     }
