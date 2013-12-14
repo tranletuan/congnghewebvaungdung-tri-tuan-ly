@@ -10,45 +10,44 @@
     <body class="main-body">
         <div class="container main-container">
             <div th:substituteby="staff/template :: nav" />               
-            <form class="form-horizontal" method="post" th:action="@{/staff/management/news/save}">
+            <form th:if="${news}" class="form-horizontal" method="post" th:action="@{/staff/management/news/update}">
                 <fieldset>
 
                     <!-- Form Name -->
-                    <legend>Tạo bản tin</legend>
-
+                    <legend>Sửa thông tin bản tin</legend>
+                    <!--                    <input type="text" value="Amsterdam,Washington" data-role="tagsinput"/>-->
+                    <input name="newsId" type="hidden" th:value="${news.id}"/>
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="title">Tên bản tin</label>  
                         <div class="col-md-6">
-                            <input id="title" name="title" type="text" placeholder="" class="form-control input-md validate[required]"/>
+                            <input id="title" name="title" th:value="${news.title}" type="text" placeholder="" class="form-control input-md validate[required]"/>
                         </div>
                     </div>
-
                     <!-- Textarea -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="content">Nội dung</label>
                         <div class="col-md-6">                     
-                            <textarea class="form-control validate[required]" id="content" name="content"></textarea>
+                            <textarea class="form-control validate[required]" id="content" th:text="${news.content}" name="content"/>
                         </div>
                     </div>
+
 
                     <!-- Select Multiple -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="catalogs">Loại bản tin</label>
                         <div class="col-md-6">
-                            <select id="catalogs" name="catalogs" multiple="multiple" class=" my_select_box form-control" data-placeholder="Chọn loại bài viết..." >
-                                <option th:value="${catalog.id}" th:text="${catalog.name}" th:each="catalog : ${listCatalogs}"></option>
+                            <select name="catalogs" multiple="multiple" class=" my_select_box form-control" data-placeholder="Chọn loại bài viết..." >
+                                <option th:value="${catalog.id}" th:text="${catalog.name}" th:each="catalog : ${catalogs}"></option>
                             </select>
                         </div>
                     </div>
-
                     <!-- Button -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="add_catalog"></label>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <input type="submit" id="submit" name="submit" class="btn btn-primary" text="Lưu lại"></input>
-                            <button id="cancel" name="cancel" class="btn btn-default">Thoát</button>
-                            <a id="add_catalog" name="add_catalog" class="btn btn-success" text="Thêm loại bản tin">Thêm loại bản tin</a>
+                            <a th:href="@{'/guest/home'}" id="cancel" name="cancel" class="btn btn-default">Thoát</a>
                         </div>
                     </div>
                 </fieldset>
@@ -58,7 +57,7 @@
 
         <script th:inline="javascript">
             /*<![CDATA[*/
-            var url = /*[[@{/staff/management/news/catalog/add}]]*/ "url";
+            // var data = [[${news.catalogs}]];
             jQuery(document).ready(function() {
                 jQuery(".form-horizontal").validationEngine();
                 COMMON.activeMenu("nav_website");
@@ -67,15 +66,6 @@
                     no_results_text: "Không tìm thấy kết quả",
                     width: "100%"
                 });
-                $('#add_catalog').editable({
-                    type: 'text',
-                    pk: 1,
-                    url: url,
-                    success: function(data) {
-                        console.log(data);
-                        $(data).appendTo($('catalogs'));
-                    }
-                }); 
             });
             /*]]>*/
         </script>    

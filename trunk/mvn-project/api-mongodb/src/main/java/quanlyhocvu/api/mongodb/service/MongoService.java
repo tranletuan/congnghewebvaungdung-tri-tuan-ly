@@ -10,7 +10,6 @@ import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.AuthorityDAO;
 import quanlyhocvu.api.mongodb.DAO.CatalogNewsDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietChuyenMonDAO;
-import quanlyhocvu.api.mongodb.DAO.ChiTietDiemDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietMonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.DiemDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
@@ -25,7 +24,6 @@ import quanlyhocvu.api.mongodb.DAO.StaffDAO;
 import quanlyhocvu.api.mongodb.DTO.Authority.RoleDTO;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietChuyenMonDTO;
-import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietMonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
@@ -43,576 +41,584 @@ import quanlyhocvu.api.mongodb.utils.Authorities;
 @Repository
 public class MongoService {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-    //<editor-fold defaultstate="collapsed" desc="DAO variables">\
-    @Autowired
-    private NewsDAO newsDAO;
+     Logger logger = LoggerFactory.getLogger(getClass());
+     //<editor-fold defaultstate="collapsed" desc="DAO variables">\
+     @Autowired
+     private NewsDAO newsDAO;
 
-    @Autowired
-    private CatalogNewsDAO catalogNewsDAO;
+     @Autowired
+     private CatalogNewsDAO catalogNewsDAO;
 
-    @Autowired
-    private AddressDAO addressDAO;
+     @Autowired
+     private AddressDAO addressDAO;
 
-    @Autowired
-    private GiaoVienDAO giaoVienDAO;
+     @Autowired
+     private GiaoVienDAO giaoVienDAO;
 
-    @Autowired
-    private NamHocDAO namHocDAO;
+     @Autowired
+     private NamHocDAO namHocDAO;
 
-    @Autowired
-    private MonHocDAO monhocDAO;
+     @Autowired
+     private MonHocDAO monhocDAO;
 
-    @Autowired
-    private KhoiLopDAO khoiLopDAO;
+     @Autowired
+     private KhoiLopDAO khoiLopDAO;
 
-    @Autowired
-    private LopHocDAO lophocDAO;
+     @Autowired
+     private LopHocDAO lophocDAO;
 
-    @Autowired
-    private DiemDAO diemDAO;
+     @Autowired
+     private DiemDAO diemDAO;
 
-    @Autowired
-    private HocSinhDAO hocsinhDAO;
+     @Autowired
+     private HocSinhDAO hocsinhDAO;
 
-    @Autowired
-    private PhanCongDAO phancongDAO;
+     @Autowired
+     private PhanCongDAO phancongDAO;
 
-    @Autowired
-    private ChiTietChuyenMonDAO chitietchuyenmonDAO;
+     @Autowired
+     private ChiTietChuyenMonDAO chitietchuyenmonDAO;
 
-    @Autowired
-    private ChiTietMonHocDAO chitietmonhocDAO;
+     @Autowired
+     private ChiTietMonHocDAO chitietmonhocDAO;
 
-    @Autowired
-    private AuthorityDAO authorityDAO;
+     @Autowired
+     private AuthorityDAO authorityDAO;
 
-    @Autowired
-    private StaffDAO staffDAO;
+     @Autowired
+     private StaffDAO staffDAO;
 
-    public MongoService() {
-    }
+     public MongoService() {
+     }
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
-
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
-    public boolean insertgiaoVien(GiaoVienDTO dto) {
-        return giaoVienDAO.insertTeacher(dto);
-    }
-
-    public List<GiaoVienDTO> getAllgiaoVien() {
-        return giaoVienDAO.getAllgiaoVien();
-    }
-
-    public boolean updategiaoVien(GiaoVienDTO dto) {
-        return giaoVienDAO.updateTeacher(dto);
-    }
-
-    public GiaoVienDTO getTeacherById(String maGiaoVien) {
-        return giaoVienDAO.getBymaGiaoVien(maGiaoVien);
-    }
-
-    public GiaoVienDTO getTeacherByid(String id) {
-        return giaoVienDAO.getById(id);
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
 
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
-    public NewsDAO getNewsDAO() {
-        return newsDAO;
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
+     //</editor-fold>
+     //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
+     public boolean insertgiaoVien(GiaoVienDTO dto) {
+          return giaoVienDAO.insertTeacher(dto);
+     }
 
-    public void setNewsDAO(NewsDAO newsDAO) {
-        this.newsDAO = newsDAO;
-    }
+     public List<GiaoVienDTO> getAllgiaoVien() {
+          return giaoVienDAO.getAllgiaoVien();
+     }
 
-    public CatalogNewsDAO getCatalogNewsDAO() {
-        return catalogNewsDAO;
-    }
+     public boolean updategiaoVien(GiaoVienDTO dto) {
+          return giaoVienDAO.updateTeacher(dto);
+     }
 
-    public void setCatalogNewsDAO(CatalogNewsDAO catalogNewsDAO) {
-        this.catalogNewsDAO = catalogNewsDAO;
-    }
+     public GiaoVienDTO getTeacherById(String maGiaoVien) {
+          return giaoVienDAO.getBymaGiaoVien(maGiaoVien);
+     }
 
-    public StaffDAO getStaffDAO() {
-        return staffDAO;
-    }
+     public GiaoVienDTO getTeacherByid(String id) {
+          return giaoVienDAO.getById(id);
+     }
 
-    public void setStaffDAO(StaffDAO staffDAO) {
-        this.staffDAO = staffDAO;
-    }
+    //</editor-fold>
+     //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
+     public NewsDAO getNewsDAO() {
+          return newsDAO;
+     }
 
-    public AuthorityDAO getAuthorityDAO() {
-        return authorityDAO;
-    }
+     public void setNewsDAO(NewsDAO newsDAO) {
+          this.newsDAO = newsDAO;
+     }
 
-    public void setAuthorityDAO(AuthorityDAO authorityDAO) {
-        this.authorityDAO = authorityDAO;
-    }
+     public CatalogNewsDAO getCatalogNewsDAO() {
+          return catalogNewsDAO;
+     }
 
-    public HocSinhDAO getHocsinhDAO() {
-        return hocsinhDAO;
-    }
+     public void setCatalogNewsDAO(CatalogNewsDAO catalogNewsDAO) {
+          this.catalogNewsDAO = catalogNewsDAO;
+     }
 
-    public void setHocsinhDAO(HocSinhDAO hocsinhDAO) {
-        this.hocsinhDAO = hocsinhDAO;
-    }
+     public StaffDAO getStaffDAO() {
+          return staffDAO;
+     }
 
-    /**
-     * @return the lophocDAO
-     */
-    public LopHocDAO getLophocDAO() {
-        return lophocDAO;
-    }
+     public void setStaffDAO(StaffDAO staffDAO) {
+          this.staffDAO = staffDAO;
+     }
 
-    /**
-     * @param lophocDAO the lophocDAO to set
-     */
-    public void setLophocDAO(LopHocDAO lophocDAO) {
-        this.lophocDAO = lophocDAO;
-    }
+     public AuthorityDAO getAuthorityDAO() {
+          return authorityDAO;
+     }
 
-    /**
-     * @return the monhocDAO
-     */
-    public MonHocDAO getMonhocDAO() {
-        return monhocDAO;
-    }
+     public void setAuthorityDAO(AuthorityDAO authorityDAO) {
+          this.authorityDAO = authorityDAO;
+     }
 
-    /**
-     * @param monhocDAO the monhocDAO to set
-     */
-    public void setMonhocDAO(MonHocDAO monhocDAO) {
-        this.monhocDAO = monhocDAO;
-    }
+     public HocSinhDAO getHocsinhDAO() {
+          return hocsinhDAO;
+     }
 
-    public AddressDAO getAddressDAO() {
-        return addressDAO;
-    }
+     public void setHocsinhDAO(HocSinhDAO hocsinhDAO) {
+          this.hocsinhDAO = hocsinhDAO;
+     }
 
-    public void setAddressDAO(AddressDAO addressDAO) {
-        this.addressDAO = addressDAO;
-    }
+     /**
+      * @return the lophocDAO
+      */
+     public LopHocDAO getLophocDAO() {
+          return lophocDAO;
+     }
 
-    public GiaoVienDAO getGiaoVienDAO() {
-        return giaoVienDAO;
-    }
+     /**
+      * @param lophocDAO the lophocDAO to set
+      */
+     public void setLophocDAO(LopHocDAO lophocDAO) {
+          this.lophocDAO = lophocDAO;
+     }
 
-    public void setGiaoVienDAO(GiaoVienDAO giaoVienDAO) {
-        this.giaoVienDAO = giaoVienDAO;
-    }
+     /**
+      * @return the monhocDAO
+      */
+     public MonHocDAO getMonhocDAO() {
+          return monhocDAO;
+     }
 
-    //<editor-fold defaultstate="collapsed" desc="Function for SCHOOL_YEAR">\
-    /**
-     * ************************************************
-     * function for school-year
-     *
-     * @author: LyVV ***********************************************
-     */
-    /**
-     * this function is used to return the list of school-year
-     *
-     * @return
-     */
-    public List<NamHocDTO> getAllnamHoc() {
-        return namHocDAO.getAllList();
-    }
+     /**
+      * @param monhocDAO the monhocDAO to set
+      */
+     public void setMonhocDAO(MonHocDAO monhocDAO) {
+          this.monhocDAO = monhocDAO;
+     }
 
-    /**
-     * Insert new namHoc into list
-     *
-     * @param dto
-     * @return
-     */
-    public boolean insertnamHoc(NamHocDTO dto) {
-        return namHocDAO.insert(dto);
-    }
+     public AddressDAO getAddressDAO() {
+          return addressDAO;
+     }
 
-    /**
-     * get namHoc by Id
-     *
-     * @param Id
-     * @return
-     */
-    public NamHocDTO getnamHocById(String Id) {
-        return namHocDAO.getnamHocById(Id);
-    }
+     public void setAddressDAO(AddressDAO addressDAO) {
+          this.addressDAO = addressDAO;
+     }
 
-    public NamHocDTO getnamHocByName(String tenNamHoc) {
-        return namHocDAO.getNamHocByName(tenNamHoc);
-    }
+     public GiaoVienDAO getGiaoVienDAO() {
+          return giaoVienDAO;
+     }
 
-    //<editor-fold defaultstate="collapsed" desc="Function for SUBJECT">\
-    /**
-     * ************************************************
-     * function for subject
-     *
-     * @author: LyVV ***********************************************
-     */
-    /**
-     * this function is used to return the list of MonHoc
-     *
-     * @return
-     */
-    public List<MonHocDTO> getAllMonHoc() {
-        return monhocDAO.getAllList();
-    }
+     public void setGiaoVienDAO(GiaoVienDAO giaoVienDAO) {
+          this.giaoVienDAO = giaoVienDAO;
+     }
 
-    /**
-     * Insert new MonHoc into list
-     *
-     * @param dto
-     * @return
-     */
-    public boolean insertMonHoc(MonHocDTO dto) {
-        return monhocDAO.insert(dto);
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for SCHOOL_YEAR">\
+     /**
+      * ************************************************
+      * function for school-year
+      *
+      * @author: LyVV ***********************************************
+      */
+     /**
+      * this function is used to return the list of school-year
+      *
+      * @return
+      */
+     public List<NamHocDTO> getAllnamHoc() {
+          return namHocDAO.getAllList();
+     }
+
+     /**
+      * Insert new namHoc into list
+      *
+      * @param dto
+      * @return
+      */
+     public boolean insertnamHoc(NamHocDTO dto) {
+          return namHocDAO.insert(dto);
+     }
+
+     /**
+      * get namHoc by Id
+      *
+      * @param Id
+      * @return
+      */
+     public NamHocDTO getnamHocById(String Id) {
+          return namHocDAO.getnamHocById(Id);
+     }
+
+     public NamHocDTO getnamHocByName(String tenNamHoc) {
+          return namHocDAO.getNamHocByName(tenNamHoc);
+     }
+
+     //<editor-fold defaultstate="collapsed" desc="Function for SUBJECT">\
+     /**
+      * ************************************************
+      * function for subject
+      *
+      * @author: LyVV ***********************************************
+      */
+     /**
+      * this function is used to return the list of MonHoc
+      *
+      * @return
+      */
+     public List<MonHocDTO> getAllMonHoc() {
+          return monhocDAO.getAllList();
+     }
+
+     /**
+      * Insert new MonHoc into list
+      *
+      * @param dto
+      * @return
+      */
+     public boolean insertMonHoc(MonHocDTO dto) {
+          return monhocDAO.insert(dto);
+     }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Function for GRADE">\
-    /**
-     * ************************************************
-     * function for grade
-     *
-     * @author: LyVV ***********************************************
-     */
-    /**
-     * this function is used to return the list of khoiLop
-     *
-     * @return
-     */
-    public List<KhoiLopDTO> getAllkhoiLop() {
-        return khoiLopDAO.getAllList();
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for GRADE">\
+     /**
+      * ************************************************
+      * function for grade
+      *
+      * @author: LyVV ***********************************************
+      */
+     /**
+      * this function is used to return the list of khoiLop
+      *
+      * @return
+      */
+     public List<KhoiLopDTO> getAllkhoiLop() {
+          return khoiLopDAO.getAllList();
+     }
 
-    /**
-     * Insert new khoiLop into list
-     *
-     * @param dto
-     * @return
-     */
-    public boolean insertkhoiLop(KhoiLopDTO dto) {
-        return khoiLopDAO.insert(dto);
-    }
+     /**
+      * Insert new khoiLop into list
+      *
+      * @param dto
+      * @return
+      */
+     public boolean insertkhoiLop(KhoiLopDTO dto) {
+          return khoiLopDAO.insert(dto);
+     }
 
-    public KhoiLopDTO getKhoiLopByid(String id) {
-        return khoiLopDAO.getById(id);
-    }
+     public KhoiLopDTO getKhoiLopByid(String id) {
+          return khoiLopDAO.getById(id);
+     }
 
-    public KhoiLopDTO getKhoiLopByName(String tenKhoiLop) {
-        return khoiLopDAO.getByName(tenKhoiLop);
-    }
+     public KhoiLopDTO getKhoiLopByName(String tenKhoiLop) {
+          return khoiLopDAO.getByName(tenKhoiLop);
+     }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Function for CLASS">\
-    /**
-     * ************************************************
-     * function for class
-     *
-     * @author: LyVV ***********************************************
-     */
-    /**
-     * this function is used to return the list of LopHoc
-     *
-     * @return
-     */
-    public List<LopHocDTO> getAllLopHoc() {
-        return lophocDAO.getAllList();
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for CLASS">\
+     /**
+      * ************************************************
+      * function for class
+      *
+      * @author: LyVV ***********************************************
+      */
+     /**
+      * this function is used to return the list of LopHoc
+      *
+      * @return
+      */
+     public List<LopHocDTO> getAllLopHoc() {
+          return lophocDAO.getAllList();
+     }
 
-    /**
-     * Insert new LopHoc into list
-     *
-     * @param dto
-     * @return
-     */
-    public boolean insertLopHoc(LopHocDTO dto) {
-        return lophocDAO.insert(dto);
-    }
+     /**
+      * Insert new LopHoc into list
+      *
+      * @param dto
+      * @return
+      */
+     public boolean insertLopHoc(LopHocDTO dto) {
+          return lophocDAO.insert(dto);
+     }
 
-    public LopHocDTO getLopHocById(String idLopHoc) {
-        return lophocDAO.getLopHocById(idLopHoc);
-    }
+     public LopHocDTO getLopHocById(String idLopHoc) {
+          return lophocDAO.getLopHocById(idLopHoc);
+     }
 
-    public boolean addStudent(HocSinhDTO hs, String id) {
-        return lophocDAO.addStudent(hs, id);
-    }
+     public boolean addStudent(HocSinhDTO hs, String id) {
+          return lophocDAO.addStudent(hs, id);
+     }
 
-    public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop) {
-        return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
-    }
-    
-    public boolean updateLopHoc(LopHocDTO dto) {
-        return lophocDAO.update(dto);
-    }
+     public List<LopHocDTO> getLopHocTheoNamHocKhoiLop(String idNamHoc, String idKhoiLop) {
+          return lophocDAO.getLopHocTheoNamHocKhoiLop(idNamHoc, idKhoiLop);
+     }
 
-    public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop) {
-        return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
-    }
+     public boolean updateLopHoc(LopHocDTO dto) {
+          return lophocDAO.update(dto);
+     }
 
-    public List<LopHocDTO> getLopHocTheoNamHoc(String namHocId) {
-        return lophocDAO.getLopHocTheoNamHoc(namHocId);
-    }
+     public List<LopHocDTO> getLopHocTheoKhoiLop(String tenKhoiLop) {
+          return lophocDAO.getLopHocTheoKhoiLop(tenKhoiLop);
+     }
 
-    public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
-        return lophocDAO.getHocSinhById(dto, idHocSinh);
-    }
+     public List<LopHocDTO> getLopHocTheoNamHoc(String namHocId) {
+          return lophocDAO.getLopHocTheoNamHoc(namHocId);
+     }
+
+     public HocSinhDTO getHocSinhLopHocById(LopHocDTO dto, String idHocSinh) {
+          return lophocDAO.getHocSinhById(dto, idHocSinh);
+     }
     //</editor-fold>    
 
-    //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
-    /**
-     * ************************************************
-     * function for students
-     *
-     * @author: LyVV
-     * @date created: Nov 17th ***********************************************
-     */
-    public List<HocSinhDTO> getAllStudents() {
-        return hocsinhDAO.getAllHocSinh();
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for STUDENT">\
+     /**
+      * ************************************************
+      * function for students
+      *
+      * @author: LyVV
+      * @date created: Nov 17th ***********************************************
+      */
+     public List<HocSinhDTO> getAllStudents() {
+          return hocsinhDAO.getAllHocSinh();
+     }
 
-    public boolean insertStudent(HocSinhDTO dto) {
-        return hocsinhDAO.insertStudent(dto);
-    }
+     public boolean insertStudent(HocSinhDTO dto) {
+          return hocsinhDAO.insertStudent(dto);
+     }
 
-    public boolean updateStudent(HocSinhDTO dto) {
-        return hocsinhDAO.updateStudent(dto);
-    }
+     public boolean updateStudent(HocSinhDTO dto) {
+          return hocsinhDAO.updateStudent(dto);
+     }
 
-    public boolean deleteStudent(HocSinhDTO dto) {
-        return hocsinhDAO.delete(dto);
-    }
+     public boolean deleteStudent(HocSinhDTO dto) {
+          return hocsinhDAO.delete(dto);
+     }
 
-    public HocSinhDTO getStudentByMaHS(String maHocSinh) {
-        return hocsinhDAO.getBymaHocSinh(maHocSinh);
-    }
+     public HocSinhDTO getStudentByMaHS(String maHocSinh) {
+          return hocsinhDAO.getBymaHocSinh(maHocSinh);
+     }
 
-    public List<HocSinhDTO> getStudentsByLopHoc(String maLopHoc) {
-        return hocsinhDAO.getByLopHoc(maLopHoc);
-    }
+     public List<HocSinhDTO> getStudentsByLopHoc(String maLopHoc) {
+          return hocsinhDAO.getByLopHoc(maLopHoc);
+     }
 
-    public HocSinhDTO getHocSinhById(String idStudent) {
-        return hocsinhDAO.getHocSinhById(idStudent);
-    }
+     public HocSinhDTO getHocSinhById(String idStudent) {
+          return hocsinhDAO.getHocSinhById(idStudent);
+     }
 
-    public List<HocSinhDTO> getHocSinhChuaXepLop() {
-        return hocsinhDAO.getHocSinhChuaXepLop();
-    }
+     public List<HocSinhDTO> getHocSinhChuaXepLop() {
+          return hocsinhDAO.getHocSinhChuaXepLop();
+     }
 
-    public List<HocSinhDTO> getHocSinhChuaXepLopTheoKhoiLop(String khoiLopId) {
-        return hocsinhDAO.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
-    }
+     public List<HocSinhDTO> getHocSinhChuaXepLopTheoKhoiLop(String khoiLopId) {
+          return hocsinhDAO.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
+     }
 
     //</editor-fold>
- 
-    //<editor-fold defaultstate="collapsed" desc="Function for MARK">
-    public List<DiemDTO> getAllDiem() {
-        return diemDAO.getAllDiem();
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for MARK">
+     public List<DiemDTO> getAllDiem() {
+          return diemDAO.getAllDiem();
+     }
 
-    public boolean insertDiem(DiemDTO dto) {
-        return diemDAO.insert(dto);
-    }
+     public boolean insertDiem(DiemDTO dto) {
+          return diemDAO.insert(dto);
+     }
 
-    public boolean deleteDiem(DiemDTO dto) {
-        return diemDAO.delete(dto);
-    }
+     public boolean deleteDiem(DiemDTO dto) {
+          return diemDAO.delete(dto);
+     }
 
-    public boolean updateDiem(DiemDTO dto) {
-        return diemDAO.update(dto);
-    }
+     public boolean updateDiem(DiemDTO dto) {
+          return diemDAO.update(dto);
+     }
 
-    public DiemDTO getDiemByHocSinhChiTietMonHoc(HocSinhDTO hocSinh, ChiTietMonHocDTO chiTietMonHoc) {
-        return diemDAO.getDiemByHocSinhChiTietMonHoc(hocSinh, chiTietMonHoc);
+     public DiemDTO getDiemByHocSinhChiTietMonHoc(HocSinhDTO hocSinh, ChiTietMonHocDTO chiTietMonHoc) {
+          return diemDAO.getDiemByHocSinhChiTietMonHoc(hocSinh, chiTietMonHoc);
 
-    }
-    
-    public boolean insertDiemSo(String loaiDiem, String idDiem, Float diemSo) {
-        return diemDAO.insertDiemSo(loaiDiem, idDiem, diemSo);
-    }
+     }
 
-    public boolean deleteDiemSo(String loaiDiem, String idDiem, Float diemSo) {
-        return diemDAO.deleteDiemSo(loaiDiem, idDiem, diemSo);
-    }
+     public boolean insertDiemSo(String loaiDiem, String idDiem, Float diemSo) {
+          return diemDAO.insertDiemSo(loaiDiem, idDiem, diemSo);
+     }
 
-    public boolean updateDiemSo(String loaiDiem, String idDiem, Float diemCu, Float diemMoi) {
-        return diemDAO.updateDiemSo(loaiDiem, idDiem, diemCu, diemMoi);
-    }
+     public boolean deleteDiemSo(String loaiDiem, String idDiem, Float diemSo) {
+          return diemDAO.deleteDiemSo(loaiDiem, idDiem, diemSo);
+     }
+
+     public boolean updateDiemSo(String loaiDiem, String idDiem, Float diemCu, Float diemMoi) {
+          return diemDAO.updateDiemSo(loaiDiem, idDiem, diemCu, diemMoi);
+     }
 
 //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="PHAN CONG">
-    public List<PhanCongDTO> getAllPhanCong() {
-        return phancongDAO.getAllList();
-    }
-    
-    public List<PhanCongDTO> getListPhanCongBy(String idChiTietChuyenMon) {
-        return phancongDAO.getListBy(idChiTietChuyenMon);
-    }
-    
-    public boolean insertPhanCong(PhanCongDTO dto) {
-        return phancongDAO.insert(dto);
-    }
-    
-    public boolean deletePhanCong(PhanCongDTO dto) {
-        return phancongDAO.delete(dto);
-    }
-    
-    public boolean updatePhanCong(PhanCongDTO dto) {
-        return phancongDAO.update(dto);
-    }
-    
-    public PhanCongDTO getPhanCongById(String idPhanCong) {
-        return phancongDAO.getPhanCongById(idPhanCong);
-    }
+     //<editor-fold defaultstate="collapsed" desc="PHAN CONG">
+     public List<PhanCongDTO> getAllPhanCong() {
+          return phancongDAO.getAllList();
+     }
+
+     public List<PhanCongDTO> getListPhanCongBy(String idChiTietChuyenMon) {
+          return phancongDAO.getListBy(idChiTietChuyenMon);
+     }
+
+     public boolean insertPhanCong(PhanCongDTO dto) {
+          return phancongDAO.insert(dto);
+     }
+
+     public boolean deletePhanCong(PhanCongDTO dto) {
+          return phancongDAO.delete(dto);
+     }
+
+     public boolean updatePhanCong(PhanCongDTO dto) {
+          return phancongDAO.update(dto);
+     }
+
+     public PhanCongDTO getPhanCongById(String idPhanCong) {
+          return phancongDAO.getPhanCongById(idPhanCong);
+     }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="CHI TIET CHUYEN MON">
-    public List<ChiTietChuyenMonDTO> getAllChiTietChuyenMon() {
-        return chitietchuyenmonDAO.getAllList();
-    }
+     //<editor-fold defaultstate="collapsed" desc="CHI TIET CHUYEN MON">
+     public List<ChiTietChuyenMonDTO> getAllChiTietChuyenMon() {
+          return chitietchuyenmonDAO.getAllList();
+     }
 
-    public List<ChiTietChuyenMonDTO> getListChiTietChuyenMonByIdGiaoVien(String idGiaoVien) {
-        return chitietchuyenmonDAO.getListBy(idGiaoVien);
-    }
+     public List<ChiTietChuyenMonDTO> getListChiTietChuyenMonByIdGiaoVien(String idGiaoVien) {
+          return chitietchuyenmonDAO.getListBy(idGiaoVien);
+     }
 
-    public boolean insertChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
-        return chitietchuyenmonDAO.insert(dto);
-    }
+     public boolean insertChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
+          return chitietchuyenmonDAO.insert(dto);
+     }
 
-    public boolean deleteChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
-        return chitietchuyenmonDAO.delete(dto);
-    }
+     public boolean deleteChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
+          return chitietchuyenmonDAO.delete(dto);
+     }
 
-    public boolean updateChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
-        return chitietchuyenmonDAO.update(dto);
-    }
+     public boolean updateChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
+          return chitietchuyenmonDAO.update(dto);
+     }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Chi Tiet Mon Hoc">
-    public boolean insertChiTietMonHoc(ChiTietMonHocDTO dto) {
-        return chitietmonhocDAO.insert(dto);
-    }
+     //<editor-fold defaultstate="collapsed" desc="Chi Tiet Mon Hoc">
+     public boolean insertChiTietMonHoc(ChiTietMonHocDTO dto) {
+          return chitietmonhocDAO.insert(dto);
+     }
 
-    public boolean deleteChiTietMonHoc(ChiTietMonHocDTO dto) {
-        return chitietmonhocDAO.delete(dto);
-    }
+     public boolean deleteChiTietMonHoc(ChiTietMonHocDTO dto) {
+          return chitietmonhocDAO.delete(dto);
+     }
 
-    public boolean updateChiTietMonHoc(ChiTietMonHocDTO dto) {
-        return chitietmonhocDAO.update(dto);
-    }
+     public boolean updateChiTietMonHoc(ChiTietMonHocDTO dto) {
+          return chitietmonhocDAO.update(dto);
+     }
 
-    public List<ChiTietMonHocDTO> getAllChiTietMonHoc() {
-        return chitietmonhocDAO.getAllList();
-    }
+     public List<ChiTietMonHocDTO> getAllChiTietMonHoc() {
+          return chitietmonhocDAO.getAllList();
+     }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Function For User">
-    public UserDTO loadUserByUserName(String username) {
-        return authorityDAO.getUserByUserName(username);
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function For User">
+     public UserDTO loadUserByUserName(String username) {
+          return authorityDAO.getUserByUserName(username);
+     }
 
-    public void insertStaff(StaffDTO staff) {
-        staffDAO.insertStaff(staff);
-    }
+     public void insertStaff(StaffDTO staff) {
+          staffDAO.insertStaff(staff);
+     }
 
-    public List<StaffDTO> getAllStaff() {
-        return staffDAO.getAllStaff();
+     public List<StaffDTO> getAllStaff() {
+          return staffDAO.getAllStaff();
 
-    }
+     }
 
-    public List<UserDTO> getAllUser() {
-        return authorityDAO.getAllUser();
-    }
+     public List<UserDTO> getAllUser() {
+          return authorityDAO.getAllUser();
+     }
 
-    public void generateAllUser() {
-        authorityDAO.generateAllUser();
-    }
+     public void generateAllUser() {
+          authorityDAO.generateAllUser();
+     }
 
-    public List<UserDTO> getUsersByRoleName(String rolename) {
-        return authorityDAO.getUsersByRoleName(rolename);
-    }
+     public List<UserDTO> getUsersByRoleName(String rolename) {
+          return authorityDAO.getUsersByRoleName(rolename);
+     }
 
-    public RoleDTO getRoleByRoleName(String RoleName) {
-        return authorityDAO.getRoleByRoleName(RoleName);
-    }
+     public RoleDTO getRoleByRoleName(String RoleName) {
+          return authorityDAO.getRoleByRoleName(RoleName);
+     }
 
-    public UserDTO getUserByUserName(String username) {
-        return authorityDAO.getUserByUserName(username);
-    }
+     public UserDTO getUserByUserName(String username) {
+          return authorityDAO.getUserByUserName(username);
+     }
 
-    public void updateUser(UserDTO user) {
-        authorityDAO.updateUser(user);
-    }
+     public void updateUser(UserDTO user) {
+          authorityDAO.updateUser(user);
+     }
 
-    public void insertUser(String username, String password, String rolename, String userId) throws Throwable {
-        UserDTO user = new UserDTO(username, password, userId);
-        RoleDTO role = authorityDAO.getRoleByRoleName(rolename);
-        user.getRoles().add(role);
-        authorityDAO.insertUser(user);
-    }
+     public void insertUser(String username, String password, String rolename, String userId) throws Throwable {
+          UserDTO user = new UserDTO(username, password, userId);
+          RoleDTO role = authorityDAO.getRoleByRoleName(rolename);
+          user.getRoles().add(role);
+          authorityDAO.insertUser(user);
+     }
 
-    public List<RoleDTO> getAllRole() {
-        List<RoleDTO> roles = authorityDAO.getAllRoles();
-        RoleDTO temp = null;
-        for (RoleDTO role : roles) {
-            if (role.getRolename().equals(Authorities.ADMIN.toString())) {
-                temp = role;
-            }
-        }
-        roles.remove(temp);
-        return roles;
-    }
+     public List<RoleDTO> getAllRole() {
+          List<RoleDTO> roles = authorityDAO.getAllRoles();
+          RoleDTO temp = null;
+          for (RoleDTO role : roles) {
+               if (role.getRolename().equals(Authorities.ADMIN.toString())) {
+                    temp = role;
+               }
+          }
+          roles.remove(temp);
+          return roles;
+     }
 //</editor-fold>  
 
-    //<editor-fold defaultstate="collapsed" desc="Function for Staff">
-    public StaffDTO getStaffById(String manhanvien) {
-        return staffDAO.getStaffById(manhanvien);
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for Staff">
+     public StaffDTO getStaffById(String manhanvien) {
+          return staffDAO.getStaffById(manhanvien);
+     }
 
-    public void updateStaff(StaffDTO obj) {
-        staffDAO.updateStaff(obj);
-    }
+     public void updateStaff(StaffDTO obj) {
+          staffDAO.updateStaff(obj);
+     }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Function for News">
-    public void insertCatalogNews(CatalogNewsDTO catalog) {
-        catalogNewsDAO.insertCatalog(catalog);
-    }
+     //<editor-fold defaultstate="collapsed" desc="Function for News">
+     public void insertCatalogNews(CatalogNewsDTO catalog) {
+          catalogNewsDAO.insertCatalog(catalog);
+     }
 
-    public List<NewsDTO> getAllNewsByPage(int limit, int offset) {
-        return newsDAO.getAllNewsByPage(limit, offset);
-    }
+     public List<NewsDTO> getAllNewsByPage(int limit, int offset) {
+          return newsDAO.getAllNewsByPage(limit, offset);
+     }
 
-    public void deleteNewsById(String newsId) {
-        newsDAO.deleteNewsById(newsId);
-    }
+     public void deleteNewsById(String newsId) {
+          newsDAO.deleteNewsById(newsId);
+     }
 
-    public List<CatalogNewsDTO> getAllCatalog() {
-        return catalogNewsDAO.getAllCatalog();
-    }
+     public List<CatalogNewsDTO> getAllCatalog() {
+          return catalogNewsDAO.getAllCatalog();
+     }
 
-    public void insertNews(NewsDTO news) {
-        newsDAO.insertNews(news);
-    }
+     public void insertNews(NewsDTO news) {
+          newsDAO.insertNews(news);
+     }
 
-    public List<CatalogNewsDTO> getCatalogsFromIds(String[] parameterValues) {
-        List<CatalogNewsDTO> list = new ArrayList<>();
-        for (String id : parameterValues) {
-            CatalogNewsDTO catalog = catalogNewsDAO.getCatalogById(id);
-            if (catalog != null) {
-                list.add(catalog);
-            }
-        }
-        return list;
-    }
+     public List<CatalogNewsDTO> getCatalogsFromIds(String[] parameterValues) {
+          List<CatalogNewsDTO> list = new ArrayList<>();
+          for (String id : parameterValues) {
+               CatalogNewsDTO catalog = catalogNewsDAO.getCatalogById(id);
+               if (catalog != null) {
+                    list.add(catalog);
+               }
+          }
+          return list;
+     }
 
-    public List<NewsDTO> getNewsByCatalogIdAndPage(String catalogId, int limit, int offset) {
-        return newsDAO.getNewsByCatalogIdAndPate(catalogId, limit, offset);
-    }
+     public NewsDTO getNewsById(String newsId) {
+          return newsDAO.getNewsById(newsId);
+     }
+
+     public List<NewsDTO> getNewsByCatalogIdAndPage(String catalogId, int limit, int offset) {
+          return newsDAO.getNewsByCatalogIdAndPate(catalogId, limit, offset);
+     }
+     
+     
+     public void updateNews(NewsDTO news) {
+         newsDAO.update(news);
+     }
 
 //</editor-fold>   
+
 }

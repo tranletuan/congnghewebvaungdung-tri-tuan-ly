@@ -13,14 +13,10 @@ import java.util.Locale;
 import jxl.CellView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
-import jxl.biff.DisplayFormat;
 import jxl.format.Alignment;
-import jxl.format.CellFormat;
 import jxl.format.UnderlineStyle;
 import jxl.write.DateFormat;
-import jxl.write.DateFormats;
 import jxl.write.DateTime;
-import jxl.write.Formula;
 import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WritableCellFormat;
@@ -31,7 +27,6 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import quanlyhocvu.api.mongodb.DAO.HocSinhDAO;
 import quanlyhocvu.api.mongodb.DAO.LopHocDAO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
@@ -40,7 +35,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
  *
  * @author linhly
  */
-@Repository
+//@Repository
 public class HandleExcelFile {
 
     private WritableCellFormat timesBoldUnderline;

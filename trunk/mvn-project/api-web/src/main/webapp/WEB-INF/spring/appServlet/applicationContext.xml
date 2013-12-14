@@ -10,5 +10,6 @@
            
     <beans:import resource="classpath:noSqlApplicationContext.xml"/>
     <!--<beans:import resource="classpath:aopApplicationContext.xml"/>-->
-    <beans:bean name="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService"/>              
+    <beans:bean name="mongoService" class="quanlyhocvu.api.mongodb.service.MongoService"/>   
+    <!--<beans:bean name="handleExcelFile" class="quanlyhocvu.api.mongodb.service.HandleExcelFile" />-->          
 </beans:beans>

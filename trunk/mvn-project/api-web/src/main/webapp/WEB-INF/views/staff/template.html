@@ -4,6 +4,12 @@
 
     <head  th:fragment="header">
         <div  th:include="master-layout/template::header"/>
+        <link href="" th:href="@{/media/css/chosen.css}" rel="stylesheet" media="screen"/>
+        <script src="" th:src="@{/media/js/chosen.jquery.min.js}"></script>
+        <script src="" th:src="@{/media/js/chosen.proto.min.js}"></script>
+        <link th:href="@{/media/css/bootstrap-editable.css}" rel="stylesheet"/>
+        <script th:src="@{/media/js/bootstrap-editable.min.js}"></script>
+        <!--<script src="" th:src="@{/media/js/typeahead.js}"></script>-->
     </head>    
     <body>
         <div th:fragment="nav" class="masthead" id="masthead" >
@@ -12,7 +18,5 @@
         <footer th:fragment="footer" >
             <div th:include="master-layout/template::footer"/>
         </footer>
-        <script>
-        </script>
     </body>
 </html>
