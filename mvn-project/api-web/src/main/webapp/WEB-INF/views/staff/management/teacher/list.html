@@ -34,7 +34,7 @@
                         <td th:unless="${giaoVien.getngayNghiViec()}" id="ngayNghiViec"/>
                         <td th:text="${giaoVien.getdiaChi()}" id="diaChi"/>
                         <td>
-                            <a th:href="@{'/staff/management/teacher/edit/'+${giaoVien.getmaGiaoVien()}}" title="SỬa"><i class="icon-pencil icon-action"></i></a>
+                            <a th:href="@{'/staff/management/teacher/edit/'+${giaoVien.getmaGiaoVien()}}" title="SỬa"><i class="glyphicon glyphicon-pencil"></i></a>
                         </td>
                     </tr>
                 </tbody>
