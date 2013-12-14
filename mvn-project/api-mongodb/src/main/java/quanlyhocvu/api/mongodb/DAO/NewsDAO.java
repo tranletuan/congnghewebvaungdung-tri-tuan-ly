@@ -92,4 +92,13 @@ public class NewsDAO {
           query.with(new Sort(Sort.Direction.DESC, "date"));
           return mongoOperation.find(query, NewsDTO.class);
      }
+
+     /**
+      * update news
+      * @param news 
+      */
+     public void update(NewsDTO news) {
+         mongoOperation.remove(news);
+         mongoOperation.save(news);
+     }
 }
