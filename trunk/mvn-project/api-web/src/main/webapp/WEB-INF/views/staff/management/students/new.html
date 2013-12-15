@@ -14,19 +14,19 @@
                 <div class="inner_form">                    
                     <div class="form-group">
                         <label class="control-label col-md-4" for="maHocSinh">Mã Học Sinh</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                           <input id="maHocSinh" name="maHocSinh" type="text" placeholder="Mã học sinh" class="form-control input-md validate[required] "/>                      
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4" for="hoTen">Họ Tên</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                           <input id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] form-control input-md"/>                      
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4" for="Giới Tính">Giới Tính</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <select name="gioiTinh" class="validate[required] form-control custom_checkbox">
                                 <option  value="1">Nam</option>
                                 <option value="0">Nữ</option>                            
@@ -35,27 +35,27 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4" for="ngaySinh">Ngày Sinh</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control input-md"/>
                         </div>
                     </div>
                     <!-- Textarea -->
                     <div class="form-group">
                       <label class="control-label col-md-4" for="diaChi">Địa Chỉ</label>
-                      <div class="col-md-4">                     
+                      <div class="col-md-6">                     
                         <textarea id="diaChi" name="diaChi" class="form-control"></textarea>
                       </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4" for="ngayNhapHoc">Ngày Nhập Học</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input type="text" id="datepickerNhapHoc" name="ngayNhapHoc" class="form-control input-md" />
                         </div>
                     </div>
                     
                     <div class="form-group">                        
                       <label class="control-label col-md-4" for="khoiLop">Khối Lớp</label>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <span class="invisible span_select" th:id="${khoiLop6.getid()}"></span>
                         <select id="khoiLop" name="IDKhoiLop" class="form-control custom_checkbox">
                           <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
@@ -65,7 +65,7 @@
                      <!-- Button -->
                     <div class="form-group">     
                         <div class="col-md-4"></div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-6">
                             <button id="ThemBtn" name="ThemBtn" class="btn btn-primary min_width_button_normal">Thêm</button>
                             <a th:href="@{/staff/management/students/index}" class="btn btn-default min_width_button_normal">Trở Lại</a>                            
                         </div>
