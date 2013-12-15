@@ -44,6 +44,9 @@ and open the template in the editor.
     float: left;
 }
 .margin_button_bottom{
+    margin-bottom: 10px;
+}
+.margin_button_top{
     margin-top: 10px;
 }
 .col-md-2 {
