@@ -125,6 +125,23 @@
                     </div>
                 </div> 
             </div>
+            <!--                Modal cho phép tải file export-->
+            <div class="modal fade" id="taiFileExport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Tải File Xuất</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="message_modal">Bạn có thể tải file vừa export tại <a th:href="@{/staff/management/students/excel}" id="linkTaiFileExport">Đây</a></div>                            
+                        </div>
+                        <div class="modal-footer align_center">
+                            <button type="button" class="btn btn-primary min_width_button_modal" id="bttaiFileExport" data-dismiss="modal">Đồng Ý</button>                            
+                        </div>
+                    </div>
+                </div> 
+            </div>
             <div class="clearfix"></div> 
             <div th:include="staff/template :: footer"></div>
         </div>	       
@@ -142,6 +159,7 @@
             var index_url = /*[[@{/staff/management/students/index/}]]*/"demo";
             var load_url = /*[[@{/staff/management/students/load/}]]*/"demo";
             var xuatDanhSachHS_url = /*[[@{/staff/management/students/xuat_hocsinh/}]]*/"demo";
+            var taiFileExport_url = /*[[@{/staff/management/students/excel/}]]*/"demo";
             /*]]>*/
         </script>    
     </body>

@@ -11,62 +11,63 @@
         <div class="container">
             <div th:substituteby="staff/template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{/staff/management/students/save}">
-                <div class="inner_form">
-                    <div class="control-group">
-                        <label class="control-label" for="maHocSinh">Mã Học Sinh</label>
-                        <div class="controls">
-                          <input id="maHocSinh" name="maHocSinh" type="text" placeholder="Mã học sinh" class="input-xlarge validate[required] "/>                      
+                <div class="inner_form">                    
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="maHocSinh">Mã Học Sinh</label>
+                        <div class="col-md-4">
+                          <input id="maHocSinh" name="maHocSinh" type="text" placeholder="Mã học sinh" class="form-control input-md validate[required] "/>                      
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="hoTen">Họ Tên</label>
-                        <div class="controls">
-                          <input id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] input-xlarge"/>                      
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="hoTen">Họ Tên</label>
+                        <div class="col-md-4">
+                          <input id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] form-control input-md"/>                      
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="Giới Tính">Giới Tính</label>
-                        <div class="controls">
-                            <select name="gioiTinh" class="validate[required] input-xlarge custom_checkbox">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="Giới Tính">Giới Tính</label>
+                        <div class="col-md-4">
+                            <select name="gioiTinh" class="validate[required] form-control custom_checkbox">
                                 <option  value="1">Nam</option>
                                 <option value="0">Nữ</option>                            
                             </select>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="ngaySinh">Ngày Sinh</label>
-                        <div class="controls">
-                            <input type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge"/>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ngaySinh">Ngày Sinh</label>
+                        <div class="col-md-4">
+                            <input type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control input-md"/>
                         </div>
                     </div>
                     <!-- Textarea -->
-                    <div class="control-group">
-                      <label class="control-label" for="diaChi">Địa Chỉ</label>
-                      <div class="controls">                     
-                        <textarea id="diaChi" name="diaChi" class="input-xlarge"></textarea>
+                    <div class="form-group">
+                      <label class="control-label col-md-4" for="diaChi">Địa Chỉ</label>
+                      <div class="col-md-4">                     
+                        <textarea id="diaChi" name="diaChi" class="form-control"></textarea>
                       </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="ngayNhapHoc">Ngày Nhập Học</label>
-                        <div class="controls">
-                            <input type="text" id="datepickerNhapHoc" name="ngayNhapHoc" class="input-xlarge" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ngayNhapHoc">Ngày Nhập Học</label>
+                        <div class="col-md-4">
+                            <input type="text" id="datepickerNhapHoc" name="ngayNhapHoc" class="form-control input-md" />
                         </div>
                     </div>
                     
-                    <div class="control-group">                        
-                      <label class="control-label" for="khoiLop">Khối Lớp</label>
-                      <div class="controls">
+                    <div class="form-group">                        
+                      <label class="control-label col-md-4" for="khoiLop">Khối Lớp</label>
+                      <div class="col-md-4">
                         <span class="invisible span_select" th:id="${khoiLop6.getid()}"></span>
-                        <select id="khoiLop" name="IDKhoiLop" class="input-xlarge custom_checkbox">
+                        <select id="khoiLop" name="IDKhoiLop" class="form-control custom_checkbox">
                           <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
                         </select>
                       </div>
                     </div>
                      <!-- Button -->
-                    <div class="control-group">                    
-                        <div class="controls">
-                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Thêm</button>
-                            <a th:href="@{/staff/management/students/index}" class="btn">Trở Lại</a>                            
+                    <div class="form-group">     
+                        <div class="col-md-4"></div>
+                        <div class="col-lg-8">
+                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary min_width_button_normal">Thêm</button>
+                            <a th:href="@{/staff/management/students/index}" class="btn btn-default min_width_button_normal">Trở Lại</a>                            
                         </div>
                     </div>
                 </div>

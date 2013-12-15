@@ -7,8 +7,12 @@ package quanlyhocvu.api.web.controller.staff;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,6 +23,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -32,6 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,6 +66,7 @@ public class ManagementStudentController {
     private ServletContext servletContext;
     @Autowired
     MongoService mongoService;
+    private String file_download_here;
 
     @RequestMapping(value = "index")
     public @ResponseBody
@@ -289,6 +296,8 @@ public class ManagementStudentController {
         mongoService.addStudent(hocSinh, lopHocId);
         return new ModelAndView("redirect:/staff/management/students/index", map);
     }
+    
+    
 
     @RequestMapping(value = "nhap_hocsinh", headers = "content-type=multipart/*", method = RequestMethod.POST)
     public @ResponseBody
@@ -315,33 +324,37 @@ public class ManagementStudentController {
             for (int i = 1; i < sheet.getRows(); i++) {
                 HocSinhDTO hs = new HocSinhDTO();
                 //Do columns co 6 cot nen se lay 6 cot
-                Cell[] listCell = new Cell[7];
-                for (int j = 0; j < 7; j++) {
+                Cell[] listCell = new Cell[8];
+                for (int j = 0; j < 8; j++) {
                     listCell[j] = sheet.getCell(j, i);
                 }
-
-                String hoTen = listCell[1].getContents();
+                
+                //ma hoc sinh
+                String maHocSinh = listCell[1].getContents();
+                hs.setmaHocSinh(maHocSinh);
+                //Ho ten
+                String hoTen = listCell[2].getContents();
                 hs.sethoTen(hoTen);
-
-                String gioiTinh = listCell[2].getContents();
+                // Gioi tinh
+                String gioiTinh = listCell[3].getContents();
                 if (gioiTinh == "Nam") {
                     hs.setgioiTinh(1);
                 } else {
                     hs.setgioiTinh(0);
                 }
-
-                String ngaySinh = listCell[3].getContents();
+                //ngay sinh
+                String ngaySinh = listCell[4].getContents();
                 Date ngaySinhDate = FunctionService.formatStringDateExcel(ngaySinh);
                 hs.setngaySinh(ngaySinhDate);
 
-                String ngayNhapHoc = listCell[4].getContents();
+                String ngayNhapHoc = listCell[5].getContents();
                 Date ngayNhapHocDate = FunctionService.formatStringDateExcel(ngayNhapHoc);
                 hs.setngayNhapHoc(ngayNhapHocDate);
 
-                String diaChi = listCell[5].getContents();
+                String diaChi = listCell[6].getContents();
                 hs.setdiaChi(diaChi);
 
-                String moTa = listCell[6].getContents();
+                String moTa = listCell[7].getContents();
                 hs.setmoTa(moTa);
                 hs.setKhoiLopHienTai(khoiLop);
                 mongoService.insertStudent(hs);
@@ -352,20 +365,19 @@ public class ManagementStudentController {
         return new ModelAndView("redirect:/staff/management/students/index", map);
     }
 
-    @RequestMapping(value = "xuat_hocsinh")
+    @RequestMapping(value = "xuat_hocsinh", produces="text/plain")
     public @ResponseBody
-    ModelAndView exportHocSinh(HttpServletRequest request) throws IOException, WriteException {
-        Map<String, Object> map = new HashMap<String, Object>();
+    String exportHocSinh(HttpServletRequest request) throws IOException, WriteException {        
         String typeExport = request.getParameter("exportType");
-        String filepath_download = "abc";
-        map.put("file_path", filepath_download);
-        map.put("typeExpot", typeExport);
+        String filepath_download = "";       
         if (typeExport.equals("0")) {       
             HandleExcelFile excelFactory = new HandleExcelFile();
-            excelFactory.setOutputFile("DanhSachHocSinh_export.xls");
+            excelFactory.setOutputFile("DanhSachHocSinh_export.xls");            
             //lay data de export
             List<HocSinhDTO> listHocSinh = mongoService.getAllStudents();
             excelFactory.write(listHocSinh);
+            filepath_download = excelFactory.filePath;
+            this.file_download_here = filepath_download;
         }else{            
             List<LopHocDTO> listLopHoc = mongoService.getAllLopHoc();
             HandleExcelFile excelFactory = new HandleExcelFile();
@@ -381,13 +393,29 @@ public class ManagementStudentController {
                 }
                 
             }
+            filepath_download = excelFactory.filePath;
+            this.file_download_here = filepath_download;
             excelFactory.getWorkbook().close();
         }
         //dau tien la se export la 1 Sheet chua toan bo danh sach hoc sinh
 
-        return new ModelAndView("redirect:/staff/management/students/index", map);
+        return filepath_download;
     }
 
+    @RequestMapping(value="excel")
+    public @ResponseBody void handleFileDownload(HttpServletResponse res) throws FileNotFoundException, IOException{
+        String fn = this.file_download_here;        
+        File f = new File(fn);        
+        if (f.exists()) {            
+            res.setContentType("application/xls");
+            res.setContentLength(new Long(f.length()).intValue());
+            res.setHeader("Content-Disposition", "attachment;filename="+fn);
+            FileCopyUtils.copy(new FileInputStream(f),res.getOutputStream());
+            
+        }else{
+            System.out.println("File"+fn+"("+f.getAbsolutePath()+") does not exit");
+        }        
+    }
     public void xepHocSinhVaoLopHoc(String tenKhoiLop) {
         //Xep hoc sinh vao theo khoi lop
         KhoiLopDTO khoiLop = mongoService.getKhoiLopByName(tenKhoiLop);

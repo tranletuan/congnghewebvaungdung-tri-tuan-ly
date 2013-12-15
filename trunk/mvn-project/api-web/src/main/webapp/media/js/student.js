@@ -5,6 +5,7 @@
  */
 
 var table;
+var link_download;
 $(document).ready(function(){    
     //set nam Hoc hien tai cho select
     var namHocHienTai = $("span.namHocHienTai");
@@ -94,11 +95,14 @@ $(document).ready(function(){
             url: xuatDanhSachHS_url,
             type: 'POST',
             data: {exportType: exportType},
-            success: function(res){
-                console.log("Xuat danh sach thanh cong");
-                console.log(res);
+            success: function(res){                                            
+                $('#taiFileExport').modal('show');              
             }
         })
         $('#xuatDanhSachHocSinh').modal('hide');              
+    })
+    
+    $("#linkTaiFileExport").on('click', function(){
+        $('#taiFileExport').modal('hide');    
     })
 }) 
