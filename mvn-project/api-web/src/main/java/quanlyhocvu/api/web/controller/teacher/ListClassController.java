@@ -24,6 +24,7 @@ import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
+import quanlyhocvu.api.web.util.Utils;
 
 /**
  *
@@ -41,7 +42,7 @@ public class ListClassController {
     public @ResponseBody
     ModelAndView classTeaching(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<ChiTietChuyenMonDTO> listChuyenMon = mongoService.getListChiTietChuyenMonByIdGiaoVien("52a0aa8d44aeb4910f530db8");
+        List<ChiTietChuyenMonDTO> listChuyenMon = mongoService.getListChiTietChuyenMonByIdGiaoVien(Utils.getCurrentUserId(mongoService));
         List<PhanCongDTO> listPhanCong = new ArrayList<PhanCongDTO>();
 
         for (int i = 0; i < listChuyenMon.size(); i++) {

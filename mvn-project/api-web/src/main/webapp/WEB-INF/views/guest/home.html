@@ -9,16 +9,15 @@
         <div class="container main-container">
             <div th:include="guest/template ::nav" />   
             <div class="row container">
-                <div class="view container slide-panel">
+                <div class="view container">
                     <div id="lazycarousel" class="carousel slide">
                         <ol class="carousel-indicators">
-                            <li th:each="cover : ${covers}" data-target="#lazycarousel" data-slide-to="0" ></li>
+                            <li th:each="corverImage : ${corverImages}" data-target="#lazycarousel" th:data-slide-to="${coverImage.id}" ></li>
                         </ol>
                         <!-- Carousel items -->
-
-                        <div id="carousel-inner" class="carousel-inner" th:if="${covers}">
-                            <div th:each="cover : ${covers}" class="item">
-                                <img th:src="${cover.link}"/>
+                        <div class="carousel-inner" th:if="${coverImages}">
+                            <div th:each="corverImage : ${coverImages}" class="item">
+                                <img src="{corverImage.link}"/>
                             </div>
                         </div>
                         <!-- Carousel nav -->
@@ -36,7 +35,6 @@
                         <hr/>
                         <div th:unless="${user}" id="login-frame">
                         </div>
-<<<<<<< .mine
                         <div class="media" th:if="${user}">
                         <a class="thumbnail pull-left" href="#">
                             <img class="media-object" src=""/>
@@ -50,39 +48,7 @@
                             <p>
                                 <a href="logout" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-log-out"></span> Thoát</a>
                             </p>
-=======
-                        <div class="media" th:if="${user}">
-                            <a class="thumbnail pull-left" href="#">
-                                <img class="media-object" src=""/>
-                            </a>
-                            <div class="media-body">
-                                <strong class="media-heading" th:inline="text">Xin chào, <a>[[${user.username}]]</a> </strong>
-                                <p> 
-                                    <span class="label label-warning">0 cảnh báo</span>
-                                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> 1 tin nhắn mới</a>
-                                </p>
-                                <p>
-                                    <a href="logout" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-log-out"></span> Thoát</a>
-                                </p>
-                            </div>
-
->>>>>>> .r81
                         </div>
-<<<<<<< .mine
-=======
-                        <div class="divider"/>
-                        <div class="divider"/>
-                        <div class="divider"/>
-                        <hr/>
-                        <!-- Message-->
-                        <div class="panel" th:if="${user}">           
-                            <form accept-charset="UTF-8" th:action="@{/guest/comment/save}" method="POST">
-                                <textarea class="validate[required] form-control counted" name="message" placeholder="Nội dung..." rows="5" style="margin-bottom:10px; resize: none;"></textarea>
-                                <h6 class="pull-right" id="counter">Tối đa 300 kí tự</h6>
-                                <button class="btn btn-info" type="submit">Kiến nghị</button>
-                            </form>
-
->>>>>>> .r81
                         </div>
                     </div>
                     <div class="divider"/>
@@ -192,14 +158,13 @@
                 jQuery("#form-horizontal").validationEngine();
                 COMMON.activeMenu("home_nav");
 
-                loadFrame();
-                loadNews(null);     
                 loadCarousel();
                 $('#media').carousel({
                     pause: true,
                     interval: 4000
                 });
-                $('#carousel-inner').children()[0].setAttribute('class', 'item active');
+                loadFrame();
+                loadNews(null);
             });
             $(".catalog_item").on('click', function() {
                 loadNews(this);
