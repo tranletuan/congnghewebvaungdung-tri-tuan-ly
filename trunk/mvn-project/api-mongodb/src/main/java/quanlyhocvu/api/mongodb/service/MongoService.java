@@ -437,12 +437,12 @@ public class MongoService {
           return diemDAO.insertDiemSo(loaiDiem, idDiem, diemSo);
      }
 
-     public boolean deleteDiemSo(String loaiDiem, String idDiem, Float diemSo) {
-          return diemDAO.deleteDiemSo(loaiDiem, idDiem, diemSo);
+     public boolean deleteDiemSo(String loaiDiem, String idDiem, int index) {
+          return diemDAO.deleteDiemSo(loaiDiem, idDiem, index);
      }
 
-     public boolean updateDiemSo(String loaiDiem, String idDiem, Float diemCu, Float diemMoi) {
-          return diemDAO.updateDiemSo(loaiDiem, idDiem, diemCu, diemMoi);
+     public boolean updateDiemSo(String loaiDiem, String idDiem, int index, Float diemMoi) {
+          return diemDAO.updateDiemSo(loaiDiem, idDiem, index, diemMoi);
      }
 
 //</editor-fold>

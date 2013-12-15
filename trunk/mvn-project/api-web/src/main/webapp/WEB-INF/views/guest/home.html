@@ -15,6 +15,7 @@
                             <li th:each="cover : ${covers}" data-target="#lazycarousel" data-slide-to="0" ></li>
                         </ol>
                         <!-- Carousel items -->
+
                         <div id="carousel-inner" class="carousel-inner" th:if="${covers}">
                             <div th:each="cover : ${covers}" class="item">
                                 <img th:src="${cover.link}"/>
@@ -35,6 +36,21 @@
                         <hr/>
                         <div th:unless="${user}" id="login-frame">
                         </div>
+<<<<<<< .mine
+                        <div class="media" th:if="${user}">
+                        <a class="thumbnail pull-left" href="#">
+                            <img class="media-object" src=""/>
+                        </a>
+                        <div class="media-body">
+                            <strong class="media-heading" th:inline="text">Xin chào, <a>[[${user.username}]]</a> </strong>
+                            <p> 
+                                <span class="label label-warning">0 cảnh báo</span>
+                                <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> 1 tin nhắn mới</a>
+                            </p>
+                            <p>
+                                <a href="logout" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-log-out"></span> Thoát</a>
+                            </p>
+=======
                         <div class="media" th:if="${user}">
                             <a class="thumbnail pull-left" href="#">
                                 <img class="media-object" src=""/>
@@ -50,7 +66,10 @@
                                 </p>
                             </div>
 
+>>>>>>> .r81
                         </div>
+<<<<<<< .mine
+=======
                         <div class="divider"/>
                         <div class="divider"/>
                         <div class="divider"/>
@@ -63,89 +82,104 @@
                                 <button class="btn btn-info" type="submit">Kiến nghị</button>
                             </form>
 
-                        </div>
-                        <!--end message-->
-                    </div>
-                    <!--News-->
-                    <div class="news-container col-md-9 pull-right">
-                        <ul id ="catalogs" class="nav nav-tabs faq-cat-tabs">
-                            <li id="0" class="active catalog_item"><a href="#faq-cat-1" data-toggle="tab">Tất cả</a></li>
-                            <li class="catalog_item" th:id ="${catalog.id}" th:each="catalog : ${listCatalogs}"><a href="#faq-cat-1" data-toggle="tab" th:text="${catalog.name}"></a></li>
-                        </ul>
-                        <div id="list_news">
-                        </div>
-                        <div>
-                            <ul id="page_num" class="pagination">
-                                <li ><a href="#">&laquo;</a></li>
-                                <li class='active page_item'><a  >1</a></li>
-                                <li th:each="index : ${listPages}" class='page_item'><a  th:text="${index}"></a></li>
-                                <li id="page_more"><a>...</a></li>
-                                <li ><a href="#">&raquo;</a></li>
-                            </ul>
+>>>>>>> .r81
                         </div>
                     </div>
-                    <!--end news-->
-                </div>
-                <!--thumnnail news-->
-                <div class='row container carousel-container'>
-                    <div class="carousel slide media-carousel" id="media">
-                        <div class="carousel-inner">
-                            <div class="item  active">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>          
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>    
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>   
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>          
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>   
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>   
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>          
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>  
-                                    <div class="col-md-3">
-                                        <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
-                        <a data-slide="next" href="#media" class="right carousel-control">›</a>
-                    </div>
-                </div>
+                    <div class="divider"/>
+                    <div class="divider"/>
+                    <div class="divider"/>
+                    <hr/>
+                    <!-- Message-->
+                    <div class="panel" th:if="${user}">           
+                        <form accept-charset="UTF-8" action="" method="POST">
+                            <textarea class="form-control counted" name="message" placeholder="Nội dung..." rows="5" style="margin-bottom:10px; resize: none;"></textarea>
+                            <h6 class="pull-right" id="counter">Tối đa 300 kí tự</h6>
+                            <button class="btn btn-info" type="submit">Kiến nghị</button>
+                        </form>
 
-                <!--end thumbnail news-->
+                    </div>
+                    <!--end message-->
+                </div>
+                <!--News-->
+                <div class="news-container col-md-9 pull-right">
+                    <ul id ="catalogs" class="nav nav-tabs faq-cat-tabs">
+                        <li id="0" class="active catalog_item"><a href="#faq-cat-1" data-toggle="tab">Tất cả</a></li>
+                        <li class="catalog_item" th:id ="${catalog.id}" th:each="catalog : ${listCatalogs}"><a href="#faq-cat-1" data-toggle="tab" th:text="${catalog.name}"></a></li>
+                    </ul>
+                    <div id="list_news">
+                    </div>
+                    <div>
+                        <ul id="page_num" class="pagination">
+                            <li ><a href="#">&laquo;</a></li>
+                            <li class='active page_item'><a  >1</a></li>
+                            <li th:each="index : ${listPages}" class='page_item'><a  th:text="${index}"></a></li>
+                            <li id="page_more"><a>...</a></li>
+                            <li ><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end news-->
             </div>
+            <!--thumnnail news-->
+            <div class='row container carousel-container'>
+                <div class="carousel slide media-carousel" id="media">
+                    <div class="carousel-inner">
+                        <div class="item  active">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>          
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>    
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>          
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>   
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>          
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>  
+                                <div class="col-md-3">
+                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+                    <a data-slide="next" href="#media" class="right carousel-control">›</a>
+                </div>
+            </div>
+
+            <!--end thumbnail news-->
+
             <div th:include="guest/template :: footer"></div>
         </div>	
         <link href="" th:href="@{/media/css/guest/guest.css}" rel="stylesheet" media="screen" />
@@ -157,6 +191,7 @@
             jQuery(document).ready(function() {
                 jQuery("#form-horizontal").validationEngine();
                 COMMON.activeMenu("home_nav");
+
                 loadFrame();
                 loadNews(null);     
                 loadCarousel();
@@ -170,6 +205,8 @@
                 loadNews(this);
             });
             /*]]>*/
-        </script>    
-    </body>
+        </script>  
+                   
+    
+                    </body>
 </html>

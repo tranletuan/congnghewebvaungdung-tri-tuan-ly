@@ -43,11 +43,12 @@ public class MarksController {
     @Autowired
     MongoService mongoService;
 
-    @RequestMapping(value = "{phanCongId}/{loaiDiem}")
+    @RequestMapping(value = "{phanCongId}/{loaiDiem}/{index}")
     public @ResponseBody
-    ModelAndView marking(@PathVariable String phanCongId, @PathVariable String loaiDiem, HttpServletRequest request) {
+    ModelAndView marking(@PathVariable String phanCongId, @PathVariable String loaiDiem, @PathVariable String index, HttpServletRequest request) {
 
         Map<String, Object> map = new HashMap<>();
+
         PhanCongDTO phanCong = mongoService.getPhanCongById(phanCongId);
         ChiTietMonHocDTO chiTietMonHoc = phanCong.getChiTietChuyenMon().getChiTietMonHoc();
         LopHocDTO lopHoc = phanCong.getLopHoc();
@@ -62,27 +63,72 @@ public class MarksController {
             listDiem.add(diem);
         }
 
+        List<Integer> soCotDiem = getSoCotDiem(loaiDiem, listDiem.get(0));
+
         map.put("hocKy", hocKy);
         map.put("tenLop", tenLop);
         map.put("monHoc", monHoc);
         map.put("listDiem", listDiem);
         map.put("loaiDiem", loaiDiem);
         map.put("tenLoaiDiem", tenLoaiDiem(loaiDiem));
-
+        map.put("idPhanCong", phanCong.getid());
+        map.put("index", Integer.valueOf(index));
+        map.put("soCotDiem", soCotDiem);
         return new ModelAndView("teacher/marking", map);
     }
 
     @RequestMapping(value = "chamdiem")
     public @ResponseBody
     ModelAndView saveMark(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        System.out.println("Nhon Ly");
         Float diemMoi = Float.valueOf(request.getParameter("diemSo"));
-        Float diemCu = Float.valueOf(request.getParameter("diemCu"));
+        int index = Integer.valueOf(request.getParameter("index"));
         String idDiem = request.getParameter("idDiem");
-        String loaiDiemKT = request.getParameter("loaiDiemKT");
-    
-        mongoService.updateDiemSo(loaiDiemKT, idDiem, diemCu, diemMoi);
+        String loaiDiem = request.getParameter("loaiDiem");
+
+        mongoService.updateDiemSo(loaiDiem, idDiem, index, diemMoi);
+        return new ModelAndView("teacher/marking");
+    }
+
+    @RequestMapping(value = "themcotmoi")
+    public @ResponseBody
+    ModelAndView newMark(HttpServletRequest request) {
+
+        Map<String, Object> map = new HashMap<>();
+        String idPhanCong = request.getParameter("idPhanCong");
+        String loaiDiem = request.getParameter("loaiDiem");
+
+        if (!"ktgiuaky".equals(loaiDiem) && !"ktcuoiky".equals(loaiDiem)) {
+            PhanCongDTO phanCong = mongoService.getPhanCongById(idPhanCong);
+            ChiTietMonHocDTO chiTietMonHoc = phanCong.getChiTietChuyenMon().getChiTietMonHoc();
+            List<HocSinhDTO> listHocSinh = phanCong.getLopHoc().getlistHocSinh();
+
+            for (HocSinhDTO hs : listHocSinh) {
+                DiemDTO diem = mongoService.getDiemByHocSinhChiTietMonHoc(hs, chiTietMonHoc);
+                mongoService.insertDiemSo(loaiDiem, diem.getid(), new Float(-1));
+            }
+        }
+
+        return new ModelAndView("teacher/marking", map);
+    }
+
+    @RequestMapping(value = "xoacot")
+    public @ResponseBody
+    ModelAndView removeMark(HttpServletRequest request) {
+
+        Map<String, Object> map = new HashMap<>();
+        String idPhanCong = request.getParameter("idPhanCong");
+        String loaiDiem = request.getParameter("loaiDiem");
+        int index = Integer.valueOf(request.getParameter("index"));
+
+        PhanCongDTO phanCong = mongoService.getPhanCongById(idPhanCong);
+        ChiTietMonHocDTO chiTietMonHoc = phanCong.getChiTietChuyenMon().getChiTietMonHoc();
+        List<HocSinhDTO> listHocSinh = phanCong.getLopHoc().getlistHocSinh();
+
+        for (HocSinhDTO hs : listHocSinh) {
+            DiemDTO diem = mongoService.getDiemByHocSinhChiTietMonHoc(hs, chiTietMonHoc);
+            mongoService.deleteDiemSo(loaiDiem, diem.getid(), index);
+        }
+
         return new ModelAndView("teacher/marking", map);
     }
 
@@ -100,6 +146,36 @@ public class MarksController {
                 return "Kiểm Tra Cuối Kỳ";
         }
         return " ";
+    }
+
+    private List<Integer> getSoCotDiem(String loaiDiem, DiemDTO diem) {
+        List<Float> tempList = new ArrayList();
+        switch (loaiDiem) {
+            case "ktmieng":
+                tempList = diem.getListDiemKTMieng();
+                break;
+            case "kt15":
+                tempList = diem.getListDiemKT15();
+                break;
+            case "kt1tiet":
+                tempList = diem.getListDiemKT1Tiet();
+                break;
+            case "ktgiuaky":
+                tempList.add(diem.getDiemGiuaKy());
+                break;
+
+            case "ktcuoiky":
+                tempList.add(diem.getDiemCuoiKy());
+                break;
+        }
+
+        List<Integer> rs = new ArrayList();
+        Integer j = 0;
+        for (Float i : tempList) {
+            rs.add(j++);
+        }
+
+        return rs;
     }
 //    @RequestMapping(value = "{majorId}")
 //    public @ResponseBody
