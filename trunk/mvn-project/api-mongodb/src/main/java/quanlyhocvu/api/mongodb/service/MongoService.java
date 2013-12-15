@@ -11,6 +11,7 @@ import quanlyhocvu.api.mongodb.DAO.AuthorityDAO;
 import quanlyhocvu.api.mongodb.DAO.CatalogNewsDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietChuyenMonDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietMonHocDAO;
+import quanlyhocvu.api.mongodb.DAO.CommentDAO;
 import quanlyhocvu.api.mongodb.DAO.DiemDAO;
 import quanlyhocvu.api.mongodb.DAO.GiaoVienDAO;
 import quanlyhocvu.api.mongodb.DAO.HocSinhDAO;
@@ -29,6 +30,7 @@ import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.CatalogNewsDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.CommentDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
@@ -44,6 +46,9 @@ public class MongoService {
 
      Logger logger = LoggerFactory.getLogger(getClass());
      //<editor-fold defaultstate="collapsed" desc="DAO variables">\
+     @Autowired
+     private CommentDAO commentDAO;
+     
      @Autowired
      private NewsDAO newsDAO;
 
@@ -576,6 +581,17 @@ public class MongoService {
 //</editor-fold>
 
      //<editor-fold defaultstate="collapsed" desc="Function for News">
+      public List<CoverImageDTO> getAllCovers() {
+          return newsDAO.getAllCover();
+     }
+
+     public void removeAllCover() {
+          newsDAO.removeAllCover();
+     }
+
+     public void insertCover(String parameter, int count) {
+          newsDAO.insertCover(parameter, count);
+     }
      public void insertCatalogNews(CatalogNewsDTO catalog) {
           catalogNewsDAO.insertCatalog(catalog);
      }
@@ -620,15 +636,17 @@ public class MongoService {
      }
 
 //</editor-fold>   
-     public List<CoverImageDTO> getAllCovers() {
-          return newsDAO.getAllCover();
+    
+
+     public void insertComment(CommentDTO comment) {
+          commentDAO.insertComment(comment);
      }
 
-     public void removeAllCover() {
-          newsDAO.removeAllCover();
+     public List<CommentDTO> getCommentsByUser(UserDTO user) {
+          return commentDAO.getCommentsByUser(user);
      }
 
-     public void insertCover(String parameter, int count) {
-          newsDAO.insertCover(parameter, count);
+     public List<CommentDTO> getAllComments() {
+          return commentDAO.getAll();
      }
 }
