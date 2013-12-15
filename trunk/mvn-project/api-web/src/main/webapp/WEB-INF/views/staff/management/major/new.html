@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="staff/template :: header" />
+    <body class="main-body">
+        <div class="container main-container">
+            <div th:substituteby="staff/template :: nav" />   
+            <form id="form-horizontal" class="form-horizontal" method="post" th:action="@{/staff/management/major/save}">                
+                <fieldset>
+                    <legend>Thêm Phân Công</legend>  
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="namHoc">Học Kỳ</label>
+                        <div class="col-md-6">
+                            <select id="idHocKy" name="hocKy" class="form-control input-xlarge custom_checkbox validate[required]">
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="namHoc">Lớp Học</label>
+                        <div class="col-md-6">
+                            <select id="idLopHoc" name="lopHoc" class="form-control input-xlarge custom_checkbox validate[required]">
+                                <option th:each="lopHoc : ${listLopHoc}" th:text=" ${lopHoc.getkhoiLop().gettenKhoiLop()} + ' ' + ${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}"/>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id='selectMonHoc'></div>                   
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary min_width_button_normal margin_button_bottom">Thêm</button>
+                            <a th:href="@{/staff/management/major_detail/index}" class="btn btn-default min_width_button_normal margin_button_bottom">Trở Lại</a>                            
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <div th:include="staff/template :: footer"></div>
+        </div>	
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var loadChiTietMonHoc_url = /*[[@{/staff/management/major/loadChiTietMonHoc/}]]*/"demo";            
+            var save_url = /*[[@{/staff/management/major/save/}]]*/"demo";            
+            jQuery(document).ready(function() {
+                $("#form-horizontal").validationEngine();
+//                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("nav_lophoc");
+                $("#idLopHoc").on('change', function() {                    
+                    var self = $(this);
+                    var lopHocId = self[0].value;                    
+                    $.ajax({
+                        url: loadChiTietMonHoc_url,
+                        type: 'GET',
+                        data: {lopHocId: lopHocId},
+                        success: function(res){                           
+                            $("#selectMonHoc").html(res);
+                        }
+                    })
+                })
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>

@@ -57,4 +57,14 @@ public class ChiTietChuyenMonDAO {
         Query query = Query.query(Criteria.where("giaoVien.$id").is(new ObjectId(idGiaoVien)));
         return mongoOperation.find(query, ChiTietChuyenMonDTO.class);
     }
+    
+    public ChiTietChuyenMonDTO getById(String id) {
+        Query query = Query.query(Criteria.where("id").is(id));
+        return mongoOperation.findOne(query, ChiTietChuyenMonDTO.class);
+    }
+    
+    public List<ChiTietChuyenMonDTO> getListByChiTietMonHoc(String idChiTietMonHoc){
+        Query query = Query.query(Criteria.where("chiTietMonHoc.$id").is(new ObjectId(idChiTietMonHoc)));
+        return mongoOperation.find(query, ChiTietChuyenMonDTO.class);
+    }
 }

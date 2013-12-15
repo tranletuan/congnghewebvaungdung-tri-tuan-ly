@@ -42,8 +42,9 @@ public class PhanCongDAO {
     public boolean update(PhanCongDTO dto) {
         Query query = Query.query(Criteria.where("id").is(dto.getid()));
         Update update = new Update();
-        update.set("chiTietChuyenMon", dto.getChiTietChuyenMon().getid());
-        update.set("lopHoc", dto.getLopHoc().getid());
+        update.set("chiTietChuyenMon", dto.getChiTietChuyenMon());
+        update.set("lopHoc", dto.getLopHoc());
+        update.set("hocKy", dto.getHocKy());
         
         mongoOperation.findAndModify(query, update, PhanCongDTO.class);
         return true;
@@ -53,7 +54,7 @@ public class PhanCongDAO {
         return mongoOperation.findAll(PhanCongDTO.class);
     }
     
-    public List<PhanCongDTO> getListBy(String idChiTietChuyenMon) {
+    public List<PhanCongDTO> getListByChiTietChuyenMon(String idChiTietChuyenMon) {
         Query query = Query.query(Criteria.where("chiTietChuyenMon.$id").is(new ObjectId(idChiTietChuyenMon)));
         return mongoOperation.find(query, PhanCongDTO.class);
     }
