@@ -29,6 +29,7 @@ import quanlyhocvu.api.mongodb.DTO.Teacher.DiemDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
 import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.CatalogNewsDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.GiaoVienDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
@@ -93,7 +94,7 @@ public class MongoService {
     //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
 
-    //</editor-fold>
+     //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
      //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
@@ -117,7 +118,7 @@ public class MongoService {
           return giaoVienDAO.getById(id);
      }
 
-    //</editor-fold>
+     //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Get Set DAO">\
      public NewsDAO getNewsDAO() {
           return newsDAO;
@@ -404,7 +405,7 @@ public class MongoService {
           return hocsinhDAO.getHocSinhChuaXepLopTheoKhoiLop(khoiLopId);
      }
 
-    //</editor-fold>
+     //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="Function for MARK">
      public List<DiemDTO> getAllDiem() {
           return diemDAO.getAllDiem();
@@ -613,12 +614,21 @@ public class MongoService {
      public List<NewsDTO> getNewsByCatalogIdAndPage(String catalogId, int limit, int offset) {
           return newsDAO.getNewsByCatalogIdAndPate(catalogId, limit, offset);
      }
-     
-     
+
      public void updateNews(NewsDTO news) {
-         newsDAO.update(news);
+          newsDAO.update(news);
      }
 
 //</editor-fold>   
+     public List<CoverImageDTO> getAllCovers() {
+          return newsDAO.getAllCover();
+     }
 
+     public void removeAllCover() {
+          newsDAO.removeAllCover();
+     }
+
+     public void insertCover(String parameter, int count) {
+          newsDAO.insertCover(parameter, count);
+     }
 }

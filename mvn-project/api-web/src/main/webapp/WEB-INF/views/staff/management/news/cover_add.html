@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="staff/template :: header">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    </head>
+
+    <body class="main-body">
+        <div class="container main-container">
+            <div th:substituteby="staff/template :: nav" />               
+            <input type="hidden" name="count" value="1" />
+            <div id="fields">
+                <div  id="profs"> 
+                    <div class="main-container">
+                        <form class="input-append form-horizontal center" th:action="@{/staff/management/news/cover/save}" method="post">
+                            <input type="submit" class="form-control btn-success btn-sm"/>
+                            <div th:each="cover : ${covers}" th:id="${'field'} + ${cover.id}">
+                                    <input autocomplete="off" class="validate[required] margin-top-down input pull-left form-control margin-top-down" th:id="${'field'}+${cover.id}" th:name="${'field'}+${cover.id}" type="text"  data-items="8"/>
+                                    <button id="${'remove'}+${cover.id}" class="btn-danger remove-me" type="button">-</button>
+                            </div>
+                            <div id="field" class="form-group">
+                                <!--<div class="col-md-6">-->
+                                <input autocomplete="off" class=" margin-top-down input pull-left form-control margin-top-down" id="field1" name="field1" type="text" data-items="8"/>
+                                <!--</div>-->
+                                <button id="b1" class="btn btn-success add-more margin-top-down" type="button">+</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <div th:include="staff/template :: footer"></div>
+        </div>	
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var url = /*[[@{/staff/management/news/catalog/add}]]*/ "url";
+            jQuery(document).ready(function() {
+                jQuery(".form-horizontal").validationEngine();
+                COMMON.activeMenu("nav_website");
+                var next = 1;
+                $(".add-more").click(function(e) {
+                    e.preventDefault();
+                    var addto = "#field" + next;
+                    var addRemove = "#field" + (next);
+                    next = next + 1;
+                    var newIn = '<input autocomplete="off" class="validate[required] margin-top-down input form-control pull-left" id="field ' + next + '" name="field' + next + '" type="text"/>';
+                    var newInput = $(newIn);
+                    var removeBtn = '<button id="remove' + (next - 1) + '" class="margin-top-down btn btn-danger remove-me" >-</button></div><div id="field">';
+                    var removeButton = $(removeBtn);
+                    $(addto).after(newInput);
+                    $(addRemove).after(removeButton);
+                    $("#field" + next).attr('data-source', $(addto).attr('data-source'));
+                    $("#count").val(next);
+
+                    $('.remove-me').click(function(e) {
+                        e.preventDefault();
+                        var fieldNum = this.id.charAt(this.id.length - 1);
+                        var fieldID = "#field" + fieldNum;
+                        $(this).remove();
+                        $(fieldID).remove();
+                    });
+                });
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>
