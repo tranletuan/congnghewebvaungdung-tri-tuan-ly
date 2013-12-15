@@ -108,3 +108,7 @@ and open the template in the editor.
     font-family: "segoe ui";
     /*background-color: #FFFFFF;*/
 }
+
+.min_width_button_normal{
+    min-width: 70px;
+}

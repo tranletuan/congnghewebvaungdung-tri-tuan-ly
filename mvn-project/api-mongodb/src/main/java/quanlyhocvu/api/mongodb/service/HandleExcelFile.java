@@ -44,13 +44,15 @@ public class HandleExcelFile {
     @Autowired
     private LopHocDAO lophocDAO;
     private WritableWorkbook workbook;
+    public String filePath = "";
 
     public void setOutputFile(String inputFile) {
         this.inputFile = inputFile;
     }
 
     public void write(List<HocSinhDTO> listHocSinh) throws IOException, WriteException {
-        File file = new File(inputFile);
+        File file = new File(inputFile);  
+        this.filePath = file.getPath();
         WorkbookSettings wbSettings = new WorkbookSettings();
         wbSettings.setLocale(new Locale("en", "EN"));
         WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
@@ -64,6 +66,7 @@ public class HandleExcelFile {
     //Create workbook
     public void createWorkbook() throws IOException{
         File file = new File(inputFile);
+        this.filePath = file.getPath();
         WorkbookSettings wbSettings = new WorkbookSettings();
         wbSettings.setLocale(new Locale("en", "EN"));
         setWorkbook(Workbook.createWorkbook(file, wbSettings));

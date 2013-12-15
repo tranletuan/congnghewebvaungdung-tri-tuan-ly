@@ -9,7 +9,7 @@
             <span th:id="${lopHocDuocChon.getid()}" th:if="${lopHocDuocChon}" class="lopHocDuocChon"></span>
             <span id="1" th:unless="${lopHocDuocChon}" class="lopHocDuocChon"></span>
             <div class="col-md-3">
-                 <select id="IDLopHoc" name="IDLopHoc" class="form-control">
+                <select id="IDLopHoc" name="IDLopHoc" class="form-control">
                     <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}"/>                          
                     <option value="0" th:unless="${laNamHienTai}">Chưa xếp lớp</option>
                 </select>  
@@ -66,10 +66,18 @@
                         <h4 class="modal-title" id="myModalLabel">Xếp Lớp Học Sinh</h4>
                     </div>
                     <div class="modal-body">
-                        <label class="select_label">Chọn Lớp Để Xếp</label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Chọn Lớp Để Xếp</label>
+                            <div class="col-md-4">
+                                <select id="IDLopHocXepLop" name="IDLopHocXepLop" class="form-control">
+                                    <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}" class="lopHocModal"/>                                                  
+                                </select>
+                            </div>
+                        </div>
+<!--                        <label class="select_label">Chọn Lớp Để Xếp</label>
                         <select id="IDLopHocXepLop" name="IDLopHocXepLop" class="input-xlarge custom_checkbox">
                             <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}" class="lopHocModal"/>                                                  
-                        </select> 
+                        </select> -->
                     </div>
                     <div class="modal-footer align_center">
                         <button type="button" class="btn btn-primary min_width_button_modal" id="xepLopButton">Yes</button>
