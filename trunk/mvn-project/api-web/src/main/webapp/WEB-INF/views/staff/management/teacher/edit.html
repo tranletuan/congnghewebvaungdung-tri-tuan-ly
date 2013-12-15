@@ -12,59 +12,60 @@
             <div th:substituteby="staff/template :: nav" />               
             <form id="form-horizontal" class="form-horizontal bs-docs-example" method="post" th:action="@{'/staff/management/teacher/update/'+${giaoVien.getmaGiaoVien()}}">
                 <div class="inner_form">
-                    <div class="control-group">
-                        <label class="control-label" for="maGiaoVien">Mã Giáo Viên</label>
-                        <div class="controls">
-                          <input th:value="${giaoVien.getmaGiaoVien()}" id="maGiaoVien" name="maGiaoVien" type="text" placeholder="Mã giáo viên" class="validate[required] input-xlarge"/>                      
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="maGiaoVien">Mã Giáo Viên</label>
+                        <div class="col-md-6">
+                          <input th:value="${giaoVien.getmaGiaoVien()}" id="maGiaoVien" name="maGiaoVien" type="text" placeholder="Mã giáo viên" class="validate[required] form-control  input-md"/>                      
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="hoTen">Họ Tên</label>
-                        <div class="controls">
-                          <input th:value="${giaoVien.gethoTen()}" id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] input-xlarge"/>                      
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="hoTen">Họ Tên</label>
+                        <div class="col-md-6">
+                          <input th:value="${giaoVien.gethoTen()}" id="hoTen" name="hoTen" type="text" placeholder="" class="validate[required] form-control  input-md"/>                      
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="Giới Tính">Giới Tính</label>
-                        <div class="controls">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="Giới Tính">Giới Tính</label>
+                        <div class="col-md-6">
                             <span class="invisible span_select" th:id="${giaoVien.getgioiTinh()}"></span>
-                            <select id="checkBox_edit" name="gioiTinh" class="validate[required] input-xlarge custom_checkbox">
+                            <select id="checkBox_edit" name="gioiTinh" class="validate[required] form-control custom_checkbox">
                                 <option  value="1">Nam</option>
                                 <option value="0">Nữ</option>                            
                             </select>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="ngaySinh">Ngày Sinh</label>
-                        <div class="controls">
-                            <input  th:value="${#dates.format(giaoVien.getngaySinh(),'dd/MM/yyyy')}" th:if="${giaoVien.getngaySinh()}"  type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge"/>
-                            <input th:unless="${giaoVien.getngaySinh()}" type="text" id="datepickerngaySinh" name="ngaySinh" class="input-xlarge" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ngaySinh">Ngày Sinh</label>
+                        <div class="col-md-6">
+                            <input  th:value="${#dates.format(giaoVien.getngaySinh(),'dd/MM/yyyy')}" th:if="${giaoVien.getngaySinh()}"  type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control  input-md"/>
+                            <input th:unless="${giaoVien.getngaySinh()}" type="text" id="datepickerngaySinh" name="ngaySinh" class="form-control  input-md" />
                         </div>
                     </div>                     
-                    <div class="control-group">
-                      <label class="control-label" for="diaChi">Địa Chỉ</label>
-                      <div class="controls">                     
-                        <textarea th:text="${giaoVien.getdiaChi()}" id="diaChi" name="diaChi" class="input-xlarge"></textarea>
+                    <div class="form-group">
+                      <label class="control-label col-md-4" for="diaChi">Địa Chỉ</label>
+                      <div class="col-md-6">                     
+                        <textarea th:text="${giaoVien.getdiaChi()}" id="diaChi" name="diaChi" class="form-control"></textarea>
                       </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="ngayVaoLam">Ngày Vào Làm</label>
-                        <div class="controls">
-                            <input th:value="${#dates.format(giaoVien.getngayVaoLam(),'dd/MM/yyyy')}" th:if="${giaoVien.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="input-xlarge" />
-                            <input th:unless="${giaoVien.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="input-xlarge" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ngayVaoLam">Ngày Vào Làm</label>
+                        <div class="col-md-6">
+                            <input th:value="${#dates.format(giaoVien.getngayVaoLam(),'dd/MM/yyyy')}" th:if="${giaoVien.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="form-control  input-md" />
+                            <input th:unless="${giaoVien.getngayVaoLam()}" type="text" id="datepickerVaoLam" name="ngayVaoLam" class="form-control  input-md" />
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="ngayNghiViec">Ngày Nghỉ Việc</label>
-                        <div class="controls">
-                            <input th:value="${#dates.format(giaoVien.getngayNghiViec(),'dd/MM/yyyy')}" th:if="${giaoVien.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="input-xlarge" />
-                            <input th:unless="${giaoVien.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="input-xlarge" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ngayNghiViec">Ngày Nghỉ Việc</label>
+                        <div class="col-md-6">
+                            <input th:value="${#dates.format(giaoVien.getngayNghiViec(),'dd/MM/yyyy')}" th:if="${giaoVien.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="form-control  input-md" />
+                            <input th:unless="${giaoVien.getngayNghiViec()}" type="text" id="datepickerNghiViec" name="ngayNghiViec" class="form-control  input-md" />
                         </div>
                     </div>                      
-                    <div class="control-group">                    
-                        <div class="controls">
+                    <div class="form-group">   
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
                             <button id="ThemBtn" name="ThemBtn" class="btn btn-primary">Cập Nhật</button>
-                            <a th:href="@{/staff/management/teacher/list}" class="btn">Trở Lại</a>
+                            <a th:href="@{/staff/management/teacher/list}" class="btn btn-default">Trở Lại</a>
                         </div>
                     </div>
                 </div>

@@ -10,19 +10,19 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="magiaoVien">Mã Giáo Viên</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control input-xlarge validate[required]" name="magiaoVien" id="magiaoVien" placeholder="Mã Giáo Viên"/>
+                            <input type="text" class="form-control  input-md validate[required]" name="magiaoVien" id="magiaoVien" placeholder="Mã Giáo Viên"/>
                         </div>               
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="hoTen">Họ Tên</label>
                         <div class="col-md-6">
-                            <input type="text" id="hoTen" name="hoTen" class="form-control input-xlarge validate[required]" placeholder="Họ Tên Giáo Viên"/>
+                            <input type="text" id="hoTen" name="hoTen" class="form-control  input-md validate[required]" placeholder="Họ Tên Giáo Viên"/>
                         </div>
                     </div>
                      <div class="form-group">
                         <label class="col-md-4 control-label" for="Giới Tính">Giới Tính</label>
                         <div class="col-md-6">
-                            <select name="gioiTinh" class="form-control input-xlarge custom_checkbox validate[required]">
+                            <select name="gioiTinh" class="form-control  input-md custom_checkbox validate[required]">
                                 <option  value="1">Nam</option>
                                 <option value="0">Nữ</option>                            
                             </select>
@@ -37,17 +37,18 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="diaChi">Địa Chỉ</label>
                       <div class="col-md-6">                     
-                        <textarea id="diaChi" name="diaChi" class="form-control input-xlarge validate[required]"></textarea>
+                        <textarea id="diaChi" name="diaChi" class="form-control  input-md validate[required]"></textarea>
                       </div>
                     </div>  
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="ngayVaoLam">Ngày Vào Làm</label>
                         <div class="col-md-6">
-                            <input type="text" id="datepickerngayVaoLam" name="ngayVaoLam" class="form-control input-xlarge validate[required]"/>
+                            <input type="text" id="datepickerngayVaoLam" name="ngayVaoLam" class="form-control  input-md validate[required]"/>
                         </div>
                     </div>                    
                     <div class="form-group">
-                        <div class="col-md-6 pull-right">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
                             <button type="submit" class="btn btn-primary" id="save">Thêm Giáo Viên</button>
                             <a th:href="@{/staff/management/teacher/list}" class="btn btn-info" id="cancel">Thoát</a>
                         </div>

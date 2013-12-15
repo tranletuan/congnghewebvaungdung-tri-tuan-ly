@@ -38,25 +38,21 @@ $(document).ready(function(){
             url: request_data_url,
             type: 'GET',
             data: { namHocId: namHocIdLocal, khoiLopId: khoiLopIdLocal, requestElement: "namHoc"},
-            success: function(data){
-                console.log("Success");                
+            success: function(data){                         
                 $("#mainContent").html(data);
             }            
         })
-
-        console.log("Nam Hoc Change");
+        
     })
     $("#IDKhoiLop").on('change', function(){
         var self = $(this);
         var khoiLopIdLocal = self[0].value;
-        var namHocIdLocal = $("#IDNamHoc")[0].value;
-        console.log("Khoi Lop Change");
+        var namHocIdLocal = $("#IDNamHoc")[0].value;        
         $.ajax({
             url: request_data_url,
             type: 'GET',
             data: { namHocId: namHocIdLocal, khoiLopId: khoiLopIdLocal, requestElement: "khoiLop"},
-            success: function(data){
-                console.log("Success");                
+            success: function(data){                              
                 $("#mainContent").html(data);
             }            
         })
