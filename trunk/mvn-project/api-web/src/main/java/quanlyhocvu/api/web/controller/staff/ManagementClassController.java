@@ -47,12 +47,10 @@ public class ManagementClassController {
         List<LopHocDTO> listLopHoc = new ArrayList<LopHocDTO>();        
         String namHienTai =  FunctionService.namHocHienTai();
         NamHocDTO namHienTaidto = mongoService.getnamHocByName(namHienTai);
-        List<NamHocDTO> listNamHoc = mongoService.getAllnamHoc(); 
-        listLopHoc = mongoService.getLopHocTheoNamHoc(namHienTaidto.getid());
+        List<NamHocDTO> listNamHoc = mongoService.getAllnamHoc();         
         
         map.put("listNamHoc", listNamHoc);
         map.put("namHienTai", namHienTaidto);
-//        map.put("listLopHoc", listLopHoc);
         map.put("stt", 1);
         return new ModelAndView("staff/management/class/index", map);
     }
