@@ -36,7 +36,7 @@ public class HomeController {
           model.put("listCatalogs", list);
           List<CoverImageDTO> listcover =  mongoService.getAllCovers();
           System.out.println(listcover.size());
-          model.put("coverImages", listcover);
+          model.put("covers", listcover);
           return new ModelAndView("guest/home", model);
      }
 

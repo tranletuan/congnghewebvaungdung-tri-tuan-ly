@@ -7,6 +7,7 @@ package quanlyhocvu.api.web.controller.staff;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.staff.CatalogNewsDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 import quanlyhocvu.api.web.util.Tools;
@@ -120,7 +122,15 @@ public class ManagementNewsController {
      @RequestMapping(value = "cover/add")
      public ModelAndView corver_add(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
-          model.put("covers", mongoService.getAllCovers());
+          List<CoverImageDTO> list = mongoService.getAllCovers();
+          model.put("covers", list);
+          int count;
+          if (list == null) {
+               count = 1;
+          } else {
+               count = list.size();
+          }
+          model.put("count", count);
           return new ModelAndView("staff/management/news/cover_add", model);
      }
 
@@ -129,19 +139,19 @@ public class ManagementNewsController {
           int count = 1;
           String id = "";
           String link = null;
+          int size  = Integer.parseInt(request.getParameter("count"));
           mongoService.removeAllCover();
-          while (true) {
+          while (count <= size) {
                id = "field";
                if (count > 0) {
                     id = id + String.valueOf(count);
                }
-               System.out.println(id);
+
                link = request.getParameter(id);
-               if (link == null || link.equals("")) {
-                    break;
-               }
-               System.out.println(link);
+               if (!(link == null || link.equals(""))) {
                mongoService.insertCover(link, count);
+               }
+              
                count++;
           }
           return new ModelAndView("redirect:/guest/home");

@@ -10,23 +10,24 @@
     <body class="main-body">
         <div class="container main-container">
             <div th:substituteby="staff/template :: nav" />               
-            <input type="hidden" name="count" value="1" />
             <div id="fields">
                 <div  id="profs"> 
                     <div class="main-container">
-                        <form class="input-append form-horizontal center" th:action="@{/staff/management/news/cover/save}" method="post">
-                            <input type="submit" class="form-control btn-success btn-sm"/>
-                            <div th:each="cover : ${covers}" th:id="${'field'} + ${cover.id}">
-                                    <input autocomplete="off" class="validate[required] margin-top-down input pull-left form-control margin-top-down" th:id="${'field'}+${cover.id}" th:name="${'field'}+${cover.id}" type="text"  data-items="8"/>
-                                    <button id="${'remove'}+${cover.id}" class="btn-danger remove-me" type="button">-</button>
+                        <form id="input_form" class="input-append form-horizontal center" th:action="@{/staff/management/news/cover/save}" method="post">
+                            <legend>Thêm cover bằng URL hình ảnh</legend>
+                            <div class="form-group" th:each="cover : ${covers}" th:id="${'field'} + ${cover.id}">
+                                <input th:value="${cover.link}" autocomplete="off" class="input pull-left form-control margin-top-down" th:id="${'field'}+${cover.id}" th:name="${'field'}+${cover.id}" type="text"  data-items="8"/>
+                                <a th:id="${'remove'}+${cover.id}" class=" btn btn-danger old-remove-me margin-top-down" type="button">-</a>
                             </div>
                             <div id="field" class="form-group">
                                 <!--<div class="col-md-6">-->
-                                <input autocomplete="off" class=" margin-top-down input pull-left form-control margin-top-down" id="field1" name="field1" type="text" data-items="8"/>
                                 <!--</div>-->
-                                <button id="b1" class="btn btn-success add-more margin-top-down" type="button">+</button>
+                                <a id="b1" class="pull-left btn btn-success add-more margin-top-down clearfix" type="button">+</a>
+                                <input type="submit" class="col-md-1 form-control btn-success btn-sm margin-top-down "/>
                             </div>
+                            <input id="count" type="hidden" name="count" value="1" />
                         </form>
+                        <!--<input type="hidden" id="count" th:value="${count}"/>-->
                     </div>
                     <br/>
                 </div>
@@ -36,34 +37,46 @@
 
         <script th:inline="javascript">
             /*<![CDATA[*/
-            var url = /*[[@{/staff/management/news/catalog/add}]]*/ "url";
+//            var url = /*[[@{/staff/management/news/catalog/add}]]*/ "url";
+                    var next = [[${count}]];
             jQuery(document).ready(function() {
                 jQuery(".form-horizontal").validationEngine();
                 COMMON.activeMenu("nav_website");
-                var next = 1;
-                $(".add-more").click(function(e) {
-                    e.preventDefault();
-                    var addto = "#field" + next;
-                    var addRemove = "#field" + (next);
+               $("#b1").on('click',function(e) {
+                    var addto = "#field";
+                    console.log(addto);
+                    var addRemove = "#field";
                     next = next + 1;
-                    var newIn = '<input autocomplete="off" class="validate[required] margin-top-down input form-control pull-left" id="field ' + next + '" name="field' + next + '" type="text"/>';
+                    var newIn = '<input autocomplete="off" class="margin-top-down input pull-left form-control" id="field ' + next + '" name="field' + next + '" type="text"/>';
                     var newInput = $(newIn);
-                    var removeBtn = '<button id="remove' + (next - 1) + '" class="margin-top-down btn btn-danger remove-me" >-</button></div><div id="field">';
+                    var removeBtn = '<div id="field' + next + '" class="form-group">' + newIn + '<a id="remove' + (next) + '" class="margin-top-down btn btn-danger remove-me" >-</a></div>';
                     var removeButton = $(removeBtn);
-                    $(addto).after(newInput);
-                    $(addRemove).after(removeButton);
+                    $(addRemove).before(removeButton);
                     $("#field" + next).attr('data-source', $(addto).attr('data-source'));
                     $("#count").val(next);
-
-                    $('.remove-me').click(function(e) {
-                        e.preventDefault();
+                       $('#remove'+next).on('click', function(e) {
                         var fieldNum = this.id.charAt(this.id.length - 1);
+                        next = next - 1;
+                         $("#count").val(next);
+                        console.log('xóa' + fieldNum);
                         var fieldID = "#field" + fieldNum;
                         $(this).remove();
                         $(fieldID).remove();
+                        console.log('còn' + next);
                     });
                 });
+                $('.old-remove-me').on('click', function(e) {
+                        var fieldNum = this.id.charAt(this.id.length - 1);
+                        next = next - 1;
+                         $("#count").val(next);
+                        console.log('xóa' + fieldNum);
+                        var fieldID = "#field" + fieldNum;
+                        $(this).remove();
+                        $(fieldID).remove();
+                        console.log('còn' + next);
+                    });
             });
+             
             /*]]>*/
         </script>    
     </body>
