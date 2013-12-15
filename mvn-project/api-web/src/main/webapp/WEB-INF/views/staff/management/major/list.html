@@ -1,10 +1,10 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include="staff/template :: header" />
+    <head th:include="controller/template :: header" />
     <body>
         <div class="container">
-            <div th:substituteby="staff/template :: nav" />   
+            <div th:substituteby="controller/template :: nav" />   
             <!--<a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>-->
             <div class="clearfix"></div>
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
