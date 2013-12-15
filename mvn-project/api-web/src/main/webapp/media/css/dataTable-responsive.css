@@ -76,4 +76,12 @@ only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-wid
     .table_hocsinh td:nth-of-type(5):before {content: "Ngày Nhập Học";}
     .table_hocsinh td:nth-of-type(6):before {content: "Ngày Nghỉ Học";}
     .table_hocsinh td:nth-of-type(7):before {content: "Tác Vụ";}        
+    
+    .table_view_lophoc td:nth-of-type(1):before {content: "Họ Tên";}
+    .table_view_lophoc td:nth-of-type(2):before {content: "Ngày Sinh";}
+    .table_view_lophoc td:nth-of-type(3):before {content: "Giới Tính";}
+    .table_view_lophoc td:nth-of-type(4):before {content: "Địa Chỉ";}
+    .table_view_lophoc td:nth-of-type(5):before {content: "Ngày Nhập Học";}
+    .table_view_lophoc td:nth-of-type(6):before {content: "Ngày Nghỉ Học";}
+    .table_view_lophoc td:nth-of-type(7):before {content: "Tác Vụ";}   
 }

@@ -8,7 +8,7 @@
             <!--<a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>-->
             <div class="clearfix"></div>
             <label>Tên Lớp Học: <span th:text="${lopHoc.getkhoiLop().gettenKhoiLop()} +${lopHoc.gettenLopHoc()}"></span></label>
-            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+            <table id="table" class="table_view_lophoc" style=" word-wrap: break-word;">
                 <thead>
                     <tr>                        
                         <th>Mã Học Sinh</th>
