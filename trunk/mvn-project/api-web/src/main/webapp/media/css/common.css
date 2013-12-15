@@ -112,3 +112,6 @@ and open the template in the editor.
 .min_width_button_normal{
     min-width: 70px;
 }
+.margin_action{
+    margin: 0 10px;
+}

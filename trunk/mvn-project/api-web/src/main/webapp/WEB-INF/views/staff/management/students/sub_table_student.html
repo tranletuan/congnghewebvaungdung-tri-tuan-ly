@@ -30,13 +30,13 @@
                     <td th:unless="${hocsinh.getngayNghiHoc()}" id="ngayNghiHoc"/>                                                     
                     <td th:unless="${hocsinh.maLopHoc}">
                         <div class="btn-group">
-                            <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="glyphicon glyphicon-pencil"></i></a>     
-                            <a title="Xếp Lớp" class="linkXepLop" th:id="${hocsinh.getid()}" data-toggle="modal" href="#xepLopMotHocSinhModal"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa" class="margin_action"><i class="glyphicon glyphicon-pencil"></i></a>     
+                            <a title="Xếp Lớp" class="linkXepLop margin_action" th:id="${hocsinh.getid()}" data-toggle="modal" href="#xepLopMotHocSinhModal"><i class="glyphicon glyphicon-plus"></i></a>
                         </div>                            
                     </td>
                     <td th:if="${hocsinh.maLopHoc}">
                         <div class="btn-group">
-                            <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a th:href="@{'/staff/management/students/edit/'+${hocsinh.getmaHocSinh()}}" title="SỬa" class="margin_action"><i class="glyphicon glyphicon-pencil"></i></a>
 
                         </div> 
                     </td>
