@@ -7,6 +7,13 @@ and open the template in the editor.
     Created on : Nov 14, 2013, 9:09:23 PM
     Author     : linhly
 */
+/*.slide-panel {
+    margin-top: -10px;
+}*/
+.login-panel {
+    min-height: 300px;
+    max-width: 400px;
+}
 
 .btn-sm {
     max-width: 100px;
@@ -25,7 +32,11 @@ and open the template in the editor.
     font-weight: 600;
 }
 
-.padding-right-5 {
+.margin-right {
+    margin-right: 10px;
+}
+
+.padding-left-5 {
     padding-right: 5px;
 }
 .chosen-container-multi .chosen-choices li.search-field input[type="text"] {

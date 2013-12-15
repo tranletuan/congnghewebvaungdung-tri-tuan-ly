@@ -9,15 +9,15 @@
         <div class="container main-container">
             <div th:include="guest/template ::nav" />   
             <div class="row container">
-                <div class="view container">
+                <div class="view container slide-panel">
                     <div id="lazycarousel" class="carousel slide">
                         <ol class="carousel-indicators">
-                            <li th:each="corverImage : ${corverImages}" data-target="#lazycarousel" th:data-slide-to="${coverImage.id}" ></li>
+                            <li th:each="cover : ${covers}" data-target="#lazycarousel" data-slide-to="0" ></li>
                         </ol>
                         <!-- Carousel items -->
-                        <div class="carousel-inner" th:if="${coverImages}">
-                            <div th:each="corverImage : ${coverImages}" class="item">
-                                <img src="{corverImage.link}"/>
+                        <div id="carousel-inner" class="carousel-inner" th:if="${covers}">
+                            <div th:each="cover : ${covers}" class="item">
+                                <img th:src="${cover.link}"/>
                             </div>
                         </div>
                         <!-- Carousel nav -->
@@ -35,7 +35,7 @@
                         <hr/>
                         <div th:unless="${user}" id="login-frame">
                         </div>
-                        <div class="media" th:if="${user}"/>
+                        <div class="media" th:if="${user}">
                             <a class="thumbnail pull-left" href="#">
                                 <img class="media-object" src=""/>
                             </a>
@@ -157,17 +157,17 @@
             jQuery(document).ready(function() {
                 jQuery("#form-horizontal").validationEngine();
                 COMMON.activeMenu("home_nav");
-                
+                loadFrame();
+                loadNews(null);     
                 loadCarousel();
                 $('#media').carousel({
                     pause: true,
                     interval: 4000
                 });
-                loadFrame();
-                loadNews(null);
+                $('#carousel-inner').children()[0].setAttribute('class', 'item active');
             });
             $(".catalog_item").on('click', function() {
-               loadNews(this);
+                loadNews(this);
             });
             /*]]>*/
         </script>    
