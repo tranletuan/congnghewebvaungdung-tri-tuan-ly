@@ -8,12 +8,58 @@ var test;
 var diemCu = -1;
 var diemSo;
 var idDiem;
+var link;
 $(document).ready(function() {
     table = $("#table");
     table.dataTable({"bJQueryUI": true});
     table.dblclick()
 
     COMMON.activeMenu("quanly_nav");
+
+    var choose = $(".select_cot_diem");
+    choose[0].selectedIndex = index;
+    link = choose[0].children[index].id;
+
+    $(".select_cot_diem").on('change', function() {
+        var selected = $(this);
+        index = selected[0].selectedIndex;
+        var optionSelected = selected[0].children[index];
+        link = optionSelected.id;
+        window.location.pathname = link;
+    });
+    
+    $(".xoa_cot").on('click', function(){
+        event.preventDefault();
+        $.ajax({
+            url: xoaCotURL,
+            type: 'GET',
+            data: {idPhanCong: idPhanCong, loaiDiem: loaiDiem, index : index},
+            success: function() {
+                index = 0;
+                var choose = $(".select_cot_diem");
+                choose[0].selectedIndex = index;
+                link = choose[0].children[index].id;
+                window.location.pathname = link;
+            }
+        });
+    });
+
+    $(".them_cot_moi").on('click', function() {
+        event.preventDefault();
+
+        $.ajax({
+            url: themCotURL,
+            type: 'GET',
+            data: {idPhanCong: idPhanCong, loaiDiem: loaiDiem},
+            success: function() {
+                index = 0;
+                var choose = $(".select_cot_diem");
+                choose[0].selectedIndex = index;
+                link = choose[0].children[index].id;
+                window.location.pathname = link;
+            }
+        });
+    });
 
     $(".cham_diem").on('focus', function() {
         var cell = $(this);
@@ -53,10 +99,9 @@ $(document).ready(function() {
                 $.ajax({
                     url: chamDiemURL,
                     type: 'GET',
-                    data: {diemCu: diemCu, diemSo: diemSo, idDiem: idDiem, loaiDiemKT : loaiDiemKT},                    
+                    data: {index : index, diemSo: diemSo, idDiem: idDiem, loaiDiem: loaiDiem},
                     success: function() {
-                        
-                    }                  
+                    }
                 });
             }
         }

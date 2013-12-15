@@ -86,22 +86,34 @@ public class DiemDAO {
 
     public boolean insertDiemSo(String loaiDiem, String idDiem, Float diemSo) {
         DiemDTO dto = getDiemById(idDiem);
-        if (loaiDiem == "DiemKTMieng") {
-            List<Float> tempList = dto.getListDiemKTMieng();
-            tempList.add(0, diemSo);
-            dto.setListDiemKTMieng(tempList);
-        } else if (loaiDiem == "DiemKT15") {
-            List<Float> tempList = dto.getListDiemKT15();
-            tempList.add(0, diemSo);
-            dto.setListDiemKT15(tempList);
-        } else if (loaiDiem == "DiemKT15") {
-            List<Float> tempList = dto.getListDiemKT1Tiet();
-            tempList.add(0, diemSo);
-            dto.setListDiemKT1Tiet(tempList);
-        } else if (loaiDiem == "DiemGiuaKy") {
-            dto.setDiemGiuaKy(diemSo);
-        } else if (loaiDiem == "DiemCuoiKy") {
-            dto.setDiemCuoiKy(diemSo);
+        switch (loaiDiem) {
+            case "ktmieng":
+                {
+                    List<Float> tempList = dto.getListDiemKTMieng();
+                    tempList.add(0, diemSo);
+                    dto.setListDiemKTMieng(tempList);
+                    break;
+                }
+            case "kt15":
+                {
+                    List<Float> tempList = dto.getListDiemKT15();
+                    tempList.add(0, diemSo);
+                    dto.setListDiemKT15(tempList);
+                    break;
+                }
+            case "kt1tiet":
+                {
+                    List<Float> tempList = dto.getListDiemKT1Tiet();
+                    tempList.add(0, diemSo);
+                    dto.setListDiemKT1Tiet(tempList);
+                    break;
+                }
+            case "ktgiuaky":
+                dto.setDiemGiuaKy(diemSo);
+                break;
+            case "ktcuoiky":
+                dto.setDiemCuoiKy(diemSo);
+                break;
         }
 
         update(dto);
@@ -109,37 +121,48 @@ public class DiemDAO {
         return true;
     }
 
-    public boolean deleteDiemSo(String loaiDiem, String idDiem, Float diemSo) {
-        DiemDTO dto = getDiemById(idDiem);
-        if (loaiDiem == "DiemKTMieng") {
-            List<Float> tempList = dto.getListDiemKTMieng();
-            tempList.remove(diemSo);
-            dto.setListDiemKTMieng(tempList);
-        } else if (loaiDiem == "DiemKT15") {
-            List<Float> tempList = dto.getListDiemKT15();
-            tempList.remove(diemSo);
-            dto.setListDiemKT15(tempList);
-        } else if (loaiDiem == "DiemKT15") {
-            List<Float> tempList = dto.getListDiemKT1Tiet();
-            tempList.remove(diemSo);
-            dto.setListDiemKT1Tiet(tempList);
-        } else if (loaiDiem == "DiemGiuaKy") {
-            dto.setDiemGiuaKy(-1);
-        } else if (loaiDiem == "DiemCuoiKy") {
-            dto.setDiemCuoiKy(-1);
-        }
-
-        update(dto);
-        return true;
-    }
-
-    public boolean updateDiemSo(String loaiDiem, String idDiem, Float diemCu, Float diemMoi) {
+    public boolean deleteDiemSo(String loaiDiem, String idDiem, int index) {
         DiemDTO dto = getDiemById(idDiem);
         switch (loaiDiem) {
             case "ktmieng":
                 {
                     List<Float> tempList = dto.getListDiemKTMieng();
-                    int index = tempList.indexOf(diemCu);
+                    tempList.remove(index);
+                    dto.setListDiemKTMieng(tempList);
+                    break;
+                }
+            case "kt15":
+                {
+                    List<Float> tempList = dto.getListDiemKT15();
+                    tempList.remove(index);
+                    dto.setListDiemKT15(tempList);
+                    break;
+                }
+            case "kt1tiet":
+                {
+                    List<Float> tempList = dto.getListDiemKT1Tiet();
+                    tempList.remove(index);
+                    dto.setListDiemKT1Tiet(tempList);
+                    break;
+                }
+            case "ktgiuaky":
+                dto.setDiemGiuaKy(-1);
+                break;
+            case "ktcuoiky":
+                dto.setDiemCuoiKy(-1);
+                break;
+        }
+
+        update(dto);
+        return true;
+    }
+
+    public boolean updateDiemSo(String loaiDiem, String idDiem, int index, Float diemMoi) {
+        DiemDTO dto = getDiemById(idDiem);
+        switch (loaiDiem) {
+            case "ktmieng":
+                {
+                    List<Float> tempList = dto.getListDiemKTMieng();
                     tempList.set(index, diemMoi);
                     dto.setListDiemKTMieng(tempList);
                     break;
@@ -147,7 +170,6 @@ public class DiemDAO {
             case "kt15":
                 {
                     List<Float> tempList = dto.getListDiemKT15();
-                    int index = tempList.indexOf(diemCu);
                     tempList.set(index, diemMoi);
                     dto.setListDiemKTMieng(tempList);
                     break;
@@ -155,7 +177,6 @@ public class DiemDAO {
             case "kt1tiet":
                 {
                     List<Float> tempList = dto.getListDiemKT1Tiet();
-                    int index = tempList.indexOf(diemCu);
                     tempList.set(index, diemMoi);
                     dto.setListDiemKTMieng(tempList);
                     break;
