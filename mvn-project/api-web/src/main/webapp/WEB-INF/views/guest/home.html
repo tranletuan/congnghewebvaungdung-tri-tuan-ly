@@ -57,8 +57,8 @@
                         <hr/>
                         <!-- Message-->
                         <div class="panel" th:if="${user}">           
-                            <form accept-charset="UTF-8" action="" method="POST">
-                                <textarea class="form-control counted" name="message" placeholder="Nội dung..." rows="5" style="margin-bottom:10px; resize: none;"></textarea>
+                            <form accept-charset="UTF-8" th:action="@{/guest/comment/save}" method="POST">
+                                <textarea class="validate[required] form-control counted" name="message" placeholder="Nội dung..." rows="5" style="margin-bottom:10px; resize: none;"></textarea>
                                 <h6 class="pull-right" id="counter">Tối đa 300 kí tự</h6>
                                 <button class="btn btn-info" type="submit">Kiến nghị</button>
                             </form>

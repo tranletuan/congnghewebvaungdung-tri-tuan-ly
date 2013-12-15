@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="staff/template :: header" />
+    <body class='main-body'>
+        <div class="container">
+            <div th:substituteby="staff/template :: nav" />   
+            <div class="clearfix"></div>
+            <legend>Kiến nghị từ người dùng</legend>
+            <table id="table" class="table_giaovien" style="word-wrap: break-word;">
+                <thead>
+                    <tr>
+                        <th>Tên người dùng</th>
+                        <th>Ngày gửi</th>
+                        <th>Nội dung</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${comment.id}" align="center" th:each="comment: ${comments}">
+                        <td th:text="${comment.user.username}" id="username"/>                      
+                        <td th:text="${#dates.format(comment.date,'dd/MM/yyyy - hh:mm:ss')}" id="date"/>  
+                        <td th:text="${comment.content}" id="content"/>
+                        <td>
+                            <a th:href="@{'#'}" title="Trả lời"><i class="glyphicon glyphicon-record"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="staff/template :: footer"></div>
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("nav_website");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>
