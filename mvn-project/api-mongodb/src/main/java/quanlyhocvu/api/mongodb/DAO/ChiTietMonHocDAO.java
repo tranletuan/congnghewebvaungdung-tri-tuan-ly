@@ -7,6 +7,7 @@
 package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,21 @@ public class ChiTietMonHocDAO {
     
     public List<ChiTietMonHocDTO> getAllList() {
         return mongoOperation.findAll(ChiTietMonHocDTO.class);
+    }
+    
+    public ChiTietMonHocDTO getById(String id){
+        Query query = Query.query(Criteria.where("id").is(id));
+        return mongoOperation.findOne(query, ChiTietMonHocDTO.class);
+    }
+    
+    public List<ChiTietMonHocDTO> getByKhoiLopId(String idKhoiLop){
+        Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)));
+        return mongoOperation.find(query, ChiTietMonHocDTO.class);
+    }
+    
+    public ChiTietMonHocDTO getByKhoiLopIdMonHocId(String idKhoiLop, String idMonHoc){
+        Query query = Query.query(Criteria.where("khoiLop.$id").is(new ObjectId(idKhoiLop)).and("monHoc.$id").is(new ObjectId(idMonHoc)));
+        return mongoOperation.findOne(query, ChiTietMonHocDTO.class);
     }
     
 }

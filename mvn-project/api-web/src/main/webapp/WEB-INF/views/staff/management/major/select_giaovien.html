@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">    
+    <body>        
+        <!-- Select Basic -->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="namHoc">Giáo Viên</label>
+            <div class="col-md-6">
+                <select id="namHoc" name="chiTietChuyenMon" class="form-control input-xlarge custom_checkbox validate[required]">
+                    <option th:each="chiTietChuyenMon : ${listChiTietChuyenMon}" th:text="${chiTietChuyenMon.getGiaoVien().gethoTen()}" th:value="${chiTietChuyenMon.getid()}"/>
+                </select>
+            </div>
+        </div>     
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+            });
+            /*]]>*/
+        </script> 
+    </body>
+</html>

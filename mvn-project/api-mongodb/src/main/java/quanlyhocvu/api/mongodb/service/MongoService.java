@@ -452,7 +452,7 @@ public class MongoService {
      }
 
      public List<PhanCongDTO> getListPhanCongBy(String idChiTietChuyenMon) {
-          return phancongDAO.getListBy(idChiTietChuyenMon);
+          return phancongDAO.getListByChiTietChuyenMon(idChiTietChuyenMon);
      }
 
      public boolean insertPhanCong(PhanCongDTO dto) {
@@ -492,6 +492,14 @@ public class MongoService {
      public boolean updateChiTietChuyenMon(ChiTietChuyenMonDTO dto) {
           return chitietchuyenmonDAO.update(dto);
      }
+     
+     public List<ChiTietChuyenMonDTO> getListByChiTietMonHoc(String idChiTietMonHoc){
+         return chitietchuyenmonDAO.getListByChiTietMonHoc(idChiTietMonHoc);
+     }
+     
+     public ChiTietChuyenMonDTO getChiTietChuyenMonById(String id){
+         return chitietchuyenmonDAO.getById(id);
+     }
 //</editor-fold>
 
      //<editor-fold defaultstate="collapsed" desc="Chi Tiet Mon Hoc">
@@ -509,6 +517,18 @@ public class MongoService {
 
      public List<ChiTietMonHocDTO> getAllChiTietMonHoc() {
           return chitietmonhocDAO.getAllList();
+     }
+     
+     public ChiTietMonHocDTO getChiTietMonHocById(String idChiTietMonHoc){
+         return chitietmonhocDAO.getById(idChiTietMonHoc);
+     }
+     
+     public List<ChiTietMonHocDTO> getByKhoiLopId(String idKhoiLop){
+         return chitietmonhocDAO.getByKhoiLopId(idKhoiLop);
+     }
+     
+     public ChiTietMonHocDTO getByKhoiLopIdMonHocId(String idKhoiLop,String idMonHoc ){
+         return chitietmonhocDAO.getByKhoiLopIdMonHocId(idKhoiLop, idMonHoc);
      }
 //</editor-fold>
 

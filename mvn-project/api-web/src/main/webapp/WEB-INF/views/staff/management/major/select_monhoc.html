@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">    
+    <body>        
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="namHoc">Môn Học</label>
+            <div class="col-md-6">
+                <select id="idChiTietMonHoc" name="monHoc" class="form-control input-xlarge custom_checkbox validate[required]">
+                    <option th:each="chiTietMonHoc : ${listChiTietMonHoc}" th:text="${chiTietMonHoc.getMonHoc().gettenMonHoc()}" th:value="${chiTietMonHoc.getid()}"/>
+                </select>
+            </div>
+        </div>      
+        <div id='selectGiaoVien'></div>     
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var loadGiaoVien_url = /*[[@{/staff/management/major/loadGiaoVien/}]]*/"demo";
+            jQuery(document).ready(function() {
+                $("#idChiTietMonHoc").on('change', function() {
+                    console.log("AAAAAAAAAa");
+                    var self = $(this);
+                    var idChiTietMonHoc = self[0].value;                    
+                    $.ajax({
+                        url: loadGiaoVien_url,
+                        type: 'GET',
+                        data: {chiTietMonHocId: idChiTietMonHoc},
+                        success: function(res){
+                            console.log("OKKKKKKKKKKKKK");
+                            console.log(res);
+                            $("#selectGiaoVien").html(res);
+                        }
+                    })
+                })
+            });
+            /*]]>*/
+        </script> 
+    </body>
+</html>
