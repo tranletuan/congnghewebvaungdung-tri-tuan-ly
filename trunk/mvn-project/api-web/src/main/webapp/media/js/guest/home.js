@@ -15,8 +15,7 @@
  */
 function loadNews(obj) {
     var catalogId = obj===null? $("#catalogs").children(".active")[0].id : obj.id;
-    catalogId = catalogId==="" ? 0:catalogId;
-    console.log(catalogId);
+    catalogId = catalogId==="" ? 0:catalogId;    
     var page  = $("#page_num").children(".active")[0].children[0].text;
     jQuery.ajax({
         url: newsUrl + "/" +catalogId + "/" + page,
