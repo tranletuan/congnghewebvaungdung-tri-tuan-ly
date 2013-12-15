@@ -11,7 +11,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tenkhoiLop">Tên Khối Lớp</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="tennamHoc" name="tenkhoiLop" type="text" placeholder="Mời bạn nhập vào tên khối lớp" class="form-control input-xlarge validate[required]"/>                    
                         </div>
                     </div>
@@ -19,16 +19,17 @@
                     <!-- Textarea -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="moTa">Mô Tả</label>
-                        <div class="col-md-6">     
+                        <div class="col-md-4">     
                             <textarea id="moTa" name="moTa" class="form-control input-xlarge"></textarea>
                         </div>
                     </div>
 
                     <!-- Button -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="ThemBtn"></label>
+                        <div class="col-md-4"></div>
                         <div class="col-md-4">
-                            <button id="ThemBtn" name="ThemBtn" class="form-control btn btn-primary">Thêm</button>
+                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary min_width_button_normal margin_button_bottom">Thêm</button>
+                            <a th:href="@{/staff/management/grade/index}" class="btn btn-default min_width_button_normal margin_button_bottom">Trở Lại</a>                            
                         </div>
                     </div>
                 </fieldset>
