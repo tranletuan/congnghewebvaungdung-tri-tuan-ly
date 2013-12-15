@@ -77,6 +77,41 @@ public class MarksController {
         return new ModelAndView("teacher/marking", map);
     }
 
+    @RequestMapping(value = "{phanCongId}/view")
+    public @ResponseBody
+    ModelAndView viewMark(@PathVariable String phanCongId, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
+
+        PhanCongDTO phanCong = mongoService.getPhanCongById(phanCongId);
+        ChiTietMonHocDTO chiTietMonHoc = phanCong.getChiTietChuyenMon().getChiTietMonHoc();
+
+        List<HocSinhDTO> listHocSinh = phanCong.getLopHoc().getlistHocSinh();
+        List<DiemDTO> listDiem = new ArrayList();
+
+        String tenLop = chiTietMonHoc.getKhoiLop().gettenKhoiLop() + phanCong.getLopHoc().gettenLopHoc();
+        String monHoc = chiTietMonHoc.getMonHoc().gettenMonHoc();
+        int hocKy = phanCong.getHocKy();
+
+        for (HocSinhDTO hs : listHocSinh) {
+            DiemDTO diem = mongoService.getDiemByHocSinhChiTietMonHoc(hs, chiTietMonHoc);
+            listDiem.add(diem);
+        }
+
+        int colSpanKTM = listDiem.get(0).getListDiemKTMieng().size();
+        int colSpanKT15 = listDiem.get(0).getListDiemKT15().size();
+        int colSpanKT1Tiet = listDiem.get(0).getListDiemKT1Tiet().size();
+
+        map.put("listDiem", listDiem);
+        map.put("colSpanKTM", colSpanKTM);
+        map.put("colSpanKT15", colSpanKT15);
+        map.put("colSpanKT1Tiet", colSpanKT1Tiet);
+        map.put("hocKy", hocKy);
+        map.put("tenLop", tenLop);
+        map.put("monHoc", monHoc);
+
+        return new ModelAndView("teacher/overview");
+    }
+
     @RequestMapping(value = "chamdiem")
     public @ResponseBody
     ModelAndView saveMark(HttpServletRequest request) {

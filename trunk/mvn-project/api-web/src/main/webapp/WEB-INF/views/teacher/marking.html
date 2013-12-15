@@ -19,8 +19,8 @@
                     <option th:text="${soCotDiem.size() - soCotDiem.indexOf(cot)}" th:each="cot : ${soCotDiem}"
                             th:id="@{'/teacher/class/' + ${idPhanCong} + '/' + ${loaiDiem} + '/' + ${soCotDiem.indexOf(cot)}}"/>
                 </select>
-                <a class="them_cot_moi" title="Thêm cột điểm mới"><i class="glyphicon glyphicon-pencil"/></a>
-                <a class="xoa_cot" title="Xóa cột điểm hiện tại"><i class="glyphicon glyphicon-pencil"/></a>
+                <a class="them_cot_moi" title="Thêm cột điểm mới"><i class="glyphicon glyphicon-plus"/></a>
+                <a class="xoa_cot" title="Xóa cột điểm hiện tại"><i class="glyphicon glyphicon-minus"/></a>
             </label>
             <table id="table" style="table-layout: fixed; word-wrap: break-word;">
                 <thead>
