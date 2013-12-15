@@ -1,8 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="staff/template :: header" />
-    <body>
-        <table id="table" class="table_lophoc" style=" word-wrap: break-word;">
+    <body>        
+        <table id="table" class="table_list_lophoc" style=" word-wrap: break-word;">
             <thead>
                 <tr>                        
                     <th>Tên Lớp Học</th>
@@ -11,14 +11,14 @@
                 </tr>
             </thead>
             <tbody>                       
-                <tr  th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">                        
+                <tr th:id="${lophoc.getid()}" align="center" th:each="lophoc: ${listLopHoc}">                        
                     <td id="tenLopHoc"><a th:text="${lophoc.getkhoiLop().gettenKhoiLop()} + ${lophoc.gettenLopHoc()}" th:href="@{'/staff/management/class/view/' + ${lophoc.getid()}}"></a></td>
                     <td th:text="${lophoc.getgiaoVien().gethoTen()}" th:if="${lophoc.getgiaoVien()}" id="giaoVien"/>
                     <td th:unless="${lophoc.getgiaoVien()}" id="giaoVien"/>
                     <td th:text="${lophoc.getSiSo()}"></td>                                           
                 </tr>
             </tbody>
-        </table>
+        </table>        
         <script th:inline="javascript">
             /*<![CDATA[*/
             jQuery(document).ready(function() {
