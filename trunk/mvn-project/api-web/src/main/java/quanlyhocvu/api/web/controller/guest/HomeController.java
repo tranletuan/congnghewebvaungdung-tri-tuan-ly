@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.CatalogNewsDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 import quanlyhocvu.api.web.util.Tools;
@@ -33,6 +34,9 @@ public class HomeController {
           }
           List<CatalogNewsDTO> list = mongoService.getAllCatalog();
           model.put("listCatalogs", list);
+          List<CoverImageDTO> listcover =  mongoService.getAllCovers();
+          System.out.println(listcover.size());
+          model.put("coverImages", listcover);
           return new ModelAndView("guest/home", model);
      }
 

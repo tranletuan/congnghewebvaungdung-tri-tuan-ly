@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 
 /**
@@ -66,10 +67,11 @@ public class NewsDAO {
 
      /**
       * get pagination of news by catalogId
+      *
       * @param catalogId
       * @param limit
       * @param offset
-      * @return 
+      * @return
       */
      public List<NewsDTO> getNewsByCatalogIdAndPate(String catalogId, int limit, int offset) {
           Query query = Query.query(Criteria.where("catalogs.$id").is(new ObjectId(catalogId)));
@@ -81,9 +83,10 @@ public class NewsDAO {
 
      /**
       * get all data pagination
+      *
       * @param limit
       * @param offset
-      * @return 
+      * @return
       */
      public List<NewsDTO> getAllNewsByPage(int limit, int offset) {
           Query query = Query.query(Criteria.where("id").exists(true));
@@ -95,10 +98,48 @@ public class NewsDAO {
 
      /**
       * update news
-      * @param news 
+      *
+      * @param news
       */
      public void update(NewsDTO news) {
-         mongoOperation.remove(news);
-         mongoOperation.save(news);
+          mongoOperation.remove(news);
+          mongoOperation.save(news);
+     }
+
+     /**
+      *
+      * @param link
+      */
+     public void insertCover(String link, int id) {
+          CoverImageDTO image = new CoverImageDTO(link);
+          image.setId(id);
+          mongoOperation.save(image);
+     }
+
+     /**
+      *
+      * @param id
+      */
+     public void deleteCorver(int id) {
+          mongoOperation.remove(
+                  Query.query(Criteria.where("id").is(id)),
+                  CoverImageDTO.class
+          );
+     }
+
+     /**
+      * 
+      * @return 
+      */
+     public List<CoverImageDTO> getAllCover() {
+          return mongoOperation.findAll(CoverImageDTO.class);
+     }
+
+     /**
+      * 
+      */
+     public void removeAllCover() {
+          Query query = Query.query(Criteria.where("id").exists(true));
+          mongoOperation.remove(query, CoverImageDTO.class);
      }
 }

@@ -106,14 +106,44 @@ public class ManagementNewsController {
           model.put("message", "Cập nhật thông tin bản tin thất bại");
           return new ModelAndView("redirect:/guest/home", model);
      }
-     
-     @RequestMapping(value="catalog/add", produces="text/plain")
+
+     @RequestMapping(value = "catalog/add", produces = "text/plain")
      @ResponseBody
      public String catalog_add(
              @RequestParam String catalogname,
              HttpServletRequest request) {
           CatalogNewsDTO catalog = new CatalogNewsDTO(catalogname, "");
           mongoService.insertCatalogNews(catalog);
-          return String.format( "<option value=%s>%s</option>", catalog.getId(), catalog.getName());
+          return String.format("<option value=%s>%s</option>", catalog.getId(), catalog.getName());
+     }
+
+     @RequestMapping(value = "cover/add")
+     public ModelAndView corver_add(HttpServletRequest request) {
+          Map<String, Object> model = new HashMap<>();
+          model.put("covers", mongoService.getAllCovers());
+          return new ModelAndView("staff/management/news/cover_add", model);
+     }
+
+     @RequestMapping(value = "cover/save")
+     public ModelAndView cover_save(HttpServletRequest request) {
+          int count = 1;
+          String id = "";
+          String link = null;
+          mongoService.removeAllCover();
+          while (true) {
+               id = "field";
+               if (count > 0) {
+                    id = id + String.valueOf(count);
+               }
+               System.out.println(id);
+               link = request.getParameter(id);
+               if (link == null || link.equals("")) {
+                    break;
+               }
+               System.out.println(link);
+               mongoService.insertCover(link, count);
+               count++;
+          }
+          return new ModelAndView("redirect:/guest/home");
      }
 }
