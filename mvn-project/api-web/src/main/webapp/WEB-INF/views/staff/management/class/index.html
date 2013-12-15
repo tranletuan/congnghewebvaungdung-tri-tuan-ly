@@ -7,7 +7,7 @@
             <div th:substituteby="staff/template :: nav" />   
             <div class="clearfix"></div>
             <span th:id="${namHienTai.getid()}" class="namHocHienTai"></span>
-            <div class="form-group col-md-12">
+            <div class="form-group">
                 <div class="pull-right">
                     <a th:href="@{/staff/management/class/new}" class="btn btn-primary">Thêm Lớp Học Mới</a>
                 </div>
@@ -17,7 +17,9 @@
                         <option th:each="namHoc : ${listNamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>                          
                     </select>
                 </div>
+                <div class="clearfix"></div>
             </div>
+            
             <div id="mainTable"></div>
         </div>	
         <div th:include="staff/template :: footer" class="main-container container"></div>

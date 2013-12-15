@@ -11,7 +11,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tenLopHoc">Tên Lớp Học</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="tenLopHoc" name="tenLopHoc" type="text" placeholder="Tên Lớp Học" 
                                    class=" form-control validate[required]"/>                    
                         </div>
@@ -20,7 +20,7 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="namHoc">Năm Học</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <select id="namHoc" name="IDnamHoc" class="form-control input-xlarge custom_checkbox validate[required]">
                                 <option th:each="namHoc : ${listnamHoc}" th:text="${namHoc.gettenNamHoc()}" th:value="${namHoc.getid()}"/>
                             </select>
@@ -30,7 +30,7 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="khoiLop">Khối Lớp</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <select id="khoiLop" name="IDkhoiLop" class="form-control input-xlarge custom_checkbox validate[required]">
                                 <option th:each="khoiLop : ${listkhoiLop}" th:text="${khoiLop.gettenKhoiLop()}" th:value="${khoiLop.getid()}"/>                          
                             </select>
@@ -40,7 +40,7 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="giaoVien">Giáo Viên</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <select id="giaoVien" name="IDgiaoVien" class="form-control input-xlarge custom_checkbox validate[required]">
                                 <option th:each="giaoVien : ${listgiaoVien}" th:text="${giaoVien.gethoTen()}" th:value="${giaoVien.getid()}"/>                                                    
                             </select>
@@ -49,9 +49,9 @@
 
                     <!-- Button -->
                     <div class="form-group">  
-                        <label class="col-md-4 control-label" for="ThemBtn"></label>
+                        <div class="col-md-4"></div>
                         <div class="col-md-4">
-                            <button id="ThemBtn" name="ThemBtn" class="form-control btn btn-primary">Thêm</button>
+                            <button id="ThemBtn" name="ThemBtn" class="btn btn-primary min_width_button_normal margin_button_bottom">Thêm</button>
                         </div>
                     </div>
                 </fieldset>
