@@ -12,43 +12,38 @@
             <div th:substituteby="staff/template :: nav" />               
             <form th:if="${news}" class="form-horizontal" method="post" th:action="@{/staff/management/news/update}">
                 <fieldset>
+                    <div class="editor-container">
+                        <!-- Form Name -->
+                        <legend>Sửa thông tin bản tin</legend>
+                        <!--                    <input type="text" value="Amsterdam,Washington" data-role="tagsinput"/>-->
+                        <input name="newsId" type="hidden" th:value="${news.id}"/>
+                        <!-- Text input-->
+                        <label class="control-label" for="title">Tên bản tin</label>  
+                        <input id="title" name="title" th:value="${news.title}" type="text" placeholder="" class="form-control input-md validate[required]"/>
 
-                    <!-- Form Name -->
-                    <legend>Sửa thông tin bản tin</legend>
-                    <!--                    <input type="text" value="Amsterdam,Washington" data-role="tagsinput"/>-->
-                    <input name="newsId" type="hidden" th:value="${news.id}"/>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="title">Tên bản tin</label>  
-                        <div class="col-md-6">
-                            <input id="title" name="title" th:value="${news.title}" type="text" placeholder="" class="form-control input-md validate[required]"/>
-                        </div>
-                    </div>
-                    <!-- Textarea -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="content">Nội dung</label>
-                        <div class="col-md-6">                     
-                            <textarea class="form-control validate[required]" id="content" th:text="${news.content}" name="content"/>
-                        </div>
-                    </div>
+                        <!--ImageUrl -->
+                        <label class="control-label" for="title">Ảnh đại diện</label>  
+                        <input id="imageUrl" name="imageUrl" th:value="${news.imageUrl}" type="text" placeholder="" class="form-control input-md"/>
 
 
-                    <!-- Select Multiple -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="catalogs">Loại bản tin</label>
-                        <div class="col-md-6">
-                            <select name="catalogs" multiple="multiple" class=" my_select_box form-control" data-placeholder="Chọn loại bài viết..." >
-                                <option th:value="${catalog.id}" th:text="${catalog.name}" th:each="catalog : ${catalogs}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="add_catalog"></label>
-                        <div class="col-md-4">
-                            <input type="submit" id="submit" name="submit" class="btn btn-primary" text="Lưu lại"></input>
-                            <a th:href="@{'/guest/home'}" id="cancel" name="cancel" class="btn btn-default">Thoát</a>
-                        </div>
+                        <!-- Select Multiple -->
+                        <label class="control-label" for="catalogs">Loại bản tin</label>
+                        <select name="catalogs" multiple="multiple" class=" my_select_box form-control" data-placeholder="Chọn loại bài viết..." >
+                            <option th:value="${catalog.id}" th:text="${catalog.name}" th:each="catalog : ${catalogs}"></option>
+                        </select>
+
+                        <!-- Textarea -->
+
+                        <label class="control-label" for="content">Nội dung</label>
+                        <textarea class="form-control validate[required]" id="content" th:text="${news.content}" name="content"/>
+
+
+
+
+                        <!-- Button -->
+                        <label class="control-label" for="add_catalog"></label>
+                        <input type="submit" id="submit" name="submit" class="btn btn-primary" text="Lưu lại"></input>
+                        <a th:href="@{'/guest/home'}" id="cancel" name="cancel" class="btn btn-default">Thoát</a>
                     </div>
                 </fieldset>
             </form>
@@ -59,6 +54,7 @@
             /*<![CDATA[*/
             // var data = [[${news.catalogs}]];
             jQuery(document).ready(function() {
+                CKEDITOR.replace('content');
                 jQuery(".form-horizontal").validationEngine();
                 COMMON.activeMenu("nav_website");
                 $(".my_select_box").chosen({

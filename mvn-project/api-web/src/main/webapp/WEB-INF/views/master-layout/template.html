@@ -32,9 +32,27 @@
         <script src="" th:src="@{/media/js/application.js}"></script>
     </head>    
     <body >
+        <div th:fragment="top" >
+            <div class="header-top"><h5><strong>TRƯỜNG TRUNG HỌC PHỔ THÔNG A</strong></h5></div>
+        </div>
+        <div th:fragment="banner">
+             <div class="slide-panel">
+                    <div id="lazycarousel" class="carousel slide">
+                        <ol id="carousel-indicator" class="carousel-indicators">
+                            <li th:each="cover : ${covers}" data-target="#lazycarousel" data-slide-to="0" ></li>
+                        </ol>
+                        <div id="carousel-inner" class="carousel-inner" th:if="${covers}">
+                            <div th:each="cover : ${covers}" class="item">
+                                <img th:src="${cover.link}"/>
+                            </div>
+                        </div>
+                        <a class="carousel-control left" href="#lazycarousel" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#lazycarousel" data-slide="next">&rsaquo;</a>
+                    </div>
+                </div>
+        </div>
         <div th:fragment="nav" class="masthead" id="masthead">
-            <h3 class="muted">TRƯỜNG TRUNG HỌC PHỔ THÔNG A</h3>
-            <nav class="custom_nav_bar navbar navbar-default row container" role="navigation">
+            <nav class="custom_nav_bar navbar row main-container navbar-default" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" th:href="@{'/guest/home'}"> <span class="glyphicon glyphicon-home" />  </a>
                 </div>
@@ -146,7 +164,9 @@
                         <li id="nav_website" class=' dropdown' sec:authorize="hasRole('STAFF')">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Website<i class="caret"/></a>
                             <ul class="dropdown-menu">
-                                <li ><a th:href="@{/staff/management/news/add}"><span class="glyphicon glyphicon-pencil "/>Viết bản tin</a></li>      
+                                <li ><a th:href="@{/staff/management/news/add}"><span class="glyphicon glyphicon-pencil "/>Viết bản tin</a></li>   
+                                <li ><a th:href="@{/staff/management/catalog/index}"><span class="glyphicon-list glyphicon"/>Danh sách bản tin</a></li>
+                                <li class="divider"/>
                                 <li ><a th:href="@{/staff/management/news/cover/add}"><span class="glyphicon glyphicon-list "/>Thay đổi cover</a></li>
                                 <li class='divider'/>
                                 <li ><a th:href="@{/staff/management/comment/index}"><span class="glyphicon glyphicon-list "/>Danh sách kiến nghị</a></li>       
@@ -240,7 +260,7 @@
         <script th:inline = "javascript" >
             /*<![CDATA[*/
             jQuery(document).ready(function() {
-
+                
             });
             /*]]>*/
         </script>    

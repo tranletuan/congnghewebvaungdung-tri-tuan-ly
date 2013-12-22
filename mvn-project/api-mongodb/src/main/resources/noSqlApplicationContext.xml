@@ -7,7 +7,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
                 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
                 http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
-    <context:property-placeholder  location="classpath:mongodb.properties" local-override="true" order="2" ignore-unresolvable="true"/>
+    <context:property-placeholder  location="classpath:mongodb_1.properties" local-override="true" order="2" ignore-unresolvable="true"/>
     <context:annotation-config/>
     
     <context:component-scan base-package="quanlyhocvu.api.mongodb">
@@ -17,13 +17,13 @@
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>
         <constructor-arg name="databaseName" value="${mongo.db}"/>
-        <constructor-arg name="userCredentials" ref="mongoCredentials"/>
+        <!--<constructor-arg name="userCredentials" ref="mongoCredentials"/>-->
     </bean>
 
-    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
+<!--    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
         <constructor-arg name="username" value="${mongo.username}" />
         <constructor-arg name="password" value="${mongo.password}" />
-    </bean>
+    </bean>-->
 
     <mongo:mongo  id="mongo" host="${mongo.host}" port="${mongo.port}" >
         <mongo:options connections-per-host="100" connect-timeout="5000" socket-keep-alive="true" socket-timeout="50000" threads-allowed-to-block-for-connection-multiplier="50" />

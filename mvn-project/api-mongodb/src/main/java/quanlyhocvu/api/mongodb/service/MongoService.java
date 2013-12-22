@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import quanlyhocvu.api.mongodb.DAO.AddressDAO;
 import quanlyhocvu.api.mongodb.DAO.AuthorityDAO;
-import quanlyhocvu.api.mongodb.DAO.CatalogNewsDAO;
+import quanlyhocvu.api.mongodb.DAO.CatalogDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietChuyenMonDAO;
 import quanlyhocvu.api.mongodb.DAO.ChiTietMonHocDAO;
 import quanlyhocvu.api.mongodb.DAO.CommentDAO;
@@ -37,6 +37,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NamHocDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NewsCounterDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.StaffDTO;
 import quanlyhocvu.api.mongodb.utils.Authorities;
@@ -53,7 +54,7 @@ public class MongoService {
      private NewsDAO newsDAO;
 
      @Autowired
-     private CatalogNewsDAO catalogNewsDAO;
+     private CatalogDAO catalogNewsDAO;
 
      @Autowired
      private AddressDAO addressDAO;
@@ -133,11 +134,11 @@ public class MongoService {
           this.newsDAO = newsDAO;
      }
 
-     public CatalogNewsDAO getCatalogNewsDAO() {
+     public CatalogDAO getCatalogNewsDAO() {
           return catalogNewsDAO;
      }
 
-     public void setCatalogNewsDAO(CatalogNewsDAO catalogNewsDAO) {
+     public void setCatalogNewsDAO(CatalogDAO catalogNewsDAO) {
           this.catalogNewsDAO = catalogNewsDAO;
      }
 
@@ -655,6 +656,30 @@ public class MongoService {
           newsDAO.update(news);
      }
 
+     public void increaseConterNews(String newsId) {
+          newsDAO.increaseCounterNews(newsId);
+     }
+     
+     public List<NewsCounterDTO> getHotNews(int limit) {
+          return newsDAO.getHotNews(limit);
+     }
+     
+     public List<CatalogNewsDTO> getCatalogsCounter() {
+          catalogNewsDAO.generateAllCatalogCounter();
+          return catalogNewsDAO.getAllCatalog();
+     }
+     
+     public void deleteCatalog(String catalogId) {
+          catalogNewsDAO.deleteCatalogById(catalogId);
+     }
+     
+     public void updateCatalog(CatalogNewsDTO catalog) {
+          catalogNewsDAO.updateCatalog(catalog);
+     }
+     
+     public CatalogNewsDTO getCatalogById(String catalogId) {
+          return catalogNewsDAO.getCatalogById(catalogId);
+     }
 //</editor-fold>   
     
 
@@ -668,5 +693,13 @@ public class MongoService {
 
      public List<CommentDTO> getAllComments() {
           return commentDAO.getAll();
+     }
+
+     public String getNewsContentByNewsId(String newsId) {
+          return newsDAO.getNewsContentByNewsId(newsId);
+     }
+
+     public List<NewsCounterDTO> getNewsByCatalogId(String catalogId) {
+          return newsDAO.getNewsByCatalogId(catalogId);
      }
 }

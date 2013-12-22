@@ -52,6 +52,7 @@ public class ManagementNewsController {
           String catalogIds[] = request.getParameterValues("catalogs");
           String url = "";
           System.out.println(title + author + content);
+          String imageUrl = request.getParameter("imageUrl");
           if ("".equals(title) || "".equals(author) || "".equals(content)) {
                model.put("message", "Tạo tin tức không thành công");
                return new ModelAndView("redirect:/guest/home", model);
@@ -60,6 +61,7 @@ public class ManagementNewsController {
           NewsDTO news = new NewsDTO(title, author, date,
                   content, url,
                   mongoService.getCatalogsFromIds(catalogIds));
+          news.setImageUrl(imageUrl);
           mongoService.insertNews(news);
           model.put("message", "Tạo tin tức thành công");
           return new ModelAndView("redirect:/guest/home", model);
@@ -97,27 +99,22 @@ public class ManagementNewsController {
 
           Map<String, Object> model = new HashMap<>();
           NewsDTO news = mongoService.getNewsById(request.getParameter("newsId"));
-          if (news != null) {
-               news.setContent(request.getParameter("content"));
-               news.setTitle(request.getParameter("title"));
-               news.setCatalogs(mongoService.getCatalogsFromIds(request.getParameterValues("catalogs")));
-               model.put("message", "Cập nhật thông tin bản tin thành công");
-               mongoService.updateNews(news);
-               return new ModelAndView("redirect:/guest/home", model);
+          try {
+               if (news != null) {
+                    news.setContent(request.getParameter("content"));
+                    news.setTitle(request.getParameter("title"));
+                    news.setImageUrl(request.getParameter("imageUrl"));
+                    news.setCatalogs(mongoService.getCatalogsFromIds(request.getParameterValues("catalogs")));
+                    model.put("message", "Cập nhật thông tin bản tin thành công");
+                    mongoService.updateNews(news);
+                    return new ModelAndView("redirect:/guest/home", model);
+               }
+          } catch (Exception ex) {
+               model.put("message", "Cập nhật thông tin bản tin thất bại");
           }
-          model.put("message", "Cập nhật thông tin bản tin thất bại");
           return new ModelAndView("redirect:/guest/home", model);
      }
 
-     @RequestMapping(value = "catalog/add", produces = "text/plain")
-     @ResponseBody
-     public String catalog_add(
-             @RequestParam String catalogname,
-             HttpServletRequest request) {
-          CatalogNewsDTO catalog = new CatalogNewsDTO(catalogname, "");
-          mongoService.insertCatalogNews(catalog);
-          return String.format("<option value=%s>%s</option>", catalog.getId(), catalog.getName());
-     }
 
      @RequestMapping(value = "cover/add")
      public ModelAndView corver_add(HttpServletRequest request) {
@@ -139,7 +136,7 @@ public class ManagementNewsController {
           int count = 1;
           String id = "";
           String link = null;
-          int size  = Integer.parseInt(request.getParameter("count"));
+          int size = Integer.parseInt(request.getParameter("count"));
           mongoService.removeAllCover();
           while (count <= size) {
                id = "field";
@@ -149,9 +146,9 @@ public class ManagementNewsController {
 
                link = request.getParameter(id);
                if (!(link == null || link.equals(""))) {
-               mongoService.insertCover(link, count);
+                    mongoService.insertCover(link, count);
                }
-              
+
                count++;
           }
           return new ModelAndView("redirect:/guest/home");

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.CatalogNewsDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
+import quanlyhocvu.api.mongodb.DTO.staff.NewsCounterDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 import quanlyhocvu.api.web.util.Tools;
@@ -25,7 +26,7 @@ public class HomeController {
 
      @RequestMapping(value = {"", "/", "home", "index"})
      public @ResponseBody
-     ModelAndView index() {
+     ModelAndView index(HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
           String username = Tools.getCurrentUser();
           if (username != null) {
@@ -34,8 +35,7 @@ public class HomeController {
           }
           List<CatalogNewsDTO> list = mongoService.getAllCatalog();
           model.put("listCatalogs", list);
-          List<CoverImageDTO> listcover =  mongoService.getAllCovers();
-          System.out.println(listcover.size());
+          List<CoverImageDTO> listcover = mongoService.getAllCovers();
           model.put("covers", listcover);
           return new ModelAndView("guest/home", model);
      }
@@ -47,7 +47,7 @@ public class HomeController {
              @PathVariable(value = "page") String page,
              HttpServletRequest request) {
           Map<String, Object> model = new HashMap<>();
-          int limit = 20;
+          int limit = 6;
           int offset = 0;
           try {
                offset = limit * (Integer.parseInt(page) - 1);
@@ -60,8 +60,27 @@ public class HomeController {
                listNews = mongoService.getNewsByCatalogIdAndPage(catalogId, limit, offset);
           } else {
                listNews = mongoService.getAllNewsByPage(limit, offset);
+               if (listNews.isEmpty()) {
+                    listNews = mongoService.getAllNewsByPage(limit, 0);
+               }
           }
           model.put("listNews", listNews);
           return new ModelAndView("guest/home_list_news", model);
+     }
+
+     @RequestMapping(value = "news/{newsId}")
+     @ResponseBody
+     public ModelAndView news_id(
+             @PathVariable(value = "newsId") String newsId,
+             HttpServletRequest request) {
+          Map<String, Object> model = new HashMap<>();
+          mongoService.increaseConterNews(newsId);
+          List<NewsCounterDTO> listcounter = mongoService.getHotNews(5);
+          List<CoverImageDTO> listcover = mongoService.getAllCovers();
+          model.put("covers", listcover);
+          String content = mongoService.getNewsContentByNewsId(newsId);
+          model.put("content", content);
+          model.put("listhotnews", listcounter);
+          return new ModelAndView("guest/home", model);
      }
 }

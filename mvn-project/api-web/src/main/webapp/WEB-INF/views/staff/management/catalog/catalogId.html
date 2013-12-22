@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="admin/template :: header" />
+  <body class="main-body">
+        <div class="container main-containern">
+            <div th:substituteby="staff/template :: nav" />   
+            <a th:href="@{/staff/management/news/add}" class="btn btn-primary float_right margin_button_bottom">Thêm bài mới</a>
+            <div class="clearfix"></div>
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>
+                        <th>Tên bài viết</th>
+                        <th>Ngày đăng</th>
+                        <th>Lượt xem</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${newsCounter.news.id}" align="center" th:each="newsCounter: ${listNews}">
+                        <td  id="newsTitle" >
+                            <a th:text="${newsCounter.news.title}" th:href="@{/guest/news/} + ${newsCounter.news.id}"/>
+                            </td>
+                        <td th:text="${newsCounter.news.date}" id="newsDate"/>                        
+                        <td th:text="${newsCounter.counter}" id="newsCounter"/>
+                        <td>
+                            <a th:href="@{'/staff/management/news/edit/'+${newsCounter.news.id}}" title="SỬa"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a th:href="@{'/staff/management/news/delete/'+${newsCounter.news.id}}" title="Xóa"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="staff/template :: footer"></div>
+        </div>	
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            jQuery(document).ready(function() {
+                jQuery("#table").dataTable({"bJQueryUI": true});
+                COMMON.activeMenu("nav_website");
+            });
+            /*]]>*/
+        </script>    
+    </body>
+</html>

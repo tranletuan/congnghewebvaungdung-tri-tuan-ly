@@ -12,44 +12,32 @@
             <div th:substituteby="staff/template :: nav" />               
             <form class="form-horizontal" method="post" th:action="@{/staff/management/news/save}">
                 <fieldset>
+                    <div class="editor-container">
+                        <!-- Form Name -->
+                        <legend>Tạo bản tin</legend>
 
-                    <!-- Form Name -->
-                    <legend>Tạo bản tin</legend>
+                        <!-- Text input-->
+                        <label class="control-label" for="title">Tên bản tin</label>  
+                        <input id="title" name="title" type="text" placeholder="" class="form-control input-md validate[required]"/>
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="title">Tên bản tin</label>  
-                        <div class="col-md-6">
-                            <input id="title" name="title" type="text" placeholder="" class="form-control input-md validate[required]"/>
-                        </div>
-                    </div>
+                        <!--imageUrl-->
+                        <label class="control-label" for="title">Ảnh đại diện</label>  
+                        <input id="imageUrl" name="imageUrl" type="text" placeholder="" class="form-control input-md"/>
 
-                    <!-- Textarea -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="content">Nội dung</label>
-                        <div class="col-md-6">                     
-                            <textarea class="form-control validate[required]" id="content" name="content"></textarea>
-                        </div>
-                    </div>
 
-                    <!-- Select Multiple -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="catalogs">Loại bản tin</label>
-                        <div class="col-md-6">
-                            <select id="catalogs" name="catalogs" multiple="multiple" class=" my_select_box form-control" data-placeholder="Chọn loại bài viết..." >
-                                <option th:value="${catalog.id}" th:text="${catalog.name}" th:each="catalog : ${listCatalogs}"></option>
-                            </select>
-                        </div>
-                    </div>
+                        <!-- Select Multiple -->
+                        <label class=" control-label" for="catalogs">Loại bản tin</label>
+                        <select id="catalogs" name="catalogs" multiple="multiple" class=" my_select_box form-control" data-placeholder="Chọn loại bài viết..." >
+                            <option th:value="${catalog.id}" th:text="${catalog.name}" th:each="catalog : ${listCatalogs}"></option>
+                        </select>
+                        <br/>
 
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="add_catalog"></label>
-                        <div class="col-md-8">
-                            <input type="submit" id="submit" name="submit" class="btn btn-primary" text="Lưu lại"></input>
-                            <button id="cancel" name="cancel" class="btn btn-default">Thoát</button>
-                            <a id="add_catalog" name="add_catalog" class="btn btn-success" text="Thêm loại bản tin">Thêm loại bản tin</a>
-                        </div>
+                        <!-- Textarea -->
+                        <label class=" control-label" for="content">Nội dung</label>                 
+                        <textarea id="content" name="content"/>
+                        <!-- Button -->
+                        <input type="submit" id="submit" name="submit" class="btn btn-primary space-top" text="Lưu lại"></input>
+                        <button id="cancel" name="cancel" class="space-top btn btn-default">Thoát</button>
                     </div>
                 </fieldset>
             </form>
@@ -67,14 +55,9 @@
                     no_results_text: "Không tìm thấy kết quả",
                     width: "100%"
                 });
-                $('#add_catalog').editable({
-                    type: 'text',
-                    pk: 1,
-                    url: url,
-                    success: function(data) {                        
-                        $(data).appendTo($('catalogs'));
-                    }
-                }); 
+                var config = {};
+                var html = '';
+                CKEDITOR.replace('content');
             });
             /*]]>*/
         </script>    

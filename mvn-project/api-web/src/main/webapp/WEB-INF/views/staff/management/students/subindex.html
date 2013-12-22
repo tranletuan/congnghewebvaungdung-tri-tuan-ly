@@ -4,19 +4,19 @@
     <body> 
         <span th:id="${namHocId}" class="namHocDuocChon_frame"></span>
         <span th:id="${khoiLopId}" class="khoiLopDuocChon_frame"></span>
-        <div class="main-container col-md-12">
+        <div class="col-md-12">
             <label class="col-md-2 control-label">Lớp Học</label>
             <span th:id="${lopHocDuocChon.getid()}" th:if="${lopHocDuocChon}" class="lopHocDuocChon"></span>
             <span id="1" th:unless="${lopHocDuocChon}" class="lopHocDuocChon"></span>
-            <div class="col-md-3">
+            <div class="margin_button_top col-md-3">
                 <select id="IDLopHoc" name="IDLopHoc" class="form-control">
                     <option th:each="lopHoc : ${listLopHoc}" th:text="${lopHoc.gettenLopHoc()}" th:value="${lopHoc.getid()}"/>                          
                     <option value="0" th:unless="${laNamHienTai}">Chưa xếp lớp</option>
                 </select>  
             </div>
         </div>
-        <div id="subTable">
-            <table id="table" class="table_hocsinh" style="word-wrap: break-word;">
+        <div id="subTable" class="margin_button_top">
+            <table id="table" class="margin_button_top table_hocsinh" style="word-wrap: break-word;">
                 <thead>
                     <tr>                        
                         <th>Mã Học Sinh</th>
