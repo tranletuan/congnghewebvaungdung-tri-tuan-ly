@@ -6,6 +6,7 @@
 package quanlyhocvu.api.mongodb.DAO;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -20,7 +21,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
  * @author HuuTri
  */
 @Repository
-public class CatalogNewsDAO {
+public class CatalogDAO {
 
      @Autowired
      MongoOperations mongoOperation;
@@ -67,11 +68,51 @@ public class CatalogNewsDAO {
           mongoOperation.findAndModify(query, update, CatalogNewsDTO.class);
      }
 
-//     public List<NewsDTO> getNewsPageByCatalog(String catalogId, int limit, int offset) {
-//          Query query = Query.query(Criteria.where("id").is(catalogId));
-//          query.limit(limit);
-//          query.skip(offset);
-//          return mongoOperation.find(query, )
-//     }
-
+     /**
+      * 
+      * @param catalogId 
+      */
+     public void generateCatalogCounter(String catalogId) {
+          Query query = Query.query(Criteria.where("catalogs.$id").is(new ObjectId(catalogId)));
+          int count = mongoOperation.find(query, NewsDTO.class).size();
+          query = Query.query(Criteria.where("id").is(catalogId));
+          Update update = new Update().set("counter", count);
+          mongoOperation.findAndModify(query, update, CatalogNewsDTO.class);
+     }
+     
+     /**
+      * 
+      */
+     public void generateAllCatalogCounter() {
+          List<CatalogNewsDTO> catalogs = mongoOperation.findAll(CatalogNewsDTO.class);
+          for(CatalogNewsDTO catalog : catalogs) {
+               generateCatalogCounter(catalog.getId());
+          }
+     }
+     
+     /**
+      * 
+      * @param catalogId 
+      */
+     public void deleteCatalogById(String catalogId) {
+          Query query = Query.query(Criteria.where("id").is(catalogId));
+          mongoOperation.remove(query, CatalogNewsDTO.class);
+     }
+     
+     /**
+      * 
+      * @param catalog 
+      */
+     public void updateCatalog(CatalogNewsDTO catalog) {
+          Query query = Query.query(Criteria.where("id").is(catalog.getId()));
+          Update update = new Update();
+          if (!"".equals(catalog.getName())) {
+               update.set("name", catalog.getName());
+          }
+          if (!"".equals(catalog.getInfo())) {
+               update.set("info", catalog.getInfo());
+          }
+          
+          mongoOperation.findAndModify(query, update, CatalogNewsDTO.class);
+     }
 }

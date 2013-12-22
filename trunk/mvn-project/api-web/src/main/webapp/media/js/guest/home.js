@@ -14,11 +14,12 @@
  * 
  */
 function loadNews(obj) {
-    var catalogId = obj===null? $("#catalogs").children(".active")[0].id : obj.id;
-    catalogId = catalogId==="" ? 0:catalogId;    
-    var page  = $("#page_num").children(".active")[0].children[0].text;
+    var catalogId = obj === null ? $("#catalogs").children(".active")[0].id : obj.id;
+    console.log(catalogId);
+    catalogId = catalogId === "" ? 0 : catalogId;
+    var page = $("#currPage").val();
     jQuery.ajax({
-        url: newsUrl + "/" +catalogId + "/" + page,
+        url: newsUrl + "/" + catalogId + "/" + page,
         success: function(data) {
             jQuery('#list_news').html(data);
         }
@@ -35,6 +36,7 @@ function loadFrame() {
 }
 ;
 function loadCarousel() {
+//    $('#carousel-inner').children()[0].setAttribute('class', 'item active');
     var carousel = $(this).find('.carousel').hide();
     var deferreds = [];
     var imgs = $('.carousel', this).find('img');
@@ -55,6 +57,8 @@ function loadCarousel() {
         $('#ajaxloader').hide();
         carousel.fadeIn(1000);
     });
+
+//    $('#carousel-indicator').children()[0].setAttribute('class', 'active');
 }
 ;
 (function($) {
@@ -168,6 +172,29 @@ function loadCarousel() {
 $(function() {
     $(".counted").charCounter(320, {container: "#counter"});
 });
+////////////////////////////////////////
+$('#media').carousel({
+    pause: true,
+    interval: 400
+});
+$(".catalog_item").on('click', function() {
+    loadNews(this);
+});
+$("#next_page").on('click', function() {
+    console.log(this);
+    var temp = parseInt($("#currPage").val()) + 1;
+    $("#currPage").val(temp);
+    loadNews(null);
+});
+$("#pre_page").on('click', function() {
+    console.log(this);
+    var temp = parseInt($("#currPage").val()) - 1;
+    if (temp > 0) {
+        $("#currPage").val(temp);
+        loadNews(null);
+    }
+});
+
 
 
 

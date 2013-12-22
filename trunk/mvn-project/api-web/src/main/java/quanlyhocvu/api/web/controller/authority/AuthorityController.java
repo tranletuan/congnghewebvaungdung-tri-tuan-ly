@@ -44,6 +44,6 @@ public class AuthorityController {
         Map<String, Object> model = new HashMap<String, Object>();
 
         model.put("message", "Vui lòng kiểm tra thông tin đăng nhập");
-        return new ModelAndView("redirect:/guest/login", model);
+        return new ModelAndView("redirect:/guest/home", model);
     }
 }

@@ -8,7 +8,7 @@
             <div th:substituteby="staff/template :: nav" />                
             <!--<div class="clearfix"></div>-->
             <span th:id="${namHienTai.getid()}" th:if="${namHienTai}" class="namHocHienTai"></span>
-            <div class="main-container col-md-12 ">
+            <div class="col-md-12 ">
                 <label class="col-md-2 control-label">Năm Học</label>
                 <div class="col-md-3 ">
                     <select id="IDNamHoc" name="IDNamHoc" class="form-control input-large">
@@ -18,7 +18,7 @@
                 <div class="col-md-8"/>
             </div>
             <div class="clearfix"></div>
-            <div class="main-container col-md-12">
+            <div class="margin_button_top col-md-12">
                 <span th:id="${khoiLopMacDinh.getid()}" th:if="${khoiLopMacDinh}" class="khoiLopMacDinh"></span>
                 <label class="col-md-2 control-label">Khối Lớp </label>
                 <div class="col-md-3">

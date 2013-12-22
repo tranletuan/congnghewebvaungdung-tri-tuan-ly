@@ -127,17 +127,28 @@ and open the template in the editor.
 /*Css for modal*/
 
 .main-container {
+
+
+    padding-left: 0px;
+    padding-right: 0px;
+
     margin-bottom: 5px;
-    /*    background-color: 	#FEFEFE;
-        -moz-box-shadow:    3px 3px 5px 6px #ccc;
-        -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-        box-shadow:         3px 3px 5px 6px #ccc;
-    
-        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
-        -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";*/
+    background-color: #fafafa;
+    -moz-box-shadow:    0px 0px 4px 4px #DBDEDE;
+    -webkit-box-shadow: 0px 0px 4px 4px #DBDEDE;
+    box-shadow:         0px 0px 4px 4px #DBDEDE;
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
 }
 .main-body {
+    margin-top: 0px;
+    padding-top: 0px;
     font-family: "segoe ui";
+    background: url("img/bg.jpg"), repeat;
+    height: 100%;
+    padding-bottom: 0px;
+    font-size: 14px;
     /*background-color: #FFFFFF;*/
 }
 
@@ -146,4 +157,70 @@ and open the template in the editor.
 }
 .margin_action{
     margin: 0 10px;
+}
+.navbar-inverse {
+}
+
+.nav-tabs>li>a {
+    font-size:16px;
+}
+
+.nav-tabs {
+    background: url("img/bg.jpg"), repeat;
+}
+
+.editor-container {
+    padding: 10px;
+}
+
+.space-top {
+    margin-top: 10px;
+}
+
+.carousel-control.right {
+    background-image: none;
+}
+
+.carousel-control.left {
+    background-image: none;
+}
+
+.news-container {
+    /*margin-right :10px;*/
+    margin-top: -20px;
+    padding: 0px;
+    -moz-box-shadow:    0px 0px 2px 2px #DBDEDE;
+    -webkit-box-shadow: 0px 0px 2px 2px #DBDEDE;
+    box-shadow:         0px 0px 2px 2px #DBDEDE;
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+}
+
+.navbar-toggle {
+    background-color: black;
+}
+
+.content-margin {
+    margin-top: 10px;
+}
+
+.feed_item {
+    text-overflow:ellipsis;
+    overflow: hidden;
+}
+
+.most-read-panel > .panel-heading {
+    background-color: #faa61c;
+    color: white;
+}
+
+.warning-panel > .panel-heading {
+    background-color: #ae113e;
+    color: white;
+}
+
+.panel-same-info > .panel-heading{
+    background-color: #31708f;
+     color: white;
 }

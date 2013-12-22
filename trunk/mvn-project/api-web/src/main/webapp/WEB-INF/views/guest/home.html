@@ -1,55 +1,67 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
-<html xmlns="http://www.w3.org/1999/html5"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.springframework.org/security/tags">
+<!DOCTYPE html>
+<html>
     <head th:include="guest/template :: header" >
-
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     </head>
     <body class='main-body'>
         <div class="container main-container">
-            <div th:include="guest/template ::nav" />   
-            <div class="row container">
-                <div class="view container">
-                    <div id="lazycarousel" class="carousel slide">
-                        <ol class="carousel-indicators">
-                            <li th:each="corverImage : ${corverImages}" data-target="#lazycarousel" th:data-slide-to="${coverImage.id}" ></li>
-                        </ol>
-                        <!-- Carousel items -->
-                        <div class="carousel-inner" th:if="${coverImages}">
-                            <div th:each="corverImage : ${coverImages}" class="item">
-                                <img src="{corverImage.link}"/>
-                            </div>
-                        </div>
-                        <!-- Carousel nav -->
-                        <a class="carousel-control left" href="#lazycarousel" data-slide="prev">&lsaquo;</a>
-                        <a class="carousel-control right" href="#lazycarousel" data-slide="next">&rsaquo;</a>
-                    </div>
-                </div>
-            </div>
+
+            <!--<div th:include="master-layout/template::top" style="z-index: 901;"/>-->
+
+            <div class="banner" th:include="guest/template :: banner"/>
+            <div th:include="guest/template ::nav" /> 
             <p></p>
-            <div class="row container">
-                <div class="container">
-                    <div class="col-md-3 list-group pull-left">
-                        <!--search form-->
-                        <!--end search form-->
-                        <hr/>
-                        <div th:unless="${user}" id="login-frame">
+            <div  th:if="${content}">
+                <div id="contents" class="masthead col-md-8 content-margin "/>
+                <div class="col-md-4">
+                    <div class="panel-same-info main-container">
+                        <div class="panel-heading align_center">
+                            <strong>TIN TƯC NỔI BẬT</strong>
+                        </div>              
+                    </div>  
+                    <div class="most-read-panel main-container content-margin ">
+                        <div class="panel-heading align_center">  
+                            <strong>ĐƯỢC XEM NHIỀU NHẤT</strong>
                         </div>
-                        <div class="media" th:if="${user}">
-                            <a class="thumbnail pull-left" href="#">
-                                <img class="media-object" src=""/>
-                            </a>
-                            <div class="media-body">
-                                <strong class="media-heading" th:inline="text">Xin chào, <a>[[${user.username}]]</a> </strong>
-                                <p> 
-                                    <span class="label label-warning">0 cảnh báo</span>
-                                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> 1 tin nhắn mới</a>
-                                </p>
-                                <p>
-                                    <a href="logout" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-log-out"></span> Thoát</a>
-                                </p>
-                            </div>                            
-                        </div>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li th:each="hotnews : ${listhotnews}" style="height:100px;">
+                                <a class="row-fluid" style="padding-left: 0px; height: 100%;" th:href="@{'/guest/news/'}+${hotnews.news.id}">
+                                    <div th:if="${hotnews.news.imageUrl}" style="height: 100%;" class="pull-left col-md-4">
+                                        <img th:src="${hotnews.news.imageUrl}" class="img-thumbnail" style="height:100%"/>
+                                    </div>
+                                    <div class="col-md-8 pull-right" th:text="${hotnews.news.title}"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>  
+
+                    <div class="warning-panel main-container content-margin ">
+                        <div class="panel-heading align_center">  
+                            <strong>THÔNG BÁO</strong>
+                            <div class="media" th:if="${user}">
+                                <a class="thumbnail pull-left" href="#">
+                                    <img class="media-object" src=""/>
+                                </a>
+                                <div class="media-body">
+                                    <strong class="media-heading" th:inline="text">Xin chào, <a>[[${user.username}]]</a> </strong>
+                                    <p> 
+                                        <span class="label label-warning">0 cảnh báo</span>
+                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> 1 tin nhắn mới</a>
+                                    </p>
+                                    <p>
+                                        <a href="logout" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-log-out"></span> Thoát</a>
+                                    </p>
+                                </div>                            
+                            </div>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a>adfasdfasdfadfsdfadsfsdf</a>
+                                </li>
+                                <li>
+                                    <a>adfasdfasdfadfsdfadsfsdf</a>
+                                </li>
+                            </ul>
+                        </div>  
                     </div>
                     <div class="divider"/>
                     <div class="divider"/>
@@ -106,7 +118,7 @@
                                         <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span>Nhân Viên</a>
                                     </div>
                                 </li>
-                                
+
                             </ul>
                         </div>
                         <div class="panel-footer">
@@ -120,115 +132,128 @@
                     </div>                    
                     <!--end message-->
                 </div>
-                <!--News-->
-                <div class="news-container col-md-9 pull-right">
-                    <ul id ="catalogs" class="nav nav-tabs faq-cat-tabs">
-                        <li id="0" class="active catalog_item"><a href="#faq-cat-1" data-toggle="tab">Tất cả</a></li>
-                        <li class="catalog_item" th:id ="${catalog.id}" th:each="catalog : ${listCatalogs}"><a href="#faq-cat-1" data-toggle="tab" th:text="${catalog.name}"></a></li>
-                    </ul>
-                    <div id="list_news">
+                <script th:inline="javascript">
+                    jQuery(document).ready(function() {
+                    jQuery('#contents').html([[${content}]]);
+                            $('#carousel-inner').children()[0].setAttribute('class', 'item active');
+                            loadCarousel();
+                    });</script>
+            </div>
+            <div th:unless="${content}">
+                <nav class="margin-top navbar" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"> <span class="sr-only">Toggle navigation</span><span class="icon-bar" style=""></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                     </div>
-                    <div>
-                        <ul id="page_num" class="pagination">
-                            <li ><a href="#">&laquo;</a></li>
-                            <li class='active page_item'><a  >1</a></li>
-                            <li th:each="index : ${listPages}" class='page_item'><a  th:text="${index}"></a></li>
-                            <li id="page_more"><a>...</a></li>
-                            <li ><a href="#">&raquo;</a></li>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul id ="catalogs" class=" pull-right nav navbar-nav">
+                            <li id="0" class="catalog_item dropdown active" ><a class="dropdown-toggle" href="#faq-cat-1" data-toggle="tab">Tất cả</a></li>
+                            <li class="catalog_item dropdown" th:id ="${catalog.id}" th:each="catalog : ${listCatalogs}"><a class="dropdown-toggle" href="#faq-cat-1" data-toggle="tab" th:text="${catalog.name}" th:if="${catalog.name}"></a></li>
                         </ul>
                     </div>
-                </div>
-                <!--end news-->
-            </div>
-            <!--thumnnail news-->
-            <div class='row container carousel-container'>
-                <div class="carousel slide media-carousel" id="media">
-                    <div class="carousel-inner">
-                        <div class="item  active">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>          
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
+                </nav>
+                <div class="container" >
+                    <div class="container">
+                        <div class="col-md-3 list-group pull-left">
+                            <!--search form-->
+                            <!--end search form-->
+                            <hr/>
+                            <div th:unless="${user}" id="login-frame">
+                            </div>
+                            <div class="media" th:if="${user}">
+                                <a class="thumbnail pull-left" href="#">
+                                    <img class="media-object" src=""/>
+                                </a>
+                                <div class="media-body">
+                                    <strong class="media-heading" th:inline="text">Xin chào, <a>[[${user.username}]]</a> </strong>
+                                    <p> 
+                                        <span class="label label-warning">0 cảnh báo</span>
+                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> 1 tin nhắn mới</a>
+                                    </p>
+                                    <p>
+                                        <a href="logout" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-log-out"></span> Thoát</a>
+                                    </p>
                                 </div>
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>    
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>   
+
+                            </div>
+                            <div class="divider"/>
+                            <div class="divider"/>
+                            <div class="divider"/>
+                            <hr/>
+                            <!-- Message-->
+                            <div class="panel" th:if="${user}">           
+                                <form accept-charset="UTF-8" th:action="@{/guest/comment/save}" method="POST">
+                                    <textarea class="validate[required] form-control counted" name="message" placeholder="Nội dung..." rows="5" style="margin-bottom:10px; resize: none;"></textarea>
+                                    <h6 class="pull-right" id="counter">Tối đa 300 kí tự</h6>
+                                    <button class="btn btn-info" type="submit">Kiến nghị</button>
+                                </form>
+                            </div>
+                            <!--end message-->
+                        </div>
+                        <!--News-->
+                        <div class="col-md-9 pull-right">
+                            <div id="content-panel" class="news-container ">                      
+                                <div id="list_news">
+
+                                </div>
+                                <div class="">
+                                    <ul id="page_num" class="pagination">
+                                        <li ><a id="pre_page">&laquo;</a></li>
+                                        <li ><a id="next_page">&raquo;</a></li>
+                                    </ul>
+                                    <input type="hidden" id="currPage" value="1"/>
+                                </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>          
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>   
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>   
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>          
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>  
-                                <div class="col-md-3">
-                                    <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"/></a>
-                                </div>
-                            </div>
-                        </div>
+                        <!--end news-->
                     </div>
-                    <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
-                    <a data-slide="next" href="#media" class="right carousel-control">›</a>
+                    <!--thumnnail news-->
+                    <!--end thumbnail news-->
                 </div>
+                <div th:include="guest/template :: footer"></div>
+
+                <script th:inline="javascript">
+                            /*<![CDATA[*/
+                            var homeUrl = /*[[@{/guest/news}]]*/ "homeUrl";
+                            var viewUrl = /*[[@{/guest/login}]]*/ "viewUrl";
+                            var newsUrl = /*[[@{/guest/home_list_news}]]*/ "newsUrl";
+                            jQuery(document).ready(function() {
+                    loadNews(null);
+                            loadFrame();
+                            jQuery("#form-horizontal").validationEngine();
+                            COMMON.activeMenu("home_nav");
+                            $('#carousel-inner').children()[0].setAttribute('class', 'item active');
+                            $('#catalogs').children()[0].setAttribute('class', 'catalog_item dropdown active');
+                            loadCarousel();
+                    });
+                            /*]]>*/
+                </script>   
             </div>
-
-            <!--end thumbnail news-->
-
-            <div th:include="guest/template :: footer"></div>
         </div>	
         <link href="" th:href="@{/media/css/guest/guest.css}" rel="stylesheet" media="screen" />
         <script th:src="@{/media/js/guest/home.js}" type="text/javascript"/>
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-            var viewUrl = /*[[@{/guest/login}]]*/ "viewUrl";
-            var newsUrl = /*[[@{/guest/home_list_news}]]*/ "newsUrl";
-            jQuery(document).ready(function() {
-                jQuery("#form-horizontal").validationEngine();
+    </body>
+    <script th:inline="javascript">
+                /*<![CDATA[*/
+                var viewUrl = /*[[@{/guest/login}]]*/ "viewUrl";
+                var newsUrl = /*[[@{/guest/home_list_news}]]*/ "newsUrl";
+                jQuery(document).ready(function() {
+        jQuery("#form-horizontal").validationEngine();
                 COMMON.activeMenu("home_nav");
-
                 loadCarousel();
                 $('#media').carousel({
-                    pause: true,
-                    interval: 4000
-                });
+        pause: true,
+                interval: 4000
+        });
                 loadFrame();
                 loadNews(null);
-            });
-            $(".catalog_item").on('click', function() {
-                loadNews(this);
-            });
-            $("ul.online-user").on('click', 'li', function(){
-                console.log("Click to chat");
-            })
-            /*]]>*/
-        </script>  
-
-
-    </body>
+        });
+                $(".catalog_item").on('click', function() {
+        loadNews(this);
+        });
+                $("ul.online-user").on('click', 'li', function(){
+        console.log("Click to chat");
+        })
+                /*]]>*/
+    </script>  
+</body>
 </html>

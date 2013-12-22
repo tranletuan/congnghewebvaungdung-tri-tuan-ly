@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="teacher/template :: header" />
-    <body>
-        <div class="container">
+  <body class="main-body">
+        <div class="container main-containern">
             <div th:substituteby="teacher/template :: nav" />              
             <div class="clearfix"></div>
             <label>Lớp : <span class="strong_text" th:text="${tenLop}"/></label>

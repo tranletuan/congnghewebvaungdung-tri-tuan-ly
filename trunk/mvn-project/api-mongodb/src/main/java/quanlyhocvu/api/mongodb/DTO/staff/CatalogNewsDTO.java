@@ -21,6 +21,7 @@ public class CatalogNewsDTO {
      private String id;
      private String name;
      private String info;
+     private int counter;
      
      public CatalogNewsDTO(String name, String info) {
           this.name = name;
@@ -51,5 +52,13 @@ public class CatalogNewsDTO {
 
      public void setInfo(String info) {
           this.info = info;
+     }
+
+     public int getCounter() {
+          return counter;
+     }
+
+     public void setCounter(int counter) {
+          this.counter = counter;
      }
 }

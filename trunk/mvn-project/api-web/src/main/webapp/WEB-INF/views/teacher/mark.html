@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="teacher/template :: header" />
+    <body  class="main-body">
+        <div class="container main-container">
+            <div th:substituteby="teacher/template :: nav" />              
+            <div class="clearfix"></div>
+            <label>Lớp : <span class="strong_text" th:text="${tenLop}"/></label>
+            <br/>
+            <label>Môn học : <span class="strong_text" th:text="${monHoc}"/></label>
+            <br/>
+            <label>
+                Loại điểm : <span class="strong_text" th:text="${tenLoaiDiem}"/>
+            </label>
+            <br/>
+            <label>Cột : 
+                <select class="select_cot_diem">
+                    <option th:text="${soCotDiem.size() - soCotDiem.indexOf(cot)}" th:each="cot : ${soCotDiem}"
+                            th:id="@{'/teacher/class/' + ${idPhanCong} + '/' + ${loaiDiem} + '/' + ${soCotDiem.indexOf(cot)}}"/>
+                </select>
+                <a class="them_cot_moi" title="Thêm cột điểm mới"><i class="glyphicon glyphicon-plus"/></a>
+                <a class="xoa_cot" title="Xóa cột điểm hiện tại"><i class="glyphicon glyphicon-minus"/></a>
+            </label>
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>                        
+                        <td align="center" colspan="3">Học Kỳ : <span th:text="${hocKy}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Mã Học Sinh</th>
+                        <th>Họ và Tên</th>
+                        <th>Điểm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${diem.getid()}" align="center" th:each="diem: ${listDiem}">   
+                        <th th:text="${diem.getHocSinh().getmaHocSinh()}"/>
+                        <th align="left" th:text="${diem.getHocSinh().gethoTen()}"/>
+                        <th> <input class="cham_diem" th:value="(${loaiDiem} eq 'ktmieng'? ${diem.getListDiemKTMieng().get(index)} : 
+                                    (${loaiDiem} eq 'kt15'? ${diem.getListDiemKT15().get(index)} : 
+                                    (${loaiDiem} eq 'kt1tiet'? ${diem.getListDiemKT1Tiet().get(index)}: 
+                                    (${loaiDiem} eq 'ktgiuaky'? ${diem.getDiemGiuaKy()} : 
+                                    (${diem.getDiemCuoiKy()}))))) ge 0 ? 
+
+                                    (${loaiDiem} eq 'ktmieng'? ${diem.getListDiemKTMieng().get(index)} : 
+                                    (${loaiDiem} eq 'kt15'? ${diem.getListDiemKT15().get(index)} : 
+                                    (${loaiDiem} eq 'kt1tiet'? ${diem.getListDiemKT1Tiet().get(index)}: 
+                                    (${loaiDiem} eq 'ktgiuaky'? ${diem.getDiemGiuaKy()} : 
+                                    (${diem.getDiemCuoiKy()}))))) : 'chưa có' "/></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:include="teacher/template :: footer"></div>
+        </div>  
+
+        <script src="" th:src="@{/media/js/teacher_module/marking.js}"></script>
+
+        <script th:inline="javascript">
+            var chamDiemURL = /*[[@{/teacher/class/chamdiem}]]*/ "chamdiem";
+            var themCotURL = /*[[@{/teacher/class/themcotmoi}]]*/"themcot";
+            var xoaCotURL = /*[[@{/teacher/class/xoacot}]]*/"themcot";
+            var loaiDiem = /*[[${loaiDiem}]]*/"loai";
+            var idPhanCong = /*[[${idPhanCong}]]*/"idPhanCong";
+            var index = /*[[${index}]]*/"index";
+        </script>    
+    </body>
+</html>

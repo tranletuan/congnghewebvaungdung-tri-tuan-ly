@@ -27,6 +27,7 @@ public class NewsDTO {
      private Date date;
      private String content;
      private String url;
+     private String imageUrl;
      @DBRef
      private List<CatalogNewsDTO> catalogs;
 
@@ -67,7 +68,6 @@ public class NewsDTO {
      public void setId(String id) {
           this.id = id;
      }
-
      public String getTitle() {
           return title;
      }
@@ -106,5 +106,13 @@ public class NewsDTO {
 
      public void setUrl(String url) {
           this.url = url;
+     }
+
+     public String getImageUrl() {
+          return imageUrl;
+     }
+
+     public void setImageUrl(String imageUrl) {
+          this.imageUrl = imageUrl;
      }
 }

@@ -6,6 +6,9 @@
         <div  th:include="master-layout/template::header"/>
     </head>    
     <body th:fragment="body">
+        <div th:fragment="banner"  >
+            <div th:include="master-layout/template::banner"/>
+        </div>
         <div th:fragment="nav" class="masthead" id="masthead" >
             <div th:include="master-layout/template::nav"/>
             
