@@ -231,29 +231,28 @@
         </div>	
         <link href="" th:href="@{/media/css/guest/guest.css}" rel="stylesheet" media="screen" />
         <script th:src="@{/media/js/guest/home.js}" type="text/javascript"/>
+        <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    var viewUrl = /*[[@{/guest/login}]]*/ "viewUrl";
+                    var newsUrl = /*[[@{/guest/home_list_news}]]*/ "newsUrl";
+                    jQuery(document).ready(function() {
+            jQuery("#form-horizontal").validationEngine();
+                    COMMON.activeMenu("home_nav");
+                    loadCarousel();
+                    $('#media').carousel({
+            pause: true,
+                    interval: 4000
+            });
+                    loadFrame();
+                    loadNews(null);
+            });
+                    $(".catalog_item").on('click', function() {
+            loadNews(this);
+            });
+                    $("ul.online-user").on('click', 'li', function(){
+            console.log("Click to chat");
+            })
+                    /*]]>*/
+        </script>  
     </body>
-    <script th:inline="javascript">
-                /*<![CDATA[*/
-                var viewUrl = /*[[@{/guest/login}]]*/ "viewUrl";
-                var newsUrl = /*[[@{/guest/home_list_news}]]*/ "newsUrl";
-                jQuery(document).ready(function() {
-        jQuery("#form-horizontal").validationEngine();
-                COMMON.activeMenu("home_nav");
-                loadCarousel();
-                $('#media').carousel({
-        pause: true,
-                interval: 4000
-        });
-                loadFrame();
-                loadNews(null);
-        });
-                $(".catalog_item").on('click', function() {
-        loadNews(this);
-        });
-                $("ul.online-user").on('click', 'li', function(){
-        console.log("Click to chat");
-        })
-                /*]]>*/
-    </script>  
-</body>
 </html>
