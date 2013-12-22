@@ -75,7 +75,7 @@
                             <button class="btn btn-info" type="submit">Kiến nghị</button>
                         </form>
 
-                    </div>
+                    </div>                    
                     <div class="panel panel-primary" th:if="${user}">
                         <div class="panel-heading">            Online Friends
                             <div class="pull-right action-buttons">
@@ -187,6 +187,55 @@
                                     <button class="btn btn-info" type="submit">Kiến nghị</button>
                                 </form>
                             </div>
+
+                            <div class="panel panel-primary" th:if="${user}">
+                                <div class="panel-heading">            Online Friends
+                                    <div class="pull-right action-buttons">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-cog" style="margin-right: 0px;"></span>
+                                            </button>
+                                            <ul class="dropdown-menu slidedown">
+                                                <li><a >Chat Sounds</a></li>
+                                                <li><a >Close All Chat Tabs</a></li>                                        
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group online-user">
+                                        <li class="list-group-item">
+
+                                            <label id="10520066">Vũ Văn Lý</label>                                    
+                                            <div class="pull-right action-buttons">                                        
+                                                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span>Học Sinh</a>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+
+                                            <label id="10520077">Trần Lê Tuấn</label>                                    
+                                            <div class="pull-right action-buttons">
+                                                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span>Giáo Viên</a>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <label id="10520088">Lê Võ Hữu Trí</label>                                    
+                                            <div class="pull-right action-buttons">
+                                                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span>Nhân Viên</a>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h6>
+                                                There are <span class="label label-info">3</span>people online.</h6>
+                                        </div>                                
+                                    </div>
+                                </div>
+                            </div> 
                             <!--end message-->
                         </div>
                         <!--News-->
@@ -207,7 +256,11 @@
                         <!--end news-->
                     </div>
                     <!--thumnnail news-->
+
                     <!--end thumbnail news-->
+
+                    <div id="chat_tab">
+                    </div>
                 </div>
                 <div th:include="guest/template :: footer"></div>
 
@@ -249,10 +302,63 @@
                     $(".catalog_item").on('click', function() {
             loadNews(this);
             });
-                    $("ul.online-user").on('click', 'li', function(){
-            console.log("Click to chat");
+                    var tab_width = 250;
+                    var chat_tab;
+                    var last_tab;
+                    var right;
+                    var next_tab;
+                    var self;
+                    $("ul.online-user").on('click', 'li', function() {
+            chat_tab = $("#chat_tab")[0];
+                    self = $(this);
+                    right = "-250px";
+                    var length = chat_tab.children.length;
+                    if (length > 0){
+            last_tab = chat_tab.children[length - 1];
+                    right = last_tab.style.right;
+            }
+
+            var chatboxtitle = self[0].children[0].innerHTML.toString();
+                    var chatboxid = self[0].children[0].id;                    
+                    d = document.createElement('div');
+                    $(d).attr("id", "chatbox_" + chatboxid)
+                    .addClass("chatbox")
+                    .html('<div class="chatboxhead"><div class="chatboxtitle">' + chatboxtitle + '</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\'' + chatboxid + '\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\'' + chatboxid + '\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\'' + chatboxid + '\');"></textarea></div>')
+                    .appendTo($("#chat_tab"));
+                    var next_right = parseInt(right) + 255 + "px";
+                    $("#chatbox_" + chatboxid).css('bottom', '0px');
+                    $("#chatbox_" + chatboxid).css('display', 'block');
+                    $("#chatbox_" + chatboxid).css('right', next_right);                    
             })
-                    /*]]>*/
+
+
+
+
+                    var toggle_click;
+                    function toggleChatBoxGrowth(chatboxid) {
+                        toggle_click = $("#chatbox_" + chatboxid)[0];                         
+                        var content = toggle_click.children[1];
+                        var chatboxinput = toggle_click.children[2];
+                        if ($(content).hasClass("invisible")) {
+                            $(content).removeClass("invisible");                        
+                            $(chatboxinput).removeClass("invisible");   
+                        }else{
+                            $(content).addClass("invisible");                        
+                            $(chatboxinput).addClass("invisible");
+                        }
+                        
+                        
+                        
+
+                    }
+                    var close_click;                    
+                    function closeChatBox(chatboxid){
+                        close_click = $("#chatbox_" + chatboxid)[0]; 
+                        var chat_tab = $("#chat_tab")[0];
+                        chat_tab.removeChild(close_click);
+                    }
+
+            /*]]>*/
         </script>  
     </body>
 </html>
