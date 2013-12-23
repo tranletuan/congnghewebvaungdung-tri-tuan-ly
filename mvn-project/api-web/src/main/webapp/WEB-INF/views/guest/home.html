@@ -197,7 +197,7 @@
                                             </button>
                                             <ul class="dropdown-menu slidedown">
                                                 <li><a >Chat Sounds</a></li>
-                                                <li><a >Close All Chat Tabs</a></li>                                        
+                                                <li class="closeAllThatTabs"><a>Close All Chat Tabs</a></li>                                        
                                             </ul>
                                         </div>
                                     </div>
@@ -308,6 +308,12 @@
                     var right;
                     var next_tab;
                     var self;
+                    var demo;
+                    //handle event for online users panel
+                    $(".closeAllThatTabs").on('click', function(){
+            //remove all chat boxs
+            $("#chat_tab").empty();
+            })
                     $("ul.online-user").on('click', 'li', function() {
             chat_tab = $("#chat_tab")[0];
                     self = $(this);
@@ -319,16 +325,24 @@
             }
 
             var chatboxtitle = self[0].children[0].innerHTML.toString();
-                    var chatboxid = self[0].children[0].id;                    
-                    d = document.createElement('div');
+                    var chatboxid = self[0].children[0].id;
+                    var chatboxcurrent = $("#chatbox_" + chatboxid);
+                    //Neu chua co chatbox nay thi tao moi
+                    if (chatboxcurrent.length == 0){
+            d = document.createElement('div');
                     $(d).attr("id", "chatbox_" + chatboxid)
                     .addClass("chatbox")
-                    .html('<div class="chatboxhead"><div class="chatboxtitle">' + chatboxtitle + '</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\'' + chatboxid + '\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\'' + chatboxid + '\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\'' + chatboxid + '\');"></textarea></div>')
+                    .html('<div class="chatboxhead"><div class="chatboxtitle">' + chatboxtitle + '</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\'' + chatboxid + '\')"><span class="span_chatbox">-</span></a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\'' + chatboxid + '\')"><span class="span_chatbox">X</span></a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\'' + chatboxid + '\');"></textarea></div>')
                     .appendTo($("#chat_tab"));
                     var next_right = parseInt(right) + 255 + "px";
                     $("#chatbox_" + chatboxid).css('bottom', '0px');
                     $("#chatbox_" + chatboxid).css('display', 'block');
-                    $("#chatbox_" + chatboxid).css('right', next_right);                    
+                    $("#chatbox_" + chatboxid).css('right', next_right);
+            }else{
+                //Neu co roi thi focus vao o input
+                $("#chatbox_" + chatboxid + " textarea").focus();
+            }
+
             })
 
 
@@ -336,26 +350,71 @@
 
                     var toggle_click;
                     function toggleChatBoxGrowth(chatboxid) {
-                        toggle_click = $("#chatbox_" + chatboxid)[0];                         
-                        var content = toggle_click.children[1];
-                        var chatboxinput = toggle_click.children[2];
-                        if ($(content).hasClass("invisible")) {
-                            $(content).removeClass("invisible");                        
-                            $(chatboxinput).removeClass("invisible");   
-                        }else{
-                            $(content).addClass("invisible");                        
+                    toggle_click = $("#chatbox_" + chatboxid)[0];
+                            var content = toggle_click.children[1];
+                            var chatboxinput = toggle_click.children[2];
+                            if ($(content).hasClass("invisible")) {
+                    $(content).removeClass("invisible");
+                            $(chatboxinput).removeClass("invisible");
+                    } else{
+                    $(content).addClass("invisible");
                             $(chatboxinput).addClass("invisible");
-                        }
-                        
-                        
-                        
+                    }
+
+
+
 
                     }
-                    var close_click;                    
+            var close_click;
                     function closeChatBox(chatboxid){
-                        close_click = $("#chatbox_" + chatboxid)[0]; 
-                        var chat_tab = $("#chat_tab")[0];
-                        chat_tab.removeChild(close_click);
+                    close_click = $("#chatbox_" + chatboxid)[0];
+                            var chat_tab = $("#chat_tab")[0];
+                            chat_tab.removeChild(close_click);
+                    }
+            var windowFocus = true;
+                    var username;
+                    var chatHeartbeatCount = 0;
+                    var minChatHeartbeat = 1000;
+                    var maxChatHeartbeat = 33000;
+                    var chatHeartbeatTime = minChatHeartbeat;
+                    var originalTitle;
+                    var blinkOrder = 0;
+                    var chatboxFocus = new Array();
+                    var newMessages = new Array();
+                    var newMessagesWin = new Array();
+                    var chatBoxes = new Array();
+                    function checkChatBoxInputKey(event, chatboxtextarea, chatboxtitle) {
+
+                    if (event.keyCode == 13 && event.shiftKey == 0)  {
+                    message = $(chatboxtextarea).val();
+                            message = message.replace(/^\s+|\s+$/g, "");
+                            $(chatboxtextarea).val('');
+                            $(chatboxtextarea).focus();
+                            $(chatboxtextarea).css('height', '44px');
+                            if (message != '') {
+//            $.post("chat.php?action=sendchat", {to: chatboxtitle, message: message}, function(data){
+//            message = message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
+                    $("#chatbox_" + chatboxtitle + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + chatboxtitle + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + message + '</span></div>');
+                            $("#chatbox_" + chatboxtitle + " .chatboxcontent").scrollTop($("#chatbox_" + chatboxtitle + " .chatboxcontent")[0].scrollHeight);
+//            });
+                    }
+                    chatHeartbeatTime = minChatHeartbeat;
+                            chatHeartbeatCount = 1;
+                            return false;
+                    }
+
+                    var adjustedHeight = chatboxtextarea.clientHeight;
+                            var maxHeight = 94;
+                            if (maxHeight > adjustedHeight) {
+                    adjustedHeight = Math.max(chatboxtextarea.scrollHeight, adjustedHeight);
+                            if (maxHeight)
+                            adjustedHeight = Math.min(maxHeight, adjustedHeight);
+                            if (adjustedHeight > chatboxtextarea.clientHeight)
+                            $(chatboxtextarea).css('height', adjustedHeight + 8 + 'px');
+                    } else {
+                    $(chatboxtextarea).css('overflow', 'auto');
+                    }
+
                     }
 
             /*]]>*/
