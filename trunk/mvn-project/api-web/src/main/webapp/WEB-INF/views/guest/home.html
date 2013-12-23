@@ -187,8 +187,8 @@
                                     <button class="btn btn-info" type="submit">Kiến nghị</button>
                                 </form>
                             </div>
-
-                            <div class="panel panel-primary" th:if="${user}">
+                            <hr/>
+                            <div class="panel panel-primary panel-online-user" th:if="${user}">
                                 <div class="panel-heading">            Online Friends
                                     <div class="pull-right action-buttons">
                                         <div class="btn-group pull-right">
@@ -235,7 +235,7 @@
                                         </div>                                
                                     </div>
                                 </div>
-                            </div> 
+                            </div>                             
                             <!--end message-->
                         </div>
                         <!--News-->
@@ -327,8 +327,10 @@
             var chatboxtitle = self[0].children[0].innerHTML.toString();
                     var chatboxid = self[0].children[0].id;
                     var chatboxcurrent = $("#chatbox_" + chatboxid);
-                    //Neu chua co chatbox nay thi tao moi
+                    //Neu chua co chatbox nay va so luong chatbox <=4 thi thi tao moi                    
                     if (chatboxcurrent.length == 0){
+            // Neu co 4 chatbox roi thi k tao moi nua
+            if (chat_tab.children.length < 5) {
             d = document.createElement('div');
                     $(d).attr("id", "chatbox_" + chatboxid)
                     .addClass("chatbox")
@@ -338,6 +340,8 @@
                     $("#chatbox_" + chatboxid).css('bottom', '0px');
                     $("#chatbox_" + chatboxid).css('display', 'block');
                     $("#chatbox_" + chatboxid).css('right', next_right);
+                    $("#chatbox_" + chatboxid + " textarea").focus();
+            }
             } else{
             //Neu co roi thi focus vao o input
             var content = chatboxcurrent[0].children[1];
@@ -345,7 +349,7 @@
                     if ($(content).hasClass("invisible")) {
             $(content).removeClass("invisible");
                     $(chatboxinput).removeClass("invisible");
-                    }
+            }
             $("#chatbox_" + chatboxid + " textarea").focus();
             }
 
@@ -380,14 +384,14 @@
                             var childrens = chat_tab.children;
                             var this_right = parseInt(close_click.style.right);
                             for (i = 0; i < childrens.length; i++) {
-                                var child_right = parseInt(childrens[i].style.right);
-                                //neu nam ben trai thi dich chuyen lai
-                                if ( child_right > this_right  ) {
-                                    child_right -= 255;
-                                }
-                                //update lai right
-                                childrens[i].style.right = child_right + "px";
-                            }
+                    var child_right = parseInt(childrens[i].style.right);
+                            //neu nam ben trai thi dich chuyen lai
+                            if (child_right > this_right) {
+                    child_right -= 255;
+                    }
+                    //update lai right
+                    childrens[i].style.right = child_right + "px";
+                    }
                     }
             var windowFocus = true;
                     var username;

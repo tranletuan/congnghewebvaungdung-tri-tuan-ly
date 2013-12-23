@@ -228,3 +228,7 @@ and open the template in the editor.
 .span_chatbox{
     margin: 0 2px;
 }
+
+.panel-online-user{
+    margin-bottom: 11px !important;
+}
