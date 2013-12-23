@@ -224,3 +224,7 @@ and open the template in the editor.
     background-color: #31708f;
      color: white;
 }
+
+.span_chatbox{
+    margin: 0 2px;
+}
