@@ -259,11 +259,11 @@
 
                     <!--end thumbnail news-->
 
-                    <div id="chat_tab">
-                    </div>
+
                 </div>
                 <div th:include="guest/template :: footer"></div>
-
+                <div id="chat_tab">
+                </div>
                 <script th:inline="javascript">
                             /*<![CDATA[*/
                             var homeUrl = /*[[@{/guest/news}]]*/ "homeUrl";
@@ -338,9 +338,15 @@
                     $("#chatbox_" + chatboxid).css('bottom', '0px');
                     $("#chatbox_" + chatboxid).css('display', 'block');
                     $("#chatbox_" + chatboxid).css('right', next_right);
-            }else{
-                //Neu co roi thi focus vao o input
-                $("#chatbox_" + chatboxid + " textarea").focus();
+            } else{
+            //Neu co roi thi focus vao o input
+            var content = chatboxcurrent[0].children[1];
+                    var chatboxinput = chatboxcurrent[0].children[2];
+                    if ($(content).hasClass("invisible")) {
+            $(content).removeClass("invisible");
+                    $(chatboxinput).removeClass("invisible");
+                    }
+            $("#chatbox_" + chatboxid + " textarea").focus();
             }
 
             })
@@ -370,6 +376,18 @@
                     close_click = $("#chatbox_" + chatboxid)[0];
                             var chat_tab = $("#chat_tab")[0];
                             chat_tab.removeChild(close_click);
+                            //update lai right cho cac tab khac
+                            var childrens = chat_tab.children;
+                            var this_right = parseInt(close_click.style.right);
+                            for (i = 0; i < childrens.length; i++) {
+                                var child_right = parseInt(childrens[i].style.right);
+                                //neu nam ben trai thi dich chuyen lai
+                                if ( child_right > this_right  ) {
+                                    child_right -= 255;
+                                }
+                                //update lai right
+                                childrens[i].style.right = child_right + "px";
+                            }
                     }
             var windowFocus = true;
                     var username;
