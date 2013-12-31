@@ -134,6 +134,7 @@
             <groupId>quanlyhocvu-api</groupId>
             <artifactId>api-mongodb</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
         <!--        <dependency>
             <groupId>quanlyhocvu-api</groupId>

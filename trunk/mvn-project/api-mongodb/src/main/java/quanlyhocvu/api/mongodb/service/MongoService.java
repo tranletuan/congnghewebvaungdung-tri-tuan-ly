@@ -46,6 +46,8 @@ import quanlyhocvu.api.mongodb.utils.Authorities;
 public class MongoService {
 
      Logger logger = LoggerFactory.getLogger(getClass());
+     
+     
      //<editor-fold defaultstate="collapsed" desc="DAO variables">\
      @Autowired
      private CommentDAO commentDAO;
@@ -95,14 +97,18 @@ public class MongoService {
      @Autowired
      private StaffDAO staffDAO;
 
+     
      public MongoService() {
      }
     //</editor-fold>
+     
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
 
      //</editor-fold>
+     
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
      //</editor-fold>
+     
      //<editor-fold defaultstate="collapsed" desc="Function for TEACHER">\
      public boolean insertgiaoVien(GiaoVienDTO dto) {
           return giaoVienDAO.insertTeacher(dto);
@@ -565,6 +571,10 @@ public class MongoService {
 
      public UserDTO getUserByUserName(String username) {
           return authorityDAO.getUserByUserName(username);
+     }
+     
+     public UserDTO getUserById(String id) {
+         return authorityDAO.getUserById(id);
      }
 
      public void updateUser(UserDTO user) {
