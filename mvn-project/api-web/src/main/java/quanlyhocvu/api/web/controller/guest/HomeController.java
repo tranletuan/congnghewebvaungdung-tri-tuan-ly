@@ -1,8 +1,11 @@
 package quanlyhocvu.api.web.controller.guest;
 
+import static java.lang.Thread.sleep;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.jms.JMSException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,71 +19,99 @@ import quanlyhocvu.api.mongodb.DTO.staff.CoverImageDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsCounterDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.NewsDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
+import quanlyhocvu.api.mongodb.jms.JMSCheckOnline;
 import quanlyhocvu.api.web.util.Tools;
 
 @Controller
 public class HomeController {
 
-     @Autowired
-     MongoService mongoService;
+    @Autowired
+    MongoService mongoService;
 
-     @RequestMapping(value = {"", "/", "home", "index"})
-     public @ResponseBody
-     ModelAndView index(HttpServletRequest request) {
-          Map<String, Object> model = new HashMap<>();
-          String username = Tools.getCurrentUser();
-          if (username != null) {
-               UserDTO dto = mongoService.getUserByUserName(username);
-               model.put("user", dto);
-          }
-          List<CatalogNewsDTO> list = mongoService.getAllCatalog();
-          model.put("listCatalogs", list);
-          List<CoverImageDTO> listcover = mongoService.getAllCovers();
-          model.put("covers", listcover);
-          return new ModelAndView("guest/home", model);
-     }
+    @Autowired
+    JMSCheckOnline jmsCheckOnline;
 
-     @RequestMapping(value = "home_list_news/{catalogId}/{page}")
-     public @ResponseBody
-     ModelAndView homeListNews(
-             @PathVariable(value = "catalogId") String catalogId,
-             @PathVariable(value = "page") String page,
-             HttpServletRequest request) {
-          Map<String, Object> model = new HashMap<>();
-          int limit = 6;
-          int offset = 0;
-          try {
-               offset = limit * (Integer.parseInt(page) - 1);
-          } catch (NumberFormatException ex) {
-               model.put("message", "Xảy ra lỗi tải trang");
-               return new ModelAndView("guest/home_list_news", model);
-          }
-          List<NewsDTO> listNews;
-          if (!"0".equals(catalogId)) {
-               listNews = mongoService.getNewsByCatalogIdAndPage(catalogId, limit, offset);
-          } else {
-               listNews = mongoService.getAllNewsByPage(limit, offset);
-               if (listNews.isEmpty()) {
-                    listNews = mongoService.getAllNewsByPage(limit, 0);
-               }
-          }
-          model.put("listNews", listNews);
-          return new ModelAndView("guest/home_list_news", model);
-     }
+    @RequestMapping(value = {"", "/", "home", "index"})
+    public @ResponseBody
+    ModelAndView index(HttpServletRequest request) throws JMSException, InterruptedException {
+        Map<String, Object> model = new HashMap<>();
+        String username = Tools.getCurrentUser();
+        List<String> listUserIdOnline = new ArrayList<String>();
+        List<UserDTO> listUserOnline = new ArrayList<>();
+        System.out.println(jmsCheckOnline);
+        if (username != null) {
+            UserDTO dto = mongoService.getUserByUserName(username);
+            if (dto != null) {
+                //JMSCheckOnline check = new JMSCheckOnline();
+                jmsCheckOnline.connectionAndReceiveMessage(dto.getId());
+                jmsCheckOnline.sendMessageOnline(dto.getId());
+                sleep(jmsCheckOnline.timeOut);
+                listUserIdOnline = jmsCheckOnline.getListIdOnline();
 
-     @RequestMapping(value = "news/{newsId}")
-     @ResponseBody
-     public ModelAndView news_id(
-             @PathVariable(value = "newsId") String newsId,
-             HttpServletRequest request) {
-          Map<String, Object> model = new HashMap<>();
-          mongoService.increaseConterNews(newsId);
-          List<NewsCounterDTO> listcounter = mongoService.getHotNews(5);
-          List<CoverImageDTO> listcover = mongoService.getAllCovers();
-          model.put("covers", listcover);
-          String content = mongoService.getNewsContentByNewsId(newsId);
-          model.put("content", content);
-          model.put("listhotnews", listcounter);
-          return new ModelAndView("guest/home", model);
-     }
+                for (String userId : listUserIdOnline) {
+                    UserDTO temp = mongoService.getUserById(userId);
+                    System.out.println(temp);
+                    listUserOnline.add(temp);
+
+                }
+            } else {
+//                jmsCheckOnline.closeConnection();
+            }
+
+            model.put("user", dto);
+            model.put("listUserOnline", listUserOnline);
+
+        }
+        List<CatalogNewsDTO> list = mongoService.getAllCatalog();
+        model.put("listCatalogs", list);
+        List<CoverImageDTO> listcover = mongoService.getAllCovers();
+        model.put("covers", listcover);
+        return new ModelAndView("guest/home", model);
+    }
+
+    @RequestMapping(value = "home_list_news/{catalogId}/{page}")
+    public @ResponseBody
+    ModelAndView homeListNews(
+            @PathVariable(value = "catalogId") String catalogId,
+            @PathVariable(value = "page") String page,
+            HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        int limit = 6;
+        int offset = 0;
+        try {
+            offset = limit * (Integer.parseInt(page) - 1);
+        } catch (NumberFormatException ex) {
+            model.put("message", "Xảy ra lỗi tải trang");
+            return new ModelAndView("guest/home_list_news", model);
+        }
+        List<NewsDTO> listNews;
+        if (!"0".equals(catalogId)) {
+            listNews = mongoService.getNewsByCatalogIdAndPage(catalogId, limit, offset);
+        } else {
+            listNews = mongoService.getAllNewsByPage(limit, offset);
+            if (listNews.isEmpty()) {
+                listNews = mongoService.getAllNewsByPage(limit, 0);
+            }
+        }
+        model.put("listNews", listNews);
+        return new ModelAndView("guest/home_list_news", model);
+    }
+
+    @RequestMapping(value = "news/{newsId}")
+    @ResponseBody
+    public ModelAndView news_id(
+            @PathVariable(value = "newsId") String newsId,
+            HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        mongoService.increaseConterNews(newsId);
+        List<NewsCounterDTO> listcounter = mongoService.getHotNews(5);
+        List<CoverImageDTO> listcover = mongoService.getAllCovers();
+        model.put("covers", listcover);
+        String content = mongoService.getNewsContentByNewsId(newsId);
+        model.put("content", content);
+        model.put("listhotnews", listcounter);
+        return new ModelAndView("guest/home", model);
+
+    }
+
 }

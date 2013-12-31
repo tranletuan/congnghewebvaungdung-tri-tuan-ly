@@ -34,14 +34,14 @@ public class SecurityController {
 
         return new ModelAndView("redirect:/guest/home", model);
     }
-    
-    @RequestMapping(value="check") 
+
+    @RequestMapping(value = "check")
     public @ResponseBody
     ModelAndView check() {
         return new ModelAndView("forward:/authority/check");
     }
-    
-     @RequestMapping(value="logout") 
+
+    @RequestMapping(value = "logout")
     public @ResponseBody
     ModelAndView logout() {
         return new ModelAndView("forward:/authority/logout");

@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="teacher/template :: header" />
+    <body>
+        <link href="" th:href="@{/media/css/teacher_module/class.css}" rel="stylesheet" media="screen"/>
+        <div class="container">
+            <div th:substituteby="teacher/template :: nav" />   
+            <!--<a th:href="@{/staff/management/students/new}" class="btn btn-primary float_right margin_button_bottom">Thêm Học Sinh Mới</a>-->
+            <div class="clearfix"></div>
+
+            <label>Lớp : <span class="strong_text" th:text="${tenLop}"/></label>
+            <br/>
+            <label>Môn học : <span class="strong_text" th:text="${monHoc}"/></label>
+            <br/>
+            <table id="table" style="table-layout: fixed; word-wrap: break-word;">
+                <thead>
+                    <tr>
+                        <th colspan="${colSpanKTM}" class="border_table">Kiểm tra miệng</th>                        
+                        <th colspan="${colSpanKT15}" class="border_table">Kiểm tra 15 phút</th>
+                        <th colspan="${colSpanKT1Tiet}" class="border_table">Kiểm tra 1 tiết</th>
+                        <th rowspan="2" class="border_table">Giữa kỳ</th>
+                        <th rowspan="2" class="border_table">Cuối kỳ</th>
+                        <th rowspan="2" class="border_table">Điểm TB </th>
+                    </tr>                        
+
+                </thead>
+                <tbody>
+                    <tr align="center">
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <div th:include="teacher/template :: footer"></div>
+        </div>	
+
+        <div style='display:none'>
+            <img src='img/confirm/header.gif' alt='' />
+            <img src='img/confirm/button.gif' alt='' />
+        </div>
+        <script src="" th:src="@{/media/js/jquery.simplemodal.js}"></script>
+        <script src="" th:src="@{/media/js/teacher_module/overview.js}"></script>
+        <script th:inline="javascript">
+
+        </script>    
+    </body>
+</html>

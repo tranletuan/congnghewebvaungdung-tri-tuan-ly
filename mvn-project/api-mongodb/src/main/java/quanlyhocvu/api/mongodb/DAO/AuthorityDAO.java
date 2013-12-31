@@ -221,4 +221,9 @@ public class AuthorityDAO {
           }
           mongoOperation.findAndModify(query, update, UserDTO.class);
      }
+     
+     public UserDTO getUserById(String id) {
+         Query query = Query.query(Criteria.where("id").is(id));
+         return mongoOperation.findOne(query, UserDTO.class);
+     }
 }

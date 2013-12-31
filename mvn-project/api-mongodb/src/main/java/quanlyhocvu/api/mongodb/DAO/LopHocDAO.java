@@ -28,6 +28,7 @@ import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 public class LopHocDAO {
 
     Logger logger = LoggerFactory.getLogger(getClass());
+    
     @Autowired
     MongoOperations mongoOperation;
 
