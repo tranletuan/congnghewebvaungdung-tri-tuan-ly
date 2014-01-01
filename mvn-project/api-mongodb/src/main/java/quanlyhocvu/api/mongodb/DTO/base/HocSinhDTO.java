@@ -6,7 +6,10 @@
 package quanlyhocvu.api.mongodb.DTO.base;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 import quanlyhocvu.api.mongodb.DTO.staff.KhoiLopDTO;
 import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
 
@@ -14,6 +17,8 @@ import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
  *
  * @author HuuTri
  */
+@Document
+@XmlRootElement(name = "hocsinh")
 public class HocSinhDTO extends AbstractPersonDTO{
    private String maHocSinh;
    private Date ngayNhapHoc;
@@ -26,6 +31,7 @@ public class HocSinhDTO extends AbstractPersonDTO{
     /**
      * @return the trangThaiHS
      */
+   @XmlElement
     public TrangThaiHS getTrangThaiHS() {
         return trangThaiHS;
     }
@@ -40,6 +46,7 @@ public class HocSinhDTO extends AbstractPersonDTO{
     /**
      * @return the maLopHoc
      */
+    @XmlElement
     public String getMaLopHoc() {
         return maLopHoc;
     }
@@ -54,6 +61,7 @@ public class HocSinhDTO extends AbstractPersonDTO{
     /**
      * @return the khoiLopHienTai
      */
+    @XmlElement
     public KhoiLopDTO getKhoiLopHienTai() {
         return khoiLopHienTai;
     }
@@ -95,6 +103,7 @@ public class HocSinhDTO extends AbstractPersonDTO{
      this.trangThaiHS = TrangThaiHS.DangHoc;
              
    };
+   @XmlElement
     public String getmaHocSinh() {
         return maHocSinh;
     }
@@ -103,14 +112,17 @@ public class HocSinhDTO extends AbstractPersonDTO{
         this.maHocSinh = maHocSinh;
     }
 
+    @XmlElement
     public Date getngayNhapHoc() {
         return ngayNhapHoc;
     }
 
+    
     public void setngayNhapHoc(Date ngayNhapHoc) {
         this.ngayNhapHoc = ngayNhapHoc;
     }
 
+    @XmlElement
     public Date getngayNghiHoc() {
         return ngayNghiHoc;
     }

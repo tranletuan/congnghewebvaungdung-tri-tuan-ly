@@ -6,6 +6,7 @@
 package quanlyhocvu.api.mongodb.DTO.staff;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlElement;
 import quanlyhocvu.api.mongodb.DTO.base.AbstractPersonDTO;
 
 /**
@@ -19,6 +20,7 @@ public class AbstractStaffDTO extends AbstractPersonDTO{
     /**
      * @return the ngayVaoLam
      */
+    @XmlElement
     public Date getngayVaoLam() {
         return ngayVaoLam;
     }
@@ -33,6 +35,7 @@ public class AbstractStaffDTO extends AbstractPersonDTO{
     /**
      * @return the ngayNghiViec
      */
+    @XmlElement
     public Date getngayNghiViec() {
         return ngayNghiViec;
     }

@@ -10,7 +10,7 @@
     <http pattern="/**/login" security="none" />
     <http pattern="/**/media/**" security="none"/>
     <http pattern="/**/media/**/**" security="none"/>
-    <http pattern="/authority/check" security="none" />
+    <http pattern="/authority/check" security="none" />    
     <!--<http pattern="/teacher/**" security="none" />-->
     <!--<http pattern="/staff/**" security="none" />-->
     <http auto-config='true' use-expressions="true">     

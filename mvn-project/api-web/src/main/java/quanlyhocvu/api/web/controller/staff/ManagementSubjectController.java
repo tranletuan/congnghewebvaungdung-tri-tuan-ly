@@ -65,4 +65,9 @@ public class ManagementSubjectController {
         map.put("message", "Đã thêm thành công 1 môn học");
         return new ModelAndView("redirect:/staff/management/subject/index", map);
     }
+    
+    public List<MonHocDTO> getListMonHoc(){
+        System.out.println(mongoService.getAllMonHoc());
+        return mongoService.getAllMonHoc();
+    }
 }
