@@ -6,6 +6,8 @@
 package quanlyhocvu.api.mongodb.DTO.staff;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author HuuTri
  */
 @Document
+@XmlRootElement(name = "giaovien")
 public class GiaoVienDTO extends AbstractStaffDTO {
 
     @Indexed(unique = true)
@@ -32,7 +35,7 @@ public class GiaoVienDTO extends AbstractStaffDTO {
         this.gioiTinh = gioiTinh;     
         
     }
-    
+    @XmlElement
     public String getmaGiaoVien() {
         return maGiaoVien;
     }

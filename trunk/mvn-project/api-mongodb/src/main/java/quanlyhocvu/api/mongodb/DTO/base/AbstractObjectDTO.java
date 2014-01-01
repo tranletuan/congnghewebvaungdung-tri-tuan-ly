@@ -5,6 +5,7 @@
  */
 package quanlyhocvu.api.mongodb.DTO.base;
 
+import javax.xml.bind.annotation.XmlElement;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -16,6 +17,7 @@ public abstract class AbstractObjectDTO {
     protected String id;
     protected String moTa;
 
+    @XmlElement
     public String getid() {
         return id;
     }
@@ -24,6 +26,7 @@ public abstract class AbstractObjectDTO {
         this.id = id;
     }
 
+    @XmlElement
     public String getmoTa() {
         return moTa;
     }
