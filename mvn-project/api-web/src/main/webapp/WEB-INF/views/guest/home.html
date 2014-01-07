@@ -129,9 +129,11 @@
                                 </div>                                
                             </div>
                         </div>
-                    </div>                    
+                    </div>       
+
                     <!--end message-->
                 </div>
+
                 <script th:inline="javascript">
                     jQuery(document).ready(function() {
                     jQuery('#contents').html([[${content}]]);
@@ -203,25 +205,14 @@
                                     </div>
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-group online-user">
-                                        <li th:id="${user.getId()}" class="list-group-item" th:each="user : ${listUserOnline}">
+                                    <ul class="list-group online-user" id="list_online">
+                                        <!--list_online-->
 
-                                            <label th:id="${user.getUserId()}"><span th:text="${user.getUsername()}"/></label>                                    
-                                            <div class="pull-right action-buttons">                                        
-                                                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                            </div>
-                                        </li>
                                     </ul>
                                 </div>
-                                <div class="panel-footer">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h6>
-                                                There are <span class="label label-info" th:text="${listUserOnline.size()}"></span>people online.</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-                            </div>                             
+
+                            </div>     
+
                             <!--end message-->
                         </div>
                         <!--News-->
@@ -247,6 +238,7 @@
 
 
                 </div>
+
                 <div th:include="guest/template :: footer"></div>
                 <div id="chat_tab">
                 </div>
@@ -268,13 +260,25 @@
                 </script>   
             </div>
         </div>	
+
+
+
+
+
+
+
+
+
+
+
         <link href="" th:href="@{/media/css/guest/guest.css}" rel="stylesheet" media="screen" />
         <script th:src="@{/media/js/guest/home.js}" type="text/javascript"/>
-
-        <script th:src="@{/media/js/jquery-1.4.2.min.js}" type="text/javascript"/>
-        <script th:src="@{/media/js/amq_jquery_adapter.js}" type="text/javascript"/>
-        <script th:src="@{/media/js/amq.js}" type="text/javascript"/>
         <script th:src="@{/media/js/guest/checkonline.js}" type="text/javascript"/>
+        <script th:src="@{/media/js/guest/chat.js}" type="text/javascript"/>
+        <script th:inline="javascript">
+                    var userId = /*[[${user.getId()}]]*/"userId";
+                    var userName = /*[[${user.getUsername()}]]*/"Me";
+        </script>
 
         <script th:inline="javascript">
                     /*<![CDATA[*/
@@ -307,6 +311,7 @@
             $("#chat_tab").empty();
             })
                     $("ul.online-user").on('click', 'li', function() {
+
             chat_tab = $("#chat_tab")[0];
                     self = $(this);
                     right = "-250px";
@@ -316,17 +321,19 @@
                     right = last_tab.style.right;
             }
 
-            var chatboxtitle = self[0].children[0].innerHTML.toString();
-                    var chatboxid = self[0].children[0].id;
+            var chatboxtitle = self[0].children[0].children[0].innerHTML;
+                    var chatboxid = self[0].id;
                     var chatboxcurrent = $("#chatbox_" + chatboxid);
                     //Neu chua co chatbox nay va so luong chatbox <=4 thi thi tao moi                    
                     if (chatboxcurrent.length == 0){
+
             // Neu co 4 chatbox roi thi k tao moi nua
             if (chat_tab.children.length < 5) {
+
             d = document.createElement('div');
                     $(d).attr("id", "chatbox_" + chatboxid)
                     .addClass("chatbox")
-                    .html('<div class="chatboxhead"><div class="chatboxtitle">' + chatboxtitle + '</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\'' + chatboxid + '\')"><span class="span_chatbox">-</span></a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\'' + chatboxid + '\')"><span class="span_chatbox">X</span></a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\'' + chatboxid + '\');"></textarea></div>')
+                    .html('<div class="chatboxhead"><div class="chatboxtitle">' + chatboxtitle + '</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\'' + chatboxid + '\')"><span class="span_chatbox">-</span></a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\'' + chatboxid + '\')"><span class="span_chatbox">X</span></a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\'' + chatboxtitle + '\',\'' + chatboxid + '\');"></textarea></div>')
                     .appendTo($("#chat_tab"));
                     var next_right = parseInt(right) + 255 + "px";
                     $("#chatbox_" + chatboxid).css('bottom', '0px');
@@ -397,8 +404,7 @@
                     var newMessages = new Array();
                     var newMessagesWin = new Array();
                     var chatBoxes = new Array();
-                    function checkChatBoxInputKey(event, chatboxtextarea, chatboxtitle) {
-
+                    function checkChatBoxInputKey(event, chatboxtextarea, chatboxtitle, chatboxid) {
                     if (event.keyCode == 13 && event.shiftKey == 0)  {
                     message = $(chatboxtextarea).val();
                             message = message.replace(/^\s+|\s+$/g, "");
@@ -406,11 +412,11 @@
                             $(chatboxtextarea).focus();
                             $(chatboxtextarea).css('height', '44px');
                             if (message != '') {
-//            $.post("chat.php?action=sendchat", {to: chatboxtitle, message: message}, function(data){
-//            message = message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
-                    $("#chatbox_" + chatboxtitle + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + chatboxtitle + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + message + '</span></div>');
-                            $("#chatbox_" + chatboxtitle + " .chatboxcontent").scrollTop($("#chatbox_" + chatboxtitle + " .chatboxcontent")[0].scrollHeight);
-//            });
+
+                            $("#chatbox_" + chatboxid + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + userName + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + message + '</span></div>');
+                            $("#chatbox_" + chatboxid + " .chatboxcontent").scrollTop($("#chatbox_" + chatboxid + " .chatboxcontent")[0].scrollHeight);
+                            sendMessage(userId, chatboxid, message);
+                
                     }
                     chatHeartbeatTime = minChatHeartbeat;
                             chatHeartbeatCount = 1;

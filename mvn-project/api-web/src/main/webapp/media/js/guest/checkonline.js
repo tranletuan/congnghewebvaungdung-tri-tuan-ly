@@ -4,21 +4,30 @@
  * and open the template in the editor.
  */
 
-//var myDestination = "topic://MY.NAME";
-//var myMessage = "id1231231";
-//var myId = "123123123";
-//var amq = org.activemq.Amq;
+var urlOnlineStatus = /*[[@{/guest/check_online}]]*/"check_online";
+var listUser = /*[[${listUser}]]*/"listUsers";
 
 $(document).ready(function() {
 
-//    init();
-//
-//    amq.sendMessage(myDestination, myMessage);
+    var rf = setInterval(receiveStatus, 3000);
 
-    
 });
 
 
+function receiveStatus() {
+    $.ajax({
+        url: urlOnlineStatus,
+        type: 'GET',
+        data: {listUser: listUser},
+        success: function(data) {
+            $("#list_online").html(data);
+        },
+        error: function(data) {
+            console.log(data);
+            console.log("Error");
+        }
+    });
+}
 
 
 

@@ -1,0 +1,11 @@
+<html xmlns="http://www.w3.org/1999/html5"
+      xmlns:th="http://www.thymeleaf.org">
+    <head></head>
+    <body>        
+        <div class="chatboxmessage" th:if="${listMessage}" th:each="msg : ${listMessage}">
+            <span class="chatboxmessagefrom" th:text="${chatboxtitle} + ':   '">[[${chatboxtitle}]]:&nbsp;&nbsp;</span>
+            <span class="chatboxmessagecontent" th:text="${msg}">[[${msg}]]</span>
+        </div> 
+    </body>
+</html>
+

@@ -30,7 +30,7 @@ import org.apache.activemq.broker.BrokerService;
  */
 public class BasicJMSActor {
 
-    private TopicConnection topicConnection;
+        private TopicConnection topicConnection;
     private QueueConnection queueConnection;
     private BrokerService broker;
 
@@ -60,16 +60,30 @@ public class BasicJMSActor {
     //Hủy kết nối với broker
     protected void disconnectionBrokder() {
         try {
-            //this.broker.stop();
-            System.out.println("Out1");
             this.topicConnection.stop();
-            System.out.println("Out2");
             this.topicConnection.close();
             this.queueConnection.close();
-            System.out.println("Out");
 
         } catch (Exception e) {
             System.out.println("Loi dong ket noi");
+
+        }
+    }
+
+    protected void closeQueueConnection() {
+        try {
+            this.queueSession.close();
+            this.queueConnection.close();
+        } catch (Exception e) {
+
+        }
+    }
+
+    protected void closeTopicConnection() {
+        try {
+            this.topicSession.close();
+            this.topicConnection.close();
+        } catch (Exception e) {
 
         }
     }
@@ -116,7 +130,6 @@ public class BasicJMSActor {
         textMessage.setText(text);
 
         topicPublisher.send(topic, textMessage);
-        System.out.println("Send: " + textMessage.getText());
     }
 
     //Gửi thông điệp đến Queue
@@ -132,8 +145,6 @@ public class BasicJMSActor {
         textMessage.setText(text);
 
         queueSender.send(textMessage);
-        System.out.println("Send: " + textMessage.getText());
-
     }
 
     protected void receiveMessageFromTopic(String topicName, MessageListener listener) {
