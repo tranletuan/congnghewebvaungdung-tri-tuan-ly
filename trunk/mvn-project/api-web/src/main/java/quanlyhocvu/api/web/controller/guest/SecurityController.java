@@ -2,17 +2,26 @@ package quanlyhocvu.api.web.controller.guest;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.jms.JMSException;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import quanlyhocvu.api.mongodb.DTO.Authority.UserDTO;
+import quanlyhocvu.api.mongodb.jms.ClientJMS;
+import quanlyhocvu.api.mongodb.service.MongoService;
+import quanlyhocvu.api.web.util.Tools;
 
 @Controller
 public class SecurityController {
 
     Logger logger = Logger.getLogger(getClass());
+
+    @Autowired
+    MongoService mongoService;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public @ResponseBody
@@ -43,7 +52,15 @@ public class SecurityController {
 
     @RequestMapping(value = "logout")
     public @ResponseBody
-    ModelAndView logout() {
+    ModelAndView logout() throws JMSException {
+        String username = Tools.getCurrentUser();
+        if (username != null) {
+            UserDTO dto = mongoService.getUserByUserName(username);
+            if (dto != null) {
+                ClientJMS client = new ClientJMS((dto.getId()));
+                client.sendStatusOffline();
+            }
+        }
         return new ModelAndView("forward:/authority/logout");
     }
 }

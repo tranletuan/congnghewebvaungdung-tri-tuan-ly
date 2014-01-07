@@ -108,22 +108,21 @@
     </servlet-mapping>
 
     <!--========================test=========================-->
-<!--    <context-param>
+    <!-- activeMQ -->
+    <context-param>
         <param-name>org.apache.activemq.brokerURL</param-name>
-        <param-value>vm://localhost</param-value>
+        <param-value>tcp://localhost</param-value>
     </context-param>
-
+    <!-- ActiveMQ AjaxServlet -->
+    <!-- The servlet both serves the required js files and handles the JMS requests and responses -->
     <servlet>
         <servlet-name>AjaxServlet</servlet-name>
         <servlet-class>org.apache.activemq.web.AjaxServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>AjaxServlet</servlet-name>
         <url-pattern>/amq/*</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>MessageServlet</servlet-name>
         <servlet-class>org.apache.activemq.web.MessageServlet</servlet-class>
@@ -132,8 +131,7 @@
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
         <url-pattern>/message/*</url-pattern>
-    </servlet-mapping>-->
-    
+    </servlet-mapping>
     <!--test-->
     
     <listener>
