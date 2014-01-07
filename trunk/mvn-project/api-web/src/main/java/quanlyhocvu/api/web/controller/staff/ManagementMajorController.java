@@ -41,7 +41,13 @@ public class ManagementMajorController {
     public @ResponseBody
     ModelAndView major(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();  
-        List<PhanCongDTO> listPhanCong = mongoService.getAllPhanCong();        
+        List<PhanCongDTO> listPhanCong = mongoService.getAllPhanCong();  
+        //loa bo cai nao co chi tiet phan cong = null
+        for (PhanCongDTO phanCong : listPhanCong){
+            if (phanCong == null || phanCong.getChiTietChuyenMon() == null || phanCong.getClass() == null){
+                listPhanCong.remove(phanCong);
+            }
+        }
         map.put("listPhanCong", listPhanCong);
         return new ModelAndView("staff/management/major/list", map);
         

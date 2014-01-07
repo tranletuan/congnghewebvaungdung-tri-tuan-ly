@@ -14,10 +14,10 @@
                     <th>Giáo Viên</th>                    
                 </thead>
                 <tbody>
-                    <tr th:id="${phanCong.getid()}" align="center" th:each="phanCong: ${listPhanCong}">
+                    <tr th:id="${phanCong.getid()}" th:if="${phanCong.getChiTietChuyenMon()}" align="center" th:each="phanCong: ${listPhanCong}">
                         <td th:text="${phanCong.getLopHoc().getkhoiLop().gettenKhoiLop()} + '' + ${phanCong.getLopHoc().gettenLopHoc()}" class="tenLopHoc"></td>
-                        <td th:text="${phanCong.getChiTietChuyenMon().getChiTietMonHoc().getMonHoc().gettenMonHoc()}" class="tenMonHoc"/>                        
-                        <td th:text="${phanCong.getChiTietChuyenMon().getGiaoVien().gethoTen()}" class="tenGiaoVien"/>  
+                        <td th:if="${phanCong.getChiTietChuyenMon()}" th:text="${phanCong.getChiTietChuyenMon().getChiTietMonHoc().getMonHoc().gettenMonHoc()}" class="tenMonHoc"/>                        
+                        <td th:if="${phanCong.getChiTietChuyenMon()}" th:text="${phanCong.getChiTietChuyenMon().getGiaoVien().gethoTen()}" class="tenGiaoVien"/>  
                     </tr>
                 </tbody>
             </table>
