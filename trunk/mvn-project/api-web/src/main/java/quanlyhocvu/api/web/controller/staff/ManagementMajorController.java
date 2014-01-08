@@ -49,6 +49,7 @@ public class ManagementMajorController {
             }
         }
         map.put("listPhanCong", listPhanCong);
+        
         return new ModelAndView("staff/management/major/list", map);
         
     }

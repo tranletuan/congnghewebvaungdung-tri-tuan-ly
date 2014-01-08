@@ -6,6 +6,7 @@
 
 package quanlyhocvu.api.mongodb.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -54,8 +55,10 @@ public class ChiTietChuyenMonDAO {
     }
     
     public List<ChiTietChuyenMonDTO> getListBy(String idGiaoVien) {
+        List<ChiTietChuyenMonDTO> object = new ArrayList<>();
         Query query = Query.query(Criteria.where("giaoVien.$id").is(new ObjectId(idGiaoVien)));
-        return mongoOperation.find(query, ChiTietChuyenMonDTO.class);
+        object = mongoOperation.find(query, ChiTietChuyenMonDTO.class);
+        return object;
     }
     
     public ChiTietChuyenMonDTO getById(String id) {

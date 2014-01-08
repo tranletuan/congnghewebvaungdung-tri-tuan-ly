@@ -451,6 +451,14 @@ public class MongoService {
      public boolean updateDiemSo(String loaiDiem, String idDiem, int index, Float diemMoi) {
           return diemDAO.updateDiemSo(loaiDiem, idDiem, index, diemMoi);
      }
+     
+     public DiemDTO getDiemByIdDiem(String idDiem) {
+         return diemDAO.getDiemById(idDiem);
+     }
+     
+     public boolean tinhDiemTB(DiemDTO dto) {
+         return diemDAO.tinhDiemTB(dto);
+     }
 
 //</editor-fold>
      //<editor-fold defaultstate="collapsed" desc="PHAN CONG">

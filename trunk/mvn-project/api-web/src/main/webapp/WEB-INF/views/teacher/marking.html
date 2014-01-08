@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:include="teacher/template :: header" />
-  <body class="main-body">
+    <body class="main-body">
         <div class="container main-containern">
             <div th:substituteby="teacher/template :: nav" />              
             <div class="clearfix"></div>
@@ -41,13 +41,15 @@
                                     (${loaiDiem} eq 'kt15'? ${diem.getListDiemKT15().get(index)} : 
                                     (${loaiDiem} eq 'kt1tiet'? ${diem.getListDiemKT1Tiet().get(index)}: 
                                     (${loaiDiem} eq 'ktgiuaky'? ${diem.getDiemGiuaKy()} : 
-                                    (${diem.getDiemCuoiKy()}))))) ge 0 ? 
+                                    (${loaiDiem} eq 'ktcuoiky'? ${diem.getDiemCuoiKy()} : 
+                                    (${diem.getDiemTB()})))))) ge 0 ? 
 
                                     (${loaiDiem} eq 'ktmieng'? ${diem.getListDiemKTMieng().get(index)} : 
                                     (${loaiDiem} eq 'kt15'? ${diem.getListDiemKT15().get(index)} : 
                                     (${loaiDiem} eq 'kt1tiet'? ${diem.getListDiemKT1Tiet().get(index)}: 
                                     (${loaiDiem} eq 'ktgiuaky'? ${diem.getDiemGiuaKy()} : 
-                                    (${diem.getDiemCuoiKy()}))))) : 'chưa có' "/></th>
+                                    (${loaiDiem} eq 'ktcuoiky'? ${diem.getDiemCuoiKy()} : 
+                                    (${diem.getDiemTB()})))))) : 'chưa có' "/></th>
                     </tr>
                 </tbody>
             </table>

@@ -83,6 +83,10 @@ public class DiemDTO extends AbstractObjectDTO {
     }
 
     public List<Float> getListDiemKTMieng() {
+        if (listDiemKTMieng == null || listDiemKTMieng.size() == 0) {
+            listDiemKTMieng = new ArrayList();
+            listDiemKTMieng.add(new Float(-1));
+        }
         return listDiemKTMieng;
     }
 
@@ -91,6 +95,10 @@ public class DiemDTO extends AbstractObjectDTO {
     }
 
     public List<Float> getListDiemKT15() {
+        if (listDiemKT15 == null || listDiemKT15.size() == 0) {
+            listDiemKT15 = new ArrayList();
+            listDiemKT15.add(new Float(-1));
+        }
         return listDiemKT15;
     }
 
@@ -99,6 +107,10 @@ public class DiemDTO extends AbstractObjectDTO {
     }
 
     public List<Float> getListDiemKT1Tiet() {
+        if (listDiemKT1Tiet == null || listDiemKT1Tiet.size() == 0) {
+            listDiemKT1Tiet = new ArrayList();
+            listDiemKT1Tiet.add(new Float(-1));
+        }
         return listDiemKT1Tiet;
     }
 
