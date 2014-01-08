@@ -134,7 +134,7 @@ public class AuthorityDAO {
                if (giaoviens != null) {
                     for (GiaoVienDTO giaovien : giaoviens) {
                          if (giaovien.getmaGiaoVien() != null) {
-                              UserDTO user = new UserDTO(giaovien.getmaGiaoVien(), MD5.getMD5("admin"), giaovien.getid());
+                              UserDTO user = new UserDTO(giaovien.getmaGiaoVien(), "admin", giaovien.getid());
                               user.getRoles().add(mongoOperation.findOne(
                                       Query.query(Criteria.where("rolename").
                                               is(Authorities.TEACHER.toString())), RoleDTO.class));

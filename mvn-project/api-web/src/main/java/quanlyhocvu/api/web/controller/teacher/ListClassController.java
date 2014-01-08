@@ -14,15 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import quanlyhocvu.api.mongodb.DTO.Teacher.ChiTietChuyenMonDTO;
 import quanlyhocvu.api.mongodb.DTO.Teacher.PhanCongDTO;
-import quanlyhocvu.api.mongodb.DTO.base.HocSinhDTO;
-import quanlyhocvu.api.mongodb.DTO.staff.LopHocDTO;
-import quanlyhocvu.api.mongodb.DTO.staff.MonHocDTO;
 import quanlyhocvu.api.mongodb.service.MongoService;
 import quanlyhocvu.api.web.util.Utils;
 
@@ -41,9 +37,10 @@ public class ListClassController {
     @RequestMapping(value = "class")
     public @ResponseBody
     ModelAndView classTeaching(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
+        
         List<ChiTietChuyenMonDTO> listChuyenMon = mongoService.getListChiTietChuyenMonByIdGiaoVien(Utils.getCurrentUserId(mongoService));
-        List<PhanCongDTO> listPhanCong = new ArrayList<PhanCongDTO>();
+        List<PhanCongDTO> listPhanCong = new ArrayList<>();
 
         for (int i = 0; i < listChuyenMon.size(); i++) {
             List<PhanCongDTO> listTemp = mongoService.getListPhanCongBy(listChuyenMon.get(i).getid());

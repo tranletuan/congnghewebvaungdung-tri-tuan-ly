@@ -142,7 +142,7 @@
         
     
     <!--Start Resteasy-->
-    <listener>
+<!--    <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
     </listener>
     
@@ -164,7 +164,7 @@
     <context-param>
         <param-name>resteasy.servlet.mapping.prefix</param-name>
         <param-value>/</param-value>
-    </context-param>
+    </context-param>-->
     <!--End Resteasy-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

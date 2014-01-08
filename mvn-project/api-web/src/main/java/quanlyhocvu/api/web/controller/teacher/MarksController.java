@@ -121,6 +121,10 @@ public class MarksController {
         String loaiDiem = request.getParameter("loaiDiem");
 
         mongoService.updateDiemSo(loaiDiem, idDiem, index, diemMoi);
+
+        DiemDTO diem = mongoService.getDiemByIdDiem(idDiem);
+        mongoService.tinhDiemTB(diem);
+
         return new ModelAndView("teacher/marking");
     }
 
@@ -132,7 +136,7 @@ public class MarksController {
         String idPhanCong = request.getParameter("idPhanCong");
         String loaiDiem = request.getParameter("loaiDiem");
 
-        if (!"ktgiuaky".equals(loaiDiem) && !"ktcuoiky".equals(loaiDiem)) {
+        if (!"ktgiuaky".equals(loaiDiem) && !"ktcuoiky".equals(loaiDiem) && !"trungbinh".endsWith(loaiDiem)) {
             PhanCongDTO phanCong = mongoService.getPhanCongById(idPhanCong);
             ChiTietMonHocDTO chiTietMonHoc = phanCong.getChiTietChuyenMon().getChiTietMonHoc();
             List<HocSinhDTO> listHocSinh = phanCong.getLopHoc().getlistHocSinh();
