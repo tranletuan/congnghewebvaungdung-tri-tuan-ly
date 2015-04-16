@@ -1,0 +1,1 @@
+website giúp trường trung học quản lý về học vụ và phục vụ cho sự tương tác giữa nhà trường với học sinh, giáo viên, phụ huynh và các nhân viên làm công tác quản lý nhà trường
